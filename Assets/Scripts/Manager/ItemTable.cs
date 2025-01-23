@@ -68,7 +68,7 @@ public class ItemData
 
 public class SavedItemData
 {
-    [JsonConverter(typeof(ItemData))]
+    [JsonConverter(typeof(ItemDataConverter))]
     public ItemData ItemData;
     // Depending on game save data
     public int priceID;

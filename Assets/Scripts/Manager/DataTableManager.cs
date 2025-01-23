@@ -16,20 +16,26 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
-
-#if UNITY_EDITOR
-        foreach (var id in DataTableIds.String)
+        foreach (var id in DataTableIds.Price)
         {
-            var table = new StringTable();
+            var table = new PriceTable();
             table.Load(id);
             tables.Add(id, table);
         }
-#else
-        var table = new StringTable();
-        var stringTableId = DataTableIds.String[(int)Variables.currentLang];
-        table.Load(stringTableId);
-        tables.Add(stringTableId, table);
-#endif
+
+//#if UNITY_EDITOR
+//        foreach (var id in DataTableIds.String)
+//        {
+//            var table = new StringTable();
+//            table.Load(id);
+//            tables.Add(id, table);
+//        }
+//#else
+//        var table = new StringTable();
+//        var stringTableId = DataTableIds.String[(int)Variables.currentLang];
+//        table.Load(stringTableId);
+//        tables.Add(stringTableId, table);
+//#endif
     }
     //public static StringTable StringTable
     //{
@@ -44,6 +50,14 @@ public static class DataTableManager
         get
         {
             return Get<ItemTable>(DataTableIds.Item[0]);
+        }
+    }
+
+    public static PriceTable PriceTable
+    {
+        get
+        {
+            return Get<PriceTable>(DataTableIds.Price[0]);
         }
     }
 

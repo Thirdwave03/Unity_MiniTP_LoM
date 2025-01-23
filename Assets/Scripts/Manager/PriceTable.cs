@@ -16,11 +16,11 @@ public enum PriceTypes
 public class PriceData
 {
     public int Id { get; set; }
-    public PriceTypes PriceType { get; set; }
-    public int MaxPrice { get; set; }
+    //public PriceTypes PriceType { get; set; }
     public int MinPrice { get; set; }
-    public int MaxChangable { get; set; }
+    public int MaxPrice { get; set; }
     public int MinChangable { get; set; } // Could consider disposing min Changable val    
+    public int MaxChangable { get; set; }
 }
 
 public class PriceTable : DataTable

@@ -9,7 +9,7 @@ using TMPro;
 public class MainSceneUiManager : MonoBehaviour
 {
     public UiInventory inventory;
-
+    public UiItemInfo itemInfo;
 
     public Button inventoryButton;
     public Button inventoryUpgrade;
@@ -42,18 +42,69 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject.transform.parent.gameObject);
+        //DontDestroyOnLoad(gameObject.transform.parent.gameObject);
         AddListeners();
+        inventory.AddListeners(OnClickInventorySlot);
     }
 
     private void OnEnable()
     {
         settingWindow.SetActive(false);
         inventoryWindow.SetActive(false);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    {
+        AddListeners();
+        UpdateMainSceneDisplay();
+    }
+
+    private void UpdateMainSceneDisplay()
+    {
+        currentCoin.text = GameManager.Instance.Coins.ToString();
+        daysProgress.text = GameManager.Instance.Days.ToString();
+        //tips.text = GameManager.Instance. (Not Ready yet)
+        inventoryLevel.text = GameManager.Instance.inventoryLevel.ToString();
+        inventoryStatus.text = $"Capacity: (TBD)/{GameManager.Instance.InventoryCapacity}\n" +
+            $"Rental Fee: {GameManager.Instance.inventoryFee}/Day";
+    }
+
+    private void OnClickInventorySlot()
+    {
+        int index = inventory.SelectedSlotIndex;
+        if(index != -1 && inventory.slots[index].Data != null)
+        {
+            itemInfo.SetData(inventory.slots[index].Data);
+        }
+        else
+        {
+            itemInfo.SetEmpty();
+        }
     }
 
     private void AddListeners()
     {
+        // scene contents
+        inventoryButton.onClick.RemoveAllListeners();
+        inventoryUpgrade.onClick.RemoveAllListeners();
+        inventoryDowngrade.onClick.RemoveAllListeners();
+        informationButton.onClick.RemoveAllListeners();
+        settingButton.onClick.RemoveAllListeners();
+        purchaseSceneButton.onClick.RemoveAllListeners();
+        salesSceneButton.onClick.RemoveAllListeners();
+        innSceneButton.onClick.RemoveAllListeners();
+        sleepButton.onClick.RemoveAllListeners();
+
+        // setting contents
+        settingCloseButton.onClick.RemoveAllListeners();
+        restartButton.onClick.RemoveAllListeners();
+        mainMenuButton.onClick.RemoveAllListeners();
+        quitButton.onClick.AddListener(OnClickSettingQuit);
+
+        // inventory contents
+        inventoryReturnButton.onClick.RemoveAllListeners();
+
         // scene contents
         inventoryButton.onClick.AddListener(OnClickInventory);
         inventoryUpgrade.onClick.AddListener(OnClickInventoryUpgrade);
@@ -118,7 +169,8 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSleep()
     {
-        
+        GameManager.Instance.OnSleep();
+        UpdateMainSceneDisplay();
     }
 
     private void OnClickSettingClose()
@@ -134,6 +186,7 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSettingMainMenu()
     {
+        gameObject.SetActive(false);
         SceneManager.LoadScene((int)SceneIds.TitleScene);
     }
 

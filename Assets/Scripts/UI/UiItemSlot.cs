@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UiItemSlot : MonoBehaviour
 {
     public int SlotIndex { get; set; }
-    public ItemData Data { get; private set; }
+    public SavedItemData Data { get; private set; }
 
     public TextMeshProUGUI itemPriceText;
     public Image itemIcon;
@@ -23,7 +23,7 @@ public class UiItemSlot : MonoBehaviour
     public void SetItem(SavedItemData itemData)
     {
         gameObject.SetActive(true);
-        Data = itemData.ItemData;
+        Data = itemData;
         itemIcon.sprite = itemData.ItemData.IconSprite;
         itemPriceText.text = itemData.price.ToString();
         itemCountText.text = itemData.count.ToString();
@@ -34,7 +34,7 @@ public class UiItemSlot : MonoBehaviour
         Debug.Log($"Slot Index: {SlotIndex}");
         if (Data != null)
         {
-            Debug.Log($"Item Id: {Data.Id}");
+            Debug.Log($"Item Id: {Data.ItemData.Id}");
         }
     }    
 }

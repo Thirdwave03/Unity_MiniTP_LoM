@@ -22,7 +22,11 @@ public class SaveLoadManager
 
     static SaveLoadManager()
     {
-                
+        if(!Load())
+        {
+            Data = new SaveDataVC();
+            Save();
+        }
     }
 
     // readonly 넣어도 되나..?
@@ -30,8 +34,11 @@ public class SaveLoadManager
     
     public static bool Save(int slot = 0)
     {
-        if(Data == null || slot < 0 || slot >= SaveFileName.Length) 
+        if (Data == null || slot < 0 || slot >= SaveFileName.Length)
+        {
+            Debug.Log($"File Save to slotIndex ({slot}) failed");
             return false;
+        }
 
         if(!Directory.Exists(SaveDirectory))
         {
@@ -48,6 +55,7 @@ public class SaveLoadManager
         var json = JsonConvert.SerializeObject(Data, jsonSettings);
         File.WriteAllText(path, json);
 
+        Debug.Log($"File Save to slotIndex ({slot}) successful");
         return true;
     }
 
@@ -67,6 +75,7 @@ public class SaveLoadManager
         };
 
         var json = File.ReadAllText(path);
+        Debug.Log($"Loaded JSON: {json}");
         var saveData = JsonConvert.DeserializeObject<SaveData>(json, jsonSettings);
 
         while(saveData.Version < SaveDataVersion)
@@ -81,7 +90,10 @@ public class SaveLoadManager
     public static int GetAvailableSaveSlot()
     {
         if (!Directory.Exists(SaveDirectory))
+        {
+            Directory.CreateDirectory(SaveDirectory);
             return -1;
+        }
         if (!File.Exists(Path.Combine(SaveDirectory, SaveFileName[0])))
         {
             return 0;

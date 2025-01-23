@@ -19,7 +19,7 @@ public class GameManager
         }
     }
 
-    public static Dictionary<int, SavedItemData> entireItemDict;
+    public Dictionary<int, SavedItemData> entireItemDict;
     private bool isItemInitializingNeeded = false;
 
     public GameModes CurrentGameMode { get; private set; }
@@ -64,14 +64,15 @@ public class GameManager
     private static void InitialCall()
     {
         instance = new GameManager();
-        entireItemDict = new Dictionary<int, SavedItemData>();
         instance.SetupEntireItemData();
     }
 
     private void SetupEntireItemData()
     {
+        entireItemDict = new Dictionary<int, SavedItemData>();
         entireItemDict.Clear();
-        if (SaveLoadManager.Load(currentSavedSlotIndex))
+        if(false)
+        //if (SaveLoadManager.Load(currentSavedSlotIndex))
         {
             foreach (var item in SaveLoadManager.Data.savedItemList)
             {
@@ -100,17 +101,18 @@ public class GameManager
         {
             InitializeItemDictData();
         }
+        SynchronizeWithSaveData();
     }
 
     private void InitializeItemDictData()
     {
-        var priceTable = DataTableManager.Get<PriceTable>(DataTableIds.Price[0]);
+        var priceTable = DataTableManager.PriceTable;
         var priceList = priceTable.GetPriceKeyList();
 
         for(int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxPrimary; ++i)
         {
             int key = Random.Range(PriceDataIndex.minPrimary, PriceDataIndex.maxPrimary);
-            while (priceList.Contains(key))
+            while (!priceList.Contains(key))
             {
                 key = Random.Range(PriceDataIndex.minPrimary, PriceDataIndex.maxPrimary);
             }
@@ -128,7 +130,7 @@ public class GameManager
         for (int i = ItemDataIndex.minSecondary; i <= ItemDataIndex.maxSecondary; ++i)
         {
             int key = Random.Range(PriceDataIndex.minSecondary, PriceDataIndex.maxSecondary);
-            while (priceList.Contains(key))
+            while (!priceList.Contains(key))
             {
                 key = Random.Range(PriceDataIndex.minSecondary, PriceDataIndex.maxSecondary);
             }
@@ -146,7 +148,7 @@ public class GameManager
         for (int i = ItemDataIndex.minLuxury; i <= ItemDataIndex.maxLuxury; ++i)
         {
             int key = Random.Range(PriceDataIndex.minLuxury, PriceDataIndex.maxLuxury);
-            while (priceList.Contains(key))
+            while (!priceList.Contains(key))
             {
                 key = Random.Range(PriceDataIndex.minLuxury, PriceDataIndex.maxLuxury);
             }
@@ -161,14 +163,51 @@ public class GameManager
             priceList.Remove(key);
         }
     }
-    
+
+    private void SynchronizeWithSaveData()
+    {
+        SaveLoadManager.Data.savedItemList.Clear();
+        foreach(var saveData in entireItemDict.Values.ToList())
+        {
+            SaveLoadManager.Data.savedItemList.Add(saveData);
+        }
+
+        SaveLoadManager.Data.currentGameMode = CurrentGameMode;
+        SaveLoadManager.Data.days = days;
+        SaveLoadManager.Data.lastDay = lastDay;
+        SaveLoadManager.Data.coins = coins;
+        SaveLoadManager.Data.inventoryLevel = inventoryLevel;
+        SaveLoadManager.Data.inventoryMinLevel = inventoryMinLevel;
+        SaveLoadManager.Data.inventoryMaxLevel = inventoryMaxLevel;
+        SaveLoadManager.Data.inventoryCapacity = inventoryCapacity;
+        SaveLoadManager.Data.inventoryFee = inventoryFee;
+        SaveLoadManager.Data.lentAmount = lentAmount;
+        SaveLoadManager.Data.paybackDateCnt = paybackDateCnt;
+        SaveLoadManager.Data.investedAmount = investedAmount;
+        SaveLoadManager.Data.wholesaleItem1 = wholesaleItem1;
+        SaveLoadManager.Data.wholesaleItem1Cnt = wholesaleItem1Cnt;
+        SaveLoadManager.Data.wholesaleItem1Cost = wholesaleItem1Cost;
+        SaveLoadManager.Data.isItem1Purchased = isItem1Purchased;
+        SaveLoadManager.Data.wholesaleItem2 = wholesaleItem2;
+        SaveLoadManager.Data.wholesaleItem2Cnt = wholesaleItem2Cnt;
+        SaveLoadManager.Data.wholesaleItem2Cost = wholesaleItem2Cost;
+        SaveLoadManager.Data.isItem2Purchased = isItem2Purchased;
+        SaveLoadManager.Data.isRandomBox1Purchased = isRandomBox1Purchased;
+        SaveLoadManager.Data.randomBox1Item = randomBox1Item;
+        SaveLoadManager.Data.randomBox1Cnt = randomBox1Cnt;
+        SaveLoadManager.Data.isRandomBox2Purchased = isRandomBox2Purchased;
+        SaveLoadManager.Data.randomBox2Item = randomBox2Item;
+        SaveLoadManager.Data.randomBox2Cnt = randomBox2Cnt;
+    }
+
     public void SetupNewGame(GameModes gameMode = GameModes.Default)
     {
         if(gameMode == GameModes.Default)
         {
             SetUpNewDefault();
         }
-        SaveLoadManager.Save(currentSavedSlotIndex);
+        Debug.Log($"Save Result: { SaveLoadManager.Save(currentSavedSlotIndex)}");
+        
     }        
 
     private void SetUpNewDefault()
@@ -201,9 +240,52 @@ public class GameManager
         randomBox2Cnt = -1;
     }
 
-    public void LoadSavedSlot(int slotIndex)
+    public void LoadSavedSlot(int slotIndex = 0)
     {
         currentSavedSlotIndex = slotIndex;
+
+        entireItemDict = new Dictionary<int, SavedItemData>();
+        entireItemDict.Clear();
+        if (SaveLoadManager.Load(currentSavedSlotIndex))
+        {
+            foreach (var item in SaveLoadManager.Data.savedItemList)
+            {
+                entireItemDict.Add(item.ItemData.Id, item);
+            }
+        }
+
+        CurrentGameMode = SaveLoadManager.Data.currentGameMode;
+        days = SaveLoadManager.Data.days;
+        lastDay = SaveLoadManager.Data.lastDay;
+        coins = SaveLoadManager.Data.coins;
+        inventoryLevel = SaveLoadManager.Data.inventoryLevel;
+        inventoryMinLevel = SaveLoadManager.Data.inventoryMinLevel;
+        inventoryMaxLevel = SaveLoadManager.Data.inventoryMaxLevel;
+        inventoryCapacity = SaveLoadManager.Data.inventoryCapacity;
+        inventoryFee = SaveLoadManager.Data.inventoryFee;
+        lentAmount = SaveLoadManager.Data.lentAmount;
+        paybackDateCnt = SaveLoadManager.Data.paybackDateCnt;
+        investedAmount = SaveLoadManager.Data.investedAmount;
+        wholesaleItem1 = SaveLoadManager.Data.wholesaleItem1;
+        wholesaleItem1Cnt = SaveLoadManager.Data.wholesaleItem1Cnt;
+        wholesaleItem1Cost = SaveLoadManager.Data.wholesaleItem1Cost;
+        isItem1Purchased = SaveLoadManager.Data.isItem1Purchased;
+        wholesaleItem2 = SaveLoadManager.Data.wholesaleItem2;
+        wholesaleItem2Cnt = SaveLoadManager.Data.wholesaleItem2Cnt;
+        wholesaleItem2Cost = SaveLoadManager.Data.wholesaleItem2Cost;
+        isItem2Purchased = SaveLoadManager.Data.isItem2Purchased;
+        isRandomBox1Purchased = SaveLoadManager.Data.isRandomBox1Purchased;
+        randomBox1Item = SaveLoadManager.Data.randomBox1Item;
+        randomBox1Cnt = SaveLoadManager.Data.randomBox1Cnt;
+        isRandomBox2Purchased = SaveLoadManager.Data.isRandomBox2Purchased;
+        randomBox2Item = SaveLoadManager.Data.randomBox2Item;
+        randomBox2Cnt = SaveLoadManager.Data.randomBox2Cnt;
+    }
+
+    private void CallSave()
+    {
+        SynchronizeWithSaveData();
+        SaveLoadManager.Save(currentSavedSlotIndex);
     }
 
     public void OnSleep()
@@ -223,46 +305,36 @@ public class GameManager
         coins -= inventoryFee;
         coins += (int)(investedAmount * 0.04);
         ItemsPriceChangeOnSleep();
-        SaveLoadManager.Save(currentSavedSlotIndex);
+        CallSave();
     }
 
     private void ItemsPriceChangeOnSleep()
     {
         for(int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxLuxury; ++i)
         {
-            if (entireItemDict[i].trendRemainingDate == 0)
+            entireItemDict[i].trendRemainingDate--;
+            if (entireItemDict[i].priceTrend == PriceTrends.Raising)
             {
+                entireItemDict[i].price +=
+                    Random.Range(DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinChangable,
+                    DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable + 1);
+            }
+            if (entireItemDict[i].priceTrend == PriceTrends.Descending)
+            {
+                entireItemDict[i].price -=
+                    Random.Range(DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinChangable,
+                    DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable + 1);
+            }
+            entireItemDict[i].price = Mathf.Clamp(entireItemDict[i].price,
+                DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinPrice,
+                DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxPrice + 1);
+            if (entireItemDict[i].trendRemainingDate <= 0)
+            {   
                 entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0, (int)PriceTrends.Count);
                 if (entireItemDict[i].priceTrend != PriceTrends.Stationary)
                 {
                     entireItemDict[i].trendRemainingDate = Random.Range(0, 3);
                 }
-                // 흐름잔여일 0에서도 상승, 하락 1회 처리 로직 추가 필요
-            }
-            else
-            {
-                entireItemDict[i].trendRemainingDate--;
-                if (entireItemDict[i].priceTrend == PriceTrends.Raising)
-                {
-                    entireItemDict[i].price +=
-                        Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).
-                        Get(entireItemDict[i].priceID).MinChangable,
-                        DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).
-                        Get(entireItemDict[i].priceID).MaxChangable + 1);
-                }
-                if (entireItemDict[i].priceTrend == PriceTrends.Descending)
-                {
-                    entireItemDict[i].price -=
-                        Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).
-                        Get(entireItemDict[i].priceID).MinChangable,
-                        DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).
-                        Get(entireItemDict[i].priceID).MaxChangable + 1);
-                }
-                Mathf.Clamp(entireItemDict[i].price,
-                    DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).
-                        Get(entireItemDict[i].priceID).MinPrice,
-                    DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).
-                        Get(entireItemDict[i].priceID).MaxPrice);
             }
         }
     }

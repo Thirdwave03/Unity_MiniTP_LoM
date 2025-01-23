@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -16,7 +17,6 @@ public class UiInventory : MonoBehaviour, IDragHandler
     public int SelectedSlotIndex { get; private set; } = -1;
     public int activeSlotCount = 0;
     public int maxSlotCnt;
-
 
     private void Awake()
     {
@@ -36,24 +36,26 @@ public class UiInventory : MonoBehaviour, IDragHandler
         }        
     }
 
+    public void AddListeners(UnityAction action)
+    {
+        foreach(var slot in slots)
+        {
+            slot.button.onClick.AddListener(action);
+        }
+    }
+
+    // Debugging*
+    private void Update()
+    {
+        // Debugging*
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            var itemId = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxLuxury);
+        }
+    }
 
     private void UpdateSlots(List<SavedItemData> items)
-    {
-        //int index = 0;
-        //int cnt = 0;
-        //foreach(var item in items)
-        //{
-        //    if(item.count > 0)
-        //    {
-        //        cnt++;
-        //    }
-        //}
-        //foreach(var slot in slots)
-        //{
-        //    slot.SetEmpty();
-        //}
-        //slots.Clear();
-        
+    {      
         for(int i = 0; i < maxSlotCnt; ++i)
         {
             if(i < items.Count)
@@ -71,5 +73,5 @@ public class UiInventory : MonoBehaviour, IDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         
-    }
+    }    
 }
