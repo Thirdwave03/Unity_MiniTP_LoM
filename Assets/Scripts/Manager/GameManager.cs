@@ -117,6 +117,11 @@ public class GameManager
 
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MinPrice, DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MaxPrice + 1);
+            entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0,(int)PriceTrends.Count);
+            if(entireItemDict[i].priceTrend != PriceTrends.Stationary)
+            {
+                entireItemDict[i].trendRemainingDate = Random.Range(0, 3);
+            }
             priceList.Remove(key);
         }
 
@@ -130,6 +135,11 @@ public class GameManager
 
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MinPrice, DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MaxPrice + 1);
+            entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0, (int)PriceTrends.Count);
+            if (entireItemDict[i].priceTrend != PriceTrends.Stationary)
+            {
+                entireItemDict[i].trendRemainingDate = Random.Range(0, 3);
+            }
             priceList.Remove(key);
         }
 
@@ -143,6 +153,11 @@ public class GameManager
 
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MinPrice, DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MaxPrice + 1);
+            entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0, (int)PriceTrends.Count);
+            if (entireItemDict[i].priceTrend != PriceTrends.Stationary)
+            {
+                entireItemDict[i].trendRemainingDate = Random.Range(0, 3);
+            }
             priceList.Remove(key);
         }
     }
@@ -251,6 +266,8 @@ public class GameManager
             }
         }
     }
+
+    
 
     private void OnSleepLastDay()
     {

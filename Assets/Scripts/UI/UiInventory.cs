@@ -2,26 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UiInventory : MonoBehaviour
+public class UiInventory : MonoBehaviour, IDragHandler
 {
-    public List<UiItemSlot> slots = new List<UiItemSlot>();    
+    public List<UiItemSlot> slots = new List<UiItemSlot>();
+    public List<SavedItemData> inventoryItemData = new List<SavedItemData>();
 
     public UiItemSlot prefabItemSlot;
     public ScrollRect scrollRect;
 
     public int SelectedSlotIndex { get; private set; } = -1;
+    public int activeSlotCount = 0;
     public int maxSlotCnt;
 
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         maxSlotCnt = DataTableManager.Get<ItemTable>(DataTableIds.Item[0]).ItemDictionaryCount;
-        
-        
-        
+        activeSlotCount = 0;
+
+        for (int i = 0; i < maxSlotCnt; ++i)
+        {
+            var slot = Instantiate(prefabItemSlot, scrollRect.content);
+            slot.SlotIndex = i;
+            slot.button.onClick.AddListener(() =>
+            {
+                SelectedSlotIndex = slot.SlotIndex;
+            });
+            slot.SetEmpty();
+            slots.Add(slot);
+        }        
     }
 
 
@@ -52,8 +64,12 @@ public class UiInventory : MonoBehaviour
             {
                 slots[i].SetEmpty();
             }
-
         }
         SelectedSlotIndex = -1;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        
     }
 }

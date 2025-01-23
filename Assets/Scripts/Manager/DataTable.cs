@@ -20,9 +20,4 @@ public abstract class DataTable
             return csvReader.GetRecords<T>().ToList();
         }
     }
-
-
-
-
-
 }

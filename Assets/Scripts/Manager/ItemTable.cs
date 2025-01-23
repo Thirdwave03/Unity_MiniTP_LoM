@@ -12,13 +12,21 @@ public enum ItemTypes
     //Luxury,
 
     // v2
+    //Veges,
+    //Fruits,
+    //Foods,
+    //Tools,
+    //FineTools,
+    //Books,
+    //HighClassBooks,
+    //Luxuries,
+
+    // v3
     Veges,
     Fruits,
     Foods,
     Tools,
-    FineTools,
     Books,
-    HighClassBooks,
     Luxuries,
 }
 

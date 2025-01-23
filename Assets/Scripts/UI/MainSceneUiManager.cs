@@ -8,6 +8,9 @@ using TMPro;
 
 public class MainSceneUiManager : MonoBehaviour
 {
+    public UiInventory inventory;
+
+
     public Button inventoryButton;
     public Button inventoryUpgrade;
     public Button inventoryDowngrade;
@@ -39,7 +42,7 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject.transform.parent.gameObject);
         AddListeners();
     }
 

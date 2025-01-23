@@ -22,6 +22,7 @@ public class UiItemSlot : MonoBehaviour
 
     public void SetItem(SavedItemData itemData)
     {
+        gameObject.SetActive(true);
         Data = itemData.ItemData;
         itemIcon.sprite = itemData.ItemData.IconSprite;
         itemPriceText.text = itemData.price.ToString();
