@@ -11,7 +11,6 @@ public class ItemDataConverter : JsonConverter<ItemData>
     public override ItemData ReadJson(JsonReader reader, Type objectType, ItemData existingValue, bool hasExistingValue, JsonSerializer serializer)
     {
         var Id = Convert.ToInt32(reader.Value);
-        Debug.Log(Id);
         return DataTableManager.ItemTable.Get(Id);
     }
 
@@ -20,10 +19,6 @@ public class ItemDataConverter : JsonConverter<ItemData>
         writer.WriteValue(value.Id);
     }
 }
-
-
-
-
 
 public class JsonConverters
 {

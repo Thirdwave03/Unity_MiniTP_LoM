@@ -33,7 +33,7 @@ public class UiInventory : MonoBehaviour, IDragHandler
             });
             slot.SetEmpty();
             slots.Add(slot);
-        }        
+        }
     }
 
     public void AddListeners(UnityAction action)

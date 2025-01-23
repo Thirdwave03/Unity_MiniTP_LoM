@@ -71,32 +71,22 @@ public class GameManager
     {
         entireItemDict = new Dictionary<int, SavedItemData>();
         entireItemDict.Clear();
-        if(false)
-        //if (SaveLoadManager.Load(currentSavedSlotIndex))
+       
+        for(int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxLuxury; ++i)
         {
-            foreach (var item in SaveLoadManager.Data.savedItemList)
-            {
-                entireItemDict.Add(item.ItemData.Id, item);
-            }
-            isItemInitializingNeeded = false;
-        }
-        else
-        {
-            for(int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxLuxury; ++i)
-            {
-                var tempSavedData = new SavedItemData();
-                tempSavedData.ItemData = DataTableManager.Get<ItemTable>(DataTableIds.Item[0]).Get(i);
-                tempSavedData.priceID = -1;
-                tempSavedData.price = -1;
-                tempSavedData.priceTrend = PriceTrends.Stationary;
-                tempSavedData.trendRemainingDate = 0;
-                tempSavedData.avgCost = 0;
-                tempSavedData.count = 0;
+            var tempSavedData = new SavedItemData();
+            tempSavedData.ItemData = DataTableManager.Get<ItemTable>(DataTableIds.Item[0]).Get(i);
+            tempSavedData.priceID = -1;
+            tempSavedData.price = -1;
+            tempSavedData.priceTrend = PriceTrends.Stationary;
+            tempSavedData.trendRemainingDate = 0;
+            tempSavedData.avgCost = 0;
+            tempSavedData.count = 0;
 
-                entireItemDict.Add(tempSavedData.ItemData.Id, tempSavedData);                
-            }
-            isItemInitializingNeeded = true;
+            entireItemDict.Add(tempSavedData.ItemData.Id, tempSavedData);                
         }
+        isItemInitializingNeeded = true;
+        
         if (isItemInitializingNeeded)
         {
             InitializeItemDictData();

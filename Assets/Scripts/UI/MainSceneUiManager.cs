@@ -154,17 +154,17 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickPurchaseScene()
     {
-      
+        SceneManager.LoadScene((int)SceneIds.PurchaseScene);
     }
 
     private void OnClickSalesScene()
     {
-      
+        SceneManager.LoadScene((int)SceneIds.SalesScene);
     }
 
     private void OnClickInnScene()
     {
-      
+        SceneManager.LoadScene((int)SceneIds.InnScene);
     }
 
     private void OnClickSleep()
