@@ -22,6 +22,7 @@ public class TitleSceneUiManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         AddListeners();
+        //GameManager.Instance.
     }
 
     private void OnEnable()
@@ -56,11 +57,27 @@ public class TitleSceneUiManager : MonoBehaviour
 
     private void OnClickNewGame()
     {
+        if (SaveLoadManager.GetAvailableSaveSlot() == -1)
+        {
+            PopUpWindowChooseOverwriteSlot();
+            return;
+        }
+        GameManager.Instance.currentSavedSlotIndex = SaveLoadManager.GetAvailableSaveSlot();
         SceneManager.LoadScene((int)SceneIds.MainScene);
     }
 
     private void OnClickTemp()
     {
 
+    }
+
+    private void PopUpWindowChooseOverwriteSlot()
+    {
+        
+    }
+    private void OnClickSlot(int slot)
+    {
+        GameManager.Instance.currentSavedSlotIndex = slot;
+        SceneManager.LoadScene((int)SceneIds.MainScene);
     }
 }

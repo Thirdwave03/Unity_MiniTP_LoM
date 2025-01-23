@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
 public enum SceneIds
 {
     TitleScene,
@@ -37,3 +41,32 @@ public enum Languages
     Japanese,
 }
 
+public enum GameModes // GameModes Table ±¸¼º
+{
+    Default,
+    ShowMeTheMoney,
+    Endless,
+}
+
+public static class ItemDataIndex
+{
+    public static int minPrimary = 10001;
+    public static int maxPrimary = 10020;
+
+    public static int minSecondary = 10021;
+    public static int maxSecondary = 10040;
+
+    public static int minLuxury = 10041;
+    public static int maxLuxury = 10050;
+}
+public static class PriceDataIndex
+{
+    public static int minPrimary = 20001;
+    public static int maxPrimary = 20050;
+
+    public static int minSecondary = 20051;
+    public static int maxSecondary = 20085;
+
+    public static int minLuxury = 20086;
+    public static int maxLuxury = 20100;
+}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum PriceTypes
@@ -14,19 +15,17 @@ public enum PriceTypes
 
 public class PriceData
 {
-    public int Id {  get; set; }
+    public int Id { get; set; }
     public PriceTypes PriceType { get; set; }
     public int MaxPrice { get; set; }
     public int MinPrice { get; set; }
-    public int MaxChangable {  get; set; }
+    public int MaxChangable { get; set; }
     public int MinChangable { get; set; } // Could consider disposing min Changable val    
 }
 
 public class PriceTable : DataTable
 {
     private Dictionary<int, PriceData> priceDictionary = new Dictionary<int, PriceData>();
-
-
 
     public override void Load(string fileName)
     {
@@ -59,5 +58,10 @@ public class PriceTable : DataTable
         {
             return priceDictionary[key];           
         }
+    }
+
+    public List<int> GetPriceKeyList()
+    {
+        return priceDictionary.Keys.ToList();
     }
 }

@@ -31,13 +31,13 @@ public static class DataTableManager
         tables.Add(stringTableId, table);
 #endif
     }
-    public static StringTable StringTable
-    {
-        get
-        {
-            return Get<StringTable>(DataTableIds.String[(int)Variables.currentLang]);
-        }
-    }
+    //public static StringTable StringTable
+    //{
+    //    //get
+    //    //{
+    //    //   // return Get<StringTable>(DataTableIds.String[(int)Variables.currentLang]);
+    //    //}
+    //}
 
     public static ItemTable ItemTable
     {
@@ -56,5 +56,4 @@ public static class DataTableManager
         }
         return tables[id] as T;
     }
-
 }

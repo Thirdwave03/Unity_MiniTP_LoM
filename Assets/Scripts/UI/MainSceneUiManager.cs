@@ -4,6 +4,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MainSceneUiManager : MonoBehaviour
 {
@@ -18,13 +19,23 @@ public class MainSceneUiManager : MonoBehaviour
     public Button sleepButton;
 
     public GameObject settingWindow;
-    public Button closeButton;
+    public Button settingCloseButton;
     public Slider bgmSlider;
     public Slider sfxSlider;
     public Button restartButton;
     public Button mainMenuButton;
     public Button quitButton;
 
+    public GameObject inventoryWindow;
+    public Button inventoryReturnButton;
+
+    public TextMeshProUGUI currentCoin;
+    public TextMeshProUGUI daysProgress;
+
+    public TextMeshProUGUI tips;
+
+    public TextMeshProUGUI inventoryLevel;
+    public TextMeshProUGUI inventoryStatus;
 
     private void Start()
     {
@@ -35,6 +46,7 @@ public class MainSceneUiManager : MonoBehaviour
     private void OnEnable()
     {
         settingWindow.SetActive(false);
+        inventoryWindow.SetActive(false);
     }
 
     private void AddListeners()
@@ -51,15 +63,18 @@ public class MainSceneUiManager : MonoBehaviour
         sleepButton.onClick.AddListener(OnClickSleep);
 
         // setting contents
-        closeButton.onClick.AddListener(OnClickSettingClose);
+        settingCloseButton.onClick.AddListener(OnClickSettingClose);
         restartButton.onClick.AddListener(OnClickSettingRestart);
         mainMenuButton.onClick.AddListener(OnClickSettingMainMenu);
         quitButton.onClick.AddListener(OnClickSettingQuit);
+
+        // inventory contents
+        inventoryReturnButton.onClick.AddListener(OnClickInventoryReturn);
     }
 
     private void OnClickInventory()
     {
-      
+        inventoryWindow.SetActive(true);
     }
 
     private void OnClickInventoryUpgrade()
@@ -100,7 +115,7 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSleep()
     {
-      
+        
     }
 
     private void OnClickSettingClose()
@@ -122,5 +137,10 @@ public class MainSceneUiManager : MonoBehaviour
     private void OnClickSettingQuit()
     {
       
+    }
+
+    private void OnClickInventoryReturn()
+    {
+        inventoryWindow.SetActive(false);
     }
 }
