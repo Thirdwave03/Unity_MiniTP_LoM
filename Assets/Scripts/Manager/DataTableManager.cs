@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public static class DataTableManager
@@ -13,6 +12,12 @@ public static class DataTableManager
         foreach (var id in DataTableIds.Item)
         {
             var table = new ItemTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+        foreach (var id in DataTableIds.SalesItem)
+        {
+            var table = new SalesItemTable();
             table.Load(id);
             tables.Add(id, table);
         }
@@ -50,6 +55,14 @@ public static class DataTableManager
         get
         {
             return Get<ItemTable>(DataTableIds.Item[0]);
+        }
+    }
+
+    public static SalesItemTable SalesItemTable
+    {
+        get
+        {
+            return Get<SalesItemTable>(DataTableIds.SalesItem[0]);
         }
     }
 

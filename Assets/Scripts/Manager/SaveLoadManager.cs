@@ -1,6 +1,4 @@
 using Newtonsoft.Json;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using SaveDataVC = SaveDataV1;
@@ -75,7 +73,6 @@ public class SaveLoadManager
         };
 
         var json = File.ReadAllText(path);
-        Debug.Log($"Loaded JSON: {json}");
         var saveData = JsonConvert.DeserializeObject<SaveData>(json, jsonSettings);
 
         while(saveData.Version < SaveDataVersion)

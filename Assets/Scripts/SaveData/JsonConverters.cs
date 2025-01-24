@@ -1,10 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Newtonsoft.Json;
 using System;
 using TMPro;
-using Unity.VisualScripting;
+
+public class SalesItemDataConverter : JsonConverter<SalesItemData>
+{
+    public override SalesItemData ReadJson(JsonReader reader, Type objectType, SalesItemData existingValue, bool hasExistingValue, JsonSerializer serializer)
+    {
+        var Id = Convert.ToInt32(reader.Value);
+        return DataTableManager.SalesItemTable.Get(Id);
+    }
+
+    public override void WriteJson(JsonWriter writer, SalesItemData value, JsonSerializer serializer)
+    {
+        writer.WriteValue(value.Id);
+    }
+}
+
 
 public class ItemDataConverter : JsonConverter<ItemData>
 {

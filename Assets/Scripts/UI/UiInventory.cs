@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class UiInventory : MonoBehaviour, IDragHandler
 {
     public List<UiItemSlot> slots = new List<UiItemSlot>();
-    public List<SavedItemData> inventoryItemData = new List<SavedItemData>();
+    public List<SalesItemData> inventoryItemData = new List<SalesItemData>();
 
     public UiItemSlot prefabItemSlot;
     public ScrollRect scrollRect;
@@ -20,9 +20,8 @@ public class UiInventory : MonoBehaviour, IDragHandler
 
     private void Awake()
     {
-        maxSlotCnt = DataTableManager.Get<ItemTable>(DataTableIds.Item[0]).ItemDictionaryCount;
-        activeSlotCount = 0;
-
+        maxSlotCnt = DataTableManager.ItemTable.ItemDictionaryCount;
+ 
         for (int i = 0; i < maxSlotCnt; ++i)
         {
             var slot = Instantiate(prefabItemSlot, scrollRect.content);
@@ -55,16 +54,17 @@ public class UiInventory : MonoBehaviour, IDragHandler
     }
 
     private void UpdateSlots(List<SavedItemData> items)
-    {      
-        for(int i = 0; i < maxSlotCnt; ++i)
+    {
+        int indexCount = 0;
+        foreach (var item in items)
         {
-            if(i < items.Count)
+            if(item.count > 0)
             {
-                slots[i].SetItem(items[i]);
+                slots[indexCount++].SetItem(item);
             }
             else
             {
-                slots[i].SetEmpty();
+                slots[indexCount++].SetEmpty();
             }
         }
         SelectedSlotIndex = -1;

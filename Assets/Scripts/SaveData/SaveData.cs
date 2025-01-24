@@ -12,6 +12,7 @@ public abstract class SaveData
 public class SaveDataV1 : SaveData
 {
     public List<SavedItemData> savedItemList = new List<SavedItemData>();
+    public List<SavedSalesItemData> savedSalesItemList = new List<SavedSalesItemData>();
     
     public GameModes currentGameMode;
 

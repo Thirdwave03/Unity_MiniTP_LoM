@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public enum SceneIds
 {
@@ -31,6 +30,11 @@ public static class DataTableIds
     {
         "PriceTable",
     };
+
+    public static readonly string[] SalesItem =
+    {
+        "SalesItemTable",
+    };
 }
 
 public enum Languages
@@ -59,6 +63,18 @@ public static class ItemDataIndex
     public static int minLuxury = 10041;
     public static int maxLuxury = 10050;
 }
+public static class SalesItemDataIndex
+{
+    public static int minPrimary = 40001;
+    public static int maxPrimary = 40020;
+
+    public static int minSecondary = 40021;
+    public static int maxSecondary = 40040;
+
+    public static int minLuxury = 40041;
+    public static int maxLuxury = 40050;
+}
+
 public static class PriceDataIndex
 {
     public static int minPrimary = 20001;
