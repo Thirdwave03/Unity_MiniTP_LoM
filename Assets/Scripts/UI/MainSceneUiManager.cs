@@ -8,9 +8,6 @@ using TMPro;
 
 public class MainSceneUiManager : MonoBehaviour
 {
-    public UiInventory inventory;
-    public UiItemInfo itemInfo;
-
     public Button inventoryButton;
     public Button inventoryUpgrade;
     public Button inventoryDowngrade;
@@ -44,7 +41,6 @@ public class MainSceneUiManager : MonoBehaviour
     {
         //DontDestroyOnLoad(gameObject.transform.parent.gameObject);
         AddListeners();
-        inventory.AddListeners(OnClickInventorySlot);
     }
 
     private void OnEnable()
@@ -68,20 +64,7 @@ public class MainSceneUiManager : MonoBehaviour
         inventoryLevel.text = GameManager.Instance.inventoryLevel.ToString();
         inventoryStatus.text = $"Capacity: (TBD)/{GameManager.Instance.InventoryCapacity}\n" +
             $"Rental Fee: {GameManager.Instance.inventoryFee}/Day";
-    }
-
-    private void OnClickInventorySlot()
-    {
-        int index = inventory.SelectedSlotIndex;
-        if(index != -1 && inventory.slots[index].Data != null)
-        {
-            itemInfo.SetData(inventory.slots[index].Data);
-        }
-        else
-        {
-            itemInfo.SetEmpty();
-        }
-    }
+    }        
 
     private void AddListeners()
     {

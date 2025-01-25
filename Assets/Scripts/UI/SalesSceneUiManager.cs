@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class SalesSceneUiManager : MonoBehaviour
 {
-    public Button inventoryButton;
     public Button settingButton;
 
     public Button mainSceneButton;
@@ -20,6 +19,9 @@ public class SalesSceneUiManager : MonoBehaviour
     public Button mainMenuButton;
     public Button quitButton;
 
+    public GameObject salesInventoryWindow;
+    public Button inventoryReturnButton;
+
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI inventoryStatus;
 
@@ -31,6 +33,7 @@ public class SalesSceneUiManager : MonoBehaviour
     private void OnEnable()
     {
         settingWindow.SetActive(false);
+        salesInventoryWindow.SetActive(false);
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -54,8 +57,7 @@ public class SalesSceneUiManager : MonoBehaviour
         restartButton.onClick.RemoveAllListeners();
         mainMenuButton.onClick.RemoveAllListeners();
         quitButton.onClick.RemoveAllListeners();
-
-
+        inventoryReturnButton.onClick.RemoveAllListeners();
 
         //inventoryButton.onClick.AddListener(OnClickTemp);
         settingButton.onClick.AddListener(OnClickSetting);
@@ -66,6 +68,24 @@ public class SalesSceneUiManager : MonoBehaviour
         restartButton.onClick.AddListener(OnClickRestartButton);
         mainMenuButton.onClick.AddListener(OnClickMainMenu);
         quitButton.onClick.AddListener(OnClickQuit);
+        inventoryReturnButton.onClick.AddListener(OnClickInventoryReturn);
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                if (!settingWindow.gameObject.activeSelf && !salesInventoryWindow.gameObject.activeSelf)
+                {
+                    hit.collider.gameObject.GetComponent<NpcButton>().InvokeOnClick();
+                }
+            }
+        }
     }
 
     private void OnClickTemp()
@@ -113,5 +133,24 @@ public class SalesSceneUiManager : MonoBehaviour
     private void OnClickQuit()
     {
 
+    }
+
+    public void OpenSpecialMerchant()
+    {
+        
+    }
+
+    public void OpenBuyer()
+    {
+        salesInventoryWindow.SetActive(true);
+    }
+
+    public void OpenBusinessman()
+    {
+
+    }
+    private void OnClickInventoryReturn()
+    {
+        salesInventoryWindow.SetActive(false);
     }
 }

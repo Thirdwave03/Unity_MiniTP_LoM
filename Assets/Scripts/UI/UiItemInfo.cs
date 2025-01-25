@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class UiItemInfo : MonoBehaviour
 {
+    public UiInventoryPanel inventoryPanel;
     public SavedItemData ItemData {  get; private set; }
     public Image itemIcon;
 
@@ -36,6 +37,7 @@ public class UiItemInfo : MonoBehaviour
             SetEmpty();
             return;
         }
+
         ItemData = itemData;
         itemIcon.sprite = ItemData.ItemData.IconSprite;
         itemIcon.type = Image.Type.Simple;
@@ -47,9 +49,5 @@ public class UiItemInfo : MonoBehaviour
         itemName.text = ItemData.ItemData.ItemName;
         itemAvgCost.text = ItemData.avgCost.ToString();
         itemDescription.text = ItemData.ItemData.ItemDescription;
-
     }
-
-
-
 }

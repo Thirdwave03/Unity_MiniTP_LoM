@@ -1,20 +1,18 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UiInventory : MonoBehaviour, IDragHandler
+public class UiSalesItemInventory : MonoBehaviour
 {
-    public UiInventoryPanel inventoryPanel;
+    public UiSalesPanel salesItemPanel;
 
-    public List<UiItemSlot> slots = new List<UiItemSlot>();
-    public List<SavedItemData> inventoryItemData = new List<SavedItemData>();
+    public List<UiSalesItemSlot> slots = new List<UiSalesItemSlot>();
+    public List<SavedSalesItemData> inventoryItemData = new List<SavedSalesItemData>();
 
-    public UiItemSlot prefabItemSlot;
+    public UiSalesItemSlot prefabItemSlot;
     public ScrollRect scrollRect;
 
     public int SelectedSlotIndex { get; private set; } = -1;
@@ -23,9 +21,8 @@ public class UiInventory : MonoBehaviour, IDragHandler
 
     private void Awake()
     {
-        maxSlotCnt = DataTableManager.ItemTable.ItemDictionaryCount;
-        Debug.Log($"Inventory Max Slot cnt: {maxSlotCnt}");
-        
+        maxSlotCnt = DataTableManager.SalesItemTable.SalesItemDictionaryCount;
+
         for (int i = 0; i < maxSlotCnt; ++i)
         {
             var slot = Instantiate(prefabItemSlot, scrollRect.content);
@@ -33,16 +30,15 @@ public class UiInventory : MonoBehaviour, IDragHandler
             slot.button.onClick.AddListener(() =>
             {
                 SelectedSlotIndex = slot.SlotIndex;
-                Debug.Log($"Slot clicked: {slot.SlotIndex}");
             });
             slot.SetEmpty();
             slots.Add(slot);
         }
 
-        inventoryItemData = new List<SavedItemData>();
+        inventoryItemData = new List<SavedSalesItemData>();
         inventoryItemData.Clear();
 
-        foreach(var data in SaveLoadManager.Data.savedItemList)
+        foreach (var data in SaveLoadManager.Data.savedSalesItemList)
         {
             inventoryItemData.Add(data);
         }
@@ -51,30 +47,24 @@ public class UiInventory : MonoBehaviour, IDragHandler
 
     public void AddListeners(UnityAction action)
     {
-        Debug.Log($"AddListners called to Slots({slots.Count})");
-        foreach(var slot in slots)
+        foreach (var slot in slots)
         {
             slot.button.onClick.AddListener(action);
-            Debug.Log($"Listener Added to slot: {slot.SlotIndex}");
         }
     }
 
-    // Debugging*
+
     private void Update()
     {
-        // Debugging*
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            var itemId = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxLuxury);
-        }
+
     }
 
-    private void UpdateSlots(List<SavedItemData> items)
+    public void UpdateSlots(List<SavedSalesItemData> items)
     {
         int indexCount = 0;
         foreach (var item in items)
         {
-            if(item.count > 0)
+            if (item.isOnSale && item.stock > 0)
             {
                 slots[indexCount++].SetItem(item);
             }
@@ -88,6 +78,10 @@ public class UiInventory : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        
-    }    
+
+    }
+
+
+
+
 }

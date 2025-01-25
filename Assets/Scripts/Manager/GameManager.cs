@@ -30,7 +30,7 @@ public class GameManager
     public int lastDay;
 
     private int coins;
-    public int Coins { get { return coins; } }
+    public int Coins { get { return coins; } set { coins = value; } }
     public int inventoryLevel;
     public int inventoryMinLevel;
     public int inventoryMaxLevel;
@@ -296,7 +296,7 @@ public class GameManager
         randomBox2Cnt = SaveLoadManager.Data.randomBox2Cnt;
     }
 
-    private void CallSave()
+    public void CallSave()
     {
         SynchronizeWithSaveData();
         SaveLoadManager.Save(currentSavedSlotIndex);
