@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -22,31 +23,30 @@ public class SalesSceneUiManager : MonoBehaviour
     public GameObject salesInventoryWindow;
     public Button inventoryReturnButton;
 
+    public UiBulletinBoardManager bulletinBoard;
+
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI inventoryStatus;
 
     private void Start()
     {        
         AddListeners();
+        UpdateSalesSceneDisplay();
+        bulletinBoard.SetInitialPosition();
     }
 
     private void OnEnable()
     {
         settingWindow.SetActive(false);
         salesInventoryWindow.SetActive(false);
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
+    }  
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    public void UpdateSalesSceneDisplay()
     {
-        AddListeners();
-        UpdateSalesSceneDisplay();
+        currentCoin.text = GameManager.Instance.Coins.ToString();
+        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.inventoryCapacity}";
     }
 
-    private void UpdateSalesSceneDisplay()
-    {
-
-    }
     private void AddListeners()
     {
         //inventoryButton.onClick.RemoveAllListeners();
@@ -75,6 +75,12 @@ public class SalesSceneUiManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Raycast blocked by UI");
+                return;
+            }
+
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 

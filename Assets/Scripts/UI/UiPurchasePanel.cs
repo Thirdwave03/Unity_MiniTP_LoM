@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class UiPurchasePanel : MonoBehaviour
 {
+    public PurchaseSceneUiManager purchaseScene;
     public UiPurchaseItemBoard purchaseBoard;
     public UiPurchaseItemInfo itemInfo;
 
@@ -20,13 +21,9 @@ public class UiPurchasePanel : MonoBehaviour
 
     private void OnEnable()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
-    {
-        purchaseBoard.AddListeners(OnClickInventorySlot);
-    }
 
     private void OnClickInventorySlot()
     {

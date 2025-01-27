@@ -9,7 +9,8 @@ public class UiInventoryPanel : MonoBehaviour
 
     private void Start()
     {
-        inventory.AddListeners(OnClickInventorySlot);        
+        inventory.AddListeners(OnClickInventorySlot);
+        GameManager.Instance.onSleepEvent.AddListener(inventory.DefaultUpdateSlot);
     }
 
     private void OnClickInventorySlot()
@@ -17,12 +18,10 @@ public class UiInventoryPanel : MonoBehaviour
         int index = inventory.SelectedSlotIndex;
         if (index != -1 && inventory.slots[index].Data != null)
         {
-            Debug.Log($"Info Update Successful. index : {index}");
             itemInfo.SetData(inventory.slots[index].Data);
         }
         else
         {
-            Debug.Log($"Info Update failed. index : {index}");
             itemInfo.SetEmpty();
         }
     }

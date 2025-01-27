@@ -16,6 +16,9 @@ public class UiPurchaseItemBoard : MonoBehaviour, IDragHandler
     public UiPurchaseItemSlot prefabItemSlot;
     public ScrollRect scrollRect;
 
+    public int minIndex;
+    public int maxIndex;
+
     public int SelectedSlotIndex { get; private set; } = -1;
     public int activeSlotCount = 0;
     public int maxSlotCnt;
@@ -60,12 +63,18 @@ public class UiPurchaseItemBoard : MonoBehaviour, IDragHandler
 
     }
 
+    public void AllignIndexWithShopType(int minIdx, int maxIdx)
+    {
+        minIndex = minIdx;
+        maxIndex = maxIdx;
+    }
+
     public void UpdateSlots(List<SavedSalesItemData> items)
     {
         int indexCount = 0;
         foreach (var item in items)
         {
-            if (item.isOnSale && item.stock > 0)
+            if (item.isOnSale && item.stock > 0 && item.SalesItemData.Id >= minIndex && item.SalesItemData.Id <= maxIndex)
             {
                 slots[indexCount++].SetItem(item);
             }
@@ -75,6 +84,16 @@ public class UiPurchaseItemBoard : MonoBehaviour, IDragHandler
             }
         }
         SelectedSlotIndex = -1;
+    }
+
+    public void CallUpdateSlots()
+    {
+        inventoryItemData.Clear();
+        foreach (var data in SaveLoadManager.Data.savedSalesItemList)
+        {
+            inventoryItemData.Add(data);
+        }
+        UpdateSlots(inventoryItemData);
     }
 
     public void OnDrag(PointerEventData eventData)

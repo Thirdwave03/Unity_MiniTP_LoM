@@ -18,6 +18,8 @@ public class UiPurchaseItemInfo : MonoBehaviour
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemAvgCost;
 
+    public GameObject blinder;
+
     public TextMeshProUGUI subtotalPrice;
     public TextMeshProUGUI subtotalOccupancy;
 
@@ -41,6 +43,8 @@ public class UiPurchaseItemInfo : MonoBehaviour
 
         maxButton.interactable = false;
         purchaseButton.interactable = false;
+
+        blinder.SetActive(true);
     }
 
     public void SetData(SavedSalesItemData salesItemData)
@@ -73,6 +77,8 @@ public class UiPurchaseItemInfo : MonoBehaviour
         purchaseCountText.text = purchaseCount.ToString();
         subtotalPrice.text = (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount).ToString();
         subtotalOccupancy.text = (DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy * purchaseCount).ToString();
+
+        blinder.SetActive(false);
     }
 
     public void OnSliderValueChanged()
@@ -94,24 +100,41 @@ public class UiPurchaseItemInfo : MonoBehaviour
 
     public void OnClickPurchaseButton()
     {
-        if (GameManager.Instance.Coins >= GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
+        if (GameManager.Instance.Coins >= 
+            GameManager.Instance.
+            entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
         {
-            Debug.Log($"Purchase Successful! {DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).ItemName}({purchaseCount})");
-            GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost =
-                (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count *
-                GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost
-                + GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
-                / (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count + purchaseCount);
-            GameManager.Instance.Coins -= GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount;
-            GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count += purchaseCount;
+            if (GameManager.Instance.inventoryCapacity -
+                GameManager.Instance.InventoryOccupancy >=
+                GameManager.Instance.
+                entireItemDict[ItemData.SalesItemData.SalesItemId].
+                ItemData.InventoryOccupancy * purchaseCount)
+            { 
+                Debug.Log($"Purchase Successful! {DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).ItemName}({purchaseCount})");
+                GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost =
+                    (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count *
+                    GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost
+                    + GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
+                    / (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count + purchaseCount);
+                GameManager.Instance.Coins -= GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount;
+                GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count += purchaseCount;
 
-            ItemData.stock -= purchaseCount;
-            purchaseSlider.maxValue = ItemData.stock;
-            GameManager.Instance.salesItemDict[ItemData.SalesItemData.Id].stock = ItemData.stock;
+                ItemData.stock -= purchaseCount;
+                purchaseSlider.maxValue = ItemData.stock;
+                GameManager.Instance.salesItemDict[ItemData.SalesItemData.Id].stock = ItemData.stock;
 
-            UpdateDisplayedInfo();
-            GameManager.Instance.CallSave();
-            purchaseItemPanel.purchaseBoard.UpdateSlots(purchaseItemPanel.purchaseBoard.inventoryItemData);
+                UpdateDisplayedInfo();
+                GameManager.Instance.CallSave();
+                purchaseItemPanel.purchaseBoard.CallUpdateSlots();                    
+                purchaseItemPanel.purchaseScene.UpdatePurchaseSceneDisplay();
+            }
+            else
+            {
+                Debug.Log($"Purchase Failed.. inventory full {GameManager.Instance.Coins - GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount} coins.");
+
+                purchaseCount = 0;
+                purchaseSlider.value = purchaseCount;
+            }
         }
         else
         {

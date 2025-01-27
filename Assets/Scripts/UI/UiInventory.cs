@@ -86,6 +86,11 @@ public class UiInventory : MonoBehaviour, IDragHandler
         SelectedSlotIndex = -1;
     }
 
+    public void DefaultUpdateSlot()
+    {
+        UpdateSlots(inventoryItemData);
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -20,30 +21,51 @@ public class InnSceneUiManager : MonoBehaviour
     public Button mainMenuButton;
     public Button quitButton;
 
+    public UiBulletinBoardManager bulletinBoard;
+
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI inventoryStatus;
 
     private void Start()
     {
         AddListeners();
+        UpdateInnSceneDisplay();
+        bulletinBoard.SetInitialPosition();
     }
 
     private void OnEnable()
     {
         settingWindow.SetActive(false);
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    private void Update()
     {
-        AddListeners();
-        UpdateInnSceneDisplay();
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Raycast blocked by UI");
+                return;
+            }
+
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                if (!settingWindow.gameObject.activeSelf)
+                {
+                    hit.collider.gameObject.GetComponent<NpcButton>().InvokeOnClick();
+                }
+            }
+        }
     }
 
-    private void UpdateInnSceneDisplay()
+    public void UpdateInnSceneDisplay()
     {
 
     }
+
     private void AddListeners()
     {
         //inventoryButton.onClick.RemoveAllListeners();
@@ -53,8 +75,6 @@ public class InnSceneUiManager : MonoBehaviour
         restartButton.onClick.RemoveAllListeners();
         mainMenuButton.onClick.RemoveAllListeners();
         quitButton.onClick.RemoveAllListeners();
-
-
 
         //inventoryButton.onClick.AddListener(OnClickTemp);
         settingButton.onClick.AddListener(OnClickSetting);

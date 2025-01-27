@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager
 {    
@@ -17,6 +19,8 @@ public class GameManager
             return instance;
         }
     }
+
+    public UnityEvent onSleepEvent;
 
     public Dictionary<int, SavedItemData> entireItemDict;
     public Dictionary<int, SavedSalesItemData> salesItemDict;
@@ -35,8 +39,20 @@ public class GameManager
     public int inventoryMinLevel;
     public int inventoryMaxLevel;
 
+    public int InventoryOccupancy
+    {
+        get
+        {
+            int tempOccupancy = 0;
+            foreach (var item in entireItemDict.Values)
+            {
+                tempOccupancy += item.ItemData.InventoryOccupancy * item.count;
+            }
+            return tempOccupancy;
+        }
+    }
+
     public int inventoryCapacity;
-    public int InventoryCapacity { get { return inventoryCapacity; } }
 
     public int inventoryFee;
 
@@ -69,6 +85,7 @@ public class GameManager
 
     private void SetupEntireItemData()
     {
+        onSleepEvent = new UnityEvent();
         entireItemDict = new Dictionary<int, SavedItemData>();
         entireItemDict.Clear();
         salesItemDict = new Dictionary<int, SavedSalesItemData>();
@@ -107,9 +124,8 @@ public class GameManager
     }
 
     private void InitializeItemDictData()
-    {
-        var priceTable = DataTableManager.PriceTable;
-        var priceList = priceTable.GetPriceKeyList();
+    {       
+        var priceList = DataTableManager.PriceTable.GetPriceKeyList();
 
         for(int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxPrimary; ++i)
         {
@@ -213,13 +229,16 @@ public class GameManager
         {
             SetUpNewDefault();
             ItemsPriceChangeOnSleep();
+            SalesItemChangeOnSleep();
         }
-        Debug.Log($"Save Result: { SaveLoadManager.Save(currentSavedSlotIndex)}");
-        
+        CallSave();
+        Debug.Log($"Save Result: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
     }        
 
-    private void SetUpNewDefault()
+    private void SetUpNewDefault(int slotIndex = 0)
     {
+        currentSavedSlotIndex = slotIndex;
+
         CurrentGameMode = GameModes.Default;
         days = 1;
         lastDay = 100;
@@ -246,6 +265,30 @@ public class GameManager
         isRandomBox2Purchased =false;
         randomBox2Item = -1;
         randomBox2Cnt = -1;
+
+        entireItemDict = new Dictionary<int, SavedItemData>();
+        entireItemDict.Clear();
+        salesItemDict = new Dictionary<int, SavedSalesItemData>();
+        salesItemDict.Clear();       
+                
+        foreach (var item in DataTableManager.ItemTable.GetItemTable().Values)
+        {
+            SavedItemData newItemData = new SavedItemData();
+            newItemData.ItemData = item;
+            newItemData.avgCost = 0;
+            newItemData.isSoldOut = false;
+            entireItemDict.Add(item.Id, newItemData);
+        }
+        foreach (var item in DataTableManager.SalesItemTable.GetSalesItemTable().Values)
+        {
+            SavedSalesItemData newSalesItem = new SavedSalesItemData();
+            newSalesItem.SalesItemData = item;
+            newSalesItem.isOnSale = true;
+            newSalesItem.stock = 0;
+
+            salesItemDict.Add(newSalesItem.SalesItemData.Id, newSalesItem);
+        }
+        InitializeItemDictData();
     }
 
     public void LoadSavedSlot(int slotIndex = 0)
@@ -321,6 +364,7 @@ public class GameManager
         ItemsPriceChangeOnSleep();
         SalesItemChangeOnSleep();
         CallSave();
+        onSleepEvent?.Invoke();
     }
 
     private void ItemsPriceChangeOnSleep()

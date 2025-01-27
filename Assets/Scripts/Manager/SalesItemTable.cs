@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SalesItemData
@@ -54,5 +55,10 @@ public class SalesItemTable : DataTable
             return default(SalesItemData);
         }
         return salesItemDictionary[key];
+    }
+
+    public Dictionary<int, SalesItemData> GetSalesItemTable()
+    {
+        return salesItemDictionary.ToDictionary(k => k.Key, v => v.Value);
     }
 }

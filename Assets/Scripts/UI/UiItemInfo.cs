@@ -17,6 +17,8 @@ public class UiItemInfo : MonoBehaviour
     public TextMeshProUGUI itemAvgCost;
     public TextMeshProUGUI itemDescription;
 
+    public GameObject blinder;
+
 
     public void SetEmpty()
     {
@@ -28,6 +30,8 @@ public class UiItemInfo : MonoBehaviour
         itemName.text = string.Empty;
         itemAvgCost.text = string.Empty;
         itemDescription.text = string.Empty;
+
+        blinder.SetActive(true);
     }
 
     public void SetData(SavedItemData itemData)
@@ -49,5 +53,8 @@ public class UiItemInfo : MonoBehaviour
         itemName.text = ItemData.ItemData.ItemName;
         itemAvgCost.text = ItemData.avgCost.ToString();
         itemDescription.text = ItemData.ItemData.ItemDescription;
+
+        blinder.SetActive(false);
+
     }
 }

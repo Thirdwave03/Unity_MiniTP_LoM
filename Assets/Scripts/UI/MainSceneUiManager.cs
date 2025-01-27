@@ -29,6 +29,8 @@ public class MainSceneUiManager : MonoBehaviour
     public GameObject inventoryWindow;
     public Button inventoryReturnButton;
 
+    public UiBulletinBoardManager bulletinBoard;
+
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI daysProgress;
 
@@ -41,20 +43,16 @@ public class MainSceneUiManager : MonoBehaviour
     {
         //DontDestroyOnLoad(gameObject.transform.parent.gameObject);
         AddListeners();
+        UpdateMainSceneDisplay();
+        bulletinBoard.SetInitialPosition();
     }
 
     private void OnEnable()
     {
         settingWindow.SetActive(false);
         inventoryWindow.SetActive(false);
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
-    {
-        AddListeners();
-        UpdateMainSceneDisplay();
-    }
 
     private void UpdateMainSceneDisplay()
     {
@@ -62,7 +60,7 @@ public class MainSceneUiManager : MonoBehaviour
         daysProgress.text = GameManager.Instance.Days.ToString();
         //tips.text = GameManager.Instance. (Not Ready yet)
         inventoryLevel.text = GameManager.Instance.inventoryLevel.ToString();
-        inventoryStatus.text = $"Capacity: (TBD)/{GameManager.Instance.InventoryCapacity}\n" +
+        inventoryStatus.text = $"Capacity: (TBD)/{GameManager.Instance.inventoryCapacity}\n" +
             $"Rental Fee: {GameManager.Instance.inventoryFee}/Day";
     }        
 
@@ -175,7 +173,7 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSettingQuit()
     {
-      
+        
     }
 
     private void OnClickInventoryReturn()

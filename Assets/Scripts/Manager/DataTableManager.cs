@@ -74,6 +74,19 @@ public static class DataTableManager
         }
     }
 
+    public static List<StringTable> StringTableList
+    {
+        get 
+        { 
+            var list = new List<StringTable>();
+            foreach(var id in DataTableIds.String)
+            {
+                list.Add(Get<StringTable>(id));
+            }
+            return list;
+        }
+    }
+
     public static T Get<T>(string id) where T : DataTable
     {
         if (!tables.ContainsKey(id))

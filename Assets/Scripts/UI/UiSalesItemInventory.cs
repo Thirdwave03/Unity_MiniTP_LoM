@@ -10,7 +10,7 @@ public class UiSalesItemInventory : MonoBehaviour
     public UiSalesPanel salesItemPanel;
 
     public List<UiSalesItemSlot> slots = new List<UiSalesItemSlot>();
-    public List<SavedSalesItemData> inventoryItemData = new List<SavedSalesItemData>();
+    public List<SavedItemData> inventoryItemData = new List<SavedItemData>();
 
     public UiSalesItemSlot prefabItemSlot;
     public ScrollRect scrollRect;
@@ -21,7 +21,7 @@ public class UiSalesItemInventory : MonoBehaviour
 
     private void Awake()
     {
-        maxSlotCnt = DataTableManager.SalesItemTable.SalesItemDictionaryCount;
+        maxSlotCnt = DataTableManager.ItemTable.ItemDictionaryCount;
 
         for (int i = 0; i < maxSlotCnt; ++i)
         {
@@ -35,10 +35,10 @@ public class UiSalesItemInventory : MonoBehaviour
             slots.Add(slot);
         }
 
-        inventoryItemData = new List<SavedSalesItemData>();
+        inventoryItemData = new List<SavedItemData>();
         inventoryItemData.Clear();
 
-        foreach (var data in SaveLoadManager.Data.savedSalesItemList)
+        foreach (var data in SaveLoadManager.Data.savedItemList)
         {
             inventoryItemData.Add(data);
         }
@@ -49,6 +49,7 @@ public class UiSalesItemInventory : MonoBehaviour
     {
         foreach (var slot in slots)
         {
+            Debug.Log($"actionAdded to {slot.SlotIndex}");
             slot.button.onClick.AddListener(action);
         }
     }
@@ -59,12 +60,12 @@ public class UiSalesItemInventory : MonoBehaviour
 
     }
 
-    public void UpdateSlots(List<SavedSalesItemData> items)
+    public void UpdateSlots(List<SavedItemData> items)
     {
         int indexCount = 0;
         foreach (var item in items)
         {
-            if (item.isOnSale && item.stock > 0)
+            if (item.count > 0)
             {
                 slots[indexCount++].SetItem(item);
             }

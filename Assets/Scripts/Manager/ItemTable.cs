@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum ItemTypes
@@ -112,5 +113,10 @@ public class ItemTable : DataTable
             return default(ItemData);
         }
         return itemDictionary[key];
+    }
+
+    public Dictionary<int, ItemData> GetItemTable()
+    {
+        return itemDictionary.ToDictionary(k => k.Key, v => v.Value);
     }
 }

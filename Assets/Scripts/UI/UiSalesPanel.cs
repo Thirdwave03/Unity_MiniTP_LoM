@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UiSalesPanel : MonoBehaviour
 {
+    public SalesSceneUiManager salesSceneUi;
     public UiSalesItemInventory salesInventory;
     public UiSalesItemInfo salesItemInfo;
 
@@ -17,12 +18,12 @@ public class UiSalesPanel : MonoBehaviour
         int index = salesInventory.SelectedSlotIndex;
         if (index != -1 && salesInventory.slots[index].Data != null)
         {
-            Debug.Log($"Info Update Successful. index : {index}");
+            Debug.Log($"SalesSlot Info Update Successful. index : {index}");
             salesItemInfo.SetData(salesInventory.slots[index].Data);
         }
         else
         {
-            Debug.Log($"Info Update failed. index : {index}");
+            Debug.Log($"Sales Info Update failed. index : {index}");
             salesItemInfo.SetEmpty();
         }
     }

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class StringTable : DataTable
 {
-    private Dictionary<string, string> stringDictionary = new Dictionary<string, string>();
     public class StringData
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string String { get; set; }
     }
+
+    private Dictionary<int, string> stringDictionary = new Dictionary<int, string>();
 
     public override void Load(string fileName)
     {
@@ -20,7 +21,7 @@ public class StringTable : DataTable
         stringDictionary.Clear();
         foreach ( var item in list )
         {
-            if (!stringDictionary.ContainsKey(item.String))
+            if (!stringDictionary.ContainsKey(item.Id))
             {
                 stringDictionary.Add(item.Id, item.String);
             }
@@ -31,16 +32,16 @@ public class StringTable : DataTable
         }
     }
 
-    public string Get(string key)
+    public string Get(int key)
     {
-        if( stringDictionary.ContainsKey(key) )
+        if(stringDictionary.ContainsKey(key))
         {
             return stringDictionary[key];
         }
         else
         {
             Debug.LogError($"Key \'{key}\' does not exist in String Table.");
-            return "";
+            return "No key(StringTable)";
         }
     }
 }

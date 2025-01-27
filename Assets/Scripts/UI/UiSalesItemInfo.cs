@@ -7,24 +7,26 @@ using UnityEngine.UI;
 public class UiSalesItemInfo : MonoBehaviour
 {
     public UiSalesPanel salesItemPanel;
-    public SavedSalesItemData ItemData { get; private set; }
+    public SavedItemData ItemData { get; private set; }
     public Image itemIcon;
 
-    public Slider purchaseSlider;
-    public TextMeshProUGUI purchaseCountText;
+    public Slider salesSlider;
+    public TextMeshProUGUI salesCountText;
     public TextMeshProUGUI itemCount;
     public TextMeshProUGUI itemPrice;
     public TextMeshProUGUI itemOccupancy;
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI itemAvgCost;
 
+    public GameObject blinder;
+
     public TextMeshProUGUI subtotalPrice;
     public TextMeshProUGUI subtotalOccupancy;
 
     public Button maxButton;
-    public Button purchaseButton;
+    public Button sellButton;
 
-    private int purchaseCount;
+    private int sellCount;
 
     public void SetEmpty()
     {
@@ -37,13 +39,15 @@ public class UiSalesItemInfo : MonoBehaviour
         itemAvgCost.text = string.Empty;
         subtotalPrice.text = string.Empty;
         subtotalOccupancy.text = string.Empty;
-        purchaseCountText.text = string.Empty;
+        salesCountText.text = string.Empty;
 
         maxButton.interactable = false;
-        purchaseButton.interactable = false;
+        sellButton.interactable = false;
+
+        blinder.SetActive(true);
     }
 
-    public void SetData(SavedSalesItemData salesItemData)
+    public void SetData(SavedItemData salesItemData)
     {
         if (salesItemData == null)
         {
@@ -51,89 +55,72 @@ public class UiSalesItemInfo : MonoBehaviour
             return;
         }
         maxButton.interactable = true;
-        purchaseButton.interactable = true;
+        sellButton.interactable = true;
 
         ItemData = salesItemData;
-        itemIcon.sprite = DataTableManager.ItemTable.Get(salesItemData.SalesItemData.SalesItemId).IconSprite;
+        itemIcon.sprite = DataTableManager.ItemTable.Get(salesItemData.ItemData.Id).IconSprite;
         itemIcon.type = Image.Type.Simple;
         itemIcon.preserveAspect = true;
 
-        itemCount.text = ItemData.stock.ToString();
-        itemPrice.text = GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price.ToString();
-        itemOccupancy.text = DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy.ToString();
-        itemName.text = DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).ItemName;
-        itemAvgCost.text = GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost.ToString();
+        itemCount.text = ItemData.count.ToString();
+        itemPrice.text = GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price.ToString();
+        itemOccupancy.text = DataTableManager.ItemTable.Get(ItemData.ItemData.Id).InventoryOccupancy.ToString();
+        itemName.text = DataTableManager.ItemTable.Get(ItemData.ItemData.Id).ItemName;
+        itemAvgCost.text = GameManager.Instance.entireItemDict[ItemData.ItemData.Id].avgCost.ToString();
 
-        purchaseSlider.wholeNumbers = true;
-        purchaseSlider.minValue = 0;
-        purchaseSlider.maxValue = ItemData.stock;
-        purchaseCount = 0;
-        purchaseSlider.value = 0;
+        salesSlider.wholeNumbers = true;
+        salesSlider.minValue = 0;
+        salesSlider.maxValue = ItemData.count;
+        sellCount = 0;
+        salesSlider.value = 0;
 
-        purchaseCountText.text = purchaseCount.ToString();
-        subtotalPrice.text = (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount).ToString();
-        subtotalOccupancy.text = (DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy * purchaseCount).ToString();
+        salesCountText.text = sellCount.ToString();
+        subtotalPrice.text = (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount).ToString();
+        subtotalOccupancy.text = (DataTableManager.ItemTable.Get(ItemData.ItemData.Id).InventoryOccupancy * sellCount).ToString();
+
+        blinder.SetActive(false);
     }
 
     public void OnSliderValueChanged()
     {
-        purchaseSlider.value = Mathf.Clamp(purchaseSlider.value, 0, purchaseSlider.maxValue);
-        purchaseCount = (int)(purchaseSlider.value);
+        salesSlider.value = Mathf.Clamp(salesSlider.value, 0, salesSlider.maxValue);
+        sellCount = (int)(salesSlider.value);
         //purchaseCount = (int)(value * ItemData.stock);
 
-        purchaseCountText.text = purchaseCount.ToString();
-        subtotalPrice.text = (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount).ToString();
-        subtotalOccupancy.text = (DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy * purchaseCount).ToString();
+        salesCountText.text = sellCount.ToString();
+        subtotalPrice.text = (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount).ToString();
+        subtotalOccupancy.text = (DataTableManager.ItemTable.Get(ItemData.ItemData.Id).InventoryOccupancy * sellCount).ToString();
     }
 
     public void OnClickMaxButton()
     {
-        purchaseSlider.value = purchaseSlider.maxValue;
+        salesSlider.value = salesSlider.maxValue;
         OnSliderValueChanged();
     }
 
-    public void OnClickPurchaseButton()
+    public void OnClickSellButton()
     {
-        if (GameManager.Instance.Coins >= GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
-        {
-            Debug.Log($"Purchase Successful! {DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).ItemName}({purchaseCount})");
-            GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost =
-                (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count *
-                GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost
-                + GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
-                / (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count + purchaseCount);
-            GameManager.Instance.Coins -= GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount;
-            GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count += purchaseCount;
+        Debug.Log($"Sell Successful! {DataTableManager.ItemTable.Get(ItemData.ItemData.Id).ItemName}({sellCount})");
+        GameManager.Instance.Coins += GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount;
+        GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -= sellCount;
 
-            ItemData.stock -= purchaseCount;
-            purchaseSlider.maxValue = ItemData.stock;
-            GameManager.Instance.salesItemDict[ItemData.SalesItemData.Id].stock = ItemData.stock;
+        salesSlider.maxValue = ItemData.count;
 
-            UpdateDisplayedInfo();
-            GameManager.Instance.CallSave();
-            salesItemPanel.salesInventory.UpdateSlots(salesItemPanel.salesInventory.inventoryItemData);
-        }
-        else
-        {
-            Debug.Log($"Purchase Failed.. lacking {GameManager.Instance.Coins - GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount} coins.");
-
-            purchaseCount = 0;
-            purchaseSlider.value = purchaseCount;
-        }
+        UpdateDisplayedInfo();
+        GameManager.Instance.CallSave();
+        salesItemPanel.salesInventory.UpdateSlots(salesItemPanel.salesInventory.inventoryItemData);
+        salesItemPanel.salesSceneUi.UpdateSalesSceneDisplay();
     }
 
     private void UpdateDisplayedInfo()
     {
-        purchaseCount = 0;
-        purchaseSlider.value = purchaseCount;
+        sellCount = 0;
+        salesSlider.value = sellCount;
         OnSliderValueChanged();
 
-        itemCount.text = ItemData.stock.ToString();
-        itemAvgCost.text = GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost.ToString();
+        itemCount.text = ItemData.count.ToString();
+        itemAvgCost.text = GameManager.Instance.entireItemDict[ItemData.ItemData.Id].avgCost.ToString();
     }
-
-
-
 
 
 }

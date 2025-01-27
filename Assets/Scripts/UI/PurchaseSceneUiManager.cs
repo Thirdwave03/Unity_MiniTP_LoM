@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -26,6 +27,8 @@ public class PurchaseSceneUiManager : MonoBehaviour
     public GameObject purchaseWindow;
     public Button purchaseWindowClose;
 
+    public UiBulletinBoardManager bulletinBoard;
+
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI inventoryStatus;
 
@@ -33,25 +36,27 @@ public class PurchaseSceneUiManager : MonoBehaviour
     private void Start()
     {
         AddListeners();
+        UpdatePurchaseSceneDisplay();
+        bulletinBoard.SetInitialPosition();
     }
 
     private void OnEnable()
     {
         settingWindow.SetActive(false);
         purchaseWindow.SetActive(false);
-        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
-    {
-        AddListeners();
-        UpdatePurchaseSceneDisplay();
-    }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Raycast blocked by UI");
+                return;
+            }
+
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
@@ -65,9 +70,10 @@ public class PurchaseSceneUiManager : MonoBehaviour
         }
     }
 
-    private void UpdatePurchaseSceneDisplay()
+    public void UpdatePurchaseSceneDisplay()
     {
-
+        currentCoin.text = GameManager.Instance.Coins.ToString();
+        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.inventoryCapacity}";
     }
 
     private void AddListeners()
@@ -145,16 +151,28 @@ public class PurchaseSceneUiManager : MonoBehaviour
     public void OpenPrimaryShop()
     {
         purchaseWindow.SetActive(true);
+        var purchaseBoard = purchaseWindow.GetComponent<UiPurchasePanel>().purchaseBoard;
+        purchaseBoard.AllignIndexWithShopType
+            (SalesItemDataIndex.minPrimary, SalesItemDataIndex.maxPrimary);
+        purchaseBoard.CallUpdateSlots();
     }
 
     public void OpenSecondaryShop()
     {
-
+        purchaseWindow.SetActive(true);
+        var purchaseBoard = purchaseWindow.GetComponent<UiPurchasePanel>().purchaseBoard;
+        purchaseBoard.AllignIndexWithShopType
+            (SalesItemDataIndex.minSecondary, SalesItemDataIndex.maxSecondary);
+        purchaseBoard.CallUpdateSlots();
     }
 
     public void OpenLuxuryShop()
     {
-
+        purchaseWindow.SetActive(true);
+        var purchaseBoard = purchaseWindow.GetComponent<UiPurchasePanel>().purchaseBoard;
+        purchaseBoard.AllignIndexWithShopType
+            (SalesItemDataIndex.minLuxury, SalesItemDataIndex.maxLuxury);
+        purchaseBoard.CallUpdateSlots();
     }
 
     private void OnClickPurchaseWindowClose()

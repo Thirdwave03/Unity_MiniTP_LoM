@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UiSalesItemSlot : MonoBehaviour
 {
     public int SlotIndex { get; set; }
-    public SavedSalesItemData Data { get; private set; }
+    public SavedItemData Data { get; private set; }
 
     public TextMeshProUGUI itemPriceText;
     public Image itemIcon;
@@ -20,19 +20,19 @@ public class UiSalesItemSlot : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetItem(SavedSalesItemData savedSalesItemData)
+    public void SetItem(SavedItemData savedItemData)
     {
         gameObject.SetActive(true);
-        Data = savedSalesItemData;
-        itemIcon.sprite = DataTableManager.ItemTable.Get(savedSalesItemData.SalesItemData.SalesItemId).IconSprite;
+        Data = savedItemData;
+        itemIcon.sprite = DataTableManager.ItemTable.Get(savedItemData.ItemData.Id).IconSprite;
         string tempfilePath;
-        if (GameManager.Instance.entireItemDict[savedSalesItemData.SalesItemData.SalesItemId].price > 
-            GameManager.Instance.entireItemDict[savedSalesItemData.SalesItemData.SalesItemId].avgCost)
+        if (GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].price > 
+            GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].avgCost)
         {
             tempfilePath = "up";
         }
-        else if (GameManager.Instance.entireItemDict[savedSalesItemData.SalesItemData.SalesItemId].price <
-            GameManager.Instance.entireItemDict[savedSalesItemData.SalesItemData.SalesItemId].avgCost)
+        else if (GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].price <
+            GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].avgCost)
         {
             tempfilePath = "down";
         }
@@ -41,8 +41,8 @@ public class UiSalesItemSlot : MonoBehaviour
             tempfilePath = "blank";
         }
         priceTrendIcon.sprite = Resources.Load<Sprite>($"Sprites/Icon/itemimg/Genenral/{tempfilePath}");
-        itemPriceText.text = GameManager.Instance.entireItemDict[savedSalesItemData.SalesItemData.SalesItemId].price.ToString();
-        itemCountText.text = savedSalesItemData.stock.ToString();
+        itemPriceText.text = GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].price.ToString();
+        itemCountText.text = savedItemData.count.ToString();
     }
 
     public void OnClick()
@@ -50,7 +50,7 @@ public class UiSalesItemSlot : MonoBehaviour
         Debug.Log($"Slot Index: {SlotIndex}");
         if (Data != null)
         {
-            Debug.Log($"Item Id: {Data.SalesItemData.Id}");
+            Debug.Log($"Item Id: {Data.ItemData.Id}");
         }
     }
 }

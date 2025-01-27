@@ -45,6 +45,11 @@ public enum Languages
     Japanese,
 }
 
+public static class Variables
+{
+    public static Languages currentLanguage = Languages.English;
+}
+
 public enum GameModes // GameModes Table ±¸¼º
 {
     Default,
