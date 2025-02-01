@@ -177,6 +177,7 @@ public class PurchaseSceneUiManager : MonoBehaviour
 
     private void OnClickPurchaseWindowClose()
     {
+        purchaseWindow.gameObject.GetComponent<UiPurchasePanel>().itemInfo.blinder.SetActive(true);
         purchaseWindow.SetActive(false);
     }
 }

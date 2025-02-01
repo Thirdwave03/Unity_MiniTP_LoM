@@ -29,28 +29,46 @@ public class MainSceneUiManager : MonoBehaviour
     public GameObject inventoryWindow;
     public Button inventoryReturnButton;
 
-    public UiBulletinBoardManager bulletinBoard;
-
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI daysProgress;
 
-    public TextMeshProUGUI tips;
+    public TextLocalizer tipsLC;
 
-    public TextMeshProUGUI inventoryLevel;
-    public TextMeshProUGUI inventoryStatus;
+    public TextLocalizer inventoryLevelLC;
+    public TextLocalizer inventoryStatusLC;
+
+    private MainMenuCenterMsgType messageType;
+
+    public GameObject messageBox;
+    public GameObject centerMsg;
+    public GameObject nextDay;
+
+    public GameObject centerMsgCheckBArea;
+
+    public Button centerMsgCheckB;
+    public Button centerMsgCloseB;
+
+    public Button nextDayCheckB;
+    public Button nextDayCloseB;
+
+    public TextLocalizer centerMsgLC;
+    public TextLocalizer nextDayLC;
 
     private void Start()
     {
         //DontDestroyOnLoad(gameObject.transform.parent.gameObject);
         AddListeners();
+        AddLocalizerActions();
         UpdateMainSceneDisplay();
-        bulletinBoard.SetInitialPosition();
     }
 
     private void OnEnable()
     {
         settingWindow.SetActive(false);
         inventoryWindow.SetActive(false);
+        messageBox.SetActive(false);
+        centerMsg.SetActive(false);
+        nextDay.SetActive(false);
     }
 
 
@@ -58,10 +76,12 @@ public class MainSceneUiManager : MonoBehaviour
     {
         currentCoin.text = GameManager.Instance.Coins.ToString();
         daysProgress.text = GameManager.Instance.Days.ToString();
-        //tips.text = GameManager.Instance. (Not Ready yet)
-        inventoryLevel.text = GameManager.Instance.inventoryLevel.ToString();
-        inventoryStatus.text = $"Capacity: (TBD)/{GameManager.Instance.inventoryCapacity}\n" +
-            $"Rental Fee: {GameManager.Instance.inventoryFee}/Day";
+        tipsLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(GameManager.Instance.tipIndex);
+        //inventoryLevelLC.tmp.text = GameManager.Instance.inventoryLevel.ToString();
+        //inventoryStatusLC.tmp.text = $"Capacity: {GameManager.Instance.inventoryOccupancy}/{GameManager.Instance.inventoryCapacity}\n" +
+        //    $"Rental Fee: {GameManager.Instance.inventoryFee}/Day";
+        inventoryLevelLC.OnChangeLanguage(Variables.currentLanguage);
+        inventoryStatusLC.OnChangeLanguage(Variables.currentLanguage);
     }        
 
     private void AddListeners()
@@ -105,6 +125,11 @@ public class MainSceneUiManager : MonoBehaviour
 
         // inventory contents
         inventoryReturnButton.onClick.AddListener(OnClickInventoryReturn);
+
+        centerMsgCheckB.onClick.AddListener(OnClickCenterMsgCheck);
+        centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);
+        nextDayCloseB.onClick.AddListener(OnClickNextdayClose);
+        nextDayCheckB.onClick.AddListener(OnClickNextdayCheck);
     }
 
     private void OnClickInventory()
@@ -114,12 +139,34 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickInventoryUpgrade()
     {
-      
+        if(GameManager.Instance.inventoryLevel != GameInfos.maxInventoryLevel)
+        {
+            OpenMessage(MainMenuCenterMsgType.InventoryUpgrade);
+        }
+        else
+        {
+            OpenMessage(MainMenuCenterMsgType.InventoryLevelMax);
+        }
     }
 
     private void OnClickInventoryDowngrade()
     {
-      
+        if (GameManager.Instance.inventoryLevel != GameInfos.minInventoryLevel)
+        {
+            if (GameManager.Instance.InventoryOccupancy <=
+                DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel - 1).Capacity)
+            {
+                OpenMessage(MainMenuCenterMsgType.InventoryDowngrade);
+            }
+            else
+            {
+                OpenMessage(MainMenuCenterMsgType.LackOfCapacity);
+            }
+        }
+        else
+        {
+            OpenMessage(MainMenuCenterMsgType.InventoryLevelMin);
+        }
     }
 
     private void OnClickInformation()
@@ -150,8 +197,14 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSleep()
     {
-        GameManager.Instance.OnSleep();
-        UpdateMainSceneDisplay();
+        if (GameManager.Instance.Coins >= GameManager.Instance.inventoryFee)
+        { 
+            OpenMessage(MainMenuCenterMsgType.CanProceed); 
+        }
+        else
+        {
+            OpenMessage(MainMenuCenterMsgType.CannotProceed);
+        }
     }
 
     private void OnClickSettingClose()
@@ -178,6 +231,140 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickInventoryReturn()
     {
+        inventoryWindow.gameObject.GetComponent<UiInventoryPanel>().itemInfo.blinder.SetActive(true);
         inventoryWindow.SetActive(false);
+    }
+
+    private void AddLocalizerActions()
+    {
+        inventoryLevelLC.customizedFormat += LocalizerActionInventoryLvl;
+        inventoryStatusLC.customizedFormat += LocalizerActionInventoryStatus;
+    }
+
+    private void LocalizerActionInventoryLvl()
+    {
+        //inventoryLevelLC.stringId = -1;
+        inventoryLevelLC.formatContents.Clear();
+        inventoryLevelLC.formatContents.Add(GameManager.Instance.inventoryLevel.ToString());
+    }
+
+    private void LocalizerActionInventoryStatus()
+    {
+        //inventoryStatusLC.stringId = -1;
+        inventoryStatusLC.formatContents.Clear();
+        inventoryStatusLC.formatContents.Add(GameManager.Instance.InventoryOccupancy.ToString());
+        inventoryStatusLC.formatContents.Add(GameManager.Instance.inventoryCapacity.ToString());
+        inventoryStatusLC.formatContents.Add(GameManager.Instance.inventoryFee.ToString());
+    }
+
+    private void OpenMessage(MainMenuCenterMsgType msgType)
+    {
+        messageBox.SetActive(true);
+        messageType = msgType;
+        switch (msgType)
+        {
+            case MainMenuCenterMsgType.InventoryLevelMax:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999913);
+                break;
+            case MainMenuCenterMsgType.InventoryLevelMin:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999914);
+                break;
+            case MainMenuCenterMsgType.InventoryUpgrade:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(true);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999905),
+                DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel + 1).UpgradeCost, 
+                DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel + 1).DailyCost);
+                break;
+            case MainMenuCenterMsgType.InventoryDowngrade:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(true);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999906),                
+                DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel - 1).DailyCost);
+                break;
+            case MainMenuCenterMsgType.InsufficientCoin:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999902);
+                break;
+            case MainMenuCenterMsgType.LackOfCapacity:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999915),
+                DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel - 1).Capacity);
+                break;
+            case MainMenuCenterMsgType.CannotProceed:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(true);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999901);
+                break;
+            case MainMenuCenterMsgType.CanProceed:
+                centerMsg.SetActive(false);
+                nextDay.SetActive(true);
+                nextDayLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999904);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnClickCenterMsgCheck()
+    {
+        switch (messageType)
+        {
+            case MainMenuCenterMsgType.InventoryUpgrade:
+                if(GameManager.Instance.Coins >= 
+                    DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel+1).UpgradeCost)
+                {
+                    GameManager.Instance.Coins -= DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel + 1).UpgradeCost;
+                    GameManager.Instance.ChangeInventoryLevel(GameManager.Instance.inventoryLevel + 1);
+                    GameManager.Instance.CallSave();
+                    UpdateMainSceneDisplay();
+                    messageBox.SetActive(false);
+                }
+                else
+                {
+                    OpenMessage(MainMenuCenterMsgType.InsufficientCoin);
+                }
+                break;
+            case MainMenuCenterMsgType.InventoryDowngrade:
+                GameManager.Instance.ChangeInventoryLevel(GameManager.Instance.inventoryLevel - 1);
+                GameManager.Instance.CallSave();
+                UpdateMainSceneDisplay();
+                messageBox.SetActive(false);
+                break;
+            case MainMenuCenterMsgType.CannotProceed:
+
+                break;
+            default:
+                break;  
+        }
+    }
+
+    private void OnClickCenterMsgClose()
+    {
+        messageBox.SetActive(false);
+    }
+
+    private void OnClickNextdayCheck()
+    {
+        GameManager.Instance.OnSleep();
+        UpdateMainSceneDisplay();
+        messageBox.SetActive(false);
+    }
+    private void OnClickNextdayClose()
+    {
+        messageBox.SetActive(false);
     }
 }

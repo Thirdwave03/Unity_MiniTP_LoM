@@ -963,6 +963,7 @@ GameObject:
   - component: {fileID: 590725569}
   - component: {fileID: 590725568}
   - component: {fileID: 590725570}
+  - component: {fileID: 590725571}
   m_Layer: 0
   m_Name: NPC(Wholesales)
   m_TagString: Untagged
@@ -1256,6 +1257,33 @@ PolygonCollider2D:
       - {x: 0.26, y: -5.3399997}
       - {x: 0.35, y: -5.33}
   m_UseDelaunayMesh: 0
+--- !u!114 &590725571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590725567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e64cd27097ef248b83144a8a448213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 986860223}
+        m_TargetAssemblyTypeName: InnSceneUiManager, Assembly-CSharp
+        m_MethodName: OpenWholesales
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &629549781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,8 +1899,8 @@ SpriteRenderer:
   m_SortingLayerID: -162004339
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.74645025, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 0c9aad49c046f624b847c4545640ae13, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1892,7 +1920,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 20, y: 12, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2182,6 +2210,7 @@ GameObject:
   - component: {fileID: 1219008367}
   - component: {fileID: 1219008366}
   - component: {fileID: 1219008368}
+  - component: {fileID: 1219008369}
   m_Layer: 0
   m_Name: NPC(InnMaster)
   m_TagString: Untagged
@@ -2480,6 +2509,33 @@ PolygonCollider2D:
       - {x: -1.8299999, y: -5.1}
       - {x: -1.6999999, y: -5.0499997}
   m_UseDelaunayMesh: 0
+--- !u!114 &1219008369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219008365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e64cd27097ef248b83144a8a448213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 986860223}
+        m_TargetAssemblyTypeName: InnSceneUiManager, Assembly-CSharp
+        m_MethodName: OpenInnMaster
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1244748379
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,8 +2914,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 125/300
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d008ada3d974f614a8ff7d49eac80d44, type: 2}
-  m_sharedMaterial: {fileID: 5464749076443740936, guid: d008ada3d974f614a8ff7d49eac80d44, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3226,8 +3282,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 12121
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d008ada3d974f614a8ff7d49eac80d44, type: 2}
-  m_sharedMaterial: {fileID: 5464749076443740936, guid: d008ada3d974f614a8ff7d49eac80d44, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3738,6 +3794,7 @@ GameObject:
   - component: {fileID: 2093271825}
   - component: {fileID: 2093271824}
   - component: {fileID: 2093271826}
+  - component: {fileID: 2093271827}
   m_Layer: 0
   m_Name: NPC(RandomBox)
   m_TagString: Untagged
@@ -4058,6 +4115,33 @@ PolygonCollider2D:
       - {x: 2.37, y: -5.13}
       - {x: 2.55, y: -5.02}
   m_UseDelaunayMesh: 0
+--- !u!114 &2093271827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2093271823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81e64cd27097ef248b83144a8a448213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 986860223}
+        m_TargetAssemblyTypeName: InnSceneUiManager, Assembly-CSharp
+        m_MethodName: OpenRandomBox
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2131014678
 GameObject:
   m_ObjectHideFlags: 0
@@ -6935,6 +7019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de01ed27bc1c9d4c98e835ee5824b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletinContentsPrefab: {fileID: 0}
+  viewPort: {fileID: 0}
 --- !u!114 &3810258060936927469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7421,7 +7507,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: -356.4}
-  m_SizeDelta: {x: 132.48714, y: 237.59999}
+  m_SizeDelta: {x: 157.9729, y: 237.59999}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &4877923703824779323
 MonoBehaviour:

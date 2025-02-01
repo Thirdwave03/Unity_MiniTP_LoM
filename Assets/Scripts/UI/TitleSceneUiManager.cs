@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,11 +19,17 @@ public class TitleSceneUiManager : MonoBehaviour
     public Button settingClose;
     public Button settingQuitButton;
 
+    public TMP_Dropdown languagesDD;
+
+    public TextLocalizer continueLC;
+    public TextLocalizer newGameLC;
+    public TextLocalizer LimitedResourceLC;
+    public TextLocalizer ExitGameLC;
+    public TextLocalizer quitLC;
+
     private void Start()
     {
-        //DontDestroyOnLoad(gameObject);
         AddListeners();
-        //GameManager.Instance.
     }
 
     private void OnEnable()
@@ -48,6 +55,7 @@ public class TitleSceneUiManager : MonoBehaviour
         devIconButton.onClick.RemoveAllListeners();
         settingClose.onClick.RemoveAllListeners();
         settingQuitButton.onClick.RemoveAllListeners();
+        languagesDD.onValueChanged.RemoveAllListeners();
 
         // Reset
         settingsButton.onClick.AddListener(OnClickSettings);
@@ -59,6 +67,7 @@ public class TitleSceneUiManager : MonoBehaviour
         devIconButton.onClick.AddListener(OnClickTemp);
         settingClose.onClick.AddListener(OnClickSettingClose);
         settingQuitButton.onClick.AddListener(OnClickTemp);
+        languagesDD.onValueChanged.AddListener(OnLanguageChange);
     }
 
     private void OnClickSettings()
@@ -109,5 +118,12 @@ public class TitleSceneUiManager : MonoBehaviour
     {
         GameManager.Instance.currentSavedSlotIndex = slot;
         SceneManager.LoadScene((int)SceneIds.MainScene);
+    }
+
+    public void OnLanguageChange(int value)
+    {
+        Debug.Log($"Language Change Input value: {value}\nLanguage: {(Languages)value}");
+        Variables.currentLanguage = (Languages)value;
+        gameObject.BroadcastMessage("OnChangeLanguage", (Languages)value);
     }
 }

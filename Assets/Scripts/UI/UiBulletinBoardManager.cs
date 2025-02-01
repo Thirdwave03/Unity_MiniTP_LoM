@@ -18,6 +18,7 @@ public class UiBulletinBoardManager : MonoBehaviour
 
     public void SetInitialPosition()
     {
+        gameObject.SetActive(true);
         isOpened = false;
         openedXPos = gameObject.transform.position.x;
         closedXPos = openedXPos - Screen.width * 0.7f;

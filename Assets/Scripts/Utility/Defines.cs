@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public enum SceneIds
 {
@@ -17,8 +18,8 @@ public static class DataTableIds
     {
         "StringTableEn",
         "StringTableKr",
-        "StringTableCn",
-        "StringTableJp",
+        //"StringTableCn",
+        //"StringTableJp",
     };
 
     public static readonly string[] Item =
@@ -34,6 +35,11 @@ public static class DataTableIds
     public static readonly string[] SalesItem =
     {
         "SalesItemTable",
+    };
+
+    public static readonly string[] InventoryCost =
+    {
+        "InventoryTable",
     };
 }
 
@@ -90,4 +96,38 @@ public static class PriceDataIndex
 
     public static int minLuxury = 20086;
     public static int maxLuxury = 20100;
+}
+
+public static class TipsIndex
+{
+    public static int minIndex = 998001;
+    public static int maxIndex = 998020;
+}
+
+public static class GameInfos
+{
+    public static int minInventoryLevel = 1;
+    public static int maxInventoryLevel = 11;
+
+
+}
+
+public static class LocalizerContents
+{
+    public static void AddAction(TextLocalizer localizer, UnityAction action)
+    {
+        //localizer.customizedFormat.AddListener(action);
+    }
+}
+
+public enum MainMenuCenterMsgType
+{
+    InventoryLevelMax,
+    InventoryLevelMin,
+    InventoryUpgrade,
+    InventoryDowngrade,
+    InsufficientCoin,
+    LackOfCapacity,
+    CannotProceed,
+    CanProceed,
 }

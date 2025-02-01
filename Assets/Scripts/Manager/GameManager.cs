@@ -35,6 +35,8 @@ public class GameManager
 
     private int coins;
     public int Coins { get { return coins; } set { coins = value; } }
+
+    public int tipIndex;
     public int inventoryLevel;
     public int inventoryMinLevel;
     public int inventoryMaxLevel;
@@ -43,12 +45,12 @@ public class GameManager
     {
         get
         {
-            int tempOccupancy = 0;
-            foreach (var item in entireItemDict.Values)
+            int occupancy = 0;
+            foreach(var item in entireItemDict.Values)
             {
-                tempOccupancy += item.ItemData.InventoryOccupancy * item.count;
+                occupancy += item.ItemData.InventoryOccupancy * item.count;
             }
-            return tempOccupancy;
+            return occupancy;
         }
     }
 
@@ -199,6 +201,7 @@ public class GameManager
         SaveLoadManager.Data.days = days;
         SaveLoadManager.Data.lastDay = lastDay;
         SaveLoadManager.Data.coins = coins;
+        SaveLoadManager.Data.tipIndex = tipIndex;
         SaveLoadManager.Data.inventoryLevel = inventoryLevel;
         SaveLoadManager.Data.inventoryMinLevel = inventoryMinLevel;
         SaveLoadManager.Data.inventoryMaxLevel = inventoryMaxLevel;
@@ -243,6 +246,7 @@ public class GameManager
         days = 1;
         lastDay = 100;
         coins = 10000;
+        tipIndex = Random.Range(TipsIndex.minIndex, TipsIndex.maxIndex+1);
         inventoryLevel = 1;
         inventoryMinLevel = 1;
         inventoryMaxLevel = 7;
@@ -315,6 +319,7 @@ public class GameManager
         days = SaveLoadManager.Data.days;
         lastDay = SaveLoadManager.Data.lastDay;
         coins = SaveLoadManager.Data.coins;
+        tipIndex = SaveLoadManager.Data.tipIndex;
         inventoryLevel = SaveLoadManager.Data.inventoryLevel;
         inventoryMinLevel = SaveLoadManager.Data.inventoryMinLevel;
         inventoryMaxLevel = SaveLoadManager.Data.inventoryMaxLevel;
@@ -361,6 +366,7 @@ public class GameManager
         ++days;
         coins -= inventoryFee;
         coins += (int)(investedAmount * 0.04);
+        tipIndex = Random.Range(TipsIndex.minIndex, TipsIndex.maxIndex + 1);
         ItemsPriceChangeOnSleep();
         SalesItemChangeOnSleep();
         CallSave();
@@ -415,5 +421,13 @@ public class GameManager
     private void CallInsufficientCoinEvent()
     {
 
+    }
+
+    public void ChangeInventoryLevel(int level)
+    {
+        inventoryLevel = level;
+        var tempTable = DataTableManager.InventoryTable.Get(inventoryLevel);
+        inventoryFee = tempTable.DailyCost;
+        inventoryCapacity = tempTable.Capacity;
     }
 }

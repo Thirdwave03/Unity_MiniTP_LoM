@@ -133,4 +133,19 @@ public class InnSceneUiManager : MonoBehaviour
     {
 
     }
+
+    public void OpenInnMaster()
+    {
+
+    }
+
+    public void OpenWholesales()
+    {
+
+    }
+
+    public void OpenRandomBox()
+    {
+
+    }
 }

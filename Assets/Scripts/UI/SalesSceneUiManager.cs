@@ -157,6 +157,7 @@ public class SalesSceneUiManager : MonoBehaviour
     }
     private void OnClickInventoryReturn()
     {
+        salesInventoryWindow.GetComponent<UiSalesPanel>().salesItemInfo.blinder.SetActive(true);
         salesInventoryWindow.SetActive(false);
     }
 }

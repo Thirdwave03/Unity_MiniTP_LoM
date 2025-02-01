@@ -41,10 +41,11 @@ public enum PriceTrends
 public class ItemData
 {
     // Independent variables
+
     public int Id {  get; set; }
-    public string ItemName { get; set; }
+    public int StringId { get; set; }
     public ItemTypes ItemType { get; set; }
-    public string ItemDescription {  get; set; }
+    public int ItemDescription {  get; set; }
     public string ImageFileName {  get; set; }
     public int MaxCount {  get; set; }
     public int InventoryOccupancy {  get; set; }
@@ -53,7 +54,7 @@ public class ItemData
 
     public override string ToString()
     {
-        return $"{ItemName} (No.{Id}, {ItemType})\n" +
+        return $"{DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(StringId)} (No.{Id}, {ItemType})\n" +
             $"FilePath : Resources/Sprites/Icon/{ImageFileName}";
     }
 

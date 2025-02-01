@@ -21,6 +21,8 @@ public class SaveDataV1 : SaveData
 
     public int coins;
 
+    public int tipIndex;
+
     public int inventoryLevel;
     public int inventoryMinLevel;
     public int inventoryMaxLevel;

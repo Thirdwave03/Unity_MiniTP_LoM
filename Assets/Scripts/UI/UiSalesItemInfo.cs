@@ -28,6 +28,10 @@ public class UiSalesItemInfo : MonoBehaviour
 
     private int sellCount;
 
+    public void Awake()
+    {
+        blinder.SetActive(true);
+    }
     public void SetEmpty()
     {
         ItemData = null;
@@ -65,7 +69,7 @@ public class UiSalesItemInfo : MonoBehaviour
         itemCount.text = ItemData.count.ToString();
         itemPrice.text = GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price.ToString();
         itemOccupancy.text = DataTableManager.ItemTable.Get(ItemData.ItemData.Id).InventoryOccupancy.ToString();
-        itemName.text = DataTableManager.ItemTable.Get(ItemData.ItemData.Id).ItemName;
+        itemName.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(ItemData.ItemData.StringId);
         itemAvgCost.text = GameManager.Instance.entireItemDict[ItemData.ItemData.Id].avgCost.ToString();
 
         salesSlider.wholeNumbers = true;
@@ -100,7 +104,7 @@ public class UiSalesItemInfo : MonoBehaviour
 
     public void OnClickSellButton()
     {
-        Debug.Log($"Sell Successful! {DataTableManager.ItemTable.Get(ItemData.ItemData.Id).ItemName}({sellCount})");
+        Debug.Log($"Sell Successful! {DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(ItemData.ItemData.StringId)}({sellCount})");
         GameManager.Instance.Coins += GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount;
         GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -= sellCount;
 

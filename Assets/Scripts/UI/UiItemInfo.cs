@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,12 +14,17 @@ public class UiItemInfo : MonoBehaviour
     public TextMeshProUGUI itemCount;
     public TextMeshProUGUI itemPrice;
     public TextMeshProUGUI itemOccupancy;
-    public TextMeshProUGUI itemName;
+    public TextLocalizer itemNameLC;
     public TextMeshProUGUI itemAvgCost;
-    public TextMeshProUGUI itemDescription;
+    public TextLocalizer itemDescriptionLC;
+    public TextLocalizer itemAvgCostLC;
 
     public GameObject blinder;
 
+    public void Awake()
+    {
+        blinder.SetActive(true);
+    }
 
     public void SetEmpty()
     {
@@ -27,9 +33,11 @@ public class UiItemInfo : MonoBehaviour
         itemCount.text = string.Empty;
         itemPrice.text = string.Empty;
         itemOccupancy.text = string.Empty;
-        itemName.text = string.Empty;
+        itemNameLC.tmp.text = string.Empty;
         itemAvgCost.text = string.Empty;
-        itemDescription.text = string.Empty;
+        itemDescriptionLC.stringId = 0;
+        itemDescriptionLC.OnChangeLanguage(Variables.currentLanguage);
+        itemAvgCostLC.OnChangeLanguage(Variables.currentLanguage);
 
         blinder.SetActive(true);
     }
@@ -50,9 +58,12 @@ public class UiItemInfo : MonoBehaviour
         itemCount.text = ItemData.count.ToString();
         itemPrice.text = ItemData.price.ToString();
         itemOccupancy.text = ItemData.ItemData.InventoryOccupancy.ToString();
-        itemName.text = ItemData.ItemData.ItemName;
+        itemNameLC.stringId = ItemData.ItemData.StringId;
+        itemNameLC.OnChangeLanguage(Variables.currentLanguage);
         itemAvgCost.text = ItemData.avgCost.ToString();
-        itemDescription.text = ItemData.ItemData.ItemDescription;
+        itemDescriptionLC.stringId = ItemData.ItemData.ItemDescription;
+        itemDescriptionLC.OnChangeLanguage(Variables.currentLanguage);
+        itemAvgCostLC.OnChangeLanguage(Variables.currentLanguage);
 
         blinder.SetActive(false);
 

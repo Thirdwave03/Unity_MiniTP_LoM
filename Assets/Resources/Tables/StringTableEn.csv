@@ -1,0 +1,282 @@
+﻿Id,String
+0, 
+910001,carrot
+910002,corn
+910003,egg
+910004,fish
+910005,garlic
+910006,greenonion
+910007,herbs
+910008,mushroom
+910009,potato
+910010,cabbage
+910011,seaweed
+910012,tomato
+910013,radish
+910014,walnut
+910015,wheat
+910016,apple
+910017,honey
+910018,lemon
+910019,milk
+910020,orange
+910021,beer
+910022,bread
+910023,chese
+910024,fried egg
+910025,wine
+910026,backpack
+910027,potion
+910028,cape
+910029,rope
+910030,fishing rod
+910031,compass
+910032,dice
+910033,greeat hammer
+910034,mirror
+910035,shield
+910036,book_1
+910037,book_2
+910038,book_3
+910039,technical book_1
+910040,technical book_2
+910041,clam
+910042,crystal
+910043,amulet
+910044,golden key
+910045,silver ingot
+910046,golden ring
+910047,ancient helmet
+910048,ancient dagger
+910049,gold ingot
+910050,diamond
+911001,0
+911002,0
+911003,0
+911004,0
+911005,0
+911006,0
+911007,0
+911008,0
+911009,0
+911010,0
+911011,0
+911012,0
+911013,0
+911014,0
+911015,0
+911016,0
+911017,0
+911018,0
+911019,0
+911020,0
+911021,0
+911022,0
+911023,0
+911024,0
+911025,0
+911026,0
+911027,0
+911028,0
+911029,0
+911030,0
+911031,0
+911032,0
+911033,0
+911034,0
+911035,0
+911036,0
+911037,0
+911038,0
+911039,0
+911040,0
+911041,0
+911042,0
+911043,0
+911044,0
+911045,0
+911046,0
+911047,0
+911048,0
+911049,0
+911050,0
+950001,0
+950002,0
+950003,0
+950004,0
+950005,0
+950006,0
+950007,0
+950008,0
+950009,0
+950010,0
+950011,0
+950012,0
+950013,0
+950014,0
+950015,0
+950016,0
+950017,0
+951001,0
+951002,0
+951003,0
+951004,0
+951005,0
+951006,0
+951007,0
+951008,0
+951009,0
+951010,0
+951011,0
+951012,0
+951013,0
+951014,0
+951015,0
+951016,0
+951017,0
+951018,0
+951019,0
+998001,Tips:_nHealth is harmful for smoking.
+998002,Tips:_nTips2
+998003,Tips:_nTips3
+998004,Tips:_nTips4
+998005,Tips:_nTips5
+998006,Tips:_nTips6
+998007,Tips:_nTips7
+998008,Tips:_nTips8
+998009,Tips:_nTips9
+998010,Tips:_nTips10
+998011,Tips:_nTips11
+998012,Tips:_nTips12
+998013,Tips:_nTips13
+998014,Tips:_nTips14
+998015,Tips:_nTips15
+998016,Tips:_nTips16
+998017,Tips:_nTips17
+998018,Tips:_nTips18
+998019,Tips:_nTips19
+998020,Tips:_nTips20
+999001,New Game
+999002,Limited Resources
+999003,Exit Game
+999004,Continue
+999005,Best Record for earned coins_n{0} coins
+999006,Restart
+999007,Main Menu
+999008,Quit
+999009,Average Inventory Cost
+999010,Max
+999011,Purchase
+999012,Sell
+999013,Random Box
+999014,Gather for intel
+999015,Cost
+999016,Revenue
+999017,Gather intel about product pricing
+999018,Invest in the inn
+999019,Profit:
+999020,Total investment:
+999021,Capacity: {0}/{1}_nRental Fee: {2}/day
+999022,Level: {0}
+999023,Bulletin Board
+999024,Cost:
+999025,Lend money
+999901,Not enough coins to pay off rental fee. Do you want to lose all progresses in this game and continue?
+999902,Insufficient coins.
+999903,You cannot buy items over maximum inventory capacity.
+999904,Proceed to next day?
+999905,Would you upgrade your inventory with {0} coins? Rental fee for next inventory level: {1}coins a day
+999906,Do you want to downgrade Inventory level? Rental fee for downgraded inventory level: {0}coins a day
+999907,Pre-order with a {0}% discount
+999908,You can purchase each type of box once daily. Each box contains 1~5 of identical product which dissapears if not picked up.
+999909,"You can recieve pre-orderd product the next day of purchase. You do not necessarily pick up immediately, but the order will not be replaced to new one."
+999910,You can only gather information once a day. The information you gathered can be repeated.
+999911,You can retrieve the profit once a day. Which is {0}% of total investment. And there is no option getting back invested amount.
+999912,"Sir, please lend me {0} coins, I will return {1} coins after {2} days."
+999913,Inventory reached max level.
+999914,Cannot downgrade Inventory anymore.
+999915,Inventory occupancy must be equal or less than {0} to downgrade.
+999916,0
+999917,0
+999918,0
+999919,0
+999920,0
+999921,0
+999922,0
+999923,0
+999924,0
+999925,0
+999926,0
+999927,0
+999928,0
+999929,0
+999930,0
+999931,0
+999932,0
+999933,0
+999934,0
+999935,0
+999936,0
+999937,0
+999938,0
+999939,0
+999940,0
+999941,0
+999942,0
+999943,0
+999944,0
+999945,0
+999946,0
+999947,0
+999948,0
+999949,0
+999950,0
+999951,0
+999952,0
+999953,0
+999954,0
+999955,0
+999956,0
+999957,0
+999958,0
+999959,0
+999960,0
+999961,0
+999962,0
+999963,0
+999964,0
+999965,0
+999966,0
+999967,0
+999968,0
+999969,0
+999970,0
+999971,0
+999972,0
+999973,0
+999974,0
+999975,0
+999976,0
+999977,0
+999978,0
+999979,0
+999980,0
+999981,0
+999982,0
+999983,0
+999984,0
+999985,0
+999986,0
+999987,0
+999988,0
+999989,0
+999990,0
+999991,0
+999992,0
+999993,0
+999994,0
+999995,0
+999996,0
+999997,0
+999998,0
+999999,Default

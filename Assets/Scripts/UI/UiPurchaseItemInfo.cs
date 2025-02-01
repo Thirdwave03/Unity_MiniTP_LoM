@@ -15,8 +15,10 @@ public class UiPurchaseItemInfo : MonoBehaviour
     public TextMeshProUGUI itemCount;
     public TextMeshProUGUI itemPrice;
     public TextMeshProUGUI itemOccupancy;
-    public TextMeshProUGUI itemName;
+    public TextLocalizer itemNameLC;
     public TextMeshProUGUI itemAvgCost;
+
+    public TextLocalizer itemAvgCostLC;
 
     public GameObject blinder;
 
@@ -26,7 +28,15 @@ public class UiPurchaseItemInfo : MonoBehaviour
     public Button maxButton;
     public Button purchaseButton;
 
+    public TextLocalizer maxButtonLC;
+    public TextLocalizer purchaseButtonLC;
+
     private int purchaseCount;
+
+    public void Awake()
+    {
+        blinder.SetActive(true);
+    }
 
     public void SetEmpty()
     {
@@ -35,7 +45,8 @@ public class UiPurchaseItemInfo : MonoBehaviour
         itemCount.text = string.Empty;
         itemPrice.text = string.Empty;
         itemOccupancy.text = string.Empty;
-        itemName.text = string.Empty;
+        itemNameLC.stringId = 0;
+        itemNameLC.tmp.text = string.Empty;
         itemAvgCost.text = string.Empty;
         subtotalPrice.text = string.Empty;
         subtotalOccupancy.text = string.Empty;
@@ -65,8 +76,10 @@ public class UiPurchaseItemInfo : MonoBehaviour
         itemCount.text = ItemData.stock.ToString();
         itemPrice.text = GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price.ToString();
         itemOccupancy.text = DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy.ToString();
-        itemName.text = DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).ItemName;
+        itemNameLC.stringId = DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).StringId;
+        itemNameLC.OnChangeLanguage(Variables.currentLanguage);
         itemAvgCost.text = GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost.ToString();
+        itemAvgCostLC.OnChangeLanguage(Variables.currentLanguage);
 
         purchaseSlider.wholeNumbers = true;
         purchaseSlider.minValue = 0;
@@ -110,7 +123,9 @@ public class UiPurchaseItemInfo : MonoBehaviour
                 entireItemDict[ItemData.SalesItemData.SalesItemId].
                 ItemData.InventoryOccupancy * purchaseCount)
             { 
-                Debug.Log($"Purchase Successful! {DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).ItemName}({purchaseCount})");
+                Debug.Log($"Purchase Successful! " +
+                    $"{DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(900000 + (ItemData.SalesItemData.SalesItemId))}" +
+                    $"({purchaseCount})");
                 GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost =
                     (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count *
                     GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost
@@ -152,6 +167,6 @@ public class UiPurchaseItemInfo : MonoBehaviour
         OnSliderValueChanged();
 
         itemCount.text = ItemData.stock.ToString();
-        itemAvgCost.text = GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost.ToString(); 
+        itemAvgCost.text = GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost.ToString();//
     }
 }

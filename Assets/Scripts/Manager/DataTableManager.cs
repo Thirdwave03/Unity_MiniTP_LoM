@@ -27,6 +27,19 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
+        foreach (var id in DataTableIds.String)
+        {
+            var table = new StringTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+        foreach (var id in DataTableIds.InventoryCost)
+        {
+            var table = new InventoryCostTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
+
 
 //#if UNITY_EDITOR
 //        foreach (var id in DataTableIds.String)
@@ -71,6 +84,14 @@ public static class DataTableManager
         get
         {
             return Get<PriceTable>(DataTableIds.Price[0]);
+        }
+    }
+
+    public static InventoryCostTable InventoryTable
+    {
+        get
+        {
+            return Get<InventoryCostTable>(DataTableIds.InventoryCost[0]);
         }
     }
 
