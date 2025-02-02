@@ -131,3 +131,15 @@ public enum MainMenuCenterMsgType
     CannotProceed,
     CanProceed,
 }
+
+public enum PurchaseSceneCenterMsgType
+{
+    InsufficientCoin,
+    LackOfCapacity,    
+}
+
+public enum SalesSceneMsgType
+{
+    InsufficientCoin,
+    LoanReceived,
+}

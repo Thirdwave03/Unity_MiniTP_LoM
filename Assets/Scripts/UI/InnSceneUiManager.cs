@@ -26,6 +26,18 @@ public class InnSceneUiManager : MonoBehaviour
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI inventoryStatus;
 
+    private PurchaseSceneCenterMsgType messageType;
+
+    public GameObject messageBox;
+    public GameObject centerMsg;
+
+    public GameObject centerMsgCheckBArea;
+
+    public Button centerMsgCheckB;
+    public Button centerMsgCloseB;
+
+    public TextLocalizer centerMsgLC;
+
     private void Start()
     {
         AddListeners();
@@ -147,5 +159,40 @@ public class InnSceneUiManager : MonoBehaviour
     public void OpenRandomBox()
     {
 
+    }
+
+    public void OpenMessage(PurchaseSceneCenterMsgType msgType)
+    {
+        messageBox.SetActive(true);
+        messageType = msgType;
+        switch (msgType)
+        {
+            case PurchaseSceneCenterMsgType.InsufficientCoin:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999902);
+                break;
+            case PurchaseSceneCenterMsgType.LackOfCapacity:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999903);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnClickCenterMsgCheck()
+    {
+        switch (messageType)
+        {
+            default:
+                break;
+        }
+    }
+
+    private void OnClickCenterMsgClose()
+    {
+        messageBox.SetActive(false);
     }
 }

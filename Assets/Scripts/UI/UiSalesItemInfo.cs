@@ -104,6 +104,8 @@ public class UiSalesItemInfo : MonoBehaviour
 
     public void OnClickSellButton()
     {
+        if (ItemData == null)
+            return;
         Debug.Log($"Sell Successful! {DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(ItemData.ItemData.StringId)}({sellCount})");
         GameManager.Instance.Coins += GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount;
         GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -= sellCount;

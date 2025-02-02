@@ -145,6 +145,7 @@ public class UiPurchaseItemInfo : MonoBehaviour
             }
             else
             {
+                purchaseItemPanel.purchaseScene.OpenMessage(PurchaseSceneCenterMsgType.LackOfCapacity);
                 Debug.Log($"Purchase Failed.. inventory full {GameManager.Instance.Coins - GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount} coins.");
 
                 purchaseCount = 0;
@@ -153,6 +154,7 @@ public class UiPurchaseItemInfo : MonoBehaviour
         }
         else
         {
+            purchaseItemPanel.purchaseScene.OpenMessage(PurchaseSceneCenterMsgType.InsufficientCoin);
             Debug.Log($"Purchase Failed.. lacking {GameManager.Instance.Coins - GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount} coins.");
 
             purchaseCount = 0;

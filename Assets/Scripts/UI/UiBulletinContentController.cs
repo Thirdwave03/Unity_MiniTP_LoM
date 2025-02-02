@@ -20,8 +20,6 @@ public class UiBulletinContentController : MonoBehaviour
         layoutElement = GetComponent<LayoutElement>();
         layoutElement.minHeight = viewPortRect.rect.height * 0.125f;
 
-
-
     }
 
     

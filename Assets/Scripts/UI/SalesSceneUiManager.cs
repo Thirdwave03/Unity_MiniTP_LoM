@@ -28,6 +28,25 @@ public class SalesSceneUiManager : MonoBehaviour
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI inventoryStatus;
 
+    private SalesSceneMsgType messageType;
+
+    public GameObject messageBox;
+    public GameObject centerMsg;
+    public GameObject loanWindow;
+
+    public GameObject centerMsgCheckBArea;
+
+    public Button centerMsgCheckB;
+    public Button centerMsgCloseB;
+
+    public Button loanWindowCloseB;
+    public Button loanB;
+
+    public TextLocalizer centerMsgLC;
+    public TextLocalizer loanTextLC;
+
+    public TextMeshProUGUI loanCostText;
+
     private void Start()
     {        
         AddListeners();
@@ -159,5 +178,39 @@ public class SalesSceneUiManager : MonoBehaviour
     {
         salesInventoryWindow.GetComponent<UiSalesPanel>().salesItemInfo.blinder.SetActive(true);
         salesInventoryWindow.SetActive(false);
+    }
+
+
+    public void OpenMessage(SalesSceneMsgType msgType)
+    {
+        messageBox.SetActive(true);
+        messageType = msgType;
+        switch (msgType)
+        {
+            case SalesSceneMsgType.InsufficientCoin:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999902);
+                break;
+            case SalesSceneMsgType.LoanReceived:
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnClickCenterMsgCheck()
+    {
+        switch (messageType)
+        {
+            default:
+                break;
+        }
+    }
+
+    private void OnClickCenterMsgClose()
+    {
+        messageBox.SetActive(false);
     }
 }

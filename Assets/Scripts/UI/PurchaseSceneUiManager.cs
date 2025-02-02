@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Reflection;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -32,12 +34,24 @@ public class PurchaseSceneUiManager : MonoBehaviour
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI inventoryStatus;
 
+    private PurchaseSceneCenterMsgType messageType;
+
+    public GameObject messageBox;
+    public GameObject centerMsg;
+
+    public GameObject centerMsgCheckBArea;
+
+    public Button centerMsgCheckB;
+    public Button centerMsgCloseB;
+
+    public TextLocalizer centerMsgLC;
 
     private void Start()
     {
         AddListeners();
         UpdatePurchaseSceneDisplay();
         bulletinBoard.SetInitialPosition();
+        messageBox.gameObject.SetActive(false);
     }
 
     private void OnEnable()
@@ -99,6 +113,8 @@ public class PurchaseSceneUiManager : MonoBehaviour
         mainMenuButton.onClick.AddListener(OnClickMainMenu);
         quitButton.onClick.AddListener(OnClickQuit);
         purchaseWindowClose.onClick.AddListener(OnClickPurchaseWindowClose);
+        centerMsgCheckB.onClick.AddListener(OnClickCenterMsgCheck);
+        centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);
     }
 
     private void OnClickTemp()
@@ -180,4 +196,40 @@ public class PurchaseSceneUiManager : MonoBehaviour
         purchaseWindow.gameObject.GetComponent<UiPurchasePanel>().itemInfo.blinder.SetActive(true);
         purchaseWindow.SetActive(false);
     }
+
+
+    public void OpenMessage(PurchaseSceneCenterMsgType msgType)
+    {
+        messageBox.SetActive(true);
+        messageType = msgType;
+        switch (msgType)
+        {
+            case PurchaseSceneCenterMsgType.InsufficientCoin:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999902);
+                break;
+            case PurchaseSceneCenterMsgType.LackOfCapacity:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999903);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void OnClickCenterMsgCheck()
+    {
+        switch (messageType)
+        {
+            default:
+                break;
+        }
+    }
+
+    private void OnClickCenterMsgClose()
+    {
+        messageBox.SetActive(false);
+    }    
 }
