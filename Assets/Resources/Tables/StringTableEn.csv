@@ -192,13 +192,13 @@
 999909,"You can recieve pre-orderd product the next day of purchase. You do not necessarily pick up immediately, but the order will not be replaced to new one."
 999910,You can only gather information once a day. The information you gathered can be repeated.
 999911,You can retrieve the profit once a day. Which is {0}% of total investment. And there is no option getting back invested amount.
-999912,"Sir, please lend me {0} coins, I will return {1} coins after {2} days."
+999912,"Sir, please lend me <color=#FFFF00>{0}</color> coins, I will return <color=#FFFF00>{2}</color> coins after <color=#FFFF00>{1}</color> days."
 999913,Inventory reached max level.
 999914,Cannot downgrade Inventory anymore.
 999915,Inventory occupancy must be equal or less than {0} to downgrade.
-999916,0
-999917,0
-999918,0
+999916,"Sir, this is promised <color=#FFFF00>{0}</color> coins."
+999917,Thank you for your help sir.
+999918,Thank you very much sir.
 999919,0
 999920,0
 999921,0

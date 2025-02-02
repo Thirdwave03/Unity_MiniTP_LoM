@@ -60,6 +60,9 @@ public class GameManager
 
     public int lentAmount;
     public int paybackDateCnt;
+    public int lentPaybackAmout;
+    public bool ifLent;
+    public bool isBusinessmanAvailable;
 
     public int investedAmount;
 
@@ -209,6 +212,10 @@ public class GameManager
         SaveLoadManager.Data.inventoryFee = inventoryFee;
         SaveLoadManager.Data.lentAmount = lentAmount;
         SaveLoadManager.Data.paybackDateCnt = paybackDateCnt;
+        SaveLoadManager.Data.lentPaybackAmount = lentPaybackAmout;
+        SaveLoadManager.Data.ifLent = ifLent;
+        SaveLoadManager.Data.isBusinessmanAvailable = isBusinessmanAvailable;
+
         SaveLoadManager.Data.investedAmount = investedAmount;
         SaveLoadManager.Data.wholesaleItem1 = wholesaleItem1;
         SaveLoadManager.Data.wholesaleItem1Cnt = wholesaleItem1Cnt;
@@ -252,8 +259,11 @@ public class GameManager
         inventoryMaxLevel = 7;
         inventoryCapacity = 50;
         inventoryFee = 100;
-        lentAmount = 0;
-        paybackDateCnt = -1;
+        lentAmount = Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
+        paybackDateCnt = Random.Range(GameInfos.minPaybackDate, GameInfos.maxPaybackDate + 1);
+        lentPaybackAmout = (int)(lentAmount * Random.Range(GameInfos.minLentAmountMultiplier, GameInfos.maxLentAmountMultiplier));
+        ifLent = false;
+        isBusinessmanAvailable = Random.Range(0, 2) > 0 ? true : false;
         investedAmount = 0;
         wholesaleItem1 = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary+1);
         wholesaleItem1Cnt = Random.Range(1,3)*50;
@@ -327,6 +337,9 @@ public class GameManager
         inventoryFee = SaveLoadManager.Data.inventoryFee;
         lentAmount = SaveLoadManager.Data.lentAmount;
         paybackDateCnt = SaveLoadManager.Data.paybackDateCnt;
+        lentPaybackAmout = SaveLoadManager.Data.lentPaybackAmount;
+        ifLent = SaveLoadManager.Data.ifLent;
+        isBusinessmanAvailable = SaveLoadManager.Data.isBusinessmanAvailable;
         investedAmount = SaveLoadManager.Data.investedAmount;
         wholesaleItem1 = SaveLoadManager.Data.wholesaleItem1;
         wholesaleItem1Cnt = SaveLoadManager.Data.wholesaleItem1Cnt;
@@ -367,10 +380,28 @@ public class GameManager
         coins -= inventoryFee;
         coins += (int)(investedAmount * 0.04);
         tipIndex = Random.Range(TipsIndex.minIndex, TipsIndex.maxIndex + 1);
+        
         ItemsPriceChangeOnSleep();
         SalesItemChangeOnSleep();
+        LoanUpdateOnSleep();
         CallSave();
         onSleepEvent?.Invoke();
+    }
+
+    private void LoanUpdateOnSleep()
+    {
+        if(ifLent)
+        {
+            --paybackDateCnt;
+            paybackDateCnt = Mathf.Max(paybackDateCnt, 0);
+        }
+        else
+        {
+            lentAmount = Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
+            paybackDateCnt = Random.Range(GameInfos.minPaybackDate, GameInfos.maxPaybackDate+1);
+            lentPaybackAmout = (int)(lentAmount * Random.Range(GameInfos.minLentAmountMultiplier, GameInfos.maxLentAmountMultiplier));
+        }
+        isBusinessmanAvailable = Random.Range(0, 2) > 0 ? true : false;
     }
 
     private void ItemsPriceChangeOnSleep()

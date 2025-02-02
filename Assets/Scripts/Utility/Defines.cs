@@ -106,10 +106,17 @@ public static class TipsIndex
 
 public static class GameInfos
 {
-    public static int minInventoryLevel = 1;
-    public static int maxInventoryLevel = 11;
+    public static readonly int minInventoryLevel = 1;
+    public static readonly int maxInventoryLevel = 11;
 
+    public static readonly int minLentAmount = 5000;
+    public static readonly int maxLentAmount = 20000;
 
+    public static readonly int minPaybackDate = 5;
+    public static readonly int maxPaybackDate = 8;
+
+    public static readonly float minLentAmountMultiplier = 1.15f;
+    public static readonly float maxLentAmountMultiplier = 1.3f;
 }
 
 public static class LocalizerContents
@@ -141,5 +148,7 @@ public enum PurchaseSceneCenterMsgType
 public enum SalesSceneMsgType
 {
     InsufficientCoin,
-    LoanReceived,
+    LoanPickUp,
+    LoanPickedUp,
+    AlreadyLent,
 }

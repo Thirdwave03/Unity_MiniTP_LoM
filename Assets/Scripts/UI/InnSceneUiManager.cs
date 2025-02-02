@@ -43,6 +43,7 @@ public class InnSceneUiManager : MonoBehaviour
         AddListeners();
         UpdateInnSceneDisplay();
         bulletinBoard.SetInitialPosition();
+        messageBox.SetActive(false);
     }
 
     private void OnEnable()

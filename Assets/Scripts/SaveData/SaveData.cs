@@ -32,6 +32,9 @@ public class SaveDataV1 : SaveData
 
     public int lentAmount;
     public int paybackDateCnt;
+    public int lentPaybackAmount;
+    public bool ifLent;
+    public bool isBusinessmanAvailable;
 
     public int investedAmount;
 

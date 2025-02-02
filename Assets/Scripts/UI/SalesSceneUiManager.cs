@@ -47,11 +47,17 @@ public class SalesSceneUiManager : MonoBehaviour
 
     public TextMeshProUGUI loanCostText;
 
+    public GameObject npcSpecialMerchant;
+    public GameObject npcBusinessman;
+
     private void Start()
     {        
         AddListeners();
+        AddLocalizerActions();
         UpdateSalesSceneDisplay();
         bulletinBoard.SetInitialPosition();
+        messageBox.SetActive(false);
+        BusinessmanUpdate();
     }
 
     private void OnEnable()
@@ -69,14 +75,14 @@ public class SalesSceneUiManager : MonoBehaviour
     private void AddListeners()
     {
         //inventoryButton.onClick.RemoveAllListeners();
-        settingButton.onClick.RemoveAllListeners();
-        purchaseSceneButton.onClick.RemoveAllListeners();
-        innSceneButton.onClick.RemoveAllListeners();
-        settingCloseButton.onClick.RemoveAllListeners();
-        restartButton.onClick.RemoveAllListeners();
-        mainMenuButton.onClick.RemoveAllListeners();
-        quitButton.onClick.RemoveAllListeners();
-        inventoryReturnButton.onClick.RemoveAllListeners();
+        //settingButton.onClick.RemoveAllListeners();
+        //purchaseSceneButton.onClick.RemoveAllListeners();
+        //innSceneButton.onClick.RemoveAllListeners();
+        //settingCloseButton.onClick.RemoveAllListeners();
+        //restartButton.onClick.RemoveAllListeners();
+        //mainMenuButton.onClick.RemoveAllListeners();
+        //quitButton.onClick.RemoveAllListeners();
+        //inventoryReturnButton.onClick.RemoveAllListeners();
 
         //inventoryButton.onClick.AddListener(OnClickTemp);
         settingButton.onClick.AddListener(OnClickSetting);
@@ -88,6 +94,10 @@ public class SalesSceneUiManager : MonoBehaviour
         mainMenuButton.onClick.AddListener(OnClickMainMenu);
         quitButton.onClick.AddListener(OnClickQuit);
         inventoryReturnButton.onClick.AddListener(OnClickInventoryReturn);
+        loanWindowCloseB.onClick.AddListener(OnClickCenterMsgClose);
+        centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);
+        loanB.onClick.AddListener(OnClickLoanButton);
+        centerMsgCheckB.onClick.AddListener(OnClickCenterMsgCheck);
     }
 
     private void Update()
@@ -159,6 +169,22 @@ public class SalesSceneUiManager : MonoBehaviour
     {
 
     }
+    private void AddLocalizerActions()
+    {
+        loanTextLC.customizedFormat += LocalizerActionLoanText;
+    }
+
+    private void LocalizerActionLoanText()
+    {
+        if (!(GameManager.Instance.ifLent && GameManager.Instance.paybackDateCnt > 0))
+        {
+            loanTextLC.stringId = 999912;
+            loanTextLC.formatContents.Clear();
+            loanTextLC.formatContents.Add(GameManager.Instance.lentAmount.ToString());
+            loanTextLC.formatContents.Add(GameManager.Instance.paybackDateCnt.ToString());
+            loanTextLC.formatContents.Add(GameManager.Instance.lentPaybackAmout.ToString());
+        }
+    }
 
     public void OpenSpecialMerchant()
     {
@@ -172,14 +198,34 @@ public class SalesSceneUiManager : MonoBehaviour
 
     public void OpenBusinessman()
     {
-
+        if(GameManager.Instance.ifLent && GameManager.Instance.paybackDateCnt == 0)
+        {
+            OpenMessage(SalesSceneMsgType.LoanPickUp);
+        }
+        else if(GameManager.Instance.ifLent && GameManager.Instance.paybackDateCnt > 0)
+        {
+            OpenMessage(SalesSceneMsgType.AlreadyLent);
+        }
+        else if(!GameManager.Instance.ifLent && GameManager.Instance.paybackDateCnt == 0)
+        {
+            OpenMessage(SalesSceneMsgType.LoanPickedUp);
+        }
+        else
+        {
+            messageBox.SetActive(true);
+            loanWindow.SetActive(true);
+            salesInventoryWindow.SetActive(false);
+            centerMsg.SetActive(false);
+            loanTextLC.OnChangeLanguage(Variables.currentLanguage);
+            loanCostText.text = GameManager.Instance.lentAmount.ToString();
+        }
     }
+
     private void OnClickInventoryReturn()
     {
         salesInventoryWindow.GetComponent<UiSalesPanel>().salesItemInfo.blinder.SetActive(true);
         salesInventoryWindow.SetActive(false);
     }
-
 
     public void OpenMessage(SalesSceneMsgType msgType)
     {
@@ -190,27 +236,98 @@ public class SalesSceneUiManager : MonoBehaviour
             case SalesSceneMsgType.InsufficientCoin:
                 centerMsg.SetActive(true);
                 centerMsgCheckBArea.SetActive(false);
+                loanWindow.SetActive(false);
+                salesInventoryWindow.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999902);
                 break;
-            case SalesSceneMsgType.LoanReceived:
-
+            case SalesSceneMsgType.LoanPickUp:
+                messageBox.SetActive(true);
+                loanWindow.SetActive(false);
+                salesInventoryWindow.SetActive(false);
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(true);
+                centerMsgLC.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999916), GameManager.Instance.lentPaybackAmout);
+                break;
+            case SalesSceneMsgType.LoanPickedUp:
+                messageBox.SetActive(true);
+                loanWindow.SetActive(false);
+                centerMsgCheckBArea.SetActive(false);
+                salesInventoryWindow.SetActive(false);
+                centerMsg.SetActive(true);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999917);
+                break;
+            case SalesSceneMsgType.AlreadyLent:
+                messageBox.SetActive(true);
+                loanWindow.SetActive(false);
+                centerMsgCheckBArea.SetActive(false);
+                salesInventoryWindow.SetActive(false);
+                centerMsg.SetActive(true);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999918);
                 break;
             default:
                 break;
         }
+        UpdateSalesSceneDisplay();
     }
 
     private void OnClickCenterMsgCheck()
     {
         switch (messageType)
         {
+            case SalesSceneMsgType.LoanPickUp:
+                GameManager.Instance.Coins += GameManager.Instance.lentPaybackAmout;
+                GameManager.Instance.ifLent = false;
+                messageBox.SetActive(false);
+                GameManager.Instance.CallSave();
+                break;
             default:
                 break;
         }
+        UpdateSalesSceneDisplay();
     }
 
     private void OnClickCenterMsgClose()
     {
         messageBox.SetActive(false);
+    }
+
+    private void OnClickLoanButton()
+    {
+        if (GameManager.Instance.Coins >= GameManager.Instance.lentAmount)
+        {
+            GameManager.Instance.Coins -= GameManager.Instance.lentAmount;
+            GameManager.Instance.ifLent = true;
+            OpenMessage(SalesSceneMsgType.AlreadyLent);
+            UpdateSalesSceneDisplay();
+            GameManager.Instance.CallSave();
+        }
+        else
+        {
+            OpenMessage(SalesSceneMsgType.InsufficientCoin);
+            UpdateSalesSceneDisplay();
+        }
+    }
+    
+    private void BusinessmanUpdate()
+    {
+        if (GameManager.Instance.ifLent && GameManager.Instance.paybackDateCnt > 0)
+        { 
+            npcBusinessman.SetActive(false); 
+        }
+        else if (GameManager.Instance.paybackDateCnt == 0)
+        {            
+            npcBusinessman.SetActive(true);
+        }
+        else
+        {
+            if(GameManager.Instance.isBusinessmanAvailable)
+            {
+                npcBusinessman.SetActive(true);
+            }
+            else
+            {
+                npcBusinessman.SetActive(false);
+            }
+        }
     }
 }
