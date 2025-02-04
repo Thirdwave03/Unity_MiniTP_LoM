@@ -102,11 +102,13 @@ public class GameManager
     public bool isRandomBox1Purchased;
     public bool isRandomBox1PickedUp;
     public int randomBox1Item;
+    public int randomBox1Price;
     public int randomBox1Cnt;
 
     public bool isRandomBox2Purchased;
     public bool isRandomBox2PickedUp;
     public int randomBox2Item;
+    public int randomBox2Price;
     public int randomBox2Cnt;      
 
     private static void InitialCall()
@@ -385,11 +387,13 @@ public class GameManager
         isRandomBox1Purchased = SaveLoadManager.Data.isRandomBox1Purchased;
         isRandomBox1PickedUp = SaveLoadManager.Data.isRandomBox1PickedUp;
         randomBox1Item = SaveLoadManager.Data.randomBox1Item;
+        randomBox1Price = SaveLoadManager.Data.randomBox1Price;
         randomBox1Cnt = SaveLoadManager.Data.randomBox1Cnt;
 
         isRandomBox2Purchased = SaveLoadManager.Data.isRandomBox2Purchased;
         isRandomBox2PickedUp = SaveLoadManager.Data.isRandomBox2PickedUp;
         randomBox2Item = SaveLoadManager.Data.randomBox2Item;
+        randomBox2Price = SaveLoadManager.Data.randomBox2Price;
         randomBox2Cnt = SaveLoadManager.Data.randomBox2Cnt;
     }
 
@@ -458,11 +462,13 @@ public class GameManager
         SaveLoadManager.Data.isRandomBox1Purchased = isRandomBox1Purchased;
         SaveLoadManager.Data.isRandomBox1PickedUp = isRandomBox1PickedUp;
         SaveLoadManager.Data.randomBox1Item = randomBox1Item;
+        SaveLoadManager.Data.randomBox1Price = randomBox1Price;
         SaveLoadManager.Data.randomBox1Cnt = randomBox1Cnt;
 
         SaveLoadManager.Data.isRandomBox2Purchased = isRandomBox2Purchased;
         SaveLoadManager.Data.isRandomBox2PickedUp = isRandomBox2PickedUp;
         SaveLoadManager.Data.randomBox2Item = randomBox2Item;
+        SaveLoadManager.Data.randomBox2Price = randomBox2Price;
         SaveLoadManager.Data.randomBox2Cnt = randomBox2Cnt;
     }
 
@@ -495,6 +501,7 @@ public class GameManager
         LoanUpdateOnSleep();
         InnUpdateOnSleep();
         WholeSalesUpdateOnSleep(); // must be called after price change
+        RandomBoxUpdateOnSleep();
         CallSave();
         onSleepEvent?.Invoke();
     }
@@ -600,6 +607,25 @@ public class GameManager
             salesItemDict[i].isOnSale = Random.Range(0, 99) < salesItemDict[i].SalesItemData.OnSaleProbability ? true : false;
             salesItemDict[i].stock = Random.Range(salesItemDict[i].SalesItemData.MinSupply, salesItemDict[i].SalesItemData.MaxSupply + 1);
         }
+    }
+
+    private void RandomBoxUpdateOnSleep()
+    {
+        randomBox1Item = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary + 1);
+        randomBox2Item = Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
+
+        randomBox1Cnt = Random.Range(1, 6);
+        randomBox2Cnt = Random.Range(1, 6);
+
+        randomBox1Price = (int)(entireItemDict[Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary + 1)]
+            .price * Random.Range(1f, 5f));
+        randomBox2Price = (int)(entireItemDict[Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1)]
+            .price * Random.Range(1f, 5f));
+
+        isRandomBox1PickedUp = false;
+        isRandomBox2PickedUp = false;
+        isRandomBox1Purchased = false;
+        isRandomBox2Purchased = false;
     }
 
     private void OnSleepLastDay()

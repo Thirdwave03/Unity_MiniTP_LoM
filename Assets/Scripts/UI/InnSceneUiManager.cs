@@ -1,3 +1,4 @@
+using System.Resources;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -79,22 +80,26 @@ public class InnSceneUiManager : MonoBehaviour
     public TextMeshProUGUI wholesalesSlot2Count;
     public Image wholesalesSlot2ItemImage;
 
+    private readonly string randomBox1Path = "Sprites/Icon/itemimg/General/RandomBox_1";
+    private readonly string randomBox2Path = "Sprites/Icon/itemimg/General/RandomBox_2";
+    private readonly string blankImagePath = "Sprites/Icon/itemimg/General/blank";
+
     public GameObject randomBoxSlot1Blind;
+    public GameObject randomBoxCount1;
     public Button randomBoxSlot1B;
-    public GameObject randomBoxSlot1BBlind;
     public TextLocalizer randomBoxSlot1BLC;
 
-    public TextMeshProUGUI randomBoxSlot1TotalPrice;
+    public TextMeshProUGUI randomBoxSlot1Price;
     public TextMeshProUGUI randomBoxSlot1Occupancy;
     public TextMeshProUGUI randomBoxSlot1Count;
     public Image randomBoxSlot1ItemImage;
 
     public GameObject randomBoxSlot2Blind;
+    public GameObject randomBoxCount2;
     public Button randomBoxSlot2B;
-    public GameObject randomBoxSlot2BBlind;
     public TextLocalizer randomBoxSlot2BLC;
 
-    public TextMeshProUGUI randomBoxSlot2TotalPrice;
+    public TextMeshProUGUI randomBoxSlot2Price;
     public TextMeshProUGUI randomBoxSlot2Occupancy;
     public TextMeshProUGUI randomBoxSlot2Count;
     public Image randomBoxSlot2ItemImage;
@@ -161,8 +166,7 @@ public class InnSceneUiManager : MonoBehaviour
         mainMenuButton.onClick.AddListener(OnClickMainMenu);
         quitButton.onClick.AddListener(OnClickQuit);
         messageBoxReturnB.onClick.AddListener(OnClickMsgBoxReturn);
-        centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);
-        
+        centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);        
 
         innWindowGetIntelB.onClick.AddListener(OnClickGetPriceInfo);
         innWindowGetProfitB.onClick.AddListener(OnClickRetrieveProfit);
@@ -172,6 +176,8 @@ public class InnSceneUiManager : MonoBehaviour
         innWindowInvestB_50000.onClick.AddListener(OnClickInvest_50000);
         wholesalesSlot1B.onClick.AddListener(OnClickWholesalesItemPickUp1);
         wholesalesSlot2B.onClick.AddListener(OnClickWholesalesItemPickUp2);
+        randomBoxSlot1B.onClick.AddListener(OnClickRandomBoxButton1);
+        randomBoxSlot2B.onClick.AddListener(OnClickRandomBoxButton2);
     }
 
     private void OnClickTemp()
@@ -280,7 +286,7 @@ public class InnSceneUiManager : MonoBehaviour
         UpdateWholesalesContents();
     }
 
-    public void UpdateWholesalesContents()
+    private void UpdateWholesalesContents()
     {
         //slot 1
         wholesalesSlot1BBlind.SetActive(GameManager.Instance.isItem1Purchased && 
@@ -317,13 +323,96 @@ public class InnSceneUiManager : MonoBehaviour
 
     public void OpenRandomBox()
     {
+        messageBox.SetActive(true);
+        messageBoxReturnBArea.SetActive(true);
+        innWindow.SetActive(false);
+        wholesaleWindow.SetActive(false);
+        randomBoxWindow.SetActive(true);
+        centerMsg.SetActive(false);
+        UpdateRandomBoxContents();
+    }
 
+    private void UpdateRandomBoxContents()
+    {
+        randomBoxSlot1Blind.SetActive(GameManager.Instance.isRandomBox1PickedUp);
+        randomBoxSlot1BLC.stringId = GameManager.Instance.isRandomBox1Purchased ? 999029 : 999011;
+        randomBoxSlot1BLC.OnChangeLanguage(Variables.currentLanguage);
+        randomBoxSlot1Price.text = GameManager.Instance.randomBox1Price.ToString();
+
+        var randomItem = DataTableManager.ItemTable.Get(GameManager.Instance.randomBox1Item);        
+
+        if (!GameManager.Instance.isRandomBox1Purchased)
+        {
+            var sprite = Resources.Load<Sprite>(randomBox1Path);
+            if (sprite == null)
+            {
+                Debug.LogError($"Sprite at path {randomBox1Path} could not be loaded.");
+            }
+            else
+            {
+                randomBoxSlot1ItemImage.sprite = sprite;
+            }
+            // price of random box.
+            randomBoxSlot1Occupancy.text = "???";
+            randomBoxSlot1ItemImage.sprite = Resources.Load<Sprite>(randomBox1Path);
+            randomBoxCount1.SetActive(false);
+        }
+        else
+        {
+            // price of random box contents subtotal.
+            randomBoxSlot1Occupancy.text = (GameManager.Instance.randomBox1Cnt *
+                randomItem.InventoryOccupancy)
+                .ToString();
+            if (!GameManager.Instance.isItem1PickedUp)
+            {
+                randomBoxSlot1ItemImage.sprite = randomItem.IconSprite;
+            }
+            else
+            {
+                randomBoxSlot1ItemImage.sprite = Resources.Load<Sprite>(blankImagePath);
+            }
+            randomBoxCount1.SetActive(true);
+            randomBoxSlot1Count.text = GameManager.Instance.randomBox1Cnt.ToString();
+        }
+        
+
+        // slot 2
+        randomBoxSlot2Blind.SetActive(GameManager.Instance.isRandomBox2PickedUp);
+        randomBoxSlot2BLC.stringId = GameManager.Instance.isRandomBox2Purchased ? 999029 : 999011;
+        randomBoxSlot2BLC.OnChangeLanguage(Variables.currentLanguage);
+        randomBoxSlot2Price.text = GameManager.Instance.randomBox2Price.ToString();
+
+        randomItem = DataTableManager.ItemTable.Get(GameManager.Instance.randomBox2Item);
+
+        if (!GameManager.Instance.isRandomBox2Purchased)
+        {
+            // price of random box.
+            randomBoxSlot2Occupancy.text = "???";
+            randomBoxSlot2ItemImage.sprite = Resources.Load<Sprite>(randomBox2Path);
+            randomBoxCount2.SetActive(false);
+        }
+        else
+        {
+            // price of random box contents subtotal.
+            randomBoxSlot2Occupancy.text = (GameManager.Instance.randomBox2Cnt *
+                randomItem.InventoryOccupancy)
+                .ToString();
+            if (!GameManager.Instance.isItem2PickedUp)
+            {
+                randomBoxSlot2ItemImage.sprite = randomItem.IconSprite;
+            }
+            else
+            {
+                randomBoxSlot2ItemImage.sprite = Resources.Load<Sprite>(blankImagePath);
+            }
+            randomBoxCount2.SetActive(true);
+            randomBoxSlot2Count.text = GameManager.Instance.randomBox2Cnt.ToString();
+        }
     }
 
     public void OpenMessage(InnSceneMsgType msgType)
     {
         messageBox.SetActive(true);
-        messageBoxReturnBArea.SetActive(false);
         centerMsg.SetActive(true);
         centerMsgCheckBArea.SetActive(false);
         messageType = msgType;
@@ -351,7 +440,11 @@ public class InnSceneUiManager : MonoBehaviour
 
     private void OnClickCenterMsgClose()
     {
-        messageBox.SetActive(false);
+        centerMsg.SetActive(false);
+        if(!(innWindow.activeSelf || wholesaleWindow.activeSelf || randomBoxWindow.activeSelf))
+        {
+            messageBox.SetActive(false);
+        }
     }
 
     private void OnClickMsgBoxReturn()
@@ -514,6 +607,97 @@ public class InnSceneUiManager : MonoBehaviour
         }
     }
 
+    private void OnClickRandomBoxButton1()
+    {
+        if(!GameManager.Instance.isRandomBox1Purchased)
+        {
+            // Purchase
+            if(GameManager.Instance.coins >= GameManager.Instance.randomBox1Price)
+            {
+                GameManager.Instance.coins -= GameManager.Instance.randomBox1Price;
+                GameManager.Instance.isRandomBox1Purchased = true;
+                UpdateRandomBoxContents();
+                UpdateInnSceneDisplay();
+                GameManager.Instance.CallSave();
+            }
+            else
+            {
+                OpenMessage(InnSceneMsgType.InsufficientCoin);
+            }
+        }
+        else
+        {
+            // Pick up
+            if(GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+                >= GameManager.Instance.randomBox1Cnt * DataTableManager.ItemTable.
+                Get(GameManager.Instance.randomBox1Item).InventoryOccupancy)
+            {
+                GameManager.Instance.entireItemDict[GameManager.Instance.randomBox1Item].avgCost =
+                    (GameManager.Instance.entireItemDict[GameManager.Instance.randomBox1Item].avgCost
+                    * GameManager.Instance.entireItemDict[GameManager.Instance.randomBox1Item].count +
+                    GameManager.Instance.randomBox1Price) /
+                    (GameManager.Instance.entireItemDict[GameManager.Instance.randomBox1Item].count
+                    + GameManager.Instance.randomBox1Cnt);
+
+                GameManager.Instance.entireItemDict[GameManager.Instance.randomBox1Item].count +=
+                    GameManager.Instance.randomBox1Cnt;
+                GameManager.Instance.isRandomBox1PickedUp = true;
+                UpdateRandomBoxContents();
+                UpdateInnSceneDisplay();
+                GameManager.Instance.CallSave();
+            }
+            else
+            {
+                OpenMessage(InnSceneMsgType.LackOfCapacity);
+            }
+        }
+    }
+
+    private void OnClickRandomBoxButton2()
+    {
+        if (!GameManager.Instance.isRandomBox2Purchased)
+        {
+            // Purchase
+            if (GameManager.Instance.coins >= GameManager.Instance.randomBox2Price)
+            {
+                GameManager.Instance.coins -= GameManager.Instance.randomBox2Price;
+                GameManager.Instance.isRandomBox2Purchased = true;
+                UpdateRandomBoxContents();
+                UpdateInnSceneDisplay();
+                GameManager.Instance.CallSave();
+            }
+            else
+            {
+                OpenMessage(InnSceneMsgType.InsufficientCoin);
+            }
+        }
+        else
+        {
+            // Pick up
+            if (GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+                >= GameManager.Instance.randomBox2Cnt * DataTableManager.ItemTable.
+                Get(GameManager.Instance.randomBox2Item).InventoryOccupancy)
+            {
+                GameManager.Instance.entireItemDict[GameManager.Instance.randomBox2Item].avgCost =
+                    (GameManager.Instance.entireItemDict[GameManager.Instance.randomBox2Item].avgCost
+                    * GameManager.Instance.entireItemDict[GameManager.Instance.randomBox2Item].count +
+                    GameManager.Instance.randomBox2Price) /
+                    (GameManager.Instance.entireItemDict[GameManager.Instance.randomBox2Item].count
+                    + GameManager.Instance.randomBox2Cnt);
+
+                GameManager.Instance.entireItemDict[GameManager.Instance.randomBox2Item].count +=
+                    GameManager.Instance.randomBox2Cnt;
+                GameManager.Instance.isRandomBox2PickedUp = true;
+                UpdateRandomBoxContents();
+                UpdateInnSceneDisplay();
+                GameManager.Instance.CallSave();
+            }
+            else
+            {
+                OpenMessage(InnSceneMsgType.LackOfCapacity);
+            }
+        }
+    }
 
 
 }

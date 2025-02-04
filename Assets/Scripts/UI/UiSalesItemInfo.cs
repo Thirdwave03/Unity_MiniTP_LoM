@@ -109,11 +109,17 @@ public class UiSalesItemInfo : MonoBehaviour
         Debug.Log($"Sell Successful! {DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(ItemData.ItemData.StringId)}({sellCount})");
         GameManager.Instance.coins += GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount;
         GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -= sellCount;
-
         salesSlider.maxValue = ItemData.count;
+
+        
 
         UpdateDisplayedInfo();
         GameManager.Instance.CallSave();
+        if (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count == 0)
+        {
+            GameManager.Instance.entireItemDict[ItemData.ItemData.Id].avgCost = 0;
+            SetEmpty();
+        }
         salesItemPanel.salesInventory.UpdateSlots(salesItemPanel.salesInventory.inventoryItemData);
         salesItemPanel.salesSceneUi.UpdateSalesSceneDisplay();
     }

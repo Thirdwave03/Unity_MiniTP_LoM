@@ -29,18 +29,18 @@ public class UiSalesItemSlot : MonoBehaviour
         if (GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].price > 
             GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].avgCost)
         {
-            tempfilePath = "up";
+            tempfilePath = "PriceUp";
         }
         else if (GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].price <
             GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].avgCost)
         {
-            tempfilePath = "down";
+            tempfilePath = "PriceDown";
         }
         else
         {
             tempfilePath = "blank";
         }
-        priceTrendIcon.sprite = Resources.Load<Sprite>($"Sprites/Icon/itemimg/Genenral/{tempfilePath}");
+        priceTrendIcon.sprite = Resources.Load<Sprite>($"Sprites/Icon/itemimg/General/{tempfilePath}");
         itemPriceText.text = GameManager.Instance.entireItemDict[savedItemData.ItemData.Id].price.ToString();
         itemCountText.text = savedItemData.count.ToString();
     }

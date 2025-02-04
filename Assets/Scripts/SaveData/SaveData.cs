@@ -67,11 +67,13 @@ public class SaveDataV1 : SaveData
     public bool isRandomBox1Purchased;
     public bool isRandomBox1PickedUp;
     public int randomBox1Item;
+    public int randomBox1Price;
     public int randomBox1Cnt;
 
     public bool isRandomBox2Purchased;
     public bool isRandomBox2PickedUp;
     public int randomBox2Item;
+    public int randomBox2Price;
     public int randomBox2Cnt;
 
     public SaveDataV1()

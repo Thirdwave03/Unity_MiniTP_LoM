@@ -99,7 +99,7 @@ public static class PriceDataIndex
 }
 
 public static class GameInfos
-{
+{   
     public static readonly int minInventoryLevel = 1;
     public static readonly int maxInventoryLevel = 11;
 

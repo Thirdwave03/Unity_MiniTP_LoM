@@ -140,6 +140,10 @@ public class UiPurchaseItemInfo : MonoBehaviour
 
                 UpdateDisplayedInfo();
                 GameManager.Instance.CallSave();
+                if(ItemData.stock == 0)
+                {
+                    SetEmpty();
+                }
                 purchaseItemPanel.purchaseBoard.CallUpdateSlots();                    
                 purchaseItemPanel.purchaseScene.UpdatePurchaseSceneDisplay();
             }
