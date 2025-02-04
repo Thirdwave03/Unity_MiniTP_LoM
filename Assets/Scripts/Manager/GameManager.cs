@@ -83,15 +83,17 @@ public class GameManager
     public int investedAmount;
     public int innProfit;
 
-        // Wholesale
+    // Wholesale
     public bool isItem1Purchased;
     public bool isItem1PickedUp;
+    public bool isItem1Pickupable;
     public int wholesaleItem1;
     public int wholesaleItem1Cnt;
     public int wholesaleItem1Cost;
 
     public bool isItem2Purchased;
     public bool isItem2PickedUp;
+    public bool isItem2Pickupable;
     public int wholesaleItem2;
     public int wholesaleItem2Cnt;
     public int wholesaleItem2Cost;
@@ -219,6 +221,7 @@ public class GameManager
             SetUpNewDefault();
             ItemsPriceChangeOnSleep();
             SalesItemChangeOnSleep();
+            WholeSalesUpdateOnSleep();
         }
         CallSave();
         Debug.Log($"Save Result: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
@@ -286,15 +289,17 @@ public class GameManager
 
         wholesaleItem1 = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary+1);
         wholesaleItem1Cnt = Random.Range(1,3)*50;
-        wholesaleItem1Cost = entireItemDict[wholesaleItem1].price;
+        wholesaleItem1Cost = (int)(entireItemDict[wholesaleItem1].price * 0.8f);
         isItem1Purchased = false;
         isItem1PickedUp = false;
+        isItem1Pickupable = false;
 
         wholesaleItem2 = Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
         wholesaleItem2Cnt = Random.Range(1, 3) * 50;
-        wholesaleItem2Cost = entireItemDict[wholesaleItem2].price;
+        wholesaleItem2Cost = (int)(entireItemDict[wholesaleItem2].price * 0.8f);
         isItem2Purchased = false;
         isItem2PickedUp = false;
+        isItem2Pickupable = false;
 
 
         isRandomBox1Purchased = false;
@@ -364,13 +369,14 @@ public class GameManager
             // Wholesale
         isItem1Purchased = SaveLoadManager.Data.isItem1Purchased;
         isItem1PickedUp = SaveLoadManager.Data.isItem1PickedUp;
+        isItem1Pickupable = SaveLoadManager.Data.isItem1Pickupable;
         wholesaleItem1 = SaveLoadManager.Data.wholesaleItem1;
         wholesaleItem1Cnt = SaveLoadManager.Data.wholesaleItem1Cnt;
         wholesaleItem1Cost = SaveLoadManager.Data.wholesaleItem1Cost;
 
-
         isItem2Purchased = SaveLoadManager.Data.isItem2Purchased;
         isItem2PickedUp = SaveLoadManager.Data.isItem2PickedUp;
+        isItem2Pickupable = SaveLoadManager.Data.isItem2Pickupable;
         wholesaleItem2 = SaveLoadManager.Data.wholesaleItem2;
         wholesaleItem2Cnt = SaveLoadManager.Data.wholesaleItem2Cnt;
         wholesaleItem2Cost = SaveLoadManager.Data.wholesaleItem2Cost;
@@ -436,12 +442,14 @@ public class GameManager
         // Wholesale
         SaveLoadManager.Data.isItem1Purchased = isItem1Purchased;
         SaveLoadManager.Data.isItem1PickedUp = isItem1PickedUp;
+        SaveLoadManager.Data.isItem1Pickupable = isItem1Pickupable;
         SaveLoadManager.Data.wholesaleItem1 = wholesaleItem1;
         SaveLoadManager.Data.wholesaleItem1Cnt = wholesaleItem1Cnt;
         SaveLoadManager.Data.wholesaleItem1Cost = wholesaleItem1Cost;
 
         SaveLoadManager.Data.isItem2Purchased = isItem2Purchased;
         SaveLoadManager.Data.isItem2PickedUp = isItem2PickedUp;
+        SaveLoadManager.Data.isItem2Pickupable = isItem2Pickupable;
         SaveLoadManager.Data.wholesaleItem2 = wholesaleItem2;
         SaveLoadManager.Data.wholesaleItem2Cnt = wholesaleItem2Cnt;
         SaveLoadManager.Data.wholesaleItem2Cost = wholesaleItem2Cost;
@@ -486,6 +494,7 @@ public class GameManager
         SalesItemChangeOnSleep();
         LoanUpdateOnSleep();
         InnUpdateOnSleep();
+        WholeSalesUpdateOnSleep(); // must be called after price change
         CallSave();
         onSleepEvent?.Invoke();
     }
@@ -517,6 +526,40 @@ public class GameManager
         infoItemIndex = newInfoItemIndex;
         isDisplayingMinPriceInfo = Random.Range(0, 2) == 0 ? false : true;
         isInfoOpened = false;
+    }
+    private void WholeSalesUpdateOnSleep()
+    {
+        if(isItem1Purchased && !isItem1PickedUp)
+        {
+            // not change
+            isItem1Pickupable = true;
+        }
+        else
+        {
+            // change
+            wholesaleItem1 = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary + 1);
+            wholesaleItem1Cnt = Random.Range(1, 3) * 50;
+            wholesaleItem1Cost = (int)(entireItemDict[wholesaleItem1].price * 0.8f);
+            isItem1Purchased = false;
+            isItem1Pickupable = false;
+            isItem1PickedUp = false;
+        }
+
+        if (isItem2Purchased && !isItem2PickedUp)
+        {
+            // not change
+            isItem2Pickupable = true;
+        }
+        else
+        {
+            // change
+            wholesaleItem2 = Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
+            wholesaleItem2Cnt = Random.Range(1, 3) * 50;
+            wholesaleItem2Cost = (int)(entireItemDict[wholesaleItem2].price * 0.8f);
+            isItem2Purchased = false;
+            isItem2Pickupable = false;
+            isItem2PickedUp = false;
+        }
     }
 
     private void ItemsPriceChangeOnSleep()

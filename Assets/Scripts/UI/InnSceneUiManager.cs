@@ -170,6 +170,8 @@ public class InnSceneUiManager : MonoBehaviour
         innWindowInvestB_5000.onClick.AddListener(OnClickInvest_5000);
         innWindowInvestB_10000.onClick.AddListener(OnClickInvest_10000);
         innWindowInvestB_50000.onClick.AddListener(OnClickInvest_50000);
+        wholesalesSlot1B.onClick.AddListener(OnClickWholesalesItemPickUp1);
+        wholesalesSlot2B.onClick.AddListener(OnClickWholesalesItemPickUp2);
     }
 
     private void OnClickTemp()
@@ -269,7 +271,48 @@ public class InnSceneUiManager : MonoBehaviour
 
     public void OpenWholesales()
     {
+        messageBox.SetActive(true);
+        messageBoxReturnBArea.SetActive(true);
+        innWindow.SetActive(false);
+        wholesaleWindow.SetActive(true);
+        randomBoxWindow.SetActive(false);
+        centerMsg.SetActive(false);
+        UpdateWholesalesContents();
+    }
 
+    public void UpdateWholesalesContents()
+    {
+        //slot 1
+        wholesalesSlot1BBlind.SetActive(GameManager.Instance.isItem1Purchased && 
+            !GameManager.Instance.isItem1Pickupable);
+        wholesalesSlot1Blind.SetActive(GameManager.Instance.isItem1PickedUp);
+
+        var itemData = DataTableManager.ItemTable.Get(GameManager.Instance.wholesaleItem1);
+        wholesalesSlot1ItemImage.sprite = itemData.IconSprite;
+        wholesalesSlot1Count.text = GameManager.Instance.wholesaleItem1Cnt.ToString();
+        wholesalesSlot1Occupancy.text = 
+            (GameManager.Instance.wholesaleItem1Cnt * itemData.InventoryOccupancy).ToString();
+        wholesalesSlot1Price.text = GameManager.Instance.wholesaleItem1Cost.ToString();
+        wholesalesSlot1TotalPrice.text = (GameManager.Instance.wholesaleItem1Cost 
+            * GameManager.Instance.wholesaleItem1Cnt).ToString();
+        wholesalesSlot1BLC.stringId = GameManager.Instance.isItem1Pickupable ? 999029 : 999011;
+        wholesalesSlot1BLC.OnChangeLanguage(Variables.currentLanguage);
+
+        // slot 2
+        wholesalesSlot2BBlind.SetActive(GameManager.Instance.isItem2Purchased &&
+    !GameManager.Instance.isItem2Pickupable);
+        wholesalesSlot2Blind.SetActive(GameManager.Instance.isItem2PickedUp);
+
+        itemData = DataTableManager.ItemTable.Get(GameManager.Instance.wholesaleItem2);
+        wholesalesSlot2ItemImage.sprite = itemData.IconSprite;
+        wholesalesSlot2Count.text = GameManager.Instance.wholesaleItem2Cnt.ToString();
+        wholesalesSlot2Occupancy.text =
+            (GameManager.Instance.wholesaleItem2Cnt * itemData.InventoryOccupancy).ToString();
+        wholesalesSlot2Price.text = GameManager.Instance.wholesaleItem2Cost.ToString();
+        wholesalesSlot2TotalPrice.text = (GameManager.Instance.wholesaleItem2Cost
+            * GameManager.Instance.wholesaleItem2Cnt).ToString();
+        wholesalesSlot2BLC.stringId = GameManager.Instance.isItem2Pickupable ? 999029 : 999011;
+        wholesalesSlot2BLC.OnChangeLanguage(Variables.currentLanguage);
     }
 
     public void OpenRandomBox()
@@ -339,6 +382,7 @@ public class InnSceneUiManager : MonoBehaviour
             GameManager.Instance.investedAmount += investAmount;
             UpdateInvestContents();
             UpdateInnSceneDisplay();
+            GameManager.Instance.CallSave();
         }
         else
         {
@@ -369,5 +413,107 @@ public class InnSceneUiManager : MonoBehaviour
         GameManager.Instance.innProfit = 0;
         UpdateInvestContents();
         UpdateInnSceneDisplay();
+        GameManager.Instance.CallSave();
     }
+
+    private void OnClickWholesalesItemPickUp1()
+    {
+        if(!GameManager.Instance.isItem1Pickupable)
+        {
+            // purchase
+            if (GameManager.Instance.coins >=
+            GameManager.Instance.wholesaleItem1Cost * GameManager.Instance.wholesaleItem1Cnt)
+            {
+                GameManager.Instance.coins -=
+                    GameManager.Instance.wholesaleItem1Cost * GameManager.Instance.wholesaleItem1Cnt;
+                GameManager.Instance.isItem1Purchased = true;
+                UpdateWholesalesContents();
+                UpdateInnSceneDisplay();
+                GameManager.Instance.CallSave();
+            }
+            else
+            {
+                OpenMessage(InnSceneMsgType.InsufficientCoin);
+            }
+        }
+        else
+        {
+            // pickup
+            if(GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+                >= GameManager.Instance.wholesaleItem1Cnt *
+                DataTableManager.ItemTable.Get(GameManager.Instance.wholesaleItem1).InventoryOccupancy)
+            {             
+                GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem1].avgCost =
+                    (GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem1].count *
+                    GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem1].avgCost +
+                    GameManager.Instance.wholesaleItem1Cost * GameManager.Instance.wholesaleItem1Cnt) /
+                    (GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem1].count +
+                    GameManager.Instance.wholesaleItem1Cnt);
+
+                GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem1].count +=
+                    GameManager.Instance.wholesaleItem1Cnt;
+
+                GameManager.Instance.isItem1PickedUp = true;
+                UpdateWholesalesContents();
+                UpdateInnSceneDisplay();
+                GameManager.Instance.CallSave();
+            }
+            else
+            {
+                OpenMessage(InnSceneMsgType.LackOfCapacity);
+            }
+        }
+    }
+
+    private void OnClickWholesalesItemPickUp2()
+    {
+        if (!GameManager.Instance.isItem2Pickupable)
+        {
+            // purchase
+            if (GameManager.Instance.coins >=
+            GameManager.Instance.wholesaleItem2Cost * GameManager.Instance.wholesaleItem2Cnt)
+            {
+                GameManager.Instance.coins -=
+                    GameManager.Instance.wholesaleItem2Cost * GameManager.Instance.wholesaleItem2Cnt;
+                GameManager.Instance.isItem2Purchased = true;
+                UpdateWholesalesContents();
+                UpdateInnSceneDisplay();
+                GameManager.Instance.CallSave();
+            }
+            else
+            {
+                OpenMessage(InnSceneMsgType.InsufficientCoin);
+            }
+        }
+        else
+        {
+            // pickup
+            if (GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+                >= GameManager.Instance.wholesaleItem2Cnt *
+                DataTableManager.ItemTable.Get(GameManager.Instance.wholesaleItem2).InventoryOccupancy)
+            {
+                GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem2].avgCost =
+                    (GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem2].count *
+                    GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem2].avgCost +
+                    GameManager.Instance.wholesaleItem2Cost * GameManager.Instance.wholesaleItem2Cnt) /
+                    (GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem2].count +
+                    GameManager.Instance.wholesaleItem2Cnt);
+
+                GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem2].count +=
+                    GameManager.Instance.wholesaleItem2Cnt;
+
+                GameManager.Instance.isItem2PickedUp = true;
+                UpdateWholesalesContents();
+                UpdateInnSceneDisplay();
+                GameManager.Instance.CallSave();
+            }
+            else
+            {
+                OpenMessage(InnSceneMsgType.LackOfCapacity);
+            }
+        }
+    }
+
+
+
 }

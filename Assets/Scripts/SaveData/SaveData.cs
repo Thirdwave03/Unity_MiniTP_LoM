@@ -51,12 +51,14 @@ public class SaveDataV1 : SaveData
     // Wholesale
     public bool isItem1Purchased;
     public bool isItem1PickedUp;
+    public bool isItem1Pickupable;
     public int wholesaleItem1;
     public int wholesaleItem1Cnt;
     public int wholesaleItem1Cost;
 
     public bool isItem2Purchased;
     public bool isItem2PickedUp;
+    public bool isItem2Pickupable;
     public int wholesaleItem2;
     public int wholesaleItem2Cnt;
     public int wholesaleItem2Cost;
