@@ -26,17 +26,70 @@ public class InnSceneUiManager : MonoBehaviour
     public TextMeshProUGUI currentCoin;
     public TextMeshProUGUI inventoryStatus;
 
-    private PurchaseSceneCenterMsgType messageType;
+    private InnSceneMsgType messageType;
 
     public GameObject messageBox;
     public GameObject centerMsg;
 
     public GameObject centerMsgCheckBArea;
+    public GameObject messageBoxReturnBArea;
 
+    public Button messageBoxReturnB;
     public Button centerMsgCheckB;
     public Button centerMsgCloseB;
 
     public TextLocalizer centerMsgLC;
+
+    public GameObject innWindow;
+    public GameObject wholesaleWindow;
+    public GameObject randomBoxWindow;
+
+    public GameObject innWindowGetIntelBArea;
+    public Button innWindowGetIntelB;
+    public GameObject innWindowGetProfitBArea;
+    public Button innWindowGetProfitB;
+
+    public GameObject wholesalesSlot1Blind;
+    public Button wholesalesSlot1B;
+    public GameObject wholesalesSlot1BBlind;
+    public TextLocalizer wholesalesSlot1BLC;
+
+    public TextMeshProUGUI wholesalesSlot1Price;
+    public TextMeshProUGUI wholesalesSlot1TotalPrice;
+    public TextMeshProUGUI wholesalesSlot1Occupancy;
+    public TextMeshProUGUI wholesalesSlot1Count;
+    public Image wholesalesSlot1ItemImage;
+
+    public GameObject wholesalesSlot2Blind;
+    public Button wholesalesSlot2B;
+    public GameObject wholesalesSlot2BBlind;
+    public TextLocalizer wholesalesSlot2BLC;
+
+    public TextMeshProUGUI wholesalesSlot2Price;
+    public TextMeshProUGUI wholesalesSlot2TotalPrice;
+    public TextMeshProUGUI wholesalesSlot2Occupancy;
+    public TextMeshProUGUI wholesalesSlot2Count;
+    public Image wholesalesSlot2ItemImage;
+
+    public GameObject randomBoxSlot1Blind;
+    public Button randomBoxSlot1B;
+    public GameObject randomBoxSlot1BBlind;
+    public TextLocalizer randomBoxSlot1BLC;
+
+    public TextMeshProUGUI randomBoxSlot1TotalPrice;
+    public TextMeshProUGUI randomBoxSlot1Occupancy;
+    public TextMeshProUGUI randomBoxSlot1Count;
+    public Image randomBoxSlot1ItemImage;
+
+    public GameObject randomBoxSlot2Blind;
+    public Button randomBoxSlot2B;
+    public GameObject randomBoxSlot2BBlind;
+    public TextLocalizer randomBoxSlot2BLC;
+
+    public TextMeshProUGUI randomBoxSlot2TotalPrice;
+    public TextMeshProUGUI randomBoxSlot2Occupancy;
+    public TextMeshProUGUI randomBoxSlot2Count;
+    public Image randomBoxSlot2ItemImage;
 
     private void Start()
     {
@@ -98,6 +151,7 @@ public class InnSceneUiManager : MonoBehaviour
         restartButton.onClick.AddListener(OnClickRestartButton);
         mainMenuButton.onClick.AddListener(OnClickMainMenu);
         quitButton.onClick.AddListener(OnClickQuit);
+        messageBoxReturnB.onClick.AddListener(OnClickMsgBoxReturn);
     }
 
     private void OnClickTemp()
@@ -149,6 +203,12 @@ public class InnSceneUiManager : MonoBehaviour
 
     public void OpenInnMaster()
     {
+        messageBox.SetActive(true);
+        messageBoxReturnBArea.SetActive(true);
+        innWindow.SetActive(true);
+        wholesaleWindow.SetActive(false);
+        randomBoxWindow.SetActive(false);
+        centerMsg.SetActive(false);
 
     }
 
@@ -162,18 +222,19 @@ public class InnSceneUiManager : MonoBehaviour
 
     }
 
-    public void OpenMessage(PurchaseSceneCenterMsgType msgType)
+    public void OpenMessage(InnSceneMsgType msgType)
     {
         messageBox.SetActive(true);
+        messageBoxReturnBArea.SetActive(false);
         messageType = msgType;
         switch (msgType)
         {
-            case PurchaseSceneCenterMsgType.InsufficientCoin:
+            case InnSceneMsgType.InsufficientCoin:
                 centerMsg.SetActive(true);
                 centerMsgCheckBArea.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999902);
                 break;
-            case PurchaseSceneCenterMsgType.LackOfCapacity:
+            case InnSceneMsgType.LackOfCapacity:
                 centerMsg.SetActive(true);
                 centerMsgCheckBArea.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999903);
@@ -193,6 +254,11 @@ public class InnSceneUiManager : MonoBehaviour
     }
 
     private void OnClickCenterMsgClose()
+    {
+        messageBox.SetActive(false);
+    }
+
+    private void OnClickMsgBoxReturn()
     {
         messageBox.SetActive(false);
     }

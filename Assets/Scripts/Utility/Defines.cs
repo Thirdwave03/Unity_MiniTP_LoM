@@ -152,3 +152,9 @@ public enum SalesSceneMsgType
     LoanPickedUp,
     AlreadyLent,
 }
+
+public enum InnSceneMsgType
+{
+    InsufficientCoin,
+    LackOfCapacity,
+}
