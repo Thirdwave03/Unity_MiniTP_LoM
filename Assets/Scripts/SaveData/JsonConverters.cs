@@ -18,7 +18,6 @@ public class SalesItemDataConverter : JsonConverter<SalesItemData>
     }
 }
 
-
 public class ItemDataConverter : JsonConverter<ItemData>
 {
     public override ItemData ReadJson(JsonReader reader, Type objectType, ItemData existingValue, bool hasExistingValue, JsonSerializer serializer)
@@ -35,6 +34,5 @@ public class ItemDataConverter : JsonConverter<ItemData>
 
 public class JsonConverters
 {
-   
 
 }

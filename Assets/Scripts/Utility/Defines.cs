@@ -98,12 +98,6 @@ public static class PriceDataIndex
     public static int maxLuxury = 20100;
 }
 
-public static class TipsIndex
-{
-    public static int minIndex = 998001;
-    public static int maxIndex = 998020;
-}
-
 public static class GameInfos
 {
     public static readonly int minInventoryLevel = 1;
@@ -117,6 +111,11 @@ public static class GameInfos
 
     public static readonly float minLentAmountMultiplier = 1.15f;
     public static readonly float maxLentAmountMultiplier = 1.3f;
+
+    public static readonly int minTipsIndex = 998001;
+    public static readonly int maxTipsIndex = 998020;
+
+    public static readonly int priceInfoCost = 1000;
 }
 
 public static class LocalizerContents

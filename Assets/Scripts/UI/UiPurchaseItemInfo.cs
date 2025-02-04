@@ -113,7 +113,7 @@ public class UiPurchaseItemInfo : MonoBehaviour
 
     public void OnClickPurchaseButton()
     {
-        if (GameManager.Instance.Coins >= 
+        if (GameManager.Instance.coins >= 
             GameManager.Instance.
             entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
         {
@@ -131,7 +131,7 @@ public class UiPurchaseItemInfo : MonoBehaviour
                     GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost
                     + GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
                     / (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count + purchaseCount);
-                GameManager.Instance.Coins -= GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount;
+                GameManager.Instance.coins -= GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount;
                 GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count += purchaseCount;
 
                 ItemData.stock -= purchaseCount;
@@ -146,7 +146,7 @@ public class UiPurchaseItemInfo : MonoBehaviour
             else
             {
                 purchaseItemPanel.purchaseScene.OpenMessage(PurchaseSceneCenterMsgType.LackOfCapacity);
-                Debug.Log($"Purchase Failed.. inventory full {GameManager.Instance.Coins - GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount} coins.");
+                Debug.Log($"Purchase Failed.. inventory full {GameManager.Instance.coins - GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount} coins.");
 
                 purchaseCount = 0;
                 purchaseSlider.value = purchaseCount;
@@ -155,7 +155,7 @@ public class UiPurchaseItemInfo : MonoBehaviour
         else
         {
             purchaseItemPanel.purchaseScene.OpenMessage(PurchaseSceneCenterMsgType.InsufficientCoin);
-            Debug.Log($"Purchase Failed.. lacking {GameManager.Instance.Coins - GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount} coins.");
+            Debug.Log($"Purchase Failed.. lacking {GameManager.Instance.coins - GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount} coins.");
 
             purchaseCount = 0;
             purchaseSlider.value = purchaseCount;

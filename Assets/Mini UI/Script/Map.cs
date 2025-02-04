@@ -47,7 +47,7 @@ public class Map : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDr
 
         catch (NullReferenceException ex)
         {
-            Debug.Log("out of bounds");
+            Debug.Log($"out of bounds {ex}");
         }
     }
 

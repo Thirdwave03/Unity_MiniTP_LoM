@@ -19,27 +19,22 @@ public class GameManager
             return instance;
         }
     }
+    // Temp Vals
+
+    public int investProfitRatio = 4;
+
+    // ~Temp Vals
+
+
+    private static class ModeDependantVariables
+    {
+        public static int testIntVar = 0;
+    }    
 
     public UnityEvent onSleepEvent;
 
-    public Dictionary<int, SavedItemData> entireItemDict;
-    public Dictionary<int, SavedSalesItemData> salesItemDict;
     private bool isItemInitializingNeeded = false;
-
-    public GameModes CurrentGameMode { get; private set; }
     public int currentSavedSlotIndex;
-
-    private int days;
-    public int Days {  get { return days; } }
-    public int lastDay;
-
-    private int coins;
-    public int Coins { get { return coins; } set { coins = value; } }
-
-    public int tipIndex;
-    public int inventoryLevel;
-    public int inventoryMinLevel;
-    public int inventoryMaxLevel;
 
     public int InventoryOccupancy
     {
@@ -54,33 +49,63 @@ public class GameManager
         }
     }
 
-    public int inventoryCapacity;
+    // Datas To be Saved
+    public GameModes CurrentGameMode { get; private set; }
+    public Dictionary<int, SavedItemData> entireItemDict;
+    public Dictionary<int, SavedSalesItemData> salesItemDict;
+    public int lastDay;
+    public int inventoryMinLevel;
+    public int inventoryMaxLevel;
 
+        // Game Core Data
+    public int days;
+    public int coins;
+
+        // Availabilities
+    public int tipIndex;
+    public int infoItemIndex;
+    public bool isDisplayingMinPriceInfo;
+    public bool isInfoOpened;
+
+    // Inventory
+    public int inventoryLevel;
+    public int inventoryCapacity;
     public int inventoryFee;
 
+        // Loan
     public int lentAmount;
     public int paybackDateCnt;
     public int lentPaybackAmout;
     public bool ifLent;
     public bool isBusinessmanAvailable;
 
+        // Inn
     public int investedAmount;
+    public int innProfit;
 
+        // Wholesale
+    public bool isItem1Purchased;
+    public bool isItem1PickedUp;
     public int wholesaleItem1;
     public int wholesaleItem1Cnt;
     public int wholesaleItem1Cost;
-    public bool isItem1Purchased;
+
+    public bool isItem2Purchased;
+    public bool isItem2PickedUp;
     public int wholesaleItem2;
     public int wholesaleItem2Cnt;
     public int wholesaleItem2Cost;
-    public bool isItem2Purchased;
 
+    // RandomBox
     public bool isRandomBox1Purchased;
+    public bool isRandomBox1PickedUp;
     public int randomBox1Item;
     public int randomBox1Cnt;
+
     public bool isRandomBox2Purchased;
+    public bool isRandomBox2PickedUp;
     public int randomBox2Item;
-    public int randomBox2Cnt;
+    public int randomBox2Cnt;      
 
     private static void InitialCall()
     {
@@ -187,52 +212,6 @@ public class GameManager
         }
     }
 
-    private void SynchronizeWithSaveData()
-    {
-        SaveLoadManager.Data.savedItemList.Clear();
-        SaveLoadManager.Data.savedSalesItemList.Clear();
-        foreach (var saveData in entireItemDict.Values.ToList())
-        {
-            SaveLoadManager.Data.savedItemList.Add(saveData);
-        }
-        foreach (var saveData in salesItemDict.Values.ToList())
-        {
-            SaveLoadManager.Data.savedSalesItemList.Add(saveData);
-        }
-
-        SaveLoadManager.Data.currentGameMode = CurrentGameMode;
-        SaveLoadManager.Data.days = days;
-        SaveLoadManager.Data.lastDay = lastDay;
-        SaveLoadManager.Data.coins = coins;
-        SaveLoadManager.Data.tipIndex = tipIndex;
-        SaveLoadManager.Data.inventoryLevel = inventoryLevel;
-        SaveLoadManager.Data.inventoryMinLevel = inventoryMinLevel;
-        SaveLoadManager.Data.inventoryMaxLevel = inventoryMaxLevel;
-        SaveLoadManager.Data.inventoryCapacity = inventoryCapacity;
-        SaveLoadManager.Data.inventoryFee = inventoryFee;
-        SaveLoadManager.Data.lentAmount = lentAmount;
-        SaveLoadManager.Data.paybackDateCnt = paybackDateCnt;
-        SaveLoadManager.Data.lentPaybackAmount = lentPaybackAmout;
-        SaveLoadManager.Data.ifLent = ifLent;
-        SaveLoadManager.Data.isBusinessmanAvailable = isBusinessmanAvailable;
-
-        SaveLoadManager.Data.investedAmount = investedAmount;
-        SaveLoadManager.Data.wholesaleItem1 = wholesaleItem1;
-        SaveLoadManager.Data.wholesaleItem1Cnt = wholesaleItem1Cnt;
-        SaveLoadManager.Data.wholesaleItem1Cost = wholesaleItem1Cost;
-        SaveLoadManager.Data.isItem1Purchased = isItem1Purchased;
-        SaveLoadManager.Data.wholesaleItem2 = wholesaleItem2;
-        SaveLoadManager.Data.wholesaleItem2Cnt = wholesaleItem2Cnt;
-        SaveLoadManager.Data.wholesaleItem2Cost = wholesaleItem2Cost;
-        SaveLoadManager.Data.isItem2Purchased = isItem2Purchased;
-        SaveLoadManager.Data.isRandomBox1Purchased = isRandomBox1Purchased;
-        SaveLoadManager.Data.randomBox1Item = randomBox1Item;
-        SaveLoadManager.Data.randomBox1Cnt = randomBox1Cnt;
-        SaveLoadManager.Data.isRandomBox2Purchased = isRandomBox2Purchased;
-        SaveLoadManager.Data.randomBox2Item = randomBox2Item;
-        SaveLoadManager.Data.randomBox2Cnt = randomBox2Cnt;
-    }
-
     public void SetupNewGame(GameModes gameMode = GameModes.Default)
     {
         if(gameMode == GameModes.Default)
@@ -245,46 +224,13 @@ public class GameManager
         Debug.Log($"Save Result: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
     }        
 
-    private void SetUpNewDefault(int slotIndex = 0)
+    private void SetUpItemDatas()
     {
-        currentSavedSlotIndex = slotIndex;
-
-        CurrentGameMode = GameModes.Default;
-        days = 1;
-        lastDay = 100;
-        coins = 10000;
-        tipIndex = Random.Range(TipsIndex.minIndex, TipsIndex.maxIndex+1);
-        inventoryLevel = 1;
-        inventoryMinLevel = 1;
-        inventoryMaxLevel = 7;
-        inventoryCapacity = 50;
-        inventoryFee = 100;
-        lentAmount = Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
-        paybackDateCnt = Random.Range(GameInfos.minPaybackDate, GameInfos.maxPaybackDate + 1);
-        lentPaybackAmout = (int)(lentAmount * Random.Range(GameInfos.minLentAmountMultiplier, GameInfos.maxLentAmountMultiplier));
-        ifLent = false;
-        isBusinessmanAvailable = Random.Range(0, 2) > 0 ? true : false;
-        investedAmount = 0;
-        wholesaleItem1 = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary+1);
-        wholesaleItem1Cnt = Random.Range(1,3)*50;
-        wholesaleItem1Cost = entireItemDict[wholesaleItem1].price;
-        isItem1Purchased = false;
-        wholesaleItem2 = Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
-        wholesaleItem2Cnt = Random.Range(1, 3) * 50;
-        wholesaleItem2Cost = entireItemDict[wholesaleItem2].price;
-        isItem2Purchased = false;
-        isRandomBox1Purchased = false;
-        randomBox1Item = -1;
-        randomBox1Cnt = -1;
-        isRandomBox2Purchased =false;
-        randomBox2Item = -1;
-        randomBox2Cnt = -1;
-
         entireItemDict = new Dictionary<int, SavedItemData>();
         entireItemDict.Clear();
         salesItemDict = new Dictionary<int, SavedSalesItemData>();
-        salesItemDict.Clear();       
-                
+        salesItemDict.Clear();
+
         foreach (var item in DataTableManager.ItemTable.GetItemTable().Values)
         {
             SavedItemData newItemData = new SavedItemData();
@@ -302,13 +248,71 @@ public class GameManager
 
             salesItemDict.Add(newSalesItem.SalesItemData.Id, newSalesItem);
         }
+    }
+
+    private void SetUpNewDefault(int slotIndex = 0, GameModes gameMode = GameModes.Default)
+    {
+        SetUpItemDatas();
         InitializeItemDictData();
+
+        currentSavedSlotIndex = slotIndex;
+
+        CurrentGameMode = GameModes.Default;
+
+        days = 1;
+        lastDay = 100;
+        coins = 10000;
+
+        tipIndex = Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex+1);
+        infoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxLuxury + 1);
+        isDisplayingMinPriceInfo = Random.Range(0, 2) == 0 ? false : true;
+        isInfoOpened = false;
+
+        inventoryLevel = 1;
+        inventoryMinLevel = GameInfos.minInventoryLevel;
+        inventoryMaxLevel = GameInfos.maxInventoryLevel;
+        inventoryCapacity = 50;
+        inventoryFee = 100;
+
+        lentAmount = Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
+        paybackDateCnt = Random.Range(GameInfos.minPaybackDate, GameInfos.maxPaybackDate + 1);
+        lentPaybackAmout = (int)(lentAmount * Random.Range(GameInfos.minLentAmountMultiplier, GameInfos.maxLentAmountMultiplier));
+        ifLent = false;
+        isBusinessmanAvailable = Random.Range(0, 2) == 0 ? false : true;
+
+        investedAmount = 0;
+        innProfit = 0;
+
+
+        wholesaleItem1 = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary+1);
+        wholesaleItem1Cnt = Random.Range(1,3)*50;
+        wholesaleItem1Cost = entireItemDict[wholesaleItem1].price;
+        isItem1Purchased = false;
+        isItem1PickedUp = false;
+
+        wholesaleItem2 = Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
+        wholesaleItem2Cnt = Random.Range(1, 3) * 50;
+        wholesaleItem2Cost = entireItemDict[wholesaleItem2].price;
+        isItem2Purchased = false;
+        isItem2PickedUp = false;
+
+
+        isRandomBox1Purchased = false;
+        isRandomBox1PickedUp = false;
+        randomBox1Item = -1;
+        randomBox1Cnt = -1;
+
+        isRandomBox2Purchased =false;
+        isRandomBox2PickedUp = false;
+        randomBox2Item = -1;
+        randomBox2Cnt = -1;
     }
 
     public void LoadSavedSlot(int slotIndex = 0)
     {
         currentSavedSlotIndex = slotIndex;
 
+        // ItemList and SalesItemList
         entireItemDict = new Dictionary<int, SavedItemData>();
         entireItemDict.Clear();
         salesItemDict = new Dictionary<int, SavedSalesItemData>();
@@ -325,37 +329,135 @@ public class GameManager
             }
         }
 
+        // GameMode and dependant data
         CurrentGameMode = SaveLoadManager.Data.currentGameMode;
-        days = SaveLoadManager.Data.days;
         lastDay = SaveLoadManager.Data.lastDay;
-        coins = SaveLoadManager.Data.coins;
-        tipIndex = SaveLoadManager.Data.tipIndex;
-        inventoryLevel = SaveLoadManager.Data.inventoryLevel;
         inventoryMinLevel = SaveLoadManager.Data.inventoryMinLevel;
         inventoryMaxLevel = SaveLoadManager.Data.inventoryMaxLevel;
+
+        // Game Core Data
+        days = SaveLoadManager.Data.days;
+        coins = SaveLoadManager.Data.coins;
+
+            // Availabilities
+        tipIndex = SaveLoadManager.Data.tipIndex;
+        infoItemIndex = SaveLoadManager.Data.infoItemIndex;
+        isDisplayingMinPriceInfo = SaveLoadManager.Data.isDisplayingMinPriceInfo;
+        isInfoOpened = SaveLoadManager.Data.isInfoOpened;
+
+            // Inventory
+        inventoryLevel = SaveLoadManager.Data.inventoryLevel;
         inventoryCapacity = SaveLoadManager.Data.inventoryCapacity;
         inventoryFee = SaveLoadManager.Data.inventoryFee;
+
+            // Loan
         lentAmount = SaveLoadManager.Data.lentAmount;
         paybackDateCnt = SaveLoadManager.Data.paybackDateCnt;
         lentPaybackAmout = SaveLoadManager.Data.lentPaybackAmount;
         ifLent = SaveLoadManager.Data.ifLent;
         isBusinessmanAvailable = SaveLoadManager.Data.isBusinessmanAvailable;
+
+            // Inn
         investedAmount = SaveLoadManager.Data.investedAmount;
+        innProfit = SaveLoadManager.Data.innProfit;
+
+            // Wholesale
+        isItem1Purchased = SaveLoadManager.Data.isItem1Purchased;
+        isItem1PickedUp = SaveLoadManager.Data.isItem1PickedUp;
         wholesaleItem1 = SaveLoadManager.Data.wholesaleItem1;
         wholesaleItem1Cnt = SaveLoadManager.Data.wholesaleItem1Cnt;
         wholesaleItem1Cost = SaveLoadManager.Data.wholesaleItem1Cost;
-        isItem1Purchased = SaveLoadManager.Data.isItem1Purchased;
+
+
+        isItem2Purchased = SaveLoadManager.Data.isItem2Purchased;
+        isItem2PickedUp = SaveLoadManager.Data.isItem2PickedUp;
         wholesaleItem2 = SaveLoadManager.Data.wholesaleItem2;
         wholesaleItem2Cnt = SaveLoadManager.Data.wholesaleItem2Cnt;
         wholesaleItem2Cost = SaveLoadManager.Data.wholesaleItem2Cost;
-        isItem2Purchased = SaveLoadManager.Data.isItem2Purchased;
+
+            // RandomBox
         isRandomBox1Purchased = SaveLoadManager.Data.isRandomBox1Purchased;
+        isRandomBox1PickedUp = SaveLoadManager.Data.isRandomBox1PickedUp;
         randomBox1Item = SaveLoadManager.Data.randomBox1Item;
         randomBox1Cnt = SaveLoadManager.Data.randomBox1Cnt;
+
         isRandomBox2Purchased = SaveLoadManager.Data.isRandomBox2Purchased;
+        isRandomBox2PickedUp = SaveLoadManager.Data.isRandomBox2PickedUp;
         randomBox2Item = SaveLoadManager.Data.randomBox2Item;
         randomBox2Cnt = SaveLoadManager.Data.randomBox2Cnt;
     }
+
+    private void SynchronizeWithSaveData()
+    {
+        // ItemList and SalesItemList
+        SaveLoadManager.Data.savedItemList.Clear();
+        SaveLoadManager.Data.savedSalesItemList.Clear();
+        foreach (var saveData in entireItemDict.Values.ToList())
+        {
+            SaveLoadManager.Data.savedItemList.Add(saveData);
+        }
+        foreach (var saveData in salesItemDict.Values.ToList())
+        {
+            SaveLoadManager.Data.savedSalesItemList.Add(saveData);
+        }
+
+        // GameMode and dependant data
+        SaveLoadManager.Data.currentGameMode = CurrentGameMode;
+        SaveLoadManager.Data.lastDay = lastDay;
+        SaveLoadManager.Data.inventoryMinLevel = inventoryMinLevel;
+        SaveLoadManager.Data.inventoryMaxLevel = inventoryMaxLevel;
+
+        // Game Core Data
+        SaveLoadManager.Data.days = days;
+        SaveLoadManager.Data.coins = coins;
+
+        // Availabilities
+        SaveLoadManager.Data.tipIndex = tipIndex;
+        SaveLoadManager.Data.infoItemIndex = infoItemIndex;
+        SaveLoadManager.Data.isDisplayingMinPriceInfo = isDisplayingMinPriceInfo;
+        SaveLoadManager.Data.isInfoOpened = isInfoOpened;
+
+        // Inventory
+        SaveLoadManager.Data.inventoryLevel = inventoryLevel;
+        SaveLoadManager.Data.inventoryCapacity = inventoryCapacity;
+        SaveLoadManager.Data.inventoryFee = inventoryFee;
+
+        // Loan
+        SaveLoadManager.Data.lentAmount = lentAmount;
+        SaveLoadManager.Data.paybackDateCnt = paybackDateCnt;
+        SaveLoadManager.Data.lentPaybackAmount = lentPaybackAmout;
+        SaveLoadManager.Data.ifLent = ifLent;
+        SaveLoadManager.Data.isBusinessmanAvailable = isBusinessmanAvailable;
+
+        // Inn
+        SaveLoadManager.Data.investedAmount = investedAmount;
+        SaveLoadManager.Data.innProfit = innProfit;
+
+        // Wholesale
+        SaveLoadManager.Data.isItem1Purchased = isItem1Purchased;
+        SaveLoadManager.Data.isItem1PickedUp = isItem1PickedUp;
+        SaveLoadManager.Data.wholesaleItem1 = wholesaleItem1;
+        SaveLoadManager.Data.wholesaleItem1Cnt = wholesaleItem1Cnt;
+        SaveLoadManager.Data.wholesaleItem1Cost = wholesaleItem1Cost;
+
+        SaveLoadManager.Data.isItem2Purchased = isItem2Purchased;
+        SaveLoadManager.Data.isItem2PickedUp = isItem2PickedUp;
+        SaveLoadManager.Data.wholesaleItem2 = wholesaleItem2;
+        SaveLoadManager.Data.wholesaleItem2Cnt = wholesaleItem2Cnt;
+        SaveLoadManager.Data.wholesaleItem2Cost = wholesaleItem2Cost;
+
+        // RandomBox
+        SaveLoadManager.Data.isRandomBox1Purchased = isRandomBox1Purchased;
+        SaveLoadManager.Data.isRandomBox1PickedUp = isRandomBox1PickedUp;
+        SaveLoadManager.Data.randomBox1Item = randomBox1Item;
+        SaveLoadManager.Data.randomBox1Cnt = randomBox1Cnt;
+
+        SaveLoadManager.Data.isRandomBox2Purchased = isRandomBox2Purchased;
+        SaveLoadManager.Data.isRandomBox2PickedUp = isRandomBox2PickedUp;
+        SaveLoadManager.Data.randomBox2Item = randomBox2Item;
+        SaveLoadManager.Data.randomBox2Cnt = randomBox2Cnt;
+    }
+
 
     public void CallSave()
     {
@@ -378,12 +480,12 @@ public class GameManager
 
         ++days;
         coins -= inventoryFee;
-        coins += (int)(investedAmount * 0.04);
-        tipIndex = Random.Range(TipsIndex.minIndex, TipsIndex.maxIndex + 1);
+        tipIndex = Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex + 1);
         
         ItemsPriceChangeOnSleep();
         SalesItemChangeOnSleep();
         LoanUpdateOnSleep();
+        InnUpdateOnSleep();
         CallSave();
         onSleepEvent?.Invoke();
     }
@@ -402,6 +504,19 @@ public class GameManager
             lentPaybackAmout = (int)(lentAmount * Random.Range(GameInfos.minLentAmountMultiplier, GameInfos.maxLentAmountMultiplier));
         }
         isBusinessmanAvailable = Random.Range(0, 2) > 0 ? true : false;
+    }
+
+    private void InnUpdateOnSleep()
+    {
+        innProfit += (int)(investedAmount * 0.010001f * investProfitRatio);
+        int newInfoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxLuxury + 1);
+        while (infoItemIndex == newInfoItemIndex)
+        {
+            newInfoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxLuxury + 1);
+        }
+        infoItemIndex = newInfoItemIndex;
+        isDisplayingMinPriceInfo = Random.Range(0, 2) == 0 ? false : true;
+        isInfoOpened = false;
     }
 
     private void ItemsPriceChangeOnSleep()

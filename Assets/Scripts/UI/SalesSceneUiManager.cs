@@ -68,7 +68,7 @@ public class SalesSceneUiManager : MonoBehaviour
 
     public void UpdateSalesSceneDisplay()
     {
-        currentCoin.text = GameManager.Instance.Coins.ToString();
+        currentCoin.text = GameManager.Instance.coins.ToString();
         inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.inventoryCapacity}";
     }
 
@@ -275,7 +275,7 @@ public class SalesSceneUiManager : MonoBehaviour
         switch (messageType)
         {
             case SalesSceneMsgType.LoanPickUp:
-                GameManager.Instance.Coins += GameManager.Instance.lentPaybackAmout;
+                GameManager.Instance.coins += GameManager.Instance.lentPaybackAmout;
                 GameManager.Instance.ifLent = false;
                 messageBox.SetActive(false);
                 GameManager.Instance.CallSave();
@@ -293,9 +293,9 @@ public class SalesSceneUiManager : MonoBehaviour
 
     private void OnClickLoanButton()
     {
-        if (GameManager.Instance.Coins >= GameManager.Instance.lentAmount)
+        if (GameManager.Instance.coins >= GameManager.Instance.lentAmount)
         {
-            GameManager.Instance.Coins -= GameManager.Instance.lentAmount;
+            GameManager.Instance.coins -= GameManager.Instance.lentAmount;
             GameManager.Instance.ifLent = true;
             OpenMessage(SalesSceneMsgType.AlreadyLent);
             UpdateSalesSceneDisplay();

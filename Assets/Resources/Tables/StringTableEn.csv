@@ -175,12 +175,19 @@
 999017,Gather intel about product pricing
 999018,Invest in the inn
 999019,Profit:
-999020,Total investment:
+999020,Total investment: {0}
 999021,Capacity: {0}/{1}_nRental Fee: {2}/day
 999022,Level: {0}
 999023,Bulletin Board
 999024,Cost:
 999025,Lend money
+999026,Retrieve
+999027,Price
+999028,Total Price
+999029,Take
+999030,blank
+999031,blank
+999032,blank
 999901,Not enough coins to pay off rental fee. Do you want to lose all progresses in this game and continue?
 999902,Insufficient coins.
 999903,You cannot buy items over maximum inventory capacity.
@@ -199,9 +206,9 @@
 999916,"Sir, this is promised <color=#FFFF00>{0}</color> coins."
 999917,Thank you for your help sir.
 999918,Thank you very much sir.
-999919,0
-999920,0
-999921,0
+999919,"According to the info, {1} of <color=#FFFF00>{0}</color> is {2}."
+999920,lowest price
+999921,highest price
 999922,0
 999923,0
 999924,0

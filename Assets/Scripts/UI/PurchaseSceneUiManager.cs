@@ -86,7 +86,7 @@ public class PurchaseSceneUiManager : MonoBehaviour
 
     public void UpdatePurchaseSceneDisplay()
     {
-        currentCoin.text = GameManager.Instance.Coins.ToString();
+        currentCoin.text = GameManager.Instance.coins.ToString();
         inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.inventoryCapacity}";
     }
 

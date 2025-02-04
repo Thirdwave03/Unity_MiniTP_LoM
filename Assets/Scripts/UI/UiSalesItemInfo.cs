@@ -107,7 +107,7 @@ public class UiSalesItemInfo : MonoBehaviour
         if (ItemData == null)
             return;
         Debug.Log($"Sell Successful! {DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(ItemData.ItemData.StringId)}({sellCount})");
-        GameManager.Instance.Coins += GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount;
+        GameManager.Instance.coins += GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount;
         GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -= sellCount;
 
         salesSlider.maxValue = ItemData.count;

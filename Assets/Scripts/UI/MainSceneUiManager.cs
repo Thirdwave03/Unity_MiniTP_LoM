@@ -74,8 +74,8 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void UpdateMainSceneDisplay()
     {
-        currentCoin.text = GameManager.Instance.Coins.ToString();
-        daysProgress.text = GameManager.Instance.Days.ToString();
+        currentCoin.text = GameManager.Instance.coins.ToString();
+        daysProgress.text = GameManager.Instance.days.ToString();
         tipsLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(GameManager.Instance.tipIndex);
         //inventoryLevelLC.tmp.text = GameManager.Instance.inventoryLevel.ToString();
         //inventoryStatusLC.tmp.text = $"Capacity: {GameManager.Instance.inventoryOccupancy}/{GameManager.Instance.inventoryCapacity}\n" +
@@ -139,7 +139,7 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickInventoryUpgrade()
     {
-        if(GameManager.Instance.inventoryLevel != GameInfos.maxInventoryLevel)
+        if(GameManager.Instance.inventoryLevel != GameManager.Instance.inventoryMaxLevel)
         {
             OpenMessage(MainMenuCenterMsgType.InventoryUpgrade);
         }
@@ -151,7 +151,7 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickInventoryDowngrade()
     {
-        if (GameManager.Instance.inventoryLevel != GameInfos.minInventoryLevel)
+        if (GameManager.Instance.inventoryLevel != GameManager.Instance.inventoryMinLevel)
         {
             if (GameManager.Instance.InventoryOccupancy <=
                 DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel - 1).Capacity)
@@ -197,7 +197,7 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSleep()
     {
-        if (GameManager.Instance.Coins >= GameManager.Instance.inventoryFee)
+        if (GameManager.Instance.coins >= GameManager.Instance.inventoryFee)
         { 
             OpenMessage(MainMenuCenterMsgType.CanProceed); 
         }
@@ -324,10 +324,10 @@ public class MainSceneUiManager : MonoBehaviour
         switch (messageType)
         {
             case MainMenuCenterMsgType.InventoryUpgrade:
-                if(GameManager.Instance.Coins >= 
+                if(GameManager.Instance.coins >= 
                     DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel+1).UpgradeCost)
                 {
-                    GameManager.Instance.Coins -= DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel + 1).UpgradeCost;
+                    GameManager.Instance.coins -= DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel + 1).UpgradeCost;
                     GameManager.Instance.ChangeInventoryLevel(GameManager.Instance.inventoryLevel + 1);
                     GameManager.Instance.CallSave();
                     UpdateMainSceneDisplay();

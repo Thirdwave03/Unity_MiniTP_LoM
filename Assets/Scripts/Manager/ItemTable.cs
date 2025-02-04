@@ -41,7 +41,6 @@ public enum PriceTrends
 public class ItemData
 {
     // Independent variables
-
     public int Id {  get; set; }
     public int StringId { get; set; }
     public ItemTypes ItemType { get; set; }

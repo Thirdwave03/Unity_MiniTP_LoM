@@ -48,6 +48,14 @@ public class InnSceneUiManager : MonoBehaviour
     public Button innWindowGetIntelB;
     public GameObject innWindowGetProfitBArea;
     public Button innWindowGetProfitB;
+    public TextLocalizer innWindowInfoDisplay;
+    public TextLocalizer innWindowTotalInvest;
+    public TextLocalizer innWindowInvestTips;
+    public TextMeshProUGUI innWindowProfitText;
+    public Button innWindowInvestB_1000;
+    public Button innWindowInvestB_5000;
+    public Button innWindowInvestB_10000;
+    public Button innWindowInvestB_50000;
 
     public GameObject wholesalesSlot1Blind;
     public Button wholesalesSlot1B;
@@ -129,7 +137,8 @@ public class InnSceneUiManager : MonoBehaviour
 
     public void UpdateInnSceneDisplay()
     {
-
+        currentCoin.text = GameManager.Instance.coins.ToString();
+        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.inventoryCapacity}";
     }
 
     private void AddListeners()
@@ -152,6 +161,15 @@ public class InnSceneUiManager : MonoBehaviour
         mainMenuButton.onClick.AddListener(OnClickMainMenu);
         quitButton.onClick.AddListener(OnClickQuit);
         messageBoxReturnB.onClick.AddListener(OnClickMsgBoxReturn);
+        centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);
+        
+
+        innWindowGetIntelB.onClick.AddListener(OnClickGetPriceInfo);
+        innWindowGetProfitB.onClick.AddListener(OnClickRetrieveProfit);
+        innWindowInvestB_1000.onClick.AddListener(OnClickInvest_1000);
+        innWindowInvestB_5000.onClick.AddListener(OnClickInvest_5000);
+        innWindowInvestB_10000.onClick.AddListener(OnClickInvest_10000);
+        innWindowInvestB_50000.onClick.AddListener(OnClickInvest_50000);
     }
 
     private void OnClickTemp()
@@ -209,7 +227,44 @@ public class InnSceneUiManager : MonoBehaviour
         wholesaleWindow.SetActive(false);
         randomBoxWindow.SetActive(false);
         centerMsg.SetActive(false);
+        UpdatePriceInfoDisplay();
+        UpdateInvestContents();
+    }
 
+    private void UpdatePriceInfoDisplay()
+    {
+        bool isInfoOpened = GameManager.Instance.isInfoOpened;
+        innWindowGetIntelBArea.SetActive(!isInfoOpened);
+        if (isInfoOpened)
+        {
+            var infoItem = GameManager.Instance.entireItemDict[GameManager.Instance.infoItemIndex];
+            var infoItemPriceData = DataTableManager.PriceTable.Get(infoItem.priceID);
+            var priceType = infoItemPriceData.MaxPrice;
+            var priceTypeStringId = 999921;
+            if (GameManager.Instance.isDisplayingMinPriceInfo)
+            {
+                priceType = infoItemPriceData.MinPrice;
+                priceTypeStringId = 999920;
+            }
+            innWindowInfoDisplay.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                .Get(999919), DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(infoItem.ItemData.StringId),
+                DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(priceTypeStringId),
+                priceType.ToString());
+        }
+        else
+        {
+            innWindowInfoDisplay.tmp.text = "";
+        }
+    }
+
+    private void UpdateInvestContents()
+    {
+        innWindowGetProfitBArea.SetActive(GameManager.Instance.innProfit != 0);
+        innWindowTotalInvest.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
+            .Get(999020), GameManager.Instance.investedAmount.ToString());
+        innWindowInvestTips.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
+            .Get(999911), GameManager.Instance.investProfitRatio.ToString());
+        innWindowProfitText.text = GameManager.Instance.innProfit.ToString();
     }
 
     public void OpenWholesales()
@@ -226,17 +281,15 @@ public class InnSceneUiManager : MonoBehaviour
     {
         messageBox.SetActive(true);
         messageBoxReturnBArea.SetActive(false);
+        centerMsg.SetActive(true);
+        centerMsgCheckBArea.SetActive(false);
         messageType = msgType;
         switch (msgType)
         {
             case InnSceneMsgType.InsufficientCoin:
-                centerMsg.SetActive(true);
-                centerMsgCheckBArea.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999902);
                 break;
             case InnSceneMsgType.LackOfCapacity:
-                centerMsg.SetActive(true);
-                centerMsgCheckBArea.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999903);
                 break;
             default:
@@ -261,5 +314,60 @@ public class InnSceneUiManager : MonoBehaviour
     private void OnClickMsgBoxReturn()
     {
         messageBox.SetActive(false);
+    }
+
+    private void OnClickGetPriceInfo()
+    {
+        if(GameManager.Instance.coins >= GameInfos.priceInfoCost)
+        {
+            GameManager.Instance.isInfoOpened = true;
+            GameManager.Instance.coins -= GameInfos.priceInfoCost;
+            UpdatePriceInfoDisplay();
+            UpdateInnSceneDisplay();
+        }
+        else
+        {
+            OpenMessage(InnSceneMsgType.InsufficientCoin);
+        }
+    }
+
+    private void OnClickInvest(int investAmount)
+    {
+        if(GameManager.Instance.coins >= investAmount)
+        {
+            GameManager.Instance.coins -= investAmount;
+            GameManager.Instance.investedAmount += investAmount;
+            UpdateInvestContents();
+            UpdateInnSceneDisplay();
+        }
+        else
+        {
+            OpenMessage(InnSceneMsgType.InsufficientCoin);
+        }
+    }
+
+    private void OnClickInvest_1000()
+    {
+        OnClickInvest(1000);
+    }
+    private void OnClickInvest_5000()
+    {
+        OnClickInvest(5000);
+    }
+    private void OnClickInvest_10000()
+    {
+        OnClickInvest(10000);
+    }
+    private void OnClickInvest_50000()
+    {
+        OnClickInvest(50000);
+    }
+
+    private void OnClickRetrieveProfit()
+    {
+        GameManager.Instance.coins += GameManager.Instance.innProfit;
+        GameManager.Instance.innProfit = 0;
+        UpdateInvestContents();
+        UpdateInnSceneDisplay();
     }
 }
