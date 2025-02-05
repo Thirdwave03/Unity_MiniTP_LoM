@@ -50,6 +50,8 @@ public class SalesSceneUiManager : MonoBehaviour
     public GameObject npcSpecialMerchant;
     public GameObject npcBusinessman;
 
+    public UiSpecialSalesWindow specialSalesWindow;      
+
     private void Start()
     {        
         AddListeners();
@@ -188,7 +190,11 @@ public class SalesSceneUiManager : MonoBehaviour
 
     public void OpenSpecialMerchant()
     {
-        
+        messageBox.SetActive(true);
+        loanWindow.SetActive(false);
+        salesInventoryWindow.SetActive(false);
+        specialSalesWindow.gameObject.SetActive(true);
+        centerMsg.SetActive(false);
     }
 
     public void OpenBuyer()
@@ -215,6 +221,7 @@ public class SalesSceneUiManager : MonoBehaviour
             messageBox.SetActive(true);
             loanWindow.SetActive(true);
             salesInventoryWindow.SetActive(false);
+            specialSalesWindow.gameObject.SetActive(false);
             centerMsg.SetActive(false);
             loanTextLC.OnChangeLanguage(Variables.currentLanguage);
             loanCostText.text = GameManager.Instance.lentAmount.ToString();
@@ -329,5 +336,11 @@ public class SalesSceneUiManager : MonoBehaviour
                 npcBusinessman.SetActive(false);
             }
         }
+    }
+
+    public void OnClickSpecialSalesReturn()
+    {
+        messageBox.SetActive(false);
+        specialSalesWindow.gameObject.SetActive(false);
     }
 }

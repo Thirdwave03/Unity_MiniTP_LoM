@@ -26,13 +26,18 @@ public class SaveDataV1 : SaveData
     public int days;
     public int coins;
 
-        // Availabilities
+    // Availabilities
     public int tipIndex;
     public int infoItemIndex;
     public bool isDisplayingMinPriceInfo;
     public bool isInfoOpened;
+    public bool isPrimaryShopAvailable;
+    public bool isSecondaryShopAvailable;
+    public bool isLuxuryShopAvailable;
+    public List<int> notOnSaleItemsIds;
+    public List<int> specialPriceItemIndexes;
 
-        // Inventory
+    // Inventory
     public int inventoryLevel;
     public int inventoryCapacity;
     public int inventoryFee;

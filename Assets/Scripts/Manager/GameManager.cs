@@ -66,6 +66,11 @@ public class GameManager
     public int infoItemIndex;
     public bool isDisplayingMinPriceInfo;
     public bool isInfoOpened;
+    public bool isPrimaryShopAvailable;
+    public bool isSecondaryShopAvailable;
+    public bool isLuxuryShopAvailable;
+    public List<int> notOnSaleItemsIds;
+    public List<int> specialPriceItemIndexes;
 
     // Inventory
     public int inventoryLevel;
@@ -109,7 +114,8 @@ public class GameManager
     public bool isRandomBox2PickedUp;
     public int randomBox2Item;
     public int randomBox2Price;
-    public int randomBox2Cnt;      
+    public int randomBox2Cnt;
+
 
     private static void InitialCall()
     {
@@ -149,6 +155,9 @@ public class GameManager
         }
 
         isItemInitializingNeeded = true;
+
+        notOnSaleItemsIds = new List<int>();
+        specialPriceItemIndexes = new List<int>();
         
         if (isItemInitializingNeeded)
         {
@@ -222,11 +231,13 @@ public class GameManager
         {
             SetUpNewDefault();
             ItemsPriceChangeOnSleep();
-            SalesItemChangeOnSleep();
+            //SalesItemChangeOnSleepWithProbability();
+            SalesItemChangeOnSleepWithSelection();
             WholeSalesUpdateOnSleep();
+            RandomBoxUpdateOnSleep();
         }
         CallSave();
-        Debug.Log($"Save Result: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
+        Debug.Log($"New Game Set and Save: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
     }        
 
     private void SetUpItemDatas()
@@ -303,16 +314,17 @@ public class GameManager
         isItem2PickedUp = false;
         isItem2Pickupable = false;
 
-
         isRandomBox1Purchased = false;
         isRandomBox1PickedUp = false;
-        randomBox1Item = -1;
-        randomBox1Cnt = -1;
+        randomBox1Item = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary +1);
+        randomBox1Cnt = Random.Range(1,6);
+        randomBox1Price = entireItemDict[Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary + 1)].price;
 
         isRandomBox2Purchased =false;
         isRandomBox2PickedUp = false;
-        randomBox2Item = -1;
-        randomBox2Cnt = -1;
+        randomBox2Item = Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
+        randomBox2Cnt = Random.Range(1, 6);
+        randomBox2Price = entireItemDict[Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1)].price;
     }
 
     public void LoadSavedSlot(int slotIndex = 0)
@@ -351,6 +363,11 @@ public class GameManager
         infoItemIndex = SaveLoadManager.Data.infoItemIndex;
         isDisplayingMinPriceInfo = SaveLoadManager.Data.isDisplayingMinPriceInfo;
         isInfoOpened = SaveLoadManager.Data.isInfoOpened;
+        isPrimaryShopAvailable = SaveLoadManager.Data.isPrimaryShopAvailable;
+        isSecondaryShopAvailable = SaveLoadManager.Data.isSecondaryShopAvailable;
+        isLuxuryShopAvailable = SaveLoadManager.Data.isLuxuryShopAvailable;
+        notOnSaleItemsIds = SaveLoadManager.Data.notOnSaleItemsIds;
+        specialPriceItemIndexes = SaveLoadManager.Data.specialPriceItemIndexes;
 
             // Inventory
         inventoryLevel = SaveLoadManager.Data.inventoryLevel;
@@ -426,6 +443,11 @@ public class GameManager
         SaveLoadManager.Data.infoItemIndex = infoItemIndex;
         SaveLoadManager.Data.isDisplayingMinPriceInfo = isDisplayingMinPriceInfo;
         SaveLoadManager.Data.isInfoOpened = isInfoOpened;
+        SaveLoadManager.Data.isPrimaryShopAvailable = isPrimaryShopAvailable;
+        SaveLoadManager.Data.isSecondaryShopAvailable = isSecondaryShopAvailable;
+        SaveLoadManager.Data.isLuxuryShopAvailable = isLuxuryShopAvailable;
+        SaveLoadManager.Data.notOnSaleItemsIds = notOnSaleItemsIds;
+        SaveLoadManager.Data.specialPriceItemIndexes = specialPriceItemIndexes;
 
         // Inventory
         SaveLoadManager.Data.inventoryLevel = inventoryLevel;
@@ -497,7 +519,8 @@ public class GameManager
         tipIndex = Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex + 1);
         
         ItemsPriceChangeOnSleep();
-        SalesItemChangeOnSleep();
+        //SalesItemChangeOnSleepWithProbability();
+        SalesItemChangeOnSleepWithSelection();
         LoanUpdateOnSleep();
         InnUpdateOnSleep();
         WholeSalesUpdateOnSleep(); // must be called after price change
@@ -600,12 +623,74 @@ public class GameManager
         }
     }
 
-    private void SalesItemChangeOnSleep()
+    private void SalesItemChangeOnSleepWithProbability()
     {
         for (int i = SalesItemDataIndex.minPrimary; i <= SalesItemDataIndex.maxLuxury; ++i)
         {            
-            salesItemDict[i].isOnSale = Random.Range(0, 99) < salesItemDict[i].SalesItemData.OnSaleProbability ? true : false;
+            salesItemDict[i].isOnSale = Random.Range(1f, 100f) <= salesItemDict[i].SalesItemData.OnSaleProbability ? true : false;
             salesItemDict[i].stock = Random.Range(salesItemDict[i].SalesItemData.MinSupply, salesItemDict[i].SalesItemData.MaxSupply + 1);
+        }
+    }
+
+    private void SalesItemChangeOnSleepWithSelection()
+    {
+        notOnSaleItemsIds.Clear();
+
+        // Primary
+        List<int> tempList = new List<int>();
+        while(tempList.Count < 5)
+        {
+            var randPrimaryIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary + 1);
+            if(!tempList.Contains(randPrimaryIndex))
+            {
+                tempList.Add(randPrimaryIndex);
+            }
+        }
+        
+        foreach(var item in tempList)
+        {
+            notOnSaleItemsIds.Add(item);
+        }
+
+        // Secondary
+        tempList.Clear();
+        while(tempList.Count < 5)
+        {
+            var randSecondaryIndex = Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
+            if (!tempList.Contains(randSecondaryIndex))
+            {
+                tempList.Add(randSecondaryIndex);
+            }
+        }
+        foreach (var item in tempList)
+        {
+            notOnSaleItemsIds.Add(item);
+        }
+
+        // Special Merchant Items
+        specialPriceItemIndexes.Clear();
+        while(specialPriceItemIndexes.Count < 3)
+        {
+            var randSpecialPriceItemIndex = Random.Range(0, notOnSaleItemsIds.Count);
+            var id = notOnSaleItemsIds[randSpecialPriceItemIndex];
+            if(!specialPriceItemIndexes.Contains(id))
+            {
+                specialPriceItemIndexes.Add(id);
+            }
+        }
+
+        // Apply to itemLists
+        foreach(var item in salesItemDict.Values)
+        {            
+            if(notOnSaleItemsIds.Contains(item.SalesItemData.SalesItemId))
+            {
+                item.isOnSale = false;
+            }
+            else
+            {
+                item.isOnSale = true;
+                item.stock = Random.Range(item.SalesItemData.MinSupply, item.SalesItemData.MaxSupply + 1);
+            }
         }
     }
 
