@@ -95,9 +95,7 @@ public class UiSpecialShopItemInfo : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log($"OnPointerDown Called from index:{slotIndex}");
         uiSpecialSalesWindow.OnClickSpecialItem(slotIndex);
-        ((IPointerDownHandler)slider).OnPointerDown(eventData);
     }
 
 

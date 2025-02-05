@@ -14,42 +14,48 @@ public class UiBulletinBoardManager : MonoBehaviour
     private float closedXPos;
 
     private bool isOpened = false;
-    private float speed = 600f;
+    private bool isMoving = false;
+    private float timer = 0.5f;
+    private float accumTime = 0f;
 
     public void SetInitialPosition()
     {
         gameObject.SetActive(true);
+        timer = 0.5f;
+        accumTime = 0f;
         isOpened = false;
+        isMoving = false;
         openedXPos = gameObject.transform.position.x;
         closedXPos = openedXPos - Screen.width * 0.7f;
         prefabList = new List<UiBulletinContentController>();
-        gameObject.transform.position = new Vector3(closedXPos, 0,0);
+        gameObject.transform.position = new Vector3(closedXPos, 0, 0);
     }
 
     public void OnClick()
     {
-        isOpened = !isOpened;
+        if (!isMoving)
+        {
+            isOpened = !isOpened;
+            accumTime = 0f;
+            isMoving = true;
+        }        
     }
 
     public void Update()
-    {
-        if(isOpened && gameObject.transform.position.x < openedXPos)
+    {       
+        if (isMoving)
         {
-            gameObject.transform.position += new Vector3(Time.deltaTime * speed, 0,0);
-        }
-        else if (!isOpened && gameObject.transform.position.x > closedXPos)
-        {
-            gameObject.transform.position -= new Vector3(Time.deltaTime * speed, 0,0);
+            UpdateBulletinBoardPos();
         }
 
         //for test only
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             prefabList.Add(Instantiate(bulletinContentsPrefab, viewPort.transform));
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            foreach(var item in prefabList)
+            foreach (var item in prefabList)
             {
                 Destroy(item.gameObject);
             }
@@ -57,5 +63,28 @@ public class UiBulletinBoardManager : MonoBehaviour
         }
     }
 
+    private void UpdateBulletinBoardPos()
+    {
+        float xPosLerp = 0;
 
+        accumTime += Time.deltaTime;
+        if (accumTime >= timer)
+        {
+            accumTime = timer;
+            isMoving = false;
+        }
+        float calibration = 1 / timer;
+        float calibratedAccumTime = calibration * accumTime;        
+        
+        if (isOpened)
+        {
+            xPosLerp = Mathf.Lerp(closedXPos, openedXPos, calibratedAccumTime);
+        }
+        else
+        {
+            xPosLerp = Mathf.Lerp(openedXPos, closedXPos, calibratedAccumTime);
+        }       
+
+        gameObject.transform.position = new Vector3(xPosLerp, 0, 0);
+    }
 }
