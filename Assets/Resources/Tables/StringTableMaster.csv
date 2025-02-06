@@ -1,316 +1,316 @@
-﻿Id,String,String
-0, , 
-910001,carrot,당근
-910002,corn,옥수수
-910003,egg,계란
-910004,fish,생선
-910005,garlic,마늘
-910006,greenonion,대파
-910007,herbs,허브
-910008,mushroom,버섯
-910009,potato,감자
-910010,cabbage,양배추
-910011,seaweed,해초
-910012,tomato,토마토
-910013,radish,무
-910014,walnut,호두
-910015,wheat,벼
-910016,apple,사과
-910017,honey,벌꿀
-910018,lemon,레몬
-910019,milk,우유
-910020,orange,오렌지
-910021,beer,맥주
-910022,bread,빵
-910023,chese,치즈
-910024,fried egg,계란 후라이
-910025,wine,와인
-910026,backpack,가방
-910027,potion,포션
-910028,cape,망토
-910029,rope,밧줄
-910030,fishing rod,낚싯대
-910031,compass,나침반
-910032,dice,주사위
-910033,greeat hammer,거대 망치
-910034,mirror,거울
-910035,shield,방패
-910036,book_1,책_1
-910037,book_2,책_2
-910038,book_3,책_3
-910039,technical book_1,전문 서적_1
-910040,technical book_2,전문 서적_2
-910041,clam,가리비
-910042,crystal,크리스탈
-910043,amulet,아뮬렛
-910044,golden key,금 열쇠
-910045,silver ingot,은 주괴
-910046,golden ring,금 반지
-910047,ancient helmet,고대 투구
-910048,ancient dagger,고대 단검
-910049,gold ingot,금 주괴
-910050,diamond,다이아몬드
-911001,0,"토끼가 가장 좋아하는 간식, 비타민 A 가득!"
-911002,0,팝콘이 되기 전의 평범한 상태
-911003,0,"잘 익히면 계란 후라이, 안 익히면 비상용 던지기 무기"
-911004,0,고양이들의 꿈의 저녁 메뉴
-911005,0,강력한 냄새로 적을 물리칠 수도 있을지도?
-911006,0,썰어서 얹으면 요리의 마법 같은 마무리
-911007,0,향기만으로도 기분이 좋아지는 신비의 풀잎
-911008,0,그냥 먹으면 위험할 수도 있으니 구분 잘해야 함
-911009,0,감자 튀김은 신의 음식이야
-911010,0,다이어트 식단의 단골손님
-911011,0,바다의 향이 담긴 초록속 풀떼기
-911012,0,"과일인가, 채소인가? 둘 다 아님 ""맛있는 재료""임"
-911013,0,모험 후 시원한 국물에 딱!
-911014,0,"""호두""를 열어보면 지혜와 에너지가 나온다"
-911015,0,"""밥""상을 책임지는 일등 공신"
-911016,0,하루에 하나면 의사가 필요 없다고 함
-911017,0,입안 가득 퍼지는 자연의 달콤함
-911018,0,시큼한데 상큼! 피로 회복을 위해 하나 어때요?
-911019,0,"강한 뼈의 비밀, 그리고 쿠키의 영원한 짝꿍"
-911020,0,태양을 닮은 황금빛 과일
-911021,0,"친구들과의 파티 필수템, 하지만 과음은 금물!"
-911022,0,속이 든든해지는 모험가의 동반자
-911023,0,숙성될수록 깊어지는 풍미의 신비
-911024,0,"아침 식사 대표주자, 익힘 정도는 취향껏!"
-911025,0,고급스러운 분위기의 완성
-911026,0,"모든 모험가의 필수품, 아이템이 가득 들어감"
-911027,0,마시면 체력과 마나가 쑥쑥!
-911028,0,날 수는 없지만 멋은 낼 수 있음
-911029,0,용도가 무궁무진한 단단한 밧줄
-911030,0,기다림의 미학
-911031,0,방향을 알려주는 착한 친구
-911032,0,주사위는 던져졌다
-911033,0,한 방이면 끝나는 강력한 무기
-911034,0,"거울아, 거울아 누가 최고의 상인이니?"
-911035,0,이 방패는 어떤 창이라도 막습니다!
-911036,0,초보 독서가를 위한 가벼운 읽을거리
-911037,0,모험가를 위한 실용적인 팁 모음집
-911038,0,읽다가 잠들 것 같은 묵직한 책 베개로 써 버릴까?
-911039,0,마법사들만 읽는다는 희귀 서적
-911040,0,고급 기술이 가득한 난해한 책
-911041,0,"바다의 보물, 빛나는 껍질은 아름답다고 소문이 나있다"
-911042,0,신비한 에너지가 깃든 빛나는 돌
-911043,0,행운과 가져다준다는 목걸이
-911044,0,"용도 모를 열쇠, 금으로 만들어져 가치는 있다"
-911045,0,은빛 광택이 달빛처럼 아름답다
-911046,0,조심해! 저주가 있을지도 몰라
-911047,0,고대 전사들이 쓰던 투구
-911048,0,고대 제사장이 썼다는 제사용 도구
-911049,0,금은 언제나 배신하지 않아
-911050,0,"빛을 담은 보석, 엄청난 부의 상징"
-950001,0,시기 적절하게 비가 온 덕분에 <color=#FFFF00>{0}</color>의 수확량이 늘었습니다. 가격이 하락합니다.
-950002,0,새로운 농법이 개발되었습니다.<color=#FFFF00>{0}</color>의 수확량이 늘었습니다. 가격이 하락합니다.
-950003,0,부랑자들이 <color=#FFFF00>{0}</color>을 휩쓸었습니다. 가격이 상승합니다.
-950004,0,"자연재해의 영향으로, <color=#FFFF00>{0}</color>이 흉작입니다. 가격이 상승합니다."
-950005,0,농인들 사이에서의 <color=#FFFF00>{0}</color>농사가 인기입니다. 가격이 하락합니다.
-950006,0,"다른 나라와의 무역으로, <color=#FFFF00>{0}</color>의 공급이 늘었습니다. 가격이 하락합니다."
-950007,0,"자연재해의 영향으로, <color=#FFFF00>{0}</color>이 흉작입니다. 가격이 상승합니다."
-950008,0,<color=#FFFF00>{0}</color> 이 사람들 사이에서 유행입니다. 가격이 상승합니다.
-950009,0,"축제의 영향으로, <color=#FFFF00>{0}</color>을 판매하는 상인이 늘었습니다. 가격이 하락합니다."
-950010,0,"재료 수급이 원할하여, <color=#FFFF00>{0}</color>이 많이 만들어지고 있습니다. 가격이 하락합니다."
-950011,0,"귀족들 사이에서, <color=#FFFF00>{0}</color>이 인기입니다. 가격이 상승합니다."
-950012,0,<color=#FFFF00>{0}</color>이 건강 식품이라는 소문이 났습니다. 가격이 상승합니다.
-950013,0,제작법이 유출되었습니다. <color=#FFFF00>{0}</color>을 만드는 장인이 늘었습니다. 가격이 하락합니다.
-950014,0,<color=#FFFF00>{0}</color>이 악령을 부른다고 소문이 났습니다. 가격이 하락합니다.
-950015,0,<color=#FFFF00>{0}</color>을 사람들이 필수라고 여깁니다. 가격이 상승합니다.
-950016,0,경기가 불황입니다. <color=#FFFF00>{0}</color>을 파는 상인의 수가 감소했습니다
-950017,0,근처 나라에서 전쟁이 일어났습니다. <color=#FFFF00>{0}</color>을 구하는 사람이 적어집니다. 가격이 하락합니다.
-950018,0,<color=#FFFF00>{0}</color>의 내용이 엉터리라고 소문이 났습니다. 가격이 하락합니다.
-950019,0,서적에 관심있는 사람이 늘었습니다. <color=#FFFF00>{0}</color>이 인기입니다.
-950020,0,곧 있으면 중요한 시험이 시작됩니다. <color=#FFFF00>{0}</color>의 가격이 상승합니다.
-950021,0,"생산성이 감소하여, 식료품 공급량이 감소합니다."
-950022,0,"생산성이 감소하여, 식료품 공급량이 증가합니다."
-950023,0,0
-950024,0,0
-950025,0,0
-950026,0,0
-950027,0,0
-950028,0,0
-950029,0,0
-950030,0,0
-950031,0,0
-950032,0,0
-950033,0,0
-950034,0,0
-950035,0,0
-950036,0,0
-950037,0,0
-950038,0,0
-950039,0,0
-950040,0,0
-950041,0,0
-950501,0,시기 적절하게 비가 온 덕분에 <color=#FFFF00>{0}</color>의 수확량이 늘었습니다. 가격이 하락합니다.
-950502,0,새로운 농법이 개발되었습니다.<color=#FFFF00>{0}</color>의 수확량이 늘었습니다. 가격이 하락합니다.
-950503,0,부랑자들이 <color=#FFFF00>{0}</color>를 휩쓸었습니다. 가격이 상승합니다.
-950504,0,"자연재해의 영향으로, <color=#FFFF00>{0}</color>가 흉작입니다. 가격이 상승합니다."
-950505,0,농인들 사이에서의 <color=#FFFF00>{0}</color>농사가 인기입니다. 가격이 하락합니다.
-950506,0,"다른 나라와의 무역으로, <color=#FFFF00>{0}</color>의 공급이 늘었습니다. 가격이 하락합니다."
-950507,0,"자연재해의 영향으로, <color=#FFFF00>{0}</color>가 흉작입니다. 가격이 상승합니다."
-950508,0,<color=#FFFF00>{0}</color>가 사람들 사이에서 유행입니다. 가격이 상승합니다.
-950509,0,"축제의 영향으로, <color=#FFFF00>{0}</color>를 판매하는 상인이 늘었습니다. 가격이 하락합니다."
-950510,0,"재료 수급이 원할하여, <color=#FFFF00>{0}</color>가 많이 만들어지고 있습니다. 가격이 하락합니다."
-950511,0,"귀족들 사이에서, <color=#FFFF00>{0}</color>가 인기입니다. 가격이 상승합니다."
-950512,0,<color=#FFFF00>{0}</color>가 건강 식품이라는 소문이 났습니다. 가격이 상승합니다.
-950513,0,제작법이 유출되었습니다. <color=#FFFF00>{0}</color>를 만드는 장인이 늘었습니다. 가격이 하락합니다.
-950514,0,<color=#FFFF00>{0}</color>가 악령을 부른다고 소문이 났습니다. 가격이 하락합니다.
-950515,0,<color=#FFFF00>{0}</color>를 사람들이 필수라고 여깁니다. 가격이 상승합니다.
-950516,0,경기가 불황입니다. <color=#FFFF00>{0}</color>를 파는 상인의 수가 감소했습니다
-950517,0,근처 나라에서 전쟁이 일어났습니다. <color=#FFFF00>{0}</color>를 구하는 사람이 적어집니다. 가격이 하락합니다.
-950518,0,<color=#FFFF00>{0}</color>의 내용이 엉터리라고 소문이 났습니다. 가격이 하락합니다.
-950519,0,서적에 관심있는 사람이 늘었습니다. <color=#FFFF00>{0}</color>가 인기입니다.
-950520,0,곧 있으면 중요한 시험이 시작됩니다. <color=#FFFF00>{0}</color>의 가격이 상승합니다.
-950521,0,"생산성이 감소하여, 식료품 공급량이 감소합니다."
-950522,0,"생산성이 감소하여, 식료품 공급량이 증가합니다."
-998001,Tips:_nHealth is harmful for smoking.,팁:_nㅋㅋ
-998002,Tips:_nTips2,팁:_n팁2
-998003,Tips:_nTips3,팁:_n팁3
-998004,Tips:_nTips4,팁:_n팁4
-998005,Tips:_nTips5,팁:_n팁5
-998006,Tips:_nTips6,팁:_n팁6
-998007,Tips:_nTips7,팁:_n팁7
-998008,Tips:_nTips8,팁:_n팁8
-998009,Tips:_nTips9,팁:_n팁9
-998010,Tips:_nTips10,팁:_n팁10
-998011,Tips:_nTips11,팁:_n팁11
-998012,Tips:_nTips12,팁:_n팁12
-998013,Tips:_nTips13,팁:_n팁13
-998014,Tips:_nTips14,팁:_n팁14
-998015,Tips:_nTips15,팁:_n팁15
-998016,Tips:_nTips16,팁:_n팁16
-998017,Tips:_nTips17,팁:_n팁17
-998018,Tips:_nTips18,팁:_n팁18
-998019,Tips:_nTips19,팁:_n팁19
-998020,Tips:_nTips20,팁:_n팁20
-999001,New Game,새로운 게임
-999002,Limited Resources,자원 한정 모드
-999003,Exit Game,게임 종료
-999004,Continue,이어하기
-999005,Best Record for earned coins_n{0} coins,최고 수익 기록_n{0} 코인
-999006,Restart,재시작
-999007,Main Menu,메인 메뉴로
-999008,Quit,나가기
-999009,Average Inventory Cost,평균 매입가
-999010,Max,최대
-999011,Purchase,구매
-999012,Sell,판매
-999013,Random Box,랜덤 박스
-999014,Gather for intel,정보 수집
-999015,Cost,총액
-999016,Revenue,총 판매액
-999017,Gather intel about product pricing,상품 가격에 관한 정보 수집
-999018,Invest in the inn,여관에 투자
-999019,Profit:,수익:
-999020,Total investment: {0},총 투자액: {0}
-999021,Capacity: {0}/{1}_nRental Fee: {2}/day,용량: {0}/{1}_n임대료: {2}/1일
-999022,Level: {0},레벨: {0}
-999023,Bulletin Board,게시판
-999024,Cost:,비용:
-999025,Lend money,돈 빌려주기
-999026,Retrieve,회수
-999027,Price,판가
-999028,Total Price,총액
-999029,Take,획득
-999030,blank,공란
-999031,blank,공란
-999032,blank,공란
-999901,Not enough coins to pay off rental fee. Do you want to lose all progresses in this game and continue?,"창고 임대료를 지불할 코인이 부족합니다. 현재까지의 진행 상황을 잃고, 메인메뉴로 돌아갑니다. 계속하시겠습니까?"
-999902,Insufficient coins.,코인이 부족합니다.
-999903,You cannot buy items over maximum inventory capacity.,창고 용량이 부족합니다.
-999904,Proceed to next day?,다음 날로 이동하시겠습니까?
-999905,Would you upgrade your inventory with {0} coins? Rental fee for next inventory level: {1}coins a day,{0} 코인을 사용하여 창고를 업그레이드 하시겠습니까? 다음 레벨의 창고 비용: 1일 {1}코인.
-999906,Do you want to downgrade Inventory level? Rental fee for downgraded inventory level: {0}coins a day,창고 레벨을 낮추시겠습니까? 다운그레이드 후 창고 비용: 1일 {0}코인.
-999907,Pre-order with a {0}% discount,시장 가격보다 {0}% 할인된 가격으로 예약 주문
-999908,You can purchase each type of box once daily. Each box contains 1~5 of identical product which dissapears if not picked up.,매일 각 유형의 상자를 한 번씩 구매할 수 있으며 1~5개의 동일한 상품이 들어 있습니다. 상품은 가져가지 않으면 사라집니다.
-999909,"You can recieve pre-orderd product the next day of purchase. You do not necessarily pick up immediately, but the order will not be replaced to new one.","상품을 구매한 뒤, 다음 날에 취득할 수 있습니다. 상품을 취득하지 않더라도 사라지진 않지만, 새로운 주문으로 교체되지도 않습니다."
-999910,You can only gather information once a day. The information you gathered can be repeated.,정보 수집은 하루에 한 번만 할 수 있습니다. 수집한 정보가 중복일 수도 있습니다.
-999911,You can retrieve the profit once a day. Which is {0}% of total investment. And there is no option getting back invested amount.,"하루에 한 번 수익을 받을 수 있습니다. 수익은 총 투자액의 {0}%이며, 투자금은 반환되지 않으니 신중하게 투자하세요."
-999912,"Sir, please lend me <color=#FFFF00>{0}</color> coins, I will return <color=#FFFF00>{2}</color> coins after <color=#FFFF00>{1}</color> days.","사장님, 제게 <color=#FFFF00>{0}</color> 코인을 빌려주셨으면 합니다. <color=#FFFF00>{1}</color>일 후에 <color=#FFFF00>{2}</color> 코인으로 갚겠습니다."
-999913,Inventory reached max level.,창고가 최대 레벨입니다.
-999914,Cannot downgrade Inventory anymore.,창고가 최저 레벨입니다.
-999915,Inventory occupancy must be equal or less than {0} to downgrade.,보유 상품이 {0}칸 이하여야 다운그레이드가 가능합니다.
-999916,"Sir, this is promised <color=#FFFF00>{0}</color> coins.","사장님, 약속드렸던 <color=#FFFF00>{0}</color> 코인입니다."
-999917,Thank you for your help sir.,"지난번엔 감사했습니다, 사장님."
-999918,Thank you very much sir.,감사합니다 사장님.
-999919,"According to the info, {1} of <color=#FFFF00>{0}</color> is {2}.",<color=#FFFF00>{0}</color>의 {1}는 {2}코인이라고 합니다.
-999920,lowest price,최저가
-999921,highest price,최고가
-999922,Following items could be sold at {0}% higher price!!,현재 시장 가격보다 {0}% 높은 가격으로 판매 가능!!
-999923,0,0
-999924,0,0
-999925,0,0
-999926,0,0
-999927,0,0
-999928,0,0
-999929,0,0
-999930,0,0
-999931,0,0
-999932,0,0
-999933,0,0
-999934,0,0
-999935,0,0
-999936,0,0
-999937,0,0
-999938,0,0
-999939,0,0
-999940,0,0
-999941,0,0
-999942,0,0
-999943,0,0
-999944,0,0
-999945,0,0
-999946,0,0
-999947,0,0
-999948,0,0
-999949,0,0
-999950,0,0
-999951,0,0
-999952,0,0
-999953,0,0
-999954,0,0
-999955,0,0
-999956,0,0
-999957,0,0
-999958,0,0
-999959,0,0
-999960,0,0
-999961,0,0
-999962,0,0
-999963,0,0
-999964,0,0
-999965,0,0
-999966,0,0
-999967,0,0
-999968,0,0
-999969,0,0
-999970,0,0
-999971,0,0
-999972,0,0
-999973,0,0
-999974,0,0
-999975,0,0
-999976,0,0
-999977,0,0
-999978,0,0
-999979,0,0
-999980,0,0
-999981,0,0
-999982,0,0
-999983,0,0
-999984,0,0
-999985,0,0
-999986,0,0
-999987,0,0
-999988,0,0
-999989,0,0
-999990,0,0
-999991,0,을
-999992,0,를
-999993,0,이
-999994,0,가
-999995,0,0
-999996,0,0
-999997,0,0
-999998,0,0
-999999,Default,Default
+﻿Id,String,String,String,String
+0,,,,
+910001, Carrot, 당근, にんじん, 胡萝卜
+910002, Corn, 옥수수, トウモロコシ, 玉米
+910003, Egg, 계란, たまご, 鸡蛋
+910004, Fish, 생선, さかな, 鱼
+910005, Garlic, 마늘, にんにく, 大蒜
+910006, Green Onion, 대파, ねぎ, 大葱
+910007, Herbs, 허브, ハーブ, 香草
+910008, Mushroom, 버섯, きのこ, 蘑菇
+910009, Potato, 감자, じゃがいも, 土豆
+910010, Cabbage, 양배추, キャベツ, 卷心菜
+910011, Seaweed, 해초, 海藻, 海藻
+910012, Tomato, 토마토, トマト, 番茄
+910013, Radish, 무, 大根, 萝卜
+910014, Walnut, 호두, くるみ, 核桃
+910015, Wheat, 벼, いね, 稻
+910016, Apple, 사과, りんご, 苹果
+910017, Honey, 벌꿀, はちみつ, 蜂蜜
+910018, Lemon, 레몬, レモン, 柠檬
+910019, Milk, 우유, ミルク, 牛奶
+910020, Orange, 오렌지, オレンジ, 橙子
+910021, Beer, 맥주, ビール, 啤酒
+910022, Bread, 빵, パン, 面包
+910023, Cheese, 치즈, チーズ, 奶酪
+910024, Fried Egg, 계란 후라이, 目玉焼き, 煎蛋
+910025, Wine, 와인, ワイン, 葡萄酒
+910026, Backpack, 가방, リュック, 背包
+910027, Potion, 포션, ポーション, 药水
+910028, Cape, 망토, マント, 披风
+910029, Rope, 밧줄, ロープ, 绳子
+910030, Fishing Rod, 낚싯대, 釣り竿, 钓鱼竿
+910031, Compass, 나침반, コンパス, 指南针
+910032, Dice, 주사위, サイコロ, 骰子
+910033, Great Hammer, 거대 망치, 大ハンマー, 巨型锤子
+910034, Mirror, 거울, 鏡, 镜子
+910035, Shield, 방패, 盾, 盾牌
+910036, Book 1, 책_1, 本_1, 书_1
+910037, Book 2, 책_2, 本_2, 书_2
+910038, Book 3, 책_3, 本_3, 书_3
+910039, Technical Book 1, 전문 서적_1, 専門書_1, 专业书_1
+910040, Technical Book 2, 전문 서적_2, 専門書_2, 专业书_2
+910041, Clam, 가리비, ハマグリ, 蛤蜊
+910042, Crystal, 크리스탈, クリスタル, 水晶
+910043, Amulet, 아뮬렛, アミュレット, 护身符
+910044, Golden Key, 금 열쇠, 金の鍵, 金钥匙
+910045, Silver Ingot, 은 주괴, 銀インゴット, 银锭
+910046, Golden Ring, 금 반지, 金の指輪, 金戒指
+910047, Ancient Helmet, 고대 투구, 古代の兜, 古代头盔
+910048, Ancient Dagger, 고대 단검, 古代の短剣, 古代匕首
+910049, Gold Ingot, 금 주괴, 金インゴット, 金锭
+910050, Diamond, 다이아몬드, ダイヤモンド, 钻石
+911001," ""A snack that rabbits love"," ""토끼가 가장 좋아하는 간식", ウサギが一番好きなおやつ、ビタミンAたっぷり！, 兔子最爱的零食，充满维生素A！
+911002, The plain state before becoming popcorn, 팝콘이 되기 전의 평범한 상태, ポップコーンになる前の普通の状態, 还没变成爆米花的普通状态
+911003," ""If cooked well"," ""잘 익히면 계란 후라이", うまく焼ければ目玉焼き、失敗すれば緊急用の投げ武器になるよ！, 煮得好是煎蛋，煮得不好就是紧急投掷武器！
+911004, The dinner of every cat's dreams, 고양이들의 꿈의 저녁 메뉴, 猫たちの夢のディナーメニュー, 猫咪梦寐以求的晚餐菜单
+911005, Its potent aroma might even fend off enemies, 강력한 냄새로 적을 물리칠 수도 있을지도 ?, 強烈な匂いで敵をやっつけられるかも ?, 靠强烈的气味也许能击退敌人 ?
+911006, Slice it and sprinkle it on for a magically finished dish, 썰어서 얹으면 요리의 마법 같은 마무리, 刻んで乗せれば、料理が魔法みたいに仕上がるよ!, 切碎撒上去，料理瞬间变得魔法般完美
+911007, A mystical leaf that can lift your spirits just by its aroma, 입안 가득 퍼지는 자연의 달콤함, 香りだけで気分が上がる不思議な葉っぱ, 仅仅香气就能让人心情愉快的神奇叶子
+911008," ""Eating them raw can be dangerous", 그냥 먹으면 위험할 수도 있으니 구분 잘해야 함, そのまま食べると危険かも、ちゃんと見分けてね, 直接吃可能会有危险，要分清楚哦
+911009, French fries are the food of the gods, 감자 튀김은 신의 음식이야, ポテトフライは神の食べ物だよ, 薯条简直是神的食物
+911010, A staple in any diet plan, 다이어트 식단의 단골손님, ダイエットメニューの常連だね, 减肥餐的常客
+911011, A clump of greens that carries the scent of the sea, 바다의 향이 담긴 초록속 풀떼기, 海の香りがする緑の草, 带有海洋气息的绿草
+911012, Fruit or vegetable ? Neither—it’s just a delicious ingredient," ""과일인가", 果物か野菜か？どっちでもなく、『美味しい素材』だよ, 是水果还是蔬菜？都不是，是“美味的原料”
+911013, Perfect for a refreshing bowl of soup after an adventure, 모험 후 시원한 국물에 딱!, 冒険の後に、さっぱりしたスープがピッタリ！, 冒险后来碗清爽的汤正合适！
+911014, Open a walnut and discover wisdom and energy," """"""호두""""를 열어보면 지혜와 에너지가 나온다""", 割ってみると、知恵と元気が溢れるよ！, 打开“核桃”，会释放出智慧和能量
+911015, The indispensable hero of the meal," """"""밥""""상을 책임지는 일등 공신""", ごはんがテーブルを支える、欠かせない存在だよ, 米饭是餐桌上不可或缺的英雄
+911016, One a day keeps the doctor away, 하루에 하나면 의사가 필요 없다고 함, 一日一個で医者いらずってね, 一天一个，就不愁看医生了
+911017, Nature's sweetness that fills your mouth, 입안 가득 퍼지는 자연의 달콤함, 自然の甘さが口いっぱいに広がるよ, 自然的甜蜜充满整个口腔
+911018, Tart but refreshing!How about one to help you recover from fatigue ?, 시큼한데 상큼!피로 회복을 위해 하나 어때요 ?, 酸っぱくてさわやか！ 疲れた時に一つどう？, 酸酸的又清爽！恢复疲劳，来一个怎么样？
+911019, The secret to strong bones—and cookies’ eternal companion," ""강한 뼈의 비밀", しっかりした骨の秘密と、クッキーは永遠の相棒だよ, 强健骨骼的秘密，还有饼干的永远搭档
+911020, A golden fruit that resembles the sun, 태양을 닮은 황금빛 과일, 太陽に似た黄金色のフルーツ, 像太阳一样的金色水果
+911021, A party essential with friends—but avoid overdrinking!," ""친구들과의 파티 필수템", 友達とのパーティーに欠かせないアイテム、でも飲みすぎは禁物だよ！, 和朋友聚会必备，但别喝太多哦！
+911022, A reliable companion that fills you up on any adventure, 속이 든든해지는 모험가의 동반자, お腹も心も満たす冒険者の相棒だよ, 让人安心的冒险者伴侣
+911023, A mysterious flavor that deepens with age, 숙성될수록 깊어지는 풍미의 신비, 熟成するほど深まる風味の不思議, 越陈越香的神秘风味
+911024, A breakfast staple—cook it to your liking!," ""아침 식사 대표주자", 朝食の定番、焼き加減はお好みでね！, 早餐代表作，熟度随你挑选！
+911025, The finishing touch to an upscale atmosphere, 고급스러운 분위기의 완성, 高級な雰囲気が完成한よ, 高贵氛围的完美呈现
+911026," ""Every adventurer's must-have"," ""모든 모험가의 필수품", すべての冒険者必携、アイテムがたくさん入ってるよ, 所有冒险者必备，内含众多物品
+911027, Drink it and watch your health and mana soar!, 마시면 체력과 마나가 쑥쑥!, 飲めば体力とマナがグングン回復するよ!, 喝了能让体力和魔法值暴涨!
+911028," ""It may not fly", 날 수는 없지만 멋은 낼 수 있음, 飛べないけど、かっこよさは抜群だよ, 虽然不会飞，但也能帅气十足
+911029, A sturdy rope with endless possibilities, 용도가 무궁무진한 단단한 밧줄, 用途が無限大な、しっかりしたロープ, 用途无限的结实绳子
+911030, The art of waiting, 기다림의 미학, 待つことの美学, 等待的美学
+911031, A friendly guide that always points you in the right direction, 방향을 알려주는 착한 친구, 方向を教えてくれる優しい友達, 会指引方向的好朋友
+911032, The dice have been thrown, 주사위는 던져졌다, サイコロは投げられたよ, 骰子已经掷出
+911033, A powerful weapon that ends battles with a single strike, 한 방이면 끝나는 강력한 무기, 一撃で決まる強力な武器だよ, 一击就能结束战斗的强力武器
+911034," ""Mirror"," ""거울아", 鏡よ、鏡よ、誰が一番の商人かな？, 镜子，镜子，谁是最棒的商人？
+911035, This shield can block any spear!, 이 방패는 어떤 창이라도 막습니다!, この盾はどんな槍でも防げるよ!, 这面盾牌能抵挡任何长枪!
+911036, A light read perfect for beginner bookworms, 초보 독서가를 위한 가벼운 읽을거리, 初心者向けの軽い読み物だよ, 适合初学者的轻松读物
+911037, A practical tip collection for adventurers, 모험가를 위한 실용적인 팁 모음집, 冒険者向けの実用的なコツ集だよ, 为冒险者准备的实用小贴士集
+911038, That hefty book looks like it could double as a pillow—what do you think ?, 읽다가 잠들 것 같은 묵직한 책 베개로 써 버릴까 ?, 読んでいるうちに寝ちゃいそうな分厚い本、枕にしてみる ?, 那本厚厚的书，看着就想当枕头用呢，要不要试试 ?
+911039, A rare tome said to be read only by mages, 마법사들만 읽는다는 희귀 서적, 魔法使いだけが読むという希少な本だよ, 据说只有魔法师才会读的稀有书籍
+911040, A challenging book brimming with advanced techniques, 고급 기술이 가득한 난해한 책, 高度な技術が詰まった難解な本だよ, 充满高级技术的晦涩书籍
+911041, A treasure from the sea; its gleaming shell is renowned for its beauty," ""바다의 보물", 海の宝、輝く殻は美しいと噂されてるよ, 传说海洋的宝藏，那闪亮的贝壳非常美丽
+911042, A glowing stone imbued with mysterious energy, 신비한 에너지가 깃든 빛나는 돌, 神秘的なエネルギーが宿る輝く石だよ, 蕴含神秘能量的闪亮石头
+911043, A necklace that’s said to bring good fortune, 행운과 가져다준다는 목걸이, 幸運をもたらすと言われるネックレスだよ, 据说能带来好运的项链
+911044, A key of unknown purpose," ""용도 모를 열쇠", 用途不明だけど、金でできてるから価値はあるよ, 用途不明的钥匙，但因为是金做的，所以很值钱
+911045, Its silver sheen is as lovely as moonlight, 은빛 광택이 달빛처럼 아름답다, 銀色の輝きが月光のように美しいよ, 银色光泽如月光般美丽
+911046, Watch out!It might be cursed, 조심해!저주가 있을지도 몰라, 気をつけて！呪いがあるかもよ, 小心！可能会有诅咒哦
+911047, A helmet once worn by ancient warriors, 고대 전사들이 쓰던 투구, 古代戦士が使っていた兜だよ, 古代战士使用的头盔
+911048, A ceremonial tool once wielded by ancient priests, 고대 제사장이 썼다는 제사용 도구, 古代の祭司が使ったという儀式用具だよ, 据说是古代祭司使用的祭祀工具
+911049, Gold never betrays, 금은 언제나 배신하지 않아, 金は決して裏切らないって言うしね, 黄金永不背叛
+911050, A gem that captures light—a symbol of immense wealth," ""빛을 담은 보석", 光を宿す宝石、莫大な富の象徴だよ, 蕴含光芒的宝石，象征着巨大的财富
+950001,"Thanks to timely rain, the yield of <color=#FFFF00>{0}</color> has increased, and prices have dropped.",시기 적절하게 비가 온 덕분에 <color=#FFFF00>{0}</color>의 수확량이 늘었습니다. 가격이 하락합니다.,ちょうど良いタイミングで雨が降ったおかげで、<color=#FFFF00>{0}</color>の収穫量が増えて、価格が下がったよ。,正因为及时降雨，<color=#FFFF00>{0}</color>的收成增加了，价格下降了。
+950002,"A new farming method has been developed; the yield of <color=#FFFF00>{0}</color> has increased, and prices have dropped.",새로운 농법이 개발되었습니다.<color=#FFFF00>{0}</color>의 수확량이 늘었습니다. 가격이 하락합니다.,新しい農法が開発されたおかげで、<color=#FFFF00>{0}</color>の収穫量が増えて、価格が下がったよ。,开发了新的耕作法，<color=#FFFF00>{0}</color>的产量增加了，价格下降了。
+950003,"Vagrants have swept up <color=#FFFF00>{0}</color>, and prices have risen.",부랑자들이 <color=#FFFF00>{0}</color>을 휩쓸었습니다. 가격이 상승합니다.,放浪者たちが<color=#FFFF00>{0}</color>を席巻したよ。価格が上がったよ！,流浪汉们抢购了<color=#FFFF00>{0}</color>，价格上涨了。
+950004,"Due to natural disasters, the harvest of <color=#FFFF00>{0}</color> has been poor, and prices have risen.","자연재해의 영향으로, <color=#FFFF00>{0}</color>이 흉작입니다. 가격이 상승합니다.",自然災害の影響で、<color=#FFFF00>{0}</color>の収穫が悪くなって、価格が上がったよ。,由于自然灾害，<color=#FFFF00>{0}</color>歉收，价格上涨了。
+950005,"Among farmers, the cultivation of <color=#FFFF00>{0}</color> is popular, and prices have dropped.",농인들 사이에서의 <color=#FFFF00>{0}</color>농사가 인기입니다. 가격이 하락합니다.,農家の間で<color=#FFFF00>{0}</color>の栽培が人気で、価格が下がったよ。,在农民中，种植<color=#FFFF00>{0}</color>很受欢迎，价格下降了。
+950006,"Due to trade with other countries, the supply of <color=#FFFF00>{0}</color> has increased, and prices have dropped.","다른 나라와의 무역으로, <color=#FFFF00>{0}</color>의 공급이 늘었습니다. 가격이 하락합니다.",他国との貿易で、<color=#FFFF00>{0}</color>の供給が増えて、価格が下がったよ。,由于与其他国家的贸易，<color=#FFFF00>{0}</color>的供应增加了，价格下降了。
+950007,"Due to natural disasters, the harvest of <color=#FFFF00>{0}</color> has been poor, and prices have risen.","자연재해의 영향으로, <color=#FFFF00>{0}</color>이 흉작입니다. 가격이 상승합니다.",自然災害の影響で、<color=#FFFF00>{0}</color>の収穫が悪くなって、価格が上がったよ。,由于自然灾害，<color=#FFFF00>{0}</color>歉收，价格上涨了。
+950008,"<color=#FFFF00>{0}</color> is trending among people, and prices have risen.",<color=#FFFF00>{0}</color> 이 사람들 사이에서 유행입니다. 가격이 상승합니다.,<color=#FFFF00>{0}</color>が人々の間で流行して、価格が上がったよ。,<color=#FFFF00>{0}</color>在民间流行，价格上涨了。
+950009,"Due to the festival, more vendors are selling <color=#FFFF00>{0}</color>, and prices have dropped.","축제의 영향으로, <color=#FFFF00>{0}</color>을 판매하는 상인이 늘었습니다. 가격이 하락합니다.",祭りの影響で、<color=#FFFF00>{0}</color>を売る商人が増えて、価格が下がったよ。,由于节日影响，销售<color=#FFFF00>{0}</color>的商人增多了，价格下降了。
+950010,"With a steady supply of raw materials, a large quantity of <color=#FFFF00>{0}</color> is being produced, and prices have dropped.","재료 수급이 원할하여, <color=#FFFF00>{0}</color>이 많이 만들어지고 있습니다. 가격이 하락합니다.",材料の供給が順調で、<color=#FFFF00>{0}</color>がたくさん生産され、価格が下がったよ。,由于原料供应顺畅，<color=#FFFF00>{0}</color>大量生产，价格下降了。
+950011,"Among the nobility, <color=#FFFF00>{0}</color> is popular, and prices have risen.","귀족들 사이에서, <color=#FFFF00>{0}</color>이 인기입니다. 가격이 상승합니다.",貴族たちの間で、<color=#FFFF00>{0}</color>が人気になって、価格が上がったよ。,在贵族中，<color=#FFFF00>{0}</color>很受欢迎，价格上涨了。
+950012,"Rumors have spread that <color=#FFFF00>{0}</color> is a health food, and prices have risen.",<color=#FFFF00>{0}</color>이 건강 식품이라는 소문이 났습니다. 가격이 상승합니다.,<color=#FFFF00>{0}</color>が健康食品だって噂され、価格が上がったよ。,传闻<color=#FFFF00>{0}</color>是健康食品，价格上涨了。
+950013,"The production method has been leaked; more artisans are making <color=#FFFF00>{0}</color>, and prices have dropped.",제작법이 유출되었습니다. <color=#FFFF00>{0}</color>을 만드는 장인이 늘었습니다. 가격이 하락합니다.,製法が流出して、<color=#FFFF00>{0}</color>を作る職人が増えたので、価格が下がったよ。,制作工艺外泄，制造<color=#FFFF00>{0}</color>的匠人增多，价格下降了。
+950014,"Rumors say that <color=#FFFF00>{0}</color> attracts evil spirits, and prices have dropped.",<color=#FFFF00>{0}</color>이 악령을 부른다고 소문이 났습니다. 가격이 하락합니다.,<color=#FFFF00>{0}</color>が悪霊を呼ぶって噂され、価格が下がったよ。,传闻<color=#FFFF00>{0}</color>会招来恶灵，价格下降了。
+950015,"People consider <color=#FFFF00>{0}</color> essential, causing its price to rise.",<color=#FFFF00>{0}</color>을 사람들이 필수라고 여깁니다. 가격이 상승합니다.,みんなが<color=#FFFF00>{0}</color>を必需品だと思って、価格が上がったよ。,人们视<color=#FFFF00>{0}</color>为必需品，价格上涨了。
+950016,The economy is in recession; the number of vendors selling <color=#FFFF00>{0}</color> has decreased.,경기가 불황입니다. <color=#FFFF00>{0}</color>을 파는 상인의 수가 감소했습니다,景気が低迷していて、<color=#FFFF00>{0}</color>を売る商人の数が減ったよ。,由于经济衰退，销售<color=#FFFF00>{0}</color>的商人数量减少了。
+950017,"A war has broken out in a neighboring country; fewer people are seeking <color=#FFFF00>{0}</color>, and prices have dropped.",근처 나라에서 전쟁이 일어났습니다. <color=#FFFF00>{0}</color>을 구하는 사람이 적어집니다. 가격이 하락합니다.,近隣の国で戦争が起こり、<color=#FFFF00>{0}</color>を求める人が減って、価格が下がったよ。,由于邻国爆发战争，购买<color=#FFFF00>{0}</color>的人减少，价格下降了。
+950018,"Rumors claim that the content of <color=#FFFF00>{0}</color> is bogus, and prices have dropped.",<color=#FFFF00>{0}</color>의 내용이 엉터리라고 소문이 났습니다. 가격이 하락합니다.,<color=#FFFF00>{0}</color>の内容がでたらめだって噂され、価格が下がったよ。,传闻<color=#FFFF00>{0}</color>的内容不靠谱，价格下降了。
+950019,"Interest in books has increased, and <color=#FFFF00>{0}</color> has become popular.",서적에 관심있는 사람이 늘었습니다. <color=#FFFF00>{0}</color>이 인기입니다.,書籍に興味を持つ人が増えて、<color=#FFFF00>{0}</color>が人気になったよ。,对书籍感兴趣的人增多了，<color=#FFFF00>{0}</color>变得受欢迎了。
+950020,An important exam is about to begin; the price of <color=#FFFF00>{0}</color> has risen.,곧 있으면 중요한 시험이 시작됩니다. <color=#FFFF00>{0}</color>의 가격이 상승합니다.,もうすぐ大事な試験が始まるから、<color=#FFFF00>{0}</color>の価格が上がるよ。,即将开始重要考试，<color=#FFFF00>{0}</color>的价格上涨了。
+950021,Decreased productivity has led to a reduction in the supply of food.,"생산성이 감소하여, 식료품 공급량이 감소합니다.",生産性が低下して、食料の供給量が減ってしまったよ。,由于生产率下降，食品供应量减少了。
+950022,Decreased productivity has led to an increase in the supply of food.,"생산성이 감소하여, 식료품 공급량이 증가합니다.",生産性が低下して、食料の供給量が増えるよ。,由于生产率下降，食品供应量反而增加了。
+950023,0,0,0,0
+950024,0,0,0,0
+950025,0,0,0,0
+950026,0,0,0,0
+950027,0,0,0,0
+950028,0,0,0,0
+950029,0,0,0,0
+950030,0,0,0,0
+950031,0,0,0,0
+950032,0,0,0,0
+950033,0,0,0,0
+950034,0,0,0,0
+950035,0,0,0,0
+950036,0,0,0,0
+950037,0,0,0,0
+950038,0,0,0,0
+950039,0,0,0,0
+950040,0,0,0,0
+950041,0,0,0,0
+950501,"Thanks to timely rain, the yield of <color=#FFFF00>{0}</color> has increased, and prices have dropped.",시기 적절하게 비가 온 덕분에 <color=#FFFF00>{0}</color>의 수확량이 늘었습니다. 가격이 하락합니다.,ちょうど良いタイミングで雨が降ったおかげで、<color=#FFFF00>{0}</color>の収穫量が増えて、価格が下がったよ。,正因为及时降雨，<color=#FFFF00>{0}</color>的收成增加了，价格下降了。
+950502,"A new farming method has been developed; the yield of <color=#FFFF00>{0}</color> has increased, and prices have dropped.",새로운 농법이 개발되었습니다.<color=#FFFF00>{0}</color>의 수확량이 늘었습니다. 가격이 하락합니다.,新しい農法が開発されたおかげで、<color=#FFFF00>{0}</color>の収穫量が増えて、価格が下がったよ。,开发了新的耕作法，<color=#FFFF00>{0}</color>的产量增加了，价格下降了。
+950503,"Vagrants have swept up <color=#FFFF00>{0}</color>, and prices have risen.",부랑자들이 <color=#FFFF00>{0}</color>를 휩쓸었습니다. 가격이 상승합니다.,放浪者たちが<color=#FFFF00>{0}</color>を席巻したよ。価格が上がったよ！,流浪汉们抢购了<color=#FFFF00>{0}</color>，价格上涨了。
+950504,"Due to natural disasters, the harvest of <color=#FFFF00>{0}</color> has been poor, and prices have risen.","자연재해의 영향으로, <color=#FFFF00>{0}</color>가 흉작입니다. 가격이 상승합니다.",自然災害の影響で、<color=#FFFF00>{0}</color>の収穫が悪くなって、価格が上がったよ。,由于自然灾害，<color=#FFFF00>{0}</color>歉收，价格上涨了。
+950505,"Among farmers, the cultivation of <color=#FFFF00>{0}</color> is popular, and prices have dropped.",농인들 사이에서의 <color=#FFFF00>{0}</color>농사가 인기입니다. 가격이 하락합니다.,農家の間で<color=#FFFF00>{0}</color>の栽培が人気で、価格が下がったよ。,在农民中，种植<color=#FFFF00>{0}</color>很受欢迎，价格下降了。
+950506,"Due to trade with other countries, the supply of <color=#FFFF00>{0}</color> has increased, and prices have dropped.","다른 나라와의 무역으로, <color=#FFFF00>{0}</color>의 공급이 늘었습니다. 가격이 하락합니다.",他国との貿易で、<color=#FFFF00>{0}</color>の供給が増えて、価格が下がったよ。,由于与其他国家的贸易，<color=#FFFF00>{0}</color>的供应增加了，价格下降了。
+950507,"Due to natural disasters, the harvest of <color=#FFFF00>{0}</color> has been poor, and prices have risen.","자연재해의 영향으로, <color=#FFFF00>{0}</color>가 흉작입니다. 가격이 상승합니다.",自然災害の影響で、<color=#FFFF00>{0}</color>の収穫が悪くなって、価格が上がったよ。,由于自然灾害，<color=#FFFF00>{0}</color>歉收，价格上涨了。
+950508,"<color=#FFFF00>{0}</color> is trending among people, and prices have risen.",<color=#FFFF00>{0}</color>가 사람들 사이에서 유행입니다. 가격이 상승합니다.,<color=#FFFF00>{0}</color>が人々の間で流行して、価格が上がったよ。,<color=#FFFF00>{0}</color>在民间流行，价格上涨了。
+950509,"Due to the festival, more vendors are selling <color=#FFFF00>{0}</color>, and prices have dropped.","축제의 영향으로, <color=#FFFF00>{0}</color>를 판매하는 상인이 늘었습니다. 가격이 하락합니다.",祭りの影響で、<color=#FFFF00>{0}</color>を売る商人が増えて、価格が下がったよ。,由于节日影响，销售<color=#FFFF00>{0}</color>的商人增多了，价格下降了。
+950510,"With a steady supply of raw materials, a large quantity of <color=#FFFF00>{0}</color> is being produced, and prices have dropped.","재료 수급이 원할하여, <color=#FFFF00>{0}</color>가 많이 만들어지고 있습니다. 가격이 하락합니다.",材料の供給が順調で、<color=#FFFF00>{0}</color>がたくさん生産され、価格が下がったよ。,由于原料供应顺畅，<color=#FFFF00>{0}</color>大量生产，价格下降了。
+950511,"Among the nobility, <color=#FFFF00>{0}</color> is popular, and prices have risen.","귀족들 사이에서, <color=#FFFF00>{0}</color>가 인기입니다. 가격이 상승합니다.",貴族たちの間で、<color=#FFFF00>{0}</color>が人気になって、価格が上がったよ。,在贵族中，<color=#FFFF00>{0}</color>很受欢迎，价格上涨了。
+950512,"Rumors have spread that <color=#FFFF00>{0}</color> is a health food, and prices have risen.",<color=#FFFF00>{0}</color>가 건강 식품이라는 소문이 났습니다. 가격이 상승합니다.,<color=#FFFF00>{0}</color>が健康食品だって噂され、価格が上がったよ。,传闻<color=#FFFF00>{0}</color>是健康食品，价格上涨了。
+950513,"The production method has been leaked; more artisans are making <color=#FFFF00>{0}</color>, and prices have dropped.",제작법이 유출되었습니다. <color=#FFFF00>{0}</color>를 만드는 장인이 늘었습니다. 가격이 하락합니다.,製法が流出して、<color=#FFFF00>{0}</color>を作る職人が増えたので、価格が下がったよ。,制作工艺外泄，制造<color=#FFFF00>{0}</color>的匠人增多，价格下降了。
+950514,"Rumors say that <color=#FFFF00>{0}</color> attracts evil spirits, and prices have dropped.",<color=#FFFF00>{0}</color>가 악령을 부른다고 소문이 났습니다. 가격이 하락합니다.,<color=#FFFF00>{0}</color>が悪霊を呼ぶって噂され、価格が下がったよ。,传闻<color=#FFFF00>{0}</color>会招来恶灵，价格下降了。
+950515,"People consider <color=#FFFF00>{0}</color> essential, causing its price to rise.",<color=#FFFF00>{0}</color>를 사람들이 필수라고 여깁니다. 가격이 상승합니다.,みんなが<color=#FFFF00>{0}</color>を必需品だと思って、価格が上がったよ。,人们视<color=#FFFF00>{0}</color>为必需品，价格上涨了。
+950516,The economy is in recession; the number of vendors selling <color=#FFFF00>{0}</color> has decreased.,경기가 불황입니다. <color=#FFFF00>{0}</color>를 파는 상인의 수가 감소했습니다,景気が低迷していて、<color=#FFFF00>{0}</color>を売る商人の数が減ったよ。,由于经济衰退，销售<color=#FFFF00>{0}</color>的商人数量减少了。
+950517,"A war has broken out in a neighboring country; fewer people are seeking <color=#FFFF00>{0}</color>, and prices have dropped.",근처 나라에서 전쟁이 일어났습니다. <color=#FFFF00>{0}</color>를 구하는 사람이 적어집니다. 가격이 하락합니다.,近隣の国で戦争が起こり、<color=#FFFF00>{0}</color>を求める人が減って、価格が下がったよ。,由于邻国爆发战争，购买<color=#FFFF00>{0}</color>的人减少，价格下降了。
+950518,"Rumors claim that the content of <color=#FFFF00>{0}</color> is bogus, and prices have dropped.",<color=#FFFF00>{0}</color>의 내용이 엉터리라고 소문이 났습니다. 가격이 하락합니다.,<color=#FFFF00>{0}</color>の内容がでたらめだって噂され、価格が下がったよ。,传闻<color=#FFFF00>{0}</color>的内容不靠谱，价格下降了。
+950519,"Interest in books has increased, and <color=#FFFF00>{0}</color> has become popular.",서적에 관심있는 사람이 늘었습니다. <color=#FFFF00>{0}</color>가 인기입니다.,書籍に興味を持つ人が増えて、<color=#FFFF00>{0}</color>が人気になったよ。,对书籍感兴趣的人增多了，<color=#FFFF00>{0}</color>变得受欢迎了。
+950520,An important exam is about to begin; the price of <color=#FFFF00>{0}</color> has risen.,곧 있으면 중요한 시험이 시작됩니다. <color=#FFFF00>{0}</color>의 가격이 상승합니다.,もうすぐ大事な試験が始まるから、<color=#FFFF00>{0}</color>の価格が上がるよ。,即将开始重要考试，<color=#FFFF00>{0}</color>的价格上涨了。
+950521,Decreased productivity has led to a reduction in the supply of food.,"생산성이 감소하여, 식료품 공급량이 감소합니다.",生産性が低下して、食料の供給量が減ってしまったよ。,由于生产率下降，食品供应量减少了。
+950522,Decreased productivity has led to an increase in the supply of food.,"생산성이 감소하여, 식료품 공급량이 증가합니다.",生産性が低下して、食料の供給量が増えるよ。,由于生产率下降，食品供应量反而增加了。
+998001, Tips:_nHealth is harmful for smoking., 팁:_nㅋㅋ, ヒント:_n(ウケる), 提示:_n哈哈
+998002, Tips : _nTips2, 팁 : _n팁2, ヒント : _nヒント2, 提示 : _n提示2
+998003, Tips : _nTips3, 팁 : _n팁3, ヒント : _nヒント3, 提示 : _n提示3
+998004, Tips : _nTips4, 팁 : _n팁4, ヒント : _nヒント4, 提示 : _n提示4
+998005, Tips : _nTips5, 팁 : _n팁5, ヒント : _nヒント5, 提示 : _n提示5
+998006, Tips : _nTips6, 팁 : _n팁6, ヒント : _nヒント6, 提示 : _n提示6
+998007, Tips : _nTips7, 팁 : _n팁7, ヒント : _nヒント7, 提示 : _n提示7
+998008, Tips : _nTips8, 팁 : _n팁8, ヒント : _nヒント8, 提示 : _n提示8
+998009, Tips : _nTips9, 팁 : _n팁9, ヒント : _nヒント9, 提示 : _n提示9
+998010, Tips : _nTips10, 팁 : _n팁10, ヒント : _nヒント10, 提示 : _n提示10
+998011, Tips : _nTips11, 팁 : _n팁11, ヒント : _nヒント11, 提示 : _n提示11
+998012, Tips : _nTips12, 팁 : _n팁12, ヒント : _nヒント12, 提示 : _n提示12
+998013, Tips : _nTips13, 팁 : _n팁13, ヒント : _nヒント13, 提示 : _n提示13
+998014, Tips : _nTips14, 팁 : _n팁14, ヒント : _nヒント14, 提示 : _n提示14
+998015, Tips : _nTips15, 팁 : _n팁15, ヒント : _nヒント15, 提示 : _n提示15
+998016, Tips : _nTips16, 팁 : _n팁16, ヒント : _nヒント16, 提示 : _n提示16
+998017, Tips : _nTips17, 팁 : _n팁17, ヒント : _nヒント17, 提示 : _n提示17
+998018, Tips : _nTips18, 팁 : _n팁18, ヒント : _nヒント18, 提示 : _n提示18
+998019, Tips : _nTips19, 팁 : _n팁19, ヒント : _nヒント19, 提示 : _n提示19
+998020, Tips : _nTips20, 팁 : _n팁20, ヒント : _nヒント20, 提示 : _n提示20
+999001, New Game, 새로운 게임, 新しいゲーム, 新游戏
+999002, Limited Resources, 자원 한정 모드, 限定資源モード, 资源限定模式
+999003, Exit Game, 게임 종료, ゲーム終了, 游戏结束
+999004, Continue, 이어하기, 続きから, 继续游戏
+999005, Best Record : Earned{0} coins, 최고 수익 기록_n{0} 코인, 最高収益記録_n{0} コイン, 最高收益记录_n{0} 硬币
+999006, Restart, 재시작, 再スタート, 重新开始
+999007, Main Menu, 메인 메뉴로, メインメニューへ, 回主菜单
+999008, Quit, 나가기, 終了, 退出
+999009, Average Inventory Cost, 평균 매입가, 平均購入価格, 平均进价
+999010, Max, 최대, 最大, 最大
+999011, Purchase, 구매, 購入, 购买
+999012, Sell, 판매, 販売, 出售
+999013, Random Box, 랜덤 박스, ランダムボックス, 随机箱子
+999014, Gather for intel, 정보 수집, 情報収集, 收集情报
+999015, Cost, 총액, 合計, 总额
+999016, Revenue, 총 판매액, 総売上, 总销售额
+999017, Gather intel about product pricing, 상품 가격에 관한 정보 수집, 商品の価格情報を収集する, 收集商品价格信息
+999018, Invest in the inn, 여관에 투자, 宿に投資する, 投资客栈
+999019, Profit:, 수익:, 利益:, 收益:
+999020, Total investment : {0}, 총 투자액 : {0}, 総投資額 : {0}, 总投资额 : {0}
+999021, Capacity : {0} / {1}_nRental Fee : {2} / day, 용량 : {0} / {1}_n임대료: {2} / 1일, 容量 : {0} / {1}_nレンタル料: {2} / 日, 容量 : {0} / {1}_n租金: {2} / 天
+999022, Level : {0}, 레벨 : {0}, レベル : {0}, 等级 : {0}
+999023, Bulletin Board, 게시판, 掲示板, 公告板
+999024, Cost :, 비용 :, 費用 :, 费用 :
+999025, Lend money, 돈 빌려주기, お金を貸す, 借钱
+999026, Retrieve, 회수, 回収, 回收
+999027, Price, 판가, 販売価格, 售价
+999028, Total Price, 총액, 合計金額, 总价
+999029, Take, 획득, 獲得, 获取
+999030, Blank, 공란, 空欄, 空白
+999031, Blank, 공란, 空欄, 空白
+999032, Blank, 공란, 空欄, 空白
+999901, Not enough coins to pay off rental fee.Do you want to lose all progress in this game and continue ?," ""창고 임대료를 지불할 코인이 부족합니다. 현재까지의 진행 상황을 잃고", 倉庫のレンタル料を支払うコインが足りません。これまでの進行状況が失われ、メインメニューに戻ります。続けますか？, 仓库租金的硬币不足，将失去目前的进度并返回主菜单。要继续吗？
+999902, Insufficient coins., 코인이 부족합니다., コインが足りません。, 硬币不足。
+999903, You cannot buy items over maximum inventory capacity., 창고 용량이 부족합니다., 倉庫の容量が足りません。, 仓库容量不足。
+999904, Proceed to next day ?, 다음 날로 이동하시겠습니까 ?, 次の日に進みますか？, 要前往下一天吗？
+999905, Would you upgrade your inventory with{0} coins ? Rental fee for next inventory level : {1} coins a day, {0} 코인을 사용하여 창고를 업그레이드 하시겠습니까 ? 다음 레벨의 창고 비용 : 1일{1}코인., {0}コインを使って倉庫をアップグレードする？次のレベルの倉庫の料金は1日{1}コインだよ。, 花费{0}硬币升级仓库吗？下一等级的仓库租金为每天{1}硬币。
+999906, Do you want to downgrade Inventory level ? Rental fee for downgraded inventory level : {0} coins a day, 창고 레벨을 낮추시겠습니까 ? 다운그레이드 후 창고 비용 : 1일{0}코인., 倉庫のレベルを下げる？ダウングレード後のレンタル料は1日{0}コインだよ。, 要降级仓库吗？降级后仓库租金为每天{0}硬币。
+999907, Pre - order with a{0} % discount, 시장 가격보다{0}% 할인된 가격으로 예약 주문, 市場価格より{0}% 割引で予約注文できるよ。, 以比市场价低{0}% 的折扣进行预定订单
+999908, You can purchase each type of box once daily.Each box contains 1–5 of the same product which disappears if not collected., 매일 각 유형의 상자를 한 번씩 구매할 수 있으며 1–5개의 동일한 상품이 들어있습니다.상품은 가져가지 않으면 사라집니다., 毎日各種類のボックスを一度だけ購入でき、1～5個の同じ商品が入ってるよ。取らないと商品は消えちゃう。, 每天每种箱子只能购买一次，内含1到5个相同的商品，如果不拿走，商品就会消失。
+999909," ""You can receive a pre-ordered product the day after purchase. You do not have to pick it up immediately"," ""상품을 구매한 뒤 다음 날에 취득할 수 있습니다. 상품을 취득하지 않더라도 사라지진 않지만", 商品は購入後、翌日に受け取れるよ。受け取らなくても消えはしないけど、新しい注文に切り替わることもないよ。, 购买后，商品可以在第二天获取。即使不取走，也不会消失，但不会被新订单替换。
+999910, You can only gather information once a day.The information you gather may be duplicated., 정보 수집은 하루에 한 번만 할 수 있습니다.수집한 정보가 중복일 수도 있습니다., 情報収集は一日に一度だけ。集めた情報は重複することもあるよ。, 每天只能收集一次情报，收集到的信息可能会重复。
+999911," ""You can retrieve profit once a day"," ""하루에 한 번 수익을 받을 수 있습니다. 수익은 총 투자액의 {0}%이며", 1日に一度だけ利益を受け取れるよ。利益は総投資額の{0} % で、投資金は返ってこないから、慎重に投資してね。, 每天只能领取一次收益。收益为总投资额的{0}% ，且投资款不会返还，请谨慎投资。
+999912," ""Sir", 사장님 제게 <color = #FFFF00>{0}< / color> 코인을 빌려주셨으면 합니다. <color = #FFFF00>{1}< / color>일 후에 <color = #FFFF00>{2}< / color> 코인으로 갚겠습니다., 社長、<color = #FFFF00>{0}< / color>コインを貸していただけませんか？<color = #FFFF00>{1}< / color>日後に<color = #FFFF00>{2}< / color>コインで返します。, 老板，请借给我<color = #FFFF00>{0}< / color>硬币，<color = #FFFF00>{1}< / color>天后我会还<color = #FFFF00>{2}< / color>硬币。
+999913, Inventory reached max level., 창고가 최대 레벨입니다., 倉庫は最大レベルだよ。, 仓库已达到最高等级。
+999914, Cannot downgrade Inventory anymore., 창고가 최저 레벨입니다., 倉庫は最小レベルだよ。, 仓库已达到最低等级。
+999915, Inventory occupancy must be equal to or less than{0} to downgrade., 보유 상품이{0}칸 이하여야 다운그레이드가 가능합니다., 所持商品の数が{0}スロット以下でなければ、ダウングレードできないよ。, 持有商品必须不超过{0}格才能降级。
+999916," ""Sir", 사장님 약속드렸던 <color = #FFFF00>{0}< / color> 코인입니다., 社長、約束した<color = #FFFF00>{0}< / color>コインです。, 老板，这是承诺的<color = #FFFF00>{0}< / color>硬币。
+999917," ""Thank you for your help", 지난번엔 감사했습니다 사장님., 前回はありがとう、社長。, 上次谢谢您，老板。
+999918," ""Thank you very much", 감사합니다 사장님., 本当にありがとう、社長。, 非常感谢，老板。
+999919," ""According to the info", <color = #FFFF00>{0}< / color>의{1}는{2}코인이라고 합니다., <color = #FFFF00>{0}< / color>の{1}は{2}コインだって。, 据说<color = #FFFF00>{0}< / color>的{1}是{2}硬币。
+999920, Lowest price, 최저가, 最安値, 最低价
+999921, Highest price, 최고가, 最高値, 最高价
+999922, The following items can be sold at{0}% higher prices!!, 현재 시장 가격보다{0}% 높은 가격으로 판매 가능!!, 現在の市場価格より{0}% 高い価格で販売可能！！, 可按比当前市场价高{0}% 的价格出售！！
+999923,0,0,0,0
+999924,0,0,0,0
+999925,0,0,0,0
+999926,0,0,0,0
+999927,0,0,0,0
+999928,0,0,0,0
+999929,0,0,0,0
+999930,0,0,0,0
+999931,0,0,0,0
+999932,0,0,0,0
+999933,0,0,0,0
+999934,0,0,0,0
+999935,0,0,0,0
+999936,0,0,0,0
+999937,0,0,0,0
+999938,0,0,0,0
+999939,0,0,0,0
+999940,0,0,0,0
+999941,0,0,0,0
+999942,0,0,0,0
+999943,0,0,0,0
+999944,0,0,0,0
+999945,0,0,0,0
+999946,0,0,0,0
+999947,0,0,0,0
+999948,0,0,0,0
+999949,0,0,0,0
+999950,0,0,0,0
+999951,0,0,0,0
+999952,0,0,0,0
+999953,0,0,0,0
+999954,0,0,0,0
+999955,0,0,0,0
+999956,0,0,0,0
+999957,0,0,0,0
+999958,0,0,0,0
+999959,0,0,0,0
+999960,0,0,0,0
+999961,0,0,0,0
+999962,0,0,0,0
+999963,0,0,0,0
+999964,0,0,0,0
+999965,0,0,0,0
+999966,0,0,0,0
+999967,0,0,0,0
+999968,0,0,0,0
+999969,0,0,0,0
+999970,0,0,0,0
+999971,0,0,0,0
+999972,0,0,0,0
+999973,0,0,0,0
+999974,0,0,0,0
+999975,0,0,0,0
+999976,0,0,0,0
+999977,0,0,0,0
+999978,0,0,0,0
+999979,0,0,0,0
+999980,0,0,0,0
+999981,0,0,0,0
+999982,0,0,0,0
+999983,0,0,0,0
+999984,0,0,0,0
+999985,0,0,0,0
+999986,0,0,0,0
+999987,0,0,0,0
+999988,0,0,0,0
+999989,0,0,0,0
+999990,0,0,0,0
+999991,0, 을,0,0
+999992,0, 를,0,0
+999993,0, 이,0,0
+999994,0, 가,0,0
+999995,0,0,0,0
+999996,0,0,0,0
+999997,0,0,0,0
+999998,0,0,0,0
+999999, Default, Default, デフォルト, 默认

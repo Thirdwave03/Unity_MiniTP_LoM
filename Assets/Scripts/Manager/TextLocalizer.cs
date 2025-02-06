@@ -32,7 +32,6 @@ public class TextLocalizer : MonoBehaviour
     public void OnChangeLanguage(Languages language)
     {
         UpdateFormatContents();
-        Debug.Log($"{(int)language}, {language}");
         var stringTable = DataTableManager.StringTableList[(int)language];
 
         if (formatContents != null && formatContents.Count > 0)

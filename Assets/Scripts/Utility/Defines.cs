@@ -19,8 +19,8 @@ public static class DataTableIds
     {
         "StringTableEn",
         "StringTableKr",
-        //"StringTableCn",
-        //"StringTableJp",
+        "StringTableCn",
+        "StringTableJp",
     };
 
     public static readonly string[] Item =
@@ -121,7 +121,7 @@ public static class GameInfos
     public static int GetBulletinInfoStringId(ItemTypes itemType, PriceTrends trend, bool random = true)
     {
         int stringIdTempSuffix = (((int)itemType) - 1) * 4 + 1;
-        stringIdTempSuffix += ((int)trend) * 2;
+        stringIdTempSuffix += 2 - (((int)trend) * 2);
         int bulletinBoardIdDefault = 950000;
         if(random)
         {

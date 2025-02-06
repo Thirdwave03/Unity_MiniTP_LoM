@@ -33,8 +33,8 @@ public enum ItemTypes
 
 public enum PriceTrends
 {
-    Raising,
-    Descending,
+    Rising,
+    Declining,
     Stationary,
     Count,
 }

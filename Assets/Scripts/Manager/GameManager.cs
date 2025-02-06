@@ -188,7 +188,7 @@ public class GameManager
                 key = Random.Range(PriceDataIndex.minPrimary, PriceDataIndex.maxPrimary);
             }
             entireItemDict[i].isOnBoardRecently = false;
-            entireItemDict[i].bulletinBoardId = 50001; // tempData
+            entireItemDict[i].bulletinBoardId = 0; // tempData
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MinPrice, DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MaxPrice + 1);
             entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0,(int)PriceTrends.Count);
@@ -207,7 +207,7 @@ public class GameManager
                 key = Random.Range(PriceDataIndex.minSecondary, PriceDataIndex.maxSecondary);
             }
             entireItemDict[i].isOnBoardRecently = false;
-            entireItemDict[i].bulletinBoardId = 50001; // tempData
+            entireItemDict[i].bulletinBoardId = 0; // tempData
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MinPrice, DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MaxPrice + 1);
             entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0, (int)PriceTrends.Count);
@@ -226,7 +226,7 @@ public class GameManager
                 key = Random.Range(PriceDataIndex.minLuxury, PriceDataIndex.maxLuxury);
             }
             entireItemDict[i].isOnBoardRecently = false;
-            entireItemDict[i].bulletinBoardId = 50001; // tempData
+            entireItemDict[i].bulletinBoardId = 0; // tempData
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.PriceTable.Get(key).MinPrice, DataTableManager.PriceTable.Get(key).MaxPrice + 1);
             entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0, (int)PriceTrends.Count);
@@ -294,7 +294,7 @@ public class GameManager
         coins = 10000;
 
         tipIndex = Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex+1);
-        infoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxLuxury + 1);
+        infoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxSecondary + 1);
         isDisplayingMinPriceInfo = Random.Range(0, 2) == 0 ? false : true;
         isInfoOpened = false;
 
@@ -568,10 +568,10 @@ public class GameManager
     private void InnUpdateOnSleep()
     {
         innProfit += (int)(investedAmount * 0.010001f * investProfitRatio);
-        int newInfoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxLuxury + 1);
+        int newInfoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxSecondary + 1);
         while (infoItemIndex == newInfoItemIndex)
         {
-            newInfoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxLuxury + 1);
+            newInfoItemIndex = Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxSecondary + 1);
         }
         infoItemIndex = newInfoItemIndex;
         isDisplayingMinPriceInfo = Random.Range(0, 2) == 0 ? false : true;
@@ -623,13 +623,13 @@ public class GameManager
                 tempBulletinBoardContents = new List<int>();
             }
 
-            if (entireItemDict[i].priceTrend == PriceTrends.Raising)
+            if (entireItemDict[i].priceTrend == PriceTrends.Rising)
             {
                 entireItemDict[i].price +=
                     Random.Range(DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinChangable,
                     DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable + 1);
             }
-            if (entireItemDict[i].priceTrend == PriceTrends.Descending)
+            if (entireItemDict[i].priceTrend == PriceTrends.Declining)
             {
                 entireItemDict[i].price -=
                     Random.Range(DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinChangable,

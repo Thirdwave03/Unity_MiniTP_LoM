@@ -107,7 +107,36 @@ public class UiPurchaseItemInfo : MonoBehaviour
 
     public void OnClickMaxButton()
     {
-        purchaseSlider.value = purchaseSlider.maxValue;
+        if(ItemData == null)
+            { return; }
+        int maxCountCoin;
+        int totalPrice = ItemData.stock * GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price;
+        if(GameManager.Instance.coins >= totalPrice)
+        {
+            maxCountCoin = ItemData.stock;
+        }
+        else
+        {
+            maxCountCoin = GameManager.Instance.coins /
+                GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price;
+        }       
+
+        int maxCountOccupancy;
+        int totalOccupancy = ItemData.stock * DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy;
+        if(GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+            >= totalOccupancy)
+        {
+            maxCountOccupancy = ItemData.stock;
+        }
+        else
+        {
+            maxCountOccupancy = (GameManager.Instance.inventoryCapacity- GameManager.Instance.InventoryOccupancy)
+                / DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy;
+        }
+
+        int maxCount = Mathf.Min(maxCountCoin, maxCountOccupancy);
+
+        purchaseSlider.value = maxCount;
         OnSliderValueChanged();
     }
 
