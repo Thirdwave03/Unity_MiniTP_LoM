@@ -22,6 +22,7 @@ public enum ItemTypes
     //Luxuries,
 
     // v3
+    Default,
     Veges,
     Fruits,
     Foods,
@@ -43,6 +44,7 @@ public class ItemData
     // Independent variables
     public int Id {  get; set; }
     public int StringId { get; set; }
+    public int IsKoreanWithSuffix { get; set; }
     public ItemTypes ItemType { get; set; }
     public int ItemDescription {  get; set; }
     public string ImageFileName {  get; set; }
@@ -72,11 +74,13 @@ public class SavedItemData
     public ItemData ItemData;
     // Depending on game save data
     public int priceID;
+    public int bulletinBoardId;
     public int count;
     public int price;
     public bool isSoldOut;
     public int avgCost;
     public PriceTrends priceTrend;
+    public bool isOnBoardRecently;
     public int trendRemainingDate;
 }
 

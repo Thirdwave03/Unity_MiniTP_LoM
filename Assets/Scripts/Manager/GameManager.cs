@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -22,6 +21,7 @@ public class GameManager
     // Temp Vals
 
     public int investProfitRatio = 4;
+    public List<int> tempBulletinBoardContents;
 
     // ~Temp Vals
 
@@ -71,6 +71,9 @@ public class GameManager
     public bool isLuxuryShopAvailable;
     public List<int> notOnSaleItemsIds;
     public List<int> specialPriceItemIndexes;
+
+    // Bulletin Board
+    public List<int> bulletinBoardContentsId;
 
     // Inventory
     public int inventoryLevel;
@@ -123,6 +126,11 @@ public class GameManager
         instance.SetupEntireItemData();
     }
 
+    private void DefaultSettings()
+    {
+
+    }
+
     private void SetupEntireItemData()
     {
         onSleepEvent = new UnityEvent();
@@ -130,8 +138,10 @@ public class GameManager
         entireItemDict.Clear();
         salesItemDict = new Dictionary<int, SavedSalesItemData>();
         salesItemDict.Clear();
-       
-        for(int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxLuxury; ++i)
+        bulletinBoardContentsId = new List<int>();
+        bulletinBoardContentsId.Clear();
+
+        for (int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxLuxury; ++i)
         {
             var tempSavedData = new SavedItemData();
             tempSavedData.ItemData = DataTableManager.ItemTable.Get(i);
@@ -177,7 +187,8 @@ public class GameManager
             {
                 key = Random.Range(PriceDataIndex.minPrimary, PriceDataIndex.maxPrimary);
             }
-
+            entireItemDict[i].isOnBoardRecently = false;
+            entireItemDict[i].bulletinBoardId = 50001; // tempData
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MinPrice, DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MaxPrice + 1);
             entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0,(int)PriceTrends.Count);
@@ -195,7 +206,8 @@ public class GameManager
             {
                 key = Random.Range(PriceDataIndex.minSecondary, PriceDataIndex.maxSecondary);
             }
-
+            entireItemDict[i].isOnBoardRecently = false;
+            entireItemDict[i].bulletinBoardId = 50001; // tempData
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MinPrice, DataTableManager.Get<PriceTable>(DataTableIds.Price[0]).Get(key).MaxPrice + 1);
             entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0, (int)PriceTrends.Count);
@@ -213,7 +225,8 @@ public class GameManager
             {
                 key = Random.Range(PriceDataIndex.minLuxury, PriceDataIndex.maxLuxury);
             }
-
+            entireItemDict[i].isOnBoardRecently = false;
+            entireItemDict[i].bulletinBoardId = 50001; // tempData
             entireItemDict[i].priceID = key;
             entireItemDict[i].price = Random.Range(DataTableManager.PriceTable.Get(key).MinPrice, DataTableManager.PriceTable.Get(key).MaxPrice + 1);
             entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0, (int)PriceTrends.Count);
@@ -235,6 +248,7 @@ public class GameManager
             SalesItemChangeOnSleepWithSelection();
             WholeSalesUpdateOnSleep();
             RandomBoxUpdateOnSleep();
+            BulletinBoardContentsUpdateOnSleep();
         }
         CallSave();
         Debug.Log($"New Game Set and Save: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
@@ -369,7 +383,10 @@ public class GameManager
         notOnSaleItemsIds = SaveLoadManager.Data.notOnSaleItemsIds;
         specialPriceItemIndexes = SaveLoadManager.Data.specialPriceItemIndexes;
 
-            // Inventory
+        // Bulletin Board
+        bulletinBoardContentsId = SaveLoadManager.Data.bulletinBoardContentsId;
+
+        // Inventory
         inventoryLevel = SaveLoadManager.Data.inventoryLevel;
         inventoryCapacity = SaveLoadManager.Data.inventoryCapacity;
         inventoryFee = SaveLoadManager.Data.inventoryFee;
@@ -449,6 +466,9 @@ public class GameManager
         SaveLoadManager.Data.notOnSaleItemsIds = notOnSaleItemsIds;
         SaveLoadManager.Data.specialPriceItemIndexes = specialPriceItemIndexes;
 
+        // Bulletin Board
+        SaveLoadManager.Data.bulletinBoardContentsId = bulletinBoardContentsId;
+
         // Inventory
         SaveLoadManager.Data.inventoryLevel = inventoryLevel;
         SaveLoadManager.Data.inventoryCapacity = inventoryCapacity;
@@ -494,7 +514,6 @@ public class GameManager
         SaveLoadManager.Data.randomBox2Cnt = randomBox2Cnt;
     }
 
-
     public void CallSave()
     {
         SynchronizeWithSaveData();
@@ -525,6 +544,7 @@ public class GameManager
         InnUpdateOnSleep();
         WholeSalesUpdateOnSleep(); // must be called after price change
         RandomBoxUpdateOnSleep();
+        BulletinBoardContentsUpdateOnSleep(); // must be called after price change
         CallSave();
         onSleepEvent?.Invoke();
     }
@@ -597,6 +617,12 @@ public class GameManager
         for(int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxLuxury; ++i)
         {
             entireItemDict[i].trendRemainingDate--;
+            entireItemDict[i].isOnBoardRecently = false;
+            if (tempBulletinBoardContents == null)
+            {
+                tempBulletinBoardContents = new List<int>();
+            }
+
             if (entireItemDict[i].priceTrend == PriceTrends.Raising)
             {
                 entireItemDict[i].price +=
@@ -613,14 +639,65 @@ public class GameManager
                 DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinPrice,
                 DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxPrice + 1);
             if (entireItemDict[i].trendRemainingDate <= 0)
-            {   
+            {                   
+                // remove contents ran out of trend date from bulletin board.
+                if (bulletinBoardContentsId.Contains(entireItemDict[i].ItemData.Id))
+                {                    
+                    bulletinBoardContentsId.Remove(entireItemDict[i].ItemData.Id);               
+                }
+
                 entireItemDict[i].priceTrend = (PriceTrends)Random.Range(0, (int)PriceTrends.Count);
                 if (entireItemDict[i].priceTrend != PriceTrends.Stationary)
                 {
-                    entireItemDict[i].trendRemainingDate = Random.Range(0, 3);
+                    entireItemDict[i].trendRemainingDate = Random.Range(0, 4);
+                    // temp List of bulletin contents out of items with recent price change
+                    if (entireItemDict[i].trendRemainingDate >= 2 && i <= ItemDataIndex.maxSecondary)
+                    {                       
+
+                        entireItemDict[i].isOnBoardRecently = true;
+                        entireItemDict[i].bulletinBoardId =
+                            GameInfos.GetBulletinInfoStringId(entireItemDict[i].ItemData.ItemType,
+                            entireItemDict[i].priceTrend);
+                        tempBulletinBoardContents.Add(entireItemDict[i].ItemData.Id);
+                    }
                 }
             }
         }
+    }
+
+    private void BulletinBoardContentsUpdateOnSleep()
+    {                
+        if (tempBulletinBoardContents == null)
+        {
+            tempBulletinBoardContents = new List<int>();
+        }
+
+        int numberOfNewInfo = Random.Range(0, 4);
+        while(bulletinBoardContentsId.Count + numberOfNewInfo <=1)
+        {
+            numberOfNewInfo = Random.Range(1, 4);
+        }
+
+        while(bulletinBoardContentsId.Count + numberOfNewInfo >= 7)
+        {
+            bulletinBoardContentsId.RemoveAt(0);
+        }
+
+        while(numberOfNewInfo > 0)
+        {
+            int randomIndex = Random.Range(0, tempBulletinBoardContents.Count);
+            if (!bulletinBoardContentsId.Contains(tempBulletinBoardContents[randomIndex]))
+            {
+                bulletinBoardContentsId.Add(tempBulletinBoardContents[randomIndex]);
+            }
+            tempBulletinBoardContents.RemoveAt(randomIndex);            
+            numberOfNewInfo--;
+            if (tempBulletinBoardContents.Count == 0)
+            {
+                numberOfNewInfo = 0;
+            }
+        }
+        tempBulletinBoardContents.Clear();
     }
 
     private void SalesItemChangeOnSleepWithProbability()

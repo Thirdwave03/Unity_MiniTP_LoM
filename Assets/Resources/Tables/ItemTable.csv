@@ -1,51 +1,51 @@
-﻿Id,StringId,ItemType,ItemDescription,ImageFileName,MaxCount,InventoryOccupancy,EncounterProbability,MaxOnSaleCount
-10001,910001,1,911001,itemimg/Veges/carrot,999,1,90,100
-10002,910002,1,911002,itemimg/Veges/corn,999,1,90,100
-10003,910003,1,911003,itemimg/Veges/egg,999,1,90,100
-10004,910004,1,911004,itemimg/Veges/fish,999,1,90,100
-10005,910005,1,911005,itemimg/Veges/garlic,999,1,90,100
-10006,910006,1,911006,itemimg/Veges/greenonion,999,1,90,100
-10007,910007,1,911007,itemimg/Veges/herbs,999,1,90,100
-10008,910008,1,911008,itemimg/Veges/mushroom,999,1,90,100
-10009,910009,1,911009,itemimg/Veges/potato,999,1,90,100
-10010,910010,1,911010,itemimg/Veges/cabbage,999,1,90,100
-10011,910011,1,911011,itemimg/Veges/seaweed,999,1,90,100
-10012,910012,1,911012,itemimg/Veges/tomato,999,1,90,100
-10013,910013,1,911013,itemimg/Veges/turnip,999,1,90,100
-10014,910014,1,911014,itemimg/Veges/walnut,999,1,90,100
-10015,910015,1,911015,itemimg/Veges/wheat,999,1,90,100
-10016,910016,2,911016,itemimg/Fruits/apple,999,2,80,100
-10017,910017,2,911017,itemimg/Fruits/honey,999,2,80,100
-10018,910018,2,911018,itemimg/Fruits/lemon,999,2,80,100
-10019,910019,2,911019,itemimg/Fruits/milk,999,2,80,100
-10020,910020,2,911020,itemimg/Fruits/orange,999,2,80,100
-10021,910021,3,911021,itemimg/Foods/beer,999,1,85,100
-10022,910022,3,911022,itemimg/Foods/bread,999,1,85,100
-10023,910023,3,911023,itemimg/Foods/chese,999,1,85,100
-10024,910024,3,911024,itemimg/Foods/fried egg,999,1,85,100
-10025,910025,3,911025,itemimg/Foods/wine,999,1,85,100
-10026,910026,4,911026,itemimg/Tools/backpack,999,1,80,100
-10027,910027,4,911027,itemimg/Tools/potion,999,1,80,100
-10028,910028,4,911028,itemimg/Tools/cape,999,1,80,100
-10029,910029,4,911029,itemimg/Tools/rope,999,1,80,100
-10030,910030,4,911030,itemimg/Tools/fishing rod,999,1,80,100
-10031,910031,4,911031,itemimg/Tools/compass,999,2,70,100
-10032,910032,4,911032,itemimg/Tools/dice,999,2,70,100
-10033,910033,4,911033,itemimg/Tools/great hammer,999,2,70,100
-10034,910034,4,911034,itemimg/Tools/mirror,999,2,70,100
-10035,910035,4,911035,itemimg/Tools/shield,999,2,70,100
-10036,910036,5,911036,itemimg/Books/book_1,999,3,70,100
-10037,910037,5,911037,itemimg/Books/book_2,999,3,70,100
-10038,910038,5,911038,itemimg/Books/book_3,999,3,70,100
-10039,910039,5,911039,itemimg/Books/technical book_1,999,5,65,100
-10040,910040,5,911040,itemimg/Books/technical book_2,999,5,65,100
-10041,910041,6,911041,itemimg/Luxuries/clam,1,1,30,1
-10042,910042,6,911042,itemimg/Luxuries/crystal,1,1,30,1
-10043,910043,6,911043,itemimg/Luxuries/amulet,1,1,30,1
-10044,910044,6,911044,itemimg/Luxuries/golden key,1,1,30,1
-10045,910045,6,911045,itemimg/Luxuries/silver ingot,1,1,30,1
-10046,910046,6,911046,itemimg/Luxuries/golden ring,1,2,30,1
-10047,910047,6,911047,itemimg/Luxuries/ancient helmet,1,3,30,1
-10048,910048,6,911048,itemimg/Luxuries/ancient dagger,1,5,30,1
-10049,910049,6,911049,itemimg/Luxuries/gold ingot,1,6,30,1
-10050,910050,6,911050,itemimg/Luxuries/diamond,1,8,30,1
+﻿Id,StringId,IsKoreanWithSuffix,ItemType,ItemDescription,ImageFileName,MaxCount,InventoryOccupancy,EncounterProbability,MaxOnSaleCount
+10001,910001,1,1,911001,itemimg/Veges/carrot,999,1,90,100
+10002,910002,0,1,911002,itemimg/Veges/corn,999,1,90,100
+10003,910003,1,1,911003,itemimg/Veges/egg,999,1,90,100
+10004,910004,1,1,911004,itemimg/Veges/fish,999,1,90,100
+10005,910005,1,1,911005,itemimg/Veges/garlic,999,1,90,100
+10006,910006,0,1,911006,itemimg/Veges/greenonion,999,1,90,100
+10007,910007,0,1,911007,itemimg/Veges/herbs,999,1,90,100
+10008,910008,1,1,911008,itemimg/Veges/mushroom,999,1,90,100
+10009,910009,0,1,911009,itemimg/Veges/potato,999,1,90,100
+10010,910010,0,1,911010,itemimg/Veges/cabbage,999,1,90,100
+10011,910011,0,1,911011,itemimg/Veges/seaweed,999,1,90,100
+10012,910012,0,1,911012,itemimg/Veges/tomato,999,1,90,100
+10013,910013,0,1,911013,itemimg/Veges/turnip,999,1,90,100
+10014,910014,0,1,911014,itemimg/Veges/walnut,999,1,90,100
+10015,910015,0,1,911015,itemimg/Veges/wheat,999,1,90,100
+10016,910016,0,2,911016,itemimg/Fruits/apple,999,2,80,100
+10017,910017,1,2,911017,itemimg/Fruits/honey,999,2,80,100
+10018,910018,1,2,911018,itemimg/Fruits/lemon,999,2,80,100
+10019,910019,0,2,911019,itemimg/Fruits/milk,999,2,80,100
+10020,910020,0,2,911020,itemimg/Fruits/orange,999,2,80,100
+10021,910021,0,3,911021,itemimg/Foods/beer,999,1,85,100
+10022,910022,1,3,911022,itemimg/Foods/bread,999,1,85,100
+10023,910023,0,3,911023,itemimg/Foods/chese,999,1,85,100
+10024,910024,0,3,911024,itemimg/Foods/fried egg,999,1,85,100
+10025,910025,1,3,911025,itemimg/Foods/wine,999,1,85,100
+10026,910026,1,4,911026,itemimg/Tools/backpack,999,1,80,100
+10027,910027,1,4,911027,itemimg/Tools/potion,999,1,80,100
+10028,910028,0,4,911028,itemimg/Tools/cape,999,1,80,100
+10029,910029,1,4,911029,itemimg/Tools/rope,999,1,80,100
+10030,910030,0,4,911030,itemimg/Tools/fishing rod,999,1,80,100
+10031,910031,1,4,911031,itemimg/Tools/compass,999,2,70,100
+10032,910032,0,4,911032,itemimg/Tools/dice,999,2,70,100
+10033,910033,0,4,911033,itemimg/Tools/great hammer,999,2,70,100
+10034,910034,1,4,911034,itemimg/Tools/mirror,999,2,70,100
+10035,910035,0,4,911035,itemimg/Tools/shield,999,2,70,100
+10036,910036,1,5,911036,itemimg/Books/book_1,999,3,70,100
+10037,910037,1,5,911037,itemimg/Books/book_2,999,3,70,100
+10038,910038,1,5,911038,itemimg/Books/book_3,999,3,70,100
+10039,910039,1,5,911039,itemimg/Books/technical book_1,999,5,65,100
+10040,910040,1,5,911040,itemimg/Books/technical book_2,999,5,65,100
+10041,910041,0,6,911041,itemimg/Luxuries/clam,1,1,30,1
+10042,910042,1,6,911042,itemimg/Luxuries/crystal,1,1,30,1
+10043,910043,1,6,911043,itemimg/Luxuries/amulet,1,1,30,1
+10044,910044,0,6,911044,itemimg/Luxuries/golden key,1,1,30,1
+10045,910045,0,6,911045,itemimg/Luxuries/silver ingot,1,1,30,1
+10046,910046,0,6,911046,itemimg/Luxuries/golden ring,1,2,30,1
+10047,910047,0,6,911047,itemimg/Luxuries/ancient helmet,1,3,30,1
+10048,910048,1,6,911048,itemimg/Luxuries/ancient dagger,1,5,30,1
+10049,910049,0,6,911049,itemimg/Luxuries/gold ingot,1,6,30,1
+10050,910050,0,6,911050,itemimg/Luxuries/diamond,1,8,30,1

@@ -29,6 +29,7 @@ public class TitleSceneUiManager : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
         AddListeners();
     }
 

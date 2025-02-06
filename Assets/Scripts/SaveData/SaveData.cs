@@ -37,6 +37,9 @@ public class SaveDataV1 : SaveData
     public List<int> notOnSaleItemsIds;
     public List<int> specialPriceItemIndexes;
 
+    // Bulletin Board
+    public List<int> bulletinBoardContentsId;
+
     // Inventory
     public int inventoryLevel;
     public int inventoryCapacity;

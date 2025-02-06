@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 public enum SceneIds
@@ -116,6 +117,24 @@ public static class GameInfos
     public static readonly int maxTipsIndex = 998020;
 
     public static readonly int priceInfoCost = 1000;
+
+    public static int GetBulletinInfoStringId(ItemTypes itemType, PriceTrends trend, bool random = true)
+    {
+        int stringIdTempSuffix = (((int)itemType) - 1) * 4 + 1;
+        stringIdTempSuffix += ((int)trend) * 2;
+        int bulletinBoardIdDefault = 950000;
+        if(random)
+        {
+            stringIdTempSuffix += UnityEngine.Random.Range(0, 2);
+            stringIdTempSuffix += bulletinBoardIdDefault;
+            return stringIdTempSuffix;
+        }
+        else
+        {
+            stringIdTempSuffix += bulletinBoardIdDefault;
+            return stringIdTempSuffix;
+        }
+    }
 }
 
 public static class LocalizerContents

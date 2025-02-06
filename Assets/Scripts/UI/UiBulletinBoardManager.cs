@@ -27,8 +27,19 @@ public class UiBulletinBoardManager : MonoBehaviour
         isMoving = false;
         openedXPos = gameObject.transform.position.x;
         closedXPos = openedXPos - Screen.width * 0.7f;
-        prefabList = new List<UiBulletinContentController>();
         gameObject.transform.position = new Vector3(closedXPos, 0, 0);
+        SetContents();        
+    }
+
+    private void SetContents()
+    {
+        prefabList = new List<UiBulletinContentController>();
+        for(int i = 0; i < GameManager.Instance.bulletinBoardContentsId.Count; ++i)
+        {
+            var content = Instantiate(bulletinContentsPrefab, viewPort.transform);
+            content.SetContentWithId(GameManager.Instance.bulletinBoardContentsId[i]);
+            prefabList.Add(content);
+        }
     }
 
     public void OnClick()
@@ -38,7 +49,11 @@ public class UiBulletinBoardManager : MonoBehaviour
             isOpened = !isOpened;
             accumTime = 0f;
             isMoving = true;
-        }        
+        }
+        foreach(var content in prefabList)
+        {
+            content.ResetSize();
+        }
     }
 
     public void Update()

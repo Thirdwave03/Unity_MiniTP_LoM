@@ -482,7 +482,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8de01ed27bc1c9d4c98e835ee5824b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletinContentsController: {fileID: 0}
+  bulletinContentsPrefab: {fileID: 0}
+  viewPort: {fileID: 0}
 --- !u!1 &4183087415625097469
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,8 +737,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: -169.62}
-  m_SizeDelta: {x: 53.13, y: 113.079994}
+  m_AnchoredPosition: {x: 0, y: -209.88002}
+  m_SizeDelta: {x: 81.795006, y: 139.92001}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &7314755472202499927
 MonoBehaviour:
