@@ -60,6 +60,7 @@ public class MainSceneUiManager : MonoBehaviour
         AddListeners();
         AddLocalizerActions();
         UpdateMainSceneDisplay();
+        GameManager.Instance.Init();
     }
 
     private void OnEnable()

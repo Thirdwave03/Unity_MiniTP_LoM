@@ -17,7 +17,7 @@ public class TitleSceneUiManager : MonoBehaviour
 
     public GameObject settingsWindow;
     public Button settingClose;
-    public Button settingQuitButton;
+    public Button settingQuitButton;        
 
     public TMP_Dropdown languagesDD;
 
@@ -29,13 +29,16 @@ public class TitleSceneUiManager : MonoBehaviour
 
     private void Start()
     {
-        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 999;
         AddListeners();
     }
 
     private void OnEnable()
     {
         settingsWindow.SetActive(false);
+        languagesDD.value = (int)Variables.currentLanguage;
+        languagesDD.RefreshShownValue();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -89,20 +92,34 @@ public class TitleSceneUiManager : MonoBehaviour
         //     return;
         // }
         // GameManager.Instance.currentSavedSlotIndex = SaveLoadManager.GetAvailableSaveSlot();
-        GameManager.Instance.currentSavedSlotIndex = 0;
+        //var availableSlot = SaveLoadManager.GetAvailableSaveSlot();
+        //if(availableSlot == -1)
+        //{
+        //    PopUpWindowChooseOverwriteSlot();
+        //}
+        //else
+        //{
+        //    GameManager.Instance.currentSavedSlotIndex = availableSlot;
+        //    GameManager.Instance.SetupNewGame(GameModes.Default);
+        //    SceneManager.LoadScene((int)SceneIds.MainScene);
+        //}
+        
+        GameManager.Instance.currentSavedSlotIndex = 1;
         GameManager.Instance.SetupNewGame(GameModes.Default);
         SceneManager.LoadScene((int)SceneIds.MainScene);
     }
 
     private void OnClickContinue()
     {
-        if (!SaveLoadManager.Load(0))
+        int tempSlotIndex = 1;
+
+        if (!SaveLoadManager.Load(tempSlotIndex))
         {
-            Debug.Log("Load slot 0 failed");
+            Debug.Log($"Load slot {tempSlotIndex} failed");
             return;
         }
-        Debug.Log("Load slot 0 successful");
-        GameManager.Instance.LoadSavedSlot(0);
+        Debug.Log($"Load slot {tempSlotIndex} successful");
+        GameManager.Instance.LoadSavedSlot(tempSlotIndex);
         SceneManager.LoadScene((int)SceneIds.MainScene);
     }
 
@@ -115,6 +132,7 @@ public class TitleSceneUiManager : MonoBehaviour
     {
         
     }
+
     private void OnClickSlot(int slot)
     {
         GameManager.Instance.currentSavedSlotIndex = slot;

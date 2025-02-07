@@ -42,7 +42,7 @@ public class UiPurchaseItemBoard : MonoBehaviour, IDragHandler
         inventoryItemData = new List<SavedSalesItemData>();
         inventoryItemData.Clear();
 
-        foreach(var data in SaveLoadManager.Data.savedSalesItemList)
+        foreach(var data in SaveLoadManager.GameData.savedSalesItemList)
         {
             inventoryItemData.Add(data);
         }
@@ -89,7 +89,7 @@ public class UiPurchaseItemBoard : MonoBehaviour, IDragHandler
     public void CallUpdateSlots()
     {
         inventoryItemData.Clear();
-        foreach (var data in SaveLoadManager.Data.savedSalesItemList)
+        foreach (var data in SaveLoadManager.GameData.savedSalesItemList)
         {
             inventoryItemData.Add(data);
         }

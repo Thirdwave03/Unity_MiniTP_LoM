@@ -38,7 +38,7 @@ public class UiSalesItemInventory : MonoBehaviour
         inventoryItemData = new List<SavedItemData>();
         inventoryItemData.Clear();
 
-        foreach (var data in SaveLoadManager.Data.savedItemList)
+        foreach (var data in SaveLoadManager.GameData.savedItemList)
         {
             inventoryItemData.Add(data);
         }

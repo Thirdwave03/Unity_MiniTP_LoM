@@ -18,6 +18,12 @@ public class GameManager
             return instance;
         }
     }
+
+    public void Init()
+    {
+        SaveLoadManager.Load();
+    }
+
     // Temp Vals
 
     public int investProfitRatio = 4;
@@ -238,8 +244,9 @@ public class GameManager
         }
     }
 
-    public void SetupNewGame(GameModes gameMode = GameModes.Default)
+    public void SetupNewGame(GameModes gameMode = GameModes.Default, int SaveSlotIndex = 1)
     {
+        currentSavedSlotIndex = SaveSlotIndex;
         if(gameMode == GameModes.Default)
         {
             SetUpNewDefault();
@@ -280,7 +287,7 @@ public class GameManager
         }
     }
 
-    private void SetUpNewDefault(int slotIndex = 0, GameModes gameMode = GameModes.Default)
+    private void SetUpNewDefault(int slotIndex = 1, GameModes gameMode = GameModes.Default)
     {
         SetUpItemDatas();
         InitializeItemDictData();
@@ -341,7 +348,7 @@ public class GameManager
         randomBox2Price = entireItemDict[Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1)].price;
     }
 
-    public void LoadSavedSlot(int slotIndex = 0)
+    public void LoadSavedSlot(int slotIndex = 1)
     {
         currentSavedSlotIndex = slotIndex;
 
@@ -352,172 +359,173 @@ public class GameManager
         salesItemDict.Clear();
         if (SaveLoadManager.Load(currentSavedSlotIndex))
         {
-            foreach (var item in SaveLoadManager.Data.savedItemList)
+            foreach (var item in SaveLoadManager.GameData.savedItemList)
             {
                 entireItemDict.Add(item.ItemData.Id, item);
             }
-            foreach (var item in SaveLoadManager.Data.savedSalesItemList)
+            foreach (var item in SaveLoadManager.GameData.savedSalesItemList)
             {
                 salesItemDict.Add(item.SalesItemData.Id, item);
             }
         }
 
         // GameMode and dependant data
-        CurrentGameMode = SaveLoadManager.Data.currentGameMode;
-        lastDay = SaveLoadManager.Data.lastDay;
-        inventoryMinLevel = SaveLoadManager.Data.inventoryMinLevel;
-        inventoryMaxLevel = SaveLoadManager.Data.inventoryMaxLevel;
+        CurrentGameMode = SaveLoadManager.GameData.currentGameMode;
+        lastDay = SaveLoadManager.GameData.lastDay;
+        inventoryMinLevel = SaveLoadManager.GameData.inventoryMinLevel;
+        inventoryMaxLevel = SaveLoadManager.GameData.inventoryMaxLevel;
 
         // Game Core Data
-        days = SaveLoadManager.Data.days;
-        coins = SaveLoadManager.Data.coins;
+        days = SaveLoadManager.GameData.days;
+        coins = SaveLoadManager.GameData.coins;
 
             // Availabilities
-        tipIndex = SaveLoadManager.Data.tipIndex;
-        infoItemIndex = SaveLoadManager.Data.infoItemIndex;
-        isDisplayingMinPriceInfo = SaveLoadManager.Data.isDisplayingMinPriceInfo;
-        isInfoOpened = SaveLoadManager.Data.isInfoOpened;
-        isPrimaryShopAvailable = SaveLoadManager.Data.isPrimaryShopAvailable;
-        isSecondaryShopAvailable = SaveLoadManager.Data.isSecondaryShopAvailable;
-        isLuxuryShopAvailable = SaveLoadManager.Data.isLuxuryShopAvailable;
-        notOnSaleItemsIds = SaveLoadManager.Data.notOnSaleItemsIds;
-        specialPriceItemIndexes = SaveLoadManager.Data.specialPriceItemIndexes;
+        tipIndex = SaveLoadManager.GameData.tipIndex;
+        infoItemIndex = SaveLoadManager.GameData.infoItemIndex;
+        isDisplayingMinPriceInfo = SaveLoadManager.GameData.isDisplayingMinPriceInfo;
+        isInfoOpened = SaveLoadManager.GameData.isInfoOpened;
+        isPrimaryShopAvailable = SaveLoadManager.GameData.isPrimaryShopAvailable;
+        isSecondaryShopAvailable = SaveLoadManager.GameData.isSecondaryShopAvailable;
+        isLuxuryShopAvailable = SaveLoadManager.GameData.isLuxuryShopAvailable;
+        notOnSaleItemsIds = SaveLoadManager.GameData.notOnSaleItemsIds;
+        specialPriceItemIndexes = SaveLoadManager.GameData.specialPriceItemIndexes;
 
         // Bulletin Board
-        bulletinBoardContentsId = SaveLoadManager.Data.bulletinBoardContentsId;
+        bulletinBoardContentsId = SaveLoadManager.GameData.bulletinBoardContentsId;
 
         // Inventory
-        inventoryLevel = SaveLoadManager.Data.inventoryLevel;
-        inventoryCapacity = SaveLoadManager.Data.inventoryCapacity;
-        inventoryFee = SaveLoadManager.Data.inventoryFee;
+        inventoryLevel = SaveLoadManager.GameData.inventoryLevel;
+        inventoryCapacity = SaveLoadManager.GameData.inventoryCapacity;
+        inventoryFee = SaveLoadManager.GameData.inventoryFee;
 
             // Loan
-        lentAmount = SaveLoadManager.Data.lentAmount;
-        paybackDateCnt = SaveLoadManager.Data.paybackDateCnt;
-        lentPaybackAmout = SaveLoadManager.Data.lentPaybackAmount;
-        ifLent = SaveLoadManager.Data.ifLent;
-        isBusinessmanAvailable = SaveLoadManager.Data.isBusinessmanAvailable;
+        lentAmount = SaveLoadManager.GameData.lentAmount;
+        paybackDateCnt = SaveLoadManager.GameData.paybackDateCnt;
+        lentPaybackAmout = SaveLoadManager.GameData.lentPaybackAmount;
+        ifLent = SaveLoadManager.GameData.ifLent;
+        isBusinessmanAvailable = SaveLoadManager.GameData.isBusinessmanAvailable;
 
             // Inn
-        investedAmount = SaveLoadManager.Data.investedAmount;
-        innProfit = SaveLoadManager.Data.innProfit;
+        investedAmount = SaveLoadManager.GameData.investedAmount;
+        innProfit = SaveLoadManager.GameData.innProfit;
 
             // Wholesale
-        isItem1Purchased = SaveLoadManager.Data.isItem1Purchased;
-        isItem1PickedUp = SaveLoadManager.Data.isItem1PickedUp;
-        isItem1Pickupable = SaveLoadManager.Data.isItem1Pickupable;
-        wholesaleItem1 = SaveLoadManager.Data.wholesaleItem1;
-        wholesaleItem1Cnt = SaveLoadManager.Data.wholesaleItem1Cnt;
-        wholesaleItem1Cost = SaveLoadManager.Data.wholesaleItem1Cost;
+        isItem1Purchased = SaveLoadManager.GameData.isItem1Purchased;
+        isItem1PickedUp = SaveLoadManager.GameData.isItem1PickedUp;
+        isItem1Pickupable = SaveLoadManager.GameData.isItem1Pickupable;
+        wholesaleItem1 = SaveLoadManager.GameData.wholesaleItem1;
+        wholesaleItem1Cnt = SaveLoadManager.GameData.wholesaleItem1Cnt;
+        wholesaleItem1Cost = SaveLoadManager.GameData.wholesaleItem1Cost;
 
-        isItem2Purchased = SaveLoadManager.Data.isItem2Purchased;
-        isItem2PickedUp = SaveLoadManager.Data.isItem2PickedUp;
-        isItem2Pickupable = SaveLoadManager.Data.isItem2Pickupable;
-        wholesaleItem2 = SaveLoadManager.Data.wholesaleItem2;
-        wholesaleItem2Cnt = SaveLoadManager.Data.wholesaleItem2Cnt;
-        wholesaleItem2Cost = SaveLoadManager.Data.wholesaleItem2Cost;
+        isItem2Purchased = SaveLoadManager.GameData.isItem2Purchased;
+        isItem2PickedUp = SaveLoadManager.GameData.isItem2PickedUp;
+        isItem2Pickupable = SaveLoadManager.GameData.isItem2Pickupable;
+        wholesaleItem2 = SaveLoadManager.GameData.wholesaleItem2;
+        wholesaleItem2Cnt = SaveLoadManager.GameData.wholesaleItem2Cnt;
+        wholesaleItem2Cost = SaveLoadManager.GameData.wholesaleItem2Cost;
 
             // RandomBox
-        isRandomBox1Purchased = SaveLoadManager.Data.isRandomBox1Purchased;
-        isRandomBox1PickedUp = SaveLoadManager.Data.isRandomBox1PickedUp;
-        randomBox1Item = SaveLoadManager.Data.randomBox1Item;
-        randomBox1Price = SaveLoadManager.Data.randomBox1Price;
-        randomBox1Cnt = SaveLoadManager.Data.randomBox1Cnt;
+        isRandomBox1Purchased = SaveLoadManager.GameData.isRandomBox1Purchased;
+        isRandomBox1PickedUp = SaveLoadManager.GameData.isRandomBox1PickedUp;
+        randomBox1Item = SaveLoadManager.GameData.randomBox1Item;
+        randomBox1Price = SaveLoadManager.GameData.randomBox1Price;
+        randomBox1Cnt = SaveLoadManager.GameData.randomBox1Cnt;
 
-        isRandomBox2Purchased = SaveLoadManager.Data.isRandomBox2Purchased;
-        isRandomBox2PickedUp = SaveLoadManager.Data.isRandomBox2PickedUp;
-        randomBox2Item = SaveLoadManager.Data.randomBox2Item;
-        randomBox2Price = SaveLoadManager.Data.randomBox2Price;
-        randomBox2Cnt = SaveLoadManager.Data.randomBox2Cnt;
+        isRandomBox2Purchased = SaveLoadManager.GameData.isRandomBox2Purchased;
+        isRandomBox2PickedUp = SaveLoadManager.GameData.isRandomBox2PickedUp;
+        randomBox2Item = SaveLoadManager.GameData.randomBox2Item;
+        randomBox2Price = SaveLoadManager.GameData.randomBox2Price;
+        randomBox2Cnt = SaveLoadManager.GameData.randomBox2Cnt;
     }
 
     private void SynchronizeWithSaveData()
     {
         // ItemList and SalesItemList
-        SaveLoadManager.Data.savedItemList.Clear();
-        SaveLoadManager.Data.savedSalesItemList.Clear();
+        SaveLoadManager.GameData.savedItemList.Clear();
+        SaveLoadManager.GameData.savedSalesItemList.Clear();
         foreach (var saveData in entireItemDict.Values.ToList())
         {
-            SaveLoadManager.Data.savedItemList.Add(saveData);
+            SaveLoadManager.GameData.savedItemList.Add(saveData);
         }
         foreach (var saveData in salesItemDict.Values.ToList())
         {
-            SaveLoadManager.Data.savedSalesItemList.Add(saveData);
+            SaveLoadManager.GameData.savedSalesItemList.Add(saveData);
         }
 
         // GameMode and dependant data
-        SaveLoadManager.Data.currentGameMode = CurrentGameMode;
-        SaveLoadManager.Data.lastDay = lastDay;
-        SaveLoadManager.Data.inventoryMinLevel = inventoryMinLevel;
-        SaveLoadManager.Data.inventoryMaxLevel = inventoryMaxLevel;
+        SaveLoadManager.GameData.currentGameMode = CurrentGameMode;
+        SaveLoadManager.GameData.lastDay = lastDay;
+        SaveLoadManager.GameData.inventoryMinLevel = inventoryMinLevel;
+        SaveLoadManager.GameData.inventoryMaxLevel = inventoryMaxLevel;
 
         // Game Core Data
-        SaveLoadManager.Data.days = days;
-        SaveLoadManager.Data.coins = coins;
+        SaveLoadManager.GameData.days = days;
+        SaveLoadManager.GameData.coins = coins;
 
         // Availabilities
-        SaveLoadManager.Data.tipIndex = tipIndex;
-        SaveLoadManager.Data.infoItemIndex = infoItemIndex;
-        SaveLoadManager.Data.isDisplayingMinPriceInfo = isDisplayingMinPriceInfo;
-        SaveLoadManager.Data.isInfoOpened = isInfoOpened;
-        SaveLoadManager.Data.isPrimaryShopAvailable = isPrimaryShopAvailable;
-        SaveLoadManager.Data.isSecondaryShopAvailable = isSecondaryShopAvailable;
-        SaveLoadManager.Data.isLuxuryShopAvailable = isLuxuryShopAvailable;
-        SaveLoadManager.Data.notOnSaleItemsIds = notOnSaleItemsIds;
-        SaveLoadManager.Data.specialPriceItemIndexes = specialPriceItemIndexes;
+        SaveLoadManager.GameData.tipIndex = tipIndex;
+        SaveLoadManager.GameData.infoItemIndex = infoItemIndex;
+        SaveLoadManager.GameData.isDisplayingMinPriceInfo = isDisplayingMinPriceInfo;
+        SaveLoadManager.GameData.isInfoOpened = isInfoOpened;
+        SaveLoadManager.GameData.isPrimaryShopAvailable = isPrimaryShopAvailable;
+        SaveLoadManager.GameData.isSecondaryShopAvailable = isSecondaryShopAvailable;
+        SaveLoadManager.GameData.isLuxuryShopAvailable = isLuxuryShopAvailable;
+        SaveLoadManager.GameData.notOnSaleItemsIds = notOnSaleItemsIds;
+        SaveLoadManager.GameData.specialPriceItemIndexes = specialPriceItemIndexes;
 
         // Bulletin Board
-        SaveLoadManager.Data.bulletinBoardContentsId = bulletinBoardContentsId;
+        SaveLoadManager.GameData.bulletinBoardContentsId = bulletinBoardContentsId;
 
         // Inventory
-        SaveLoadManager.Data.inventoryLevel = inventoryLevel;
-        SaveLoadManager.Data.inventoryCapacity = inventoryCapacity;
-        SaveLoadManager.Data.inventoryFee = inventoryFee;
+        SaveLoadManager.GameData.inventoryLevel = inventoryLevel;
+        SaveLoadManager.GameData.inventoryCapacity = inventoryCapacity;
+        SaveLoadManager.GameData.inventoryFee = inventoryFee;
 
         // Loan
-        SaveLoadManager.Data.lentAmount = lentAmount;
-        SaveLoadManager.Data.paybackDateCnt = paybackDateCnt;
-        SaveLoadManager.Data.lentPaybackAmount = lentPaybackAmout;
-        SaveLoadManager.Data.ifLent = ifLent;
-        SaveLoadManager.Data.isBusinessmanAvailable = isBusinessmanAvailable;
+        SaveLoadManager.GameData.lentAmount = lentAmount;
+        SaveLoadManager.GameData.paybackDateCnt = paybackDateCnt;
+        SaveLoadManager.GameData.lentPaybackAmount = lentPaybackAmout;
+        SaveLoadManager.GameData.ifLent = ifLent;
+        SaveLoadManager.GameData.isBusinessmanAvailable = isBusinessmanAvailable;
 
         // Inn
-        SaveLoadManager.Data.investedAmount = investedAmount;
-        SaveLoadManager.Data.innProfit = innProfit;
+        SaveLoadManager.GameData.investedAmount = investedAmount;
+        SaveLoadManager.GameData.innProfit = innProfit;
 
         // Wholesale
-        SaveLoadManager.Data.isItem1Purchased = isItem1Purchased;
-        SaveLoadManager.Data.isItem1PickedUp = isItem1PickedUp;
-        SaveLoadManager.Data.isItem1Pickupable = isItem1Pickupable;
-        SaveLoadManager.Data.wholesaleItem1 = wholesaleItem1;
-        SaveLoadManager.Data.wholesaleItem1Cnt = wholesaleItem1Cnt;
-        SaveLoadManager.Data.wholesaleItem1Cost = wholesaleItem1Cost;
+        SaveLoadManager.GameData.isItem1Purchased = isItem1Purchased;
+        SaveLoadManager.GameData.isItem1PickedUp = isItem1PickedUp;
+        SaveLoadManager.GameData.isItem1Pickupable = isItem1Pickupable;
+        SaveLoadManager.GameData.wholesaleItem1 = wholesaleItem1;
+        SaveLoadManager.GameData.wholesaleItem1Cnt = wholesaleItem1Cnt;
+        SaveLoadManager.GameData.wholesaleItem1Cost = wholesaleItem1Cost;
 
-        SaveLoadManager.Data.isItem2Purchased = isItem2Purchased;
-        SaveLoadManager.Data.isItem2PickedUp = isItem2PickedUp;
-        SaveLoadManager.Data.isItem2Pickupable = isItem2Pickupable;
-        SaveLoadManager.Data.wholesaleItem2 = wholesaleItem2;
-        SaveLoadManager.Data.wholesaleItem2Cnt = wholesaleItem2Cnt;
-        SaveLoadManager.Data.wholesaleItem2Cost = wholesaleItem2Cost;
+        SaveLoadManager.GameData.isItem2Purchased = isItem2Purchased;
+        SaveLoadManager.GameData.isItem2PickedUp = isItem2PickedUp;
+        SaveLoadManager.GameData.isItem2Pickupable = isItem2Pickupable;
+        SaveLoadManager.GameData.wholesaleItem2 = wholesaleItem2;
+        SaveLoadManager.GameData.wholesaleItem2Cnt = wholesaleItem2Cnt;
+        SaveLoadManager.GameData.wholesaleItem2Cost = wholesaleItem2Cost;
 
         // RandomBox
-        SaveLoadManager.Data.isRandomBox1Purchased = isRandomBox1Purchased;
-        SaveLoadManager.Data.isRandomBox1PickedUp = isRandomBox1PickedUp;
-        SaveLoadManager.Data.randomBox1Item = randomBox1Item;
-        SaveLoadManager.Data.randomBox1Price = randomBox1Price;
-        SaveLoadManager.Data.randomBox1Cnt = randomBox1Cnt;
+        SaveLoadManager.GameData.isRandomBox1Purchased = isRandomBox1Purchased;
+        SaveLoadManager.GameData.isRandomBox1PickedUp = isRandomBox1PickedUp;
+        SaveLoadManager.GameData.randomBox1Item = randomBox1Item;
+        SaveLoadManager.GameData.randomBox1Price = randomBox1Price;
+        SaveLoadManager.GameData.randomBox1Cnt = randomBox1Cnt;
 
-        SaveLoadManager.Data.isRandomBox2Purchased = isRandomBox2Purchased;
-        SaveLoadManager.Data.isRandomBox2PickedUp = isRandomBox2PickedUp;
-        SaveLoadManager.Data.randomBox2Item = randomBox2Item;
-        SaveLoadManager.Data.randomBox2Price = randomBox2Price;
-        SaveLoadManager.Data.randomBox2Cnt = randomBox2Cnt;
+        SaveLoadManager.GameData.isRandomBox2Purchased = isRandomBox2Purchased;
+        SaveLoadManager.GameData.isRandomBox2PickedUp = isRandomBox2PickedUp;
+        SaveLoadManager.GameData.randomBox2Item = randomBox2Item;
+        SaveLoadManager.GameData.randomBox2Price = randomBox2Price;
+        SaveLoadManager.GameData.randomBox2Cnt = randomBox2Cnt;
     }
 
     public void CallSave()
     {
         SynchronizeWithSaveData();
         SaveLoadManager.Save(currentSavedSlotIndex);
+        Debug.Log($"Save Called in GM to slot:{currentSavedSlotIndex}");
     }
 
     public void OnSleep()
