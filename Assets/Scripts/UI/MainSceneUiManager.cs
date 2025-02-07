@@ -70,6 +70,8 @@ public class MainSceneUiManager : MonoBehaviour
         messageBox.SetActive(false);
         centerMsg.SetActive(false);
         nextDay.SetActive(false);
+        bgmSlider.value = SoundManager.Instance.BgmVolume;
+        sfxSlider.value = SoundManager.Instance.SfxVolume;
     }
 
 
@@ -87,26 +89,6 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void AddListeners()
     {
-        // scene contents
-        inventoryButton.onClick.RemoveAllListeners();
-        inventoryUpgrade.onClick.RemoveAllListeners();
-        inventoryDowngrade.onClick.RemoveAllListeners();
-        informationButton.onClick.RemoveAllListeners();
-        settingButton.onClick.RemoveAllListeners();
-        purchaseSceneButton.onClick.RemoveAllListeners();
-        salesSceneButton.onClick.RemoveAllListeners();
-        innSceneButton.onClick.RemoveAllListeners();
-        sleepButton.onClick.RemoveAllListeners();
-
-        // setting contents
-        settingCloseButton.onClick.RemoveAllListeners();
-        restartButton.onClick.RemoveAllListeners();
-        mainMenuButton.onClick.RemoveAllListeners();
-        quitButton.onClick.AddListener(OnClickSettingQuit);
-
-        // inventory contents
-        inventoryReturnButton.onClick.RemoveAllListeners();
-
         // scene contents
         inventoryButton.onClick.AddListener(OnClickInventory);
         inventoryUpgrade.onClick.AddListener(OnClickInventoryUpgrade);
@@ -131,6 +113,10 @@ public class MainSceneUiManager : MonoBehaviour
         centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);
         nextDayCloseB.onClick.AddListener(OnClickNextdayClose);
         nextDayCheckB.onClick.AddListener(OnClickNextdayCheck);
+
+        // sliders
+        bgmSlider.onValueChanged.AddListener(OnValueChangeBGM);
+        sfxSlider.onValueChanged.AddListener(OnValueChangeSFX);
     }
 
     private void OnClickInventory()
@@ -227,7 +213,11 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSettingQuit()
     {
-        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();        
+#endif
     }
 
     private void OnClickInventoryReturn()
@@ -367,5 +357,15 @@ public class MainSceneUiManager : MonoBehaviour
     private void OnClickNextdayClose()
     {
         messageBox.SetActive(false);
+    }
+
+    public void OnValueChangeBGM(float val)
+    {
+        SoundManager.Instance.BgmVolume = val;
+    }
+
+    public void OnValueChangeSFX(float val)
+    {
+        SoundManager.Instance.SfxVolume = val;
     }
 }

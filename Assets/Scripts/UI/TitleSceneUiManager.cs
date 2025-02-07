@@ -17,7 +17,12 @@ public class TitleSceneUiManager : MonoBehaviour
 
     public GameObject settingsWindow;
     public Button settingClose;
-    public Button settingQuitButton;        
+    public Button settingQuitButton;
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+
+    public GameObject messageBox;
+    public UiSaveLoadWindow saveloadWindow;
 
     public TMP_Dropdown languagesDD;
 
@@ -37,41 +42,37 @@ public class TitleSceneUiManager : MonoBehaviour
     private void OnEnable()
     {
         settingsWindow.SetActive(false);
+        messageBox.SetActive(false);
         languagesDD.value = (int)Variables.currentLanguage;
         languagesDD.RefreshShownValue();
+        bgmSlider.value = SoundManager.Instance.BgmVolume;
+        sfxSlider.value = SoundManager.Instance.SfxVolume;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
-        AddListeners();
+        
     }
 
     private void AddListeners()
     {
-        // Remove Existing
-        settingsButton.onClick.RemoveAllListeners();
-        continueButton.onClick.RemoveAllListeners();
-        newGameButton.onClick.RemoveAllListeners();
-        limitedResourceButton.onClick.RemoveAllListeners();
-        exitGameButton.onClick.RemoveAllListeners();
-        bestRecordButton.onClick.RemoveAllListeners();
-        devIconButton.onClick.RemoveAllListeners();
-        settingClose.onClick.RemoveAllListeners();
-        settingQuitButton.onClick.RemoveAllListeners();
-        languagesDD.onValueChanged.RemoveAllListeners();
-
-        // Reset
         settingsButton.onClick.AddListener(OnClickSettings);
         continueButton.onClick.AddListener(OnClickContinue);
         newGameButton.onClick.AddListener(OnClickNewGame);
         limitedResourceButton.onClick.AddListener(OnClickTemp);
-        exitGameButton.onClick.AddListener(OnClickTemp);
+        exitGameButton.onClick.AddListener(OnClickExitGame);
         bestRecordButton.onClick.AddListener(OnClickTemp);
         devIconButton.onClick.AddListener(OnClickTemp);
         settingClose.onClick.AddListener(OnClickSettingClose);
-        settingQuitButton.onClick.AddListener(OnClickTemp);
+        settingQuitButton.onClick.AddListener(OnClickExitGame);
+
+        // dropdown
         languagesDD.onValueChanged.AddListener(OnLanguageChange);
+
+        // sliders
+        bgmSlider.onValueChanged.AddListener(OnValueChangeBGM);
+        sfxSlider.onValueChanged.AddListener(OnValueChangeSFX);
     }
 
     private void OnClickSettings()
@@ -144,5 +145,24 @@ public class TitleSceneUiManager : MonoBehaviour
         Debug.Log($"Language Change Input value: {value}\nLanguage: {(Languages)value}");
         Variables.currentLanguage = (Languages)value;
         gameObject.BroadcastMessage("OnChangeLanguage", (Languages)value);
+    }
+
+    public void OnClickExitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();        
+#endif
+    }
+
+    public void OnValueChangeBGM(float val)
+    {
+        SoundManager.Instance.BgmVolume = val;
+    }
+
+    public void OnValueChangeSFX(float val)
+    {
+        SoundManager.Instance.SfxVolume = val;
     }
 }

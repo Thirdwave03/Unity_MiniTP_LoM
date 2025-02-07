@@ -115,6 +115,8 @@ public class InnSceneUiManager : MonoBehaviour
     private void OnEnable()
     {
         settingWindow.SetActive(false);
+        bgmSlider.value = SoundManager.Instance.BgmVolume;
+        sfxSlider.value = SoundManager.Instance.SfxVolume;
     }
 
     private void Update()
@@ -148,14 +150,6 @@ public class InnSceneUiManager : MonoBehaviour
 
     private void AddListeners()
     {
-        //inventoryButton.onClick.RemoveAllListeners();
-        settingButton.onClick.RemoveAllListeners();
-        purchaseSceneButton.onClick.RemoveAllListeners();
-        settingCloseButton.onClick.RemoveAllListeners();
-        restartButton.onClick.RemoveAllListeners();
-        mainMenuButton.onClick.RemoveAllListeners();
-        quitButton.onClick.RemoveAllListeners();
-
         //inventoryButton.onClick.AddListener(OnClickTemp);
         settingButton.onClick.AddListener(OnClickSetting);
         mainSceneButton.onClick.AddListener(OnClickMainScene);
@@ -178,6 +172,10 @@ public class InnSceneUiManager : MonoBehaviour
         wholesalesSlot2B.onClick.AddListener(OnClickWholesalesItemPickUp2);
         randomBoxSlot1B.onClick.AddListener(OnClickRandomBoxButton1);
         randomBoxSlot2B.onClick.AddListener(OnClickRandomBoxButton2);
+
+        // sliders
+        bgmSlider.onValueChanged.AddListener(OnValueChangeBGM);
+        sfxSlider.onValueChanged.AddListener(OnValueChangeSFX);
     }
 
     private void OnClickTemp()
@@ -224,7 +222,11 @@ public class InnSceneUiManager : MonoBehaviour
     }
     private void OnClickQuit()
     {
-
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();        
+#endif
     }
 
     public void OpenInnMaster()
@@ -699,5 +701,13 @@ public class InnSceneUiManager : MonoBehaviour
         }
     }
 
+    public void OnValueChangeBGM(float val)
+    {
+        SoundManager.Instance.BgmVolume = val;
+    }
 
+    public void OnValueChangeSFX(float val)
+    {
+        SoundManager.Instance.SfxVolume = val;
+    }
 }

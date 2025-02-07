@@ -58,6 +58,8 @@ public class PurchaseSceneUiManager : MonoBehaviour
     {
         settingWindow.SetActive(false);
         purchaseWindow.SetActive(false);
+        bgmSlider.value = SoundManager.Instance.BgmVolume;
+        sfxSlider.value = SoundManager.Instance.SfxVolume;
     }
 
 
@@ -92,17 +94,6 @@ public class PurchaseSceneUiManager : MonoBehaviour
 
     private void AddListeners()
     {
-        //inventoryButton.onClick.RemoveAllListeners();
-        settingButton.onClick.RemoveAllListeners();
-        innSceneButton.onClick.RemoveAllListeners();
-        mainSceneButton.onClick.RemoveAllListeners();
-        salesSceneButton.onClick.RemoveAllListeners();
-        settingCloseButton.onClick.RemoveAllListeners();
-        restartButton.onClick.RemoveAllListeners();
-        mainMenuButton.onClick.RemoveAllListeners();
-        quitButton.onClick.RemoveAllListeners();
-        purchaseWindowClose.onClick.RemoveAllListeners();
-
         //inventoryButton.onClick.AddListener(OnClickTemp);
         settingButton.onClick.AddListener(OnClickSetting);
         mainSceneButton.onClick.AddListener(OnClickMainScene);
@@ -115,6 +106,10 @@ public class PurchaseSceneUiManager : MonoBehaviour
         purchaseWindowClose.onClick.AddListener(OnClickPurchaseWindowClose);
         centerMsgCheckB.onClick.AddListener(OnClickCenterMsgCheck);
         centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);
+
+        // sliders
+        bgmSlider.onValueChanged.AddListener(OnValueChangeBGM);
+        sfxSlider.onValueChanged.AddListener(OnValueChangeSFX);
     }
 
     private void OnClickTemp()
@@ -231,5 +226,14 @@ public class PurchaseSceneUiManager : MonoBehaviour
     private void OnClickCenterMsgClose()
     {
         messageBox.SetActive(false);
-    }    
+    }
+    public void OnValueChangeBGM(float val)
+    {
+        SoundManager.Instance.BgmVolume = val;
+    }
+
+    public void OnValueChangeSFX(float val)
+    {
+        SoundManager.Instance.SfxVolume = val;
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class NpcButton : MonoBehaviour
 {
-    [SerializeField] private UnityEvent onClick;
+    public UnityEvent onClick;
 
     public void InvokeOnClick()
     {

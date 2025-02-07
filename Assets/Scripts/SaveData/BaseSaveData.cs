@@ -18,6 +18,9 @@ public class BaseSaveDataV1 : BaseSaveData
     public int[] days;
     public DateTime[] dateTimes;
 
+    public float bgmVolume;
+    public float sfxVolume;
+
     public BaseSaveDataV1()
     {
         Version = 1;

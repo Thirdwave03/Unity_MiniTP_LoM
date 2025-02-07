@@ -66,6 +66,8 @@ public class SalesSceneUiManager : MonoBehaviour
     {
         settingWindow.SetActive(false);
         salesInventoryWindow.SetActive(false);
+        bgmSlider.value = SoundManager.Instance.BgmVolume;
+        sfxSlider.value = SoundManager.Instance.SfxVolume;
     }  
 
     public void UpdateSalesSceneDisplay()
@@ -76,17 +78,6 @@ public class SalesSceneUiManager : MonoBehaviour
 
     private void AddListeners()
     {
-        //inventoryButton.onClick.RemoveAllListeners();
-        //settingButton.onClick.RemoveAllListeners();
-        //purchaseSceneButton.onClick.RemoveAllListeners();
-        //innSceneButton.onClick.RemoveAllListeners();
-        //settingCloseButton.onClick.RemoveAllListeners();
-        //restartButton.onClick.RemoveAllListeners();
-        //mainMenuButton.onClick.RemoveAllListeners();
-        //quitButton.onClick.RemoveAllListeners();
-        //inventoryReturnButton.onClick.RemoveAllListeners();
-
-        //inventoryButton.onClick.AddListener(OnClickTemp);
         settingButton.onClick.AddListener(OnClickSetting);
         mainSceneButton.onClick.AddListener(OnClickMainScene);
         purchaseSceneButton.onClick.AddListener(OnClickPurchaseScene);
@@ -100,6 +91,10 @@ public class SalesSceneUiManager : MonoBehaviour
         centerMsgCloseB.onClick.AddListener(OnClickCenterMsgClose);
         loanB.onClick.AddListener(OnClickLoanButton);
         centerMsgCheckB.onClick.AddListener(OnClickCenterMsgCheck);
+
+        // sliders
+        bgmSlider.onValueChanged.AddListener(OnValueChangeBGM);
+        sfxSlider.onValueChanged.AddListener(OnValueChangeSFX);
     }
 
     private void Update()
@@ -169,7 +164,11 @@ public class SalesSceneUiManager : MonoBehaviour
     }
     private void OnClickQuit()
     {
-
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();        
+#endif
     }
     private void AddLocalizerActions()
     {
@@ -342,5 +341,15 @@ public class SalesSceneUiManager : MonoBehaviour
     {
         messageBox.SetActive(false);
         specialSalesWindow.gameObject.SetActive(false);
+    }
+
+    public void OnValueChangeBGM(float val)
+    {
+        SoundManager.Instance.BgmVolume = val;
+    }
+
+    public void OnValueChangeSFX(float val)
+    {
+        SoundManager.Instance.SfxVolume = val;
     }
 }
