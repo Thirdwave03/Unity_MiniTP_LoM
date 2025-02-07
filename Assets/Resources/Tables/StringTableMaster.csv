@@ -221,13 +221,25 @@
 999036,Endless Mode,무한모드,無限モード,无限模式
 999037,Empty,빈 슬롯,空きスロット,空槽
 999038,Delete Save,삭제,削除,删除
-999039, Blank, 공란, 空欄, 空白
-999040, Blank, 공란, 空欄, 空白
-999041, Blank, 공란, 空欄, 空白
-999042, Blank, 공란, 空欄, 空白
-999043, Blank, 공란, 空欄, 空白
-999044, Blank, 공란, 空欄, 空白
-999901, Not enough coins to pay off rental fee.Do you want to lose all progress in this game and continue ?," ""창고 임대료를 지불할 코인이 부족합니다. 현재까지의 진행 상황을 잃고", 倉庫のレンタル料を支払うコインが足りません。これまでの進行状況が失われ、メインメニューに戻ります。続けますか？, 仓库租金的硬币不足，将失去目前的进度并返回主菜单。要继续吗？
+999039,Short Game,단기전,短いモード,短板游戏
+999040,Poverty,가난,貧乏,穷
+999041,Prodigal Son,탕아,蕩児,浪子
+999042,Prodigal Sons,탕아들,蕩児たち,浪子们
+999043,Large Inventory,큰 창고,大きい倉庫,大库
+999044,Small Inventory,작은 창고,小さい倉庫,小库
+999045,Is Anyone There,텅 빈 거리,誰かいませんか,有人吗
+999046, Blank, 공란, 空欄, 空白
+999047, Blank, 공란, 空欄, 空白
+999048, Blank, 공란, 空欄, 空白
+999049, Blank, 공란, 空欄, 空白
+999050, Blank, 공란, 空欄, 空白
+999051, Blank, 공란, 空欄, 空白
+999052, Blank, 공란, 空欄, 空白
+999053, Blank, 공란, 空欄, 空白
+999054, Blank, 공란, 空欄, 空白
+999055, Blank, 공란, 空欄, 空白
+999056, Blank, 공란, 空欄, 空白
+999901,Not enough coins to pay off rental fee.Do you want to lose all progress in this game and continue ?, 창고 임대료를 지불할 코인이 부족합니다. 현재까지의 진행 상황을 잃고 메인 화면으로 돌아갑니다. 계속합니까?, 倉庫のレンタル料を支払うコインが足りません。これまでの進行状況が失われ、メインメニューに戻ります。続けますか？, 仓库租金的硬币不足，将失去目前的进度并返回主菜单。要继续吗？
 999902, Insufficient coins., 코인이 부족합니다., コインが足りません。, 硬币不足。
 999903, You cannot buy items over maximum inventory capacity., 창고 용량이 부족합니다., 倉庫の容量が足りません。, 仓库容量不足。
 999904, Proceed to next day ?, 다음 날로 이동하시겠습니까 ?, 次の日に進みますか？, 要前往下一天吗？
@@ -238,21 +250,21 @@
 999909," ""You can receive a pre-ordered product the day after purchase. You do not have to pick it up immediately"," ""상품을 구매한 뒤 다음 날에 취득할 수 있습니다. 상품을 취득하지 않더라도 사라지진 않지만", 商品は購入後、翌日に受け取れるよ。受け取らなくても消えはしないけど、新しい注文に切り替わることもないよ。, 购买后，商品可以在第二天获取。即使不取走，也不会消失，但不会被新订单替换。
 999910, You can only gather information once a day.The information you gather may be duplicated., 정보 수집은 하루에 한 번만 할 수 있습니다.수집한 정보가 중복일 수도 있습니다., 情報収集は一日に一度だけ。集めた情報は重複することもあるよ。, 每天只能收集一次情报，收集到的信息可能会重复。
 999911," ""You can retrieve profit once a day"," ""하루에 한 번 수익을 받을 수 있습니다. 수익은 총 투자액의 {0}%이며", 1日に一度だけ利益を受け取れるよ。利益は総投資額の{0} % で、投資金は返ってこないから、慎重に投資してね。, 每天只能领取一次收益。收益为总投资额的{0}% ，且投资款不会返还，请谨慎投资。
-999912," ""Sir", 사장님 제게 <color = #FFFF00>{0}< / color> 코인을 빌려주셨으면 합니다. <color = #FFFF00>{1}< / color>일 후에 <color = #FFFF00>{2}< / color> 코인으로 갚겠습니다., 社長、<color = #FFFF00>{0}< / color>コインを貸していただけませんか？<color = #FFFF00>{1}< / color>日後に<color = #FFFF00>{2}< / color>コインで返します。, 老板，请借给我<color = #FFFF00>{0}< / color>硬币，<color = #FFFF00>{1}< / color>天后我会还<color = #FFFF00>{2}< / color>硬币。
+999912," ""Sir", 사장님 제게 <color = #FFFF00>{0}</color> 코인을 빌려주셨으면 합니다. <color = #FFFF00>{1}</color>일 후에 <color = #FFFF00>{2}</color> 코인으로 갚겠습니다., 社長、<color = #FFFF00>{0}</color>コインを貸していただけませんか？<color = #FFFF00>{1}</color>日後に<color = #FFFF00>{2}</color>コインで返します。, 老板，请借给我<color = #FFFF00>{0}</color>硬币，<color = #FFFF00>{1}</color>天后我会还<color = #FFFF00>{2}</color>硬币。
 999913, Inventory reached max level., 창고가 최대 레벨입니다., 倉庫は最大レベルだよ。, 仓库已达到最高等级。
 999914, Cannot downgrade Inventory anymore., 창고가 최저 레벨입니다., 倉庫は最小レベルだよ。, 仓库已达到最低等级。
 999915, Inventory occupancy must be equal to or less than{0} to downgrade., 보유 상품이{0}칸 이하여야 다운그레이드가 가능합니다., 所持商品の数が{0}スロット以下でなければ、ダウングレードできないよ。, 持有商品必须不超过{0}格才能降级。
-999916," ""Sir", 사장님 약속드렸던 <color = #FFFF00>{0}< / color> 코인입니다., 社長、約束した<color = #FFFF00>{0}< / color>コインです。, 老板，这是承诺的<color = #FFFF00>{0}< / color>硬币。
+999916," ""Sir", 사장님 약속드렸던 <color = #FFFF00>{0}</color> 코인입니다., 社長、約束した<color = #FFFF00>{0}</color>コインです。, 老板，这是承诺的<color = #FFFF00>{0}</color>硬币。
 999917," ""Thank you for your help", 지난번엔 감사했습니다 사장님., 前回はありがとう、社長。, 上次谢谢您，老板。
 999918," ""Thank you very much", 감사합니다 사장님., 本当にありがとう、社長。, 非常感谢，老板。
-999919," ""According to the info", <color = #FFFF00>{0}< / color>의{1}는{2}코인이라고 합니다., <color = #FFFF00>{0}< / color>の{1}は{2}コインだって。, 据说<color = #FFFF00>{0}< / color>的{1}是{2}硬币。
+999919," ""According to the info", <color = #FFFF00>{0}</color>의{1}는{2}코인이라고 합니다., <color = #FFFF00>{0}</color>の{1}は{2}コインだって。, 据说<color = #FFFF00>{0}</color>的{1}是{2}硬币。
 999920, Lowest price, 최저가, 最安値, 最低价
 999921, Highest price, 최고가, 最高値, 最高价
 999922, The following items can be sold at{0}% higher prices!!, 현재 시장 가격보다{0}% 높은 가격으로 판매 가능!!, 現在の市場価格より{0}% 高い価格で販売可能！！, 可按比当前市场价高{0}% 的价格出售！！
 999923,The progress of selected slot will be cleared. Continue?,해당 슬롯의 진행상황이 삭제됩니다. 계속하시겠습니까?,対応スロットの進行状況が消されます。続行しますか？,该槽的进度将被清除。您想继续吗？
 999924,The progress of selected slot will be overwritten. Continue?,해당 슬롯의 진행상황을 덮어씁니다. 계속하시겠습니까?,対応スロットの進行状況を上書きします。続行しますか？,覆盖该插槽的进度。您想继续吗？
 999925,Slot data deleted successfully.,해당 슬롯의 데이터가 삭제되었습니다.,スロットのデータが削除されました。,删除成功。
-999926,0,0,0,0
+999926,"This is last day, and will be lead to settlement. Continue?",결산 화면으로 갑니다. 계속 하시겠습니까?,今日は最後の日で決算に進まれます。続きますか？,今天将会进入现金结算。是否继续？
 999927,0,0,0,0
 999928,0,0,0,0
 999929,0,0,0,0

@@ -42,6 +42,11 @@ public static class DataTableIds
     {
         "InventoryTable",
     };
+
+    public static readonly string[] GameMode =
+    {
+        "GameModeTable",
+    };
 }
 
 public enum Languages
@@ -60,8 +65,15 @@ public static class Variables
 public enum GameModes // GameModes Table ±¸¼º
 {
     Default,
-    ShowMeTheMoney,
+    ShortGame,
     Endless,
+    Poverty,
+    ShowMeTheMoney,
+    ProdigalSon,
+    ProdigalSons,
+    BigInventory,
+    SmallInventory,
+    IsAnyoneThere,
 }
 
 public static class ItemDataIndex
@@ -169,6 +181,7 @@ public enum MainMenuCenterMsgType
     LackOfCapacity,
     CannotProceed,
     CanProceed,
+    LastDay,
 }
 
 public enum PurchaseSceneCenterMsgType

@@ -257,16 +257,22 @@ public class GameManager
     {
         CurrentGameMode = gameMode;
         currentSavedSlotIndex = SaveSlotIndex;
-        if(gameMode == GameModes.Default)
-        {
-            SetUpNewDefault(SaveSlotIndex ,gameMode);
-            ItemsPriceChangeOnSleep();
-            //SalesItemChangeOnSleepWithProbability();
-            SalesItemChangeOnSleepWithSelection();
-            WholeSalesUpdateOnSleep();
-            RandomBoxUpdateOnSleep();
-            BulletinBoardContentsUpdateOnSleep();
-        }
+       //if(gameMode == GameModes.Default)
+       //{
+       //    SetUpGameMode(gameMode, SaveSlotIndex);
+       //    //SalesItemChangeOnSleepWithProbability();
+       //    ItemsPriceChangeOnSleep();
+       //    SalesItemChangeOnSleepWithSelection();
+       //    WholeSalesUpdateOnSleep();
+       //    RandomBoxUpdateOnSleep();
+       //    BulletinBoardContentsUpdateOnSleep();
+       //}
+        SetUpGameMode(gameMode, SaveSlotIndex);
+        ItemsPriceChangeOnSleep();
+        SalesItemChangeOnSleepWithSelection();
+        WholeSalesUpdateOnSleep();
+        RandomBoxUpdateOnSleep();
+        BulletinBoardContentsUpdateOnSleep();
         CallSave();
         Debug.Log($"New Game Set and Save: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
     }        
@@ -297,40 +303,56 @@ public class GameManager
         }
     }
 
-    private void SetUpNewDefault(int slotIndex = 1, GameModes gameMode = GameModes.Default)
+    private void SetUpGameMode(GameModes gameMode = GameModes.Default, int slotIndex = 1)
     {
         SetUpItemDatas();
         InitializeItemDictData();
 
         currentSavedSlotIndex = slotIndex;
+        CurrentGameMode = gameMode;
 
-        CurrentGameMode = GameModes.Default;
+        //lastDay = 100;
+        //inventoryMinLevel = GameInfos.minInventoryLevel;
+        //inventoryMaxLevel = GameInfos.maxInventoryLevel;
 
+
+        // GameMode and datas dependant to the GameMode
+        lastDay = DataTableManager.GameModeTable.Get(CurrentGameMode).LastDay;
+        inventoryMinLevel = DataTableManager.GameModeTable.Get(CurrentGameMode).InventoryMinLv;
+        inventoryMaxLevel = DataTableManager.GameModeTable.Get(CurrentGameMode).InventoryMaxLv;
+
+        // Game Core Data
         days = 1;
-        lastDay = 100;
-        coins = 10000;
+        coins = DataTableManager.GameModeTable.Get(CurrentGameMode).InitialCoin;
 
+        // Availabilities
         tipIndex = UnityEngine.Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex+1);
         infoItemIndex = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxSecondary + 1);
         isDisplayingMinPriceInfo = UnityEngine.Random.Range(0, 2) == 0 ? false : true;
         isInfoOpened = false;
 
+        isPrimaryShopAvailable = true;
+        isSecondaryShopAvailable = true;
+        isLuxuryShopAvailable = true;
+
+
+        // Inventory
         inventoryLevel = 1;
-        inventoryMinLevel = GameInfos.minInventoryLevel;
-        inventoryMaxLevel = GameInfos.maxInventoryLevel;
         inventoryCapacity = 50;
         inventoryFee = 100;
 
+        // Loan
         lentAmount = UnityEngine.Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
         paybackDateCnt = UnityEngine.Random.Range(GameInfos.minPaybackDate, GameInfos.maxPaybackDate + 1);
         lentPaybackAmout = (int)(lentAmount * UnityEngine.Random.Range(GameInfos.minLentAmountMultiplier, GameInfos.maxLentAmountMultiplier));
         ifLent = false;
         isBusinessmanAvailable = UnityEngine.Random.Range(0, 2) == 0 ? false : true;
 
+        // Inn
         investedAmount = 0;
         innProfit = 0;
 
-
+        // Wholesale
         wholesaleItem1 = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary+1);
         wholesaleItem1Cnt = UnityEngine.Random.Range(1,3)*50;
         wholesaleItem1Cost = (int)(entireItemDict[wholesaleItem1].price * 0.8f);
@@ -345,6 +367,7 @@ public class GameManager
         isItem2PickedUp = false;
         isItem2Pickupable = false;
 
+        // RandomBox
         isRandomBox1Purchased = false;
         isRandomBox1PickedUp = false;
         randomBox1Item = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary +1);
@@ -566,7 +589,6 @@ public class GameManager
         ++days;
         coins -= inventoryFee;
         tipIndex = UnityEngine.Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex + 1);
-        
         ItemsPriceChangeOnSleep();
         //SalesItemChangeOnSleepWithProbability();
         SalesItemChangeOnSleepWithSelection();
@@ -575,8 +597,41 @@ public class GameManager
         WholeSalesUpdateOnSleep(); // must be called after price change
         RandomBoxUpdateOnSleep();
         BulletinBoardContentsUpdateOnSleep(); // must be called after price change
+        OnSleepVariousModes();
         CallSave();
         onSleepEvent?.Invoke();
+    }
+
+    public void OnSleepVariousModes()
+    {
+        switch (CurrentGameMode)
+        {
+            case GameModes.Default:
+                break;
+            case GameModes.ShortGame:
+                break;
+            case GameModes.Endless:
+                break;
+            case GameModes.Poverty:
+                break;
+            case GameModes.ShowMeTheMoney:
+                break;
+            case GameModes.ProdigalSon:
+                coins /= 2;
+                break;
+            case GameModes.ProdigalSons:
+                coins = 0;
+                break;
+            case GameModes.BigInventory:
+                break;
+            case GameModes.SmallInventory:
+                break;
+            case GameModes.IsAnyoneThere:
+                isPrimaryShopAvailable = false;
+                isSecondaryShopAvailable = false;
+                isLuxuryShopAvailable = false;
+                break;
+        }
     }
 
     private void LoanUpdateOnSleep()
@@ -741,6 +796,9 @@ public class GameManager
 
     private void SalesItemChangeOnSleepWithSelection()
     {
+        isPrimaryShopAvailable = true;
+        isSecondaryShopAvailable = true;
+        isLuxuryShopAvailable = true;
         notOnSaleItemsIds.Clear();
 
         // Primary
@@ -820,8 +878,19 @@ public class GameManager
         isRandomBox2Purchased = false;
     }
 
-    private void OnSleepLastDay()
+    public void OnSleepLastDay()
     {
+        if(coins > SaveLoadManager.BaseData.bestScore && CurrentGameMode == GameModes.Default)
+        {
+            SaveLoadManager.BaseData.bestScore = coins;
+        }
+        if(coins >= DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondGoal)
+        {
+            int bonusDiamonds = (int)((coins - DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondGoal)
+                * DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondPaybackRate);
+            SaveLoadManager.BaseData.diamonds += bonusDiamonds;
+            SaveLoadManager.BaseData.diamonds += 100;
+        }
         
     }
 

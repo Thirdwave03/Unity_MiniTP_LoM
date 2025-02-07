@@ -266,6 +266,7 @@ public class InnSceneUiManager : MonoBehaviour
                 .Get(999919), DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(infoItem.ItemData.StringId),
                 DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(priceTypeStringId),
                 priceType.ToString());
+            GameManager.Instance.CallSave();
         }
         else
         {

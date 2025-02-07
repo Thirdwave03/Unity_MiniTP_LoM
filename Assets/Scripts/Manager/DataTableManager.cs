@@ -39,21 +39,27 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
+        foreach (var id in DataTableIds.GameMode)
+        {
+            var table = new GameModeTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
 
 
-//#if UNITY_EDITOR
-//        foreach (var id in DataTableIds.String)
-//        {
-//            var table = new StringTable();
-//            table.Load(id);
-//            tables.Add(id, table);
-//        }
-//#else
-//        var table = new StringTable();
-//        var stringTableId = DataTableIds.String[(int)Variables.currentLang];
-//        table.Load(stringTableId);
-//        tables.Add(stringTableId, table);
-//#endif
+        //#if UNITY_EDITOR
+        //        foreach (var id in DataTableIds.String)
+        //        {
+        //            var table = new StringTable();
+        //            table.Load(id);
+        //            tables.Add(id, table);
+        //        }
+        //#else
+        //        var table = new StringTable();
+        //        var stringTableId = DataTableIds.String[(int)Variables.currentLang];
+        //        table.Load(stringTableId);
+        //        tables.Add(stringTableId, table);
+        //#endif
     }
     //public static StringTable StringTable
     //{
@@ -92,6 +98,14 @@ public static class DataTableManager
         get
         {
             return Get<InventoryCostTable>(DataTableIds.InventoryCost[0]);
+        }
+    }
+
+    public static GameModeTable GameModeTable
+    {
+        get
+        {
+            return Get<GameModeTable>(DataTableIds.GameMode[0]);
         }
     }
 

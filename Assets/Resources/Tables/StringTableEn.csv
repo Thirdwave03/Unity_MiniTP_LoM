@@ -221,13 +221,25 @@
 999036,Endless Mode
 999037,Empty
 999038,Delete Save
-999039, Blank
-999040, Blank
-999041, Blank
-999042, Blank
-999043, Blank
-999044, Blank
-999901, Not enough coins to pay off rental fee.Do you want to lose all progress in this game and continue ?
+999039,Short Game
+999040,Poverty
+999041,Prodigal Son
+999042,Prodigal Sons
+999043,Large Inventory
+999044,Small Inventory
+999045,Is Anyone There
+999046, Blank
+999047, Blank
+999048, Blank
+999049, Blank
+999050, Blank
+999051, Blank
+999052, Blank
+999053, Blank
+999054, Blank
+999055, Blank
+999056, Blank
+999901,Not enough coins to pay off rental fee.Do you want to lose all progress in this game and continue ?
 999902, Insufficient coins.
 999903, You cannot buy items over maximum inventory capacity.
 999904, Proceed to next day ?
@@ -252,7 +264,7 @@
 999923,The progress of selected slot will be cleared. Continue?
 999924,The progress of selected slot will be overwritten. Continue?
 999925,Slot data deleted successfully.
-999926,0
+999926,"This is last day, and will be lead to settlement. Continue?"
 999927,0
 999928,0
 999929,0

@@ -70,7 +70,7 @@ public class TitleSceneUiManager : MonoBehaviour
         settingsButton.onClick.AddListener(OnClickSettings);
         continueButton.onClick.AddListener(OnClickContinue);
         newGameButton.onClick.AddListener(OnClickNewGame);
-        limitedResourceButton.onClick.AddListener(OnClickTemp);
+        limitedResourceButton.onClick.AddListener(OnClickLimitedResource);
         exitGameButton.onClick.AddListener(OnClickExitGame);
         bestRecordButton.onClick.AddListener(OnClickBestRecord);
         devIconButton.onClick.AddListener(OnClickDevIcon);
@@ -117,6 +117,7 @@ public class TitleSceneUiManager : MonoBehaviour
         //    SceneManager.LoadScene((int)SceneIds.MainScene);
         //}
 
+        gameMode = GameModes.Default;
         OpenMessage(TitleSceneCenterMsgType.SelectNewGameSlot);
         
         //GameManager.Instance.currentSavedSlotIndex = 1;
@@ -273,14 +274,15 @@ public class TitleSceneUiManager : MonoBehaviour
         OpenMessage(TitleSceneCenterMsgType.DevInfo);
     }
 
+    private void OnClickLimitedResource()
+    {
+        gameMode = GameModes.ShortGame;
+        OpenMessage(TitleSceneCenterMsgType.SelectNewGameSlot);
+    }
+
     private void OnClickTemp()
     {
 
-    }
-
-    private void PopUpWindowChooseOverwriteSlot()
-    {
-        
     }
 
     private void OnClickSlot(int slot)

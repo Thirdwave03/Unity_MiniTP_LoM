@@ -183,6 +183,11 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSleep()
     {
+        if (GameManager.Instance.days >= GameManager.Instance.lastDay)
+        {
+            OpenMessage(MainMenuCenterMsgType.LastDay);
+            return;
+        }
         if (GameManager.Instance.coins >= GameManager.Instance.inventoryFee)
         { 
             OpenMessage(MainMenuCenterMsgType.CanProceed); 
@@ -309,6 +314,12 @@ public class MainSceneUiManager : MonoBehaviour
                 nextDay.SetActive(true);
                 nextDayLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999904);
                 break;
+            case MainMenuCenterMsgType.LastDay:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(true);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999926);
+                break;
             default:
                 break;
         }
@@ -340,7 +351,13 @@ public class MainSceneUiManager : MonoBehaviour
                 messageBox.SetActive(false);
                 break;
             case MainMenuCenterMsgType.CannotProceed:
-
+                SaveLoadManager.DeleteSlot(GameManager.Instance.currentSavedSlotIndex);
+                SceneManager.LoadScene((int)SceneIds.TitleScene);
+                break;
+            case MainMenuCenterMsgType.LastDay:
+                GameManager.Instance.OnSleepLastDay();
+                SaveLoadManager.DeleteSlot(GameManager.Instance.currentSavedSlotIndex);
+                SceneManager.LoadScene((int)SceneIds.TitleScene);
                 break;
             default:
                 break;  
@@ -353,7 +370,7 @@ public class MainSceneUiManager : MonoBehaviour
     }
 
     private void OnClickNextdayCheck()
-    {
+    {      
         GameManager.Instance.OnSleep();
         UpdateMainSceneDisplay();
         messageBox.SetActive(false);

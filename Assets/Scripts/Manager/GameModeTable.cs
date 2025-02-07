@@ -6,11 +6,13 @@ using UnityEngine;
 public class GameModeData
 {
     public GameModes GameMode { get; set; }
+    public int StringId { get; set; }
     public int LastDay { get; set; }
     public int InventoryMaxLv { get; set; }
     public int InventoryMinLv { get; set; }
     public int InventoryInitialLv { get; set; }
     public int InitialCoin {  get; set; }
+    public int DiamondGoal { get; set; }
     public float DiamondPaybackRate { get; set; }
 }
 

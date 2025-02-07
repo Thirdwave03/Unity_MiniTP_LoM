@@ -98,12 +98,15 @@ public class UiSaveLoadWindow : MonoBehaviour
                 blinders[i].SetActive(false);
                 deleteBAreas[i].SetActive(true);
             }
-            if (SaveLoadManager.BaseData.gameModes[i] == GameModes.Default)
-            {
-                gameModeBodies[i].tmp.text =
-                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
-                    .Get(999034);
-            }            
+            //if (SaveLoadManager.BaseData.gameModes[i] == GameModes.Default)
+            //{
+            //    gameModeBodies[i].tmp.text =
+            //        DataTableManager.StringTableList[(int)Variables.currentLanguage]
+            //        .Get(999034);
+            //}
+            gameModeBodies[i].tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                .Get(DataTableManager.GameModeTable.Get(SaveLoadManager.BaseData.gameModes[i]).StringId);
+
             dayBodies[i].text = SaveLoadManager.BaseData.days[i].ToString();
             coinBodies[i].text = SaveLoadManager.BaseData.coins[i].ToString();
             dateBodies[i].text = SaveLoadManager.BaseData.dateTimes[i].
