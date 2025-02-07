@@ -187,7 +187,7 @@
 999002, Limited Resources
 999003, Exit Game
 999004, Continue
-999005, Best Record : Earned{0} coins
+999005, Best Earning Record_n{0} coins
 999006, Restart
 999007, Main Menu
 999008, Quit
@@ -212,9 +212,21 @@
 999027, Price
 999028, Total Price
 999029, Take
-999030, Blank
-999031, Blank
-999032, Blank
+999030,GameMode
+999031,Days
+999032,Coins
+999033,Last Played
+999034,Normal Mode
+999035,Show Me The Money
+999036,Endless Mode
+999037,Empty
+999038,Delete Save
+999039, Blank
+999040, Blank
+999041, Blank
+999042, Blank
+999043, Blank
+999044, Blank
 999901, Not enough coins to pay off rental fee.Do you want to lose all progress in this game and continue ?
 999902, Insufficient coins.
 999903, You cannot buy items over maximum inventory capacity.
@@ -237,9 +249,9 @@
 999920, Lowest price
 999921, Highest price
 999922, The following items can be sold at{0}% higher prices!!
-999923,0
-999924,0
-999925,0
+999923,The progress of selected slot will be cleared. Continue?
+999924,The progress of selected slot will be overwritten. Continue?
+999925,Slot data deleted successfully.
 999926,0
 999927,0
 999928,0
@@ -304,7 +316,7 @@
 999987,0
 999988,0
 999989,0
-999990,0
+999990,Designed by : Yongjun Jho_nDeveloped by : James Lee
 999991,0
 999992,0
 999993,0

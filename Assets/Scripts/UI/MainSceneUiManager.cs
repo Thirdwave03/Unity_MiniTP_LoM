@@ -74,7 +74,6 @@ public class MainSceneUiManager : MonoBehaviour
         sfxSlider.value = SoundManager.Instance.SfxVolume;
     }
 
-
     private void UpdateMainSceneDisplay()
     {
         currentCoin.text = GameManager.Instance.coins.ToString();
@@ -202,7 +201,8 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSettingRestart()
     {
-      
+        GameManager.Instance.Restart();
+        SceneManager.LoadScene((int)SceneIds.MainScene);
     }
 
     private void OnClickSettingMainMenu()
@@ -213,6 +213,10 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSettingQuit()
     {
+        SaveLoadManager.BaseData.bgmVolume = SoundManager.Instance.BgmVolume;
+        SaveLoadManager.BaseData.sfxVolume = SoundManager.Instance.SfxVolume;
+        SaveLoadManager.SaveBase();
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

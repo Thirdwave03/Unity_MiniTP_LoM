@@ -118,6 +118,9 @@ public static class GameInfos
 
     public static readonly int priceInfoCost = 1000;
 
+    public static readonly int minSaveSlot = 1;
+    public static readonly int maxSaveSlot = 3;
+
     public static int GetBulletinInfoStringId(ItemTypes itemType, PriceTrends trend, bool random = true)
     {
         int stringIdTempSuffix = (((int)itemType) - 1) * 4 + 1;
@@ -143,6 +146,17 @@ public static class LocalizerContents
     {
         //localizer.customizedFormat.AddListener(action);
     }
+}
+
+public enum TitleSceneCenterMsgType
+{
+    BestRecord,
+    DevInfo,
+    SelectLoadSlot,
+    SelectNewGameSlot,
+    SelectOverwriteSlot,
+    SelectDeleteSlot,
+    InformDeleted,
 }
 
 public enum MainMenuCenterMsgType

@@ -1,1 +1,1 @@
-﻿GameMode,LastDay,InventoryMaxLv,InventoryMinLv,InventoryLevel,InventoryCapacity,InventoryCapacityMultiplier,InventoryFeeMultiplier,LentPaybackMultiplier
+﻿GameMode,StringId,LastDay,InventoryMaxLv,InventoryMinLv,InventoryInitialLevel,InventoryCapacity,InventoryCapacityMultiplier,InventoryFeeMultiplier,LentPaybackMultiplier

@@ -9,7 +9,7 @@ public class SaveLoadManager
 { 
     public static int SaveDataVersion { get; private set; } = 1;
     public static SaveDataVC GameData {  get; set; }
-    //public static BaseSaveDataVC BaseData {  get; set; }
+    public static BaseSaveDataVC BaseData {  get; set; }
 
     private static readonly string[] SaveFileName =
     {
@@ -28,11 +28,19 @@ public class SaveLoadManager
             GameData = new SaveDataVC();
             Save();
         }
-        //if(!LoadBase())
-        //{
-        //    BaseData = new BaseSaveDataVC();
-        //    SaveBase();
-        //}
+        if(!LoadBase())
+        {
+            BaseData = new BaseSaveDataVC();
+            BaseData.gameModes = new GameModes[3];
+            BaseData.coins = new int[3];
+            BaseData.days = new int[3];
+            BaseData.dateTimes = new System.DateTime[3];
+            BaseData.bgmVolume = 0.2f;
+            BaseData.sfxVolume = 0.2f;
+            BaseData.bestScore = 0;
+            BaseData.diamonds = 0;
+            SaveBase();
+        }
     }
 
     public void Init()
@@ -84,8 +92,8 @@ public class SaveLoadManager
         };
 
         var path = Path.Combine(SaveDirectory, SaveFileName[0]);
-        //var json = JsonConvert.SerializeObject(BaseData, jsonSettings);
-        //File.WriteAllText(path, json);
+        var json = JsonConvert.SerializeObject(BaseData, jsonSettings);
+        File.WriteAllText(path, json);
 
         Debug.Log($"Base file data save successful");
 
@@ -138,8 +146,30 @@ public class SaveLoadManager
         {
             saveData = saveData.VersionUp();
         }
-        //BaseData = saveData as BaseSaveDataVC;
+        BaseData = saveData as BaseSaveDataVC;
 
+        return true;
+    }
+
+    public static bool DeleteSlot(int slotIndex)
+    {
+        var path = Path.Combine(SaveDirectory, SaveFileName[slotIndex]);
+        if(!File.Exists(path))
+        {
+            Debug.Log($"No file exists at path: {path}");
+            return false;
+        }
+        else
+        {
+            File.Delete(path);
+            Debug.Log($"File delete successful at path: {path}");
+        }
+
+        BaseData.days[slotIndex - 1] = default;
+        BaseData.coins[slotIndex - 1] = default;
+        BaseData.dateTimes[slotIndex - 1] = default;
+        BaseData.gameModes[slotIndex - 1] = default;
+        SaveBase();        
         return true;
     }
 

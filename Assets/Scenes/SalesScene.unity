@@ -25932,6 +25932,9 @@ GameObject:
   m_Component:
   - component: {fileID: 200654522144463790}
   - component: {fileID: 6800388099852142737}
+  - component: {fileID: 6800388099852142740}
+  - component: {fileID: 6800388099852142739}
+  - component: {fileID: 6800388099852142738}
   m_Layer: 5
   m_Name: SFXSliderArea
   m_TagString: Untagged
@@ -44474,6 +44477,58 @@ MonoBehaviour:
   m_FlexibleWidth: 60
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &6800388099852142738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2421711330040497301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1945a0de5f52b429ad8076e7dba9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  image: {fileID: 0}
+--- !u!114 &6800388099852142739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2421711330040497301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &6800388099852142740
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2421711330040497301}
+  m_CullTransparentMesh: 1
 --- !u!1 &6801843499327305354
 GameObject:
   m_ObjectHideFlags: 0
@@ -47579,6 +47634,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1138566048664553822}
   - component: {fileID: 8240070181449623170}
+  - component: {fileID: 8240070181449623173}
+  - component: {fileID: 8240070181449623172}
+  - component: {fileID: 8240070181449623171}
   m_Layer: 5
   m_Name: BGMSliderArea
   m_TagString: Untagged
@@ -48801,6 +48859,58 @@ MonoBehaviour:
   m_FlexibleWidth: 60
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &8240070181449623171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7771039305112148421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de1945a0de5f52b429ad8076e7dba9c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  image: {fileID: 0}
+--- !u!114 &8240070181449623172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7771039305112148421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &8240070181449623173
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7771039305112148421}
+  m_CullTransparentMesh: 1
 --- !u!1 &8252018785765681943
 GameObject:
   m_ObjectHideFlags: 0

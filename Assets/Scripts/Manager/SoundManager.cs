@@ -37,6 +37,20 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private float bgmVolume;
     [SerializeField] private float sfxVolume;
 
+    static SoundManager()
+    {
+      
+    }
+
+    private void LoadSavedSound()
+    {
+        if (SaveLoadManager.LoadBase())
+        {
+            bgmVolume = SaveLoadManager.BaseData.bgmVolume;
+            sfxVolume = SaveLoadManager.BaseData.sfxVolume;
+        }
+    }
+
     public float BgmVolume
     {
         get { return bgmVolume; }
@@ -67,6 +81,7 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        LoadSavedSound();
     }
 
     private void OnEnable()

@@ -155,7 +155,8 @@ public class SalesSceneUiManager : MonoBehaviour
 
     private void OnClickRestartButton()
     {
-
+        GameManager.Instance.Restart();
+        SceneManager.LoadScene((int)SceneIds.MainScene);
     }
 
     private void OnClickMainMenu()
@@ -164,6 +165,10 @@ public class SalesSceneUiManager : MonoBehaviour
     }
     private void OnClickQuit()
     {
+        SaveLoadManager.BaseData.bgmVolume = SoundManager.Instance.BgmVolume;
+        SaveLoadManager.BaseData.sfxVolume = SoundManager.Instance.SfxVolume;
+        SaveLoadManager.SaveBase();
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else

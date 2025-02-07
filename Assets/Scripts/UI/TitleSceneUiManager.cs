@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class TitleSceneUiManager : MonoBehaviour
 {
+    private TitleSceneCenterMsgType messageType;
+    private GameModes gameMode = GameModes.Default;
+    private int selectedSlotIndex;
+
     public Button settingsButton;
     public Button continueButton;
     public Button newGameButton;
@@ -23,6 +27,12 @@ public class TitleSceneUiManager : MonoBehaviour
 
     public GameObject messageBox;
     public UiSaveLoadWindow saveloadWindow;
+    public GameObject centerMessage;
+    public GameObject centerMessageCheckBoxArea;
+    public TextLocalizer centerMessageLC;
+
+    public Button centerMessageCheckB;
+    public Button centerMessageCloseB;
 
     public TMP_Dropdown languagesDD;
 
@@ -37,6 +47,8 @@ public class TitleSceneUiManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 999;
         AddListeners();
+        bgmSlider.value = SoundManager.Instance.BgmVolume;
+        sfxSlider.value = SoundManager.Instance.SfxVolume;
     }
 
     private void OnEnable()
@@ -45,8 +57,6 @@ public class TitleSceneUiManager : MonoBehaviour
         messageBox.SetActive(false);
         languagesDD.value = (int)Variables.currentLanguage;
         languagesDD.RefreshShownValue();
-        bgmSlider.value = SoundManager.Instance.BgmVolume;
-        sfxSlider.value = SoundManager.Instance.SfxVolume;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -62,10 +72,12 @@ public class TitleSceneUiManager : MonoBehaviour
         newGameButton.onClick.AddListener(OnClickNewGame);
         limitedResourceButton.onClick.AddListener(OnClickTemp);
         exitGameButton.onClick.AddListener(OnClickExitGame);
-        bestRecordButton.onClick.AddListener(OnClickTemp);
-        devIconButton.onClick.AddListener(OnClickTemp);
+        bestRecordButton.onClick.AddListener(OnClickBestRecord);
+        devIconButton.onClick.AddListener(OnClickDevIcon);
         settingClose.onClick.AddListener(OnClickSettingClose);
         settingQuitButton.onClick.AddListener(OnClickExitGame);
+        centerMessageCheckB.onClick.AddListener(OnClickCenterMsgCheck);
+        centerMessageCloseB.onClick.AddListener(OnClickfCenterMessageClose);
 
         // dropdown
         languagesDD.onValueChanged.AddListener(OnLanguageChange);
@@ -104,24 +116,161 @@ public class TitleSceneUiManager : MonoBehaviour
         //    GameManager.Instance.SetupNewGame(GameModes.Default);
         //    SceneManager.LoadScene((int)SceneIds.MainScene);
         //}
+
+        OpenMessage(TitleSceneCenterMsgType.SelectNewGameSlot);
         
-        GameManager.Instance.currentSavedSlotIndex = 1;
-        GameManager.Instance.SetupNewGame(GameModes.Default);
-        SceneManager.LoadScene((int)SceneIds.MainScene);
+        //GameManager.Instance.currentSavedSlotIndex = 1;
+        //GameManager.Instance.SetupNewGame(GameModes.Default);
+        //SceneManager.LoadScene((int)SceneIds.MainScene);
+    }
+
+    public void OpenMessage(TitleSceneCenterMsgType msgType)
+    {
+        messageBox.SetActive(true);
+        messageType = msgType;
+        switch (msgType)
+        {
+            case TitleSceneCenterMsgType.BestRecord:
+                saveloadWindow.gameObject.SetActive(false);
+                centerMessage.SetActive(true);
+                centerMessageCheckBoxArea.SetActive(false);
+                centerMessageLC.tmp.text = string.Format(
+              DataTableManager.StringTableList[(int)Variables.currentLanguage]
+              .Get(999005), SaveLoadManager.BaseData.bestScore.ToString());
+                break;
+            case TitleSceneCenterMsgType.DevInfo:
+                saveloadWindow.gameObject.SetActive(false);
+                centerMessage.SetActive(true);
+                centerMessageCheckBoxArea.SetActive(false);
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999990);
+                break;
+            case TitleSceneCenterMsgType.SelectLoadSlot:
+                saveloadWindow.gameObject.SetActive(true);
+                centerMessage.SetActive(false);
+                if (SaveLoadManager.LoadBase())
+                {
+                    saveloadWindow.SetSaveLoadSlots();
+                }
+                break;
+            case TitleSceneCenterMsgType.SelectNewGameSlot:
+                saveloadWindow.gameObject.SetActive(true);
+                centerMessage.SetActive(false);
+                if (SaveLoadManager.LoadBase())
+                {
+                    saveloadWindow.SetSaveLoadSlots();
+                }
+                break;
+            case TitleSceneCenterMsgType.SelectOverwriteSlot:                
+                centerMessage.SetActive(true);
+                centerMessageCheckBoxArea.SetActive(true);
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999924);
+                break;
+            case TitleSceneCenterMsgType.SelectDeleteSlot:
+                centerMessage.SetActive(true);
+                centerMessageCheckBoxArea.SetActive(true);
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999923);
+                break;
+            case TitleSceneCenterMsgType.InformDeleted:
+                centerMessage.SetActive(true);
+                centerMessageCheckBoxArea.SetActive(false);
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999925);
+                break;
+            default:
+                break;
+        }
+        UpdateTitleSceneDisplay();
+        saveloadWindow.SetSaveLoadSlots();
+    }
+
+    private void OnClickCenterMsgCheck()
+    {
+        switch (messageType)
+        {           
+            case TitleSceneCenterMsgType.SelectOverwriteSlot:
+                GameManager.Instance.SetupNewGame(gameMode, selectedSlotIndex);
+                SceneManager.LoadScene((int)SceneIds.MainScene);
+                break;
+            case TitleSceneCenterMsgType.SelectDeleteSlot:
+                SaveLoadManager.DeleteSlot(selectedSlotIndex);
+                OpenMessage(TitleSceneCenterMsgType.InformDeleted);
+                break;
+        }
+    }
+
+    public void OnClickDeleteSlot(int slotIndex)
+    {
+        selectedSlotIndex = slotIndex;
+        OpenMessage(TitleSceneCenterMsgType.SelectDeleteSlot);
+    }
+
+    public void UpdateTitleSceneDisplay()
+    {
+
     }
 
     private void OnClickContinue()
     {
-        int tempSlotIndex = 1;
+        OpenMessage(TitleSceneCenterMsgType.SelectLoadSlot);
+    }
 
-        if (!SaveLoadManager.Load(tempSlotIndex))
+    public void OnClickSaveLoadSlot(int slotIndex)
+    {
+        if (slotIndex < 1 || slotIndex > 3)
         {
-            Debug.Log($"Load slot {tempSlotIndex} failed");
+            Debug.Log($"Invalid SlotIndex: {slotIndex}");
             return;
         }
-        Debug.Log($"Load slot {tempSlotIndex} successful");
-        GameManager.Instance.LoadSavedSlot(tempSlotIndex);
-        SceneManager.LoadScene((int)SceneIds.MainScene);
+        selectedSlotIndex = slotIndex;
+        if (messageType == TitleSceneCenterMsgType.SelectLoadSlot)
+        {            
+            if (!SaveLoadManager.Load(slotIndex))
+            {
+                Debug.Log($"Load slot {slotIndex} failed");
+                return;
+            }
+            Debug.Log($"Load slot {slotIndex} successful");
+            GameManager.Instance.LoadSavedSlot(slotIndex);
+            SceneManager.LoadScene((int)SceneIds.MainScene);
+        }
+        else if (messageType == TitleSceneCenterMsgType.SelectNewGameSlot)
+        {
+            if (SaveLoadManager.BaseData.dateTimes[selectedSlotIndex - 1] == default)
+            {
+                GameManager.Instance.SetupNewGame(gameMode, slotIndex);
+                SceneManager.LoadScene((int)SceneIds.MainScene);
+            }
+            else
+            {
+                OpenMessage(TitleSceneCenterMsgType.SelectOverwriteSlot);
+            }
+        }
+    }
+
+    public void OnClickSaveLoadWindowClose()
+    {
+        messageBox.SetActive(false);
+    }
+
+    private void OnClickfCenterMessageClose()
+    {
+        messageBox.SetActive(false);
+    }
+
+    private void OnClickBestRecord()
+    {
+        OpenMessage(TitleSceneCenterMsgType.BestRecord);
+    }
+
+    private void OnClickDevIcon()
+    {
+        OpenMessage(TitleSceneCenterMsgType.DevInfo);
     }
 
     private void OnClickTemp()
@@ -149,6 +298,10 @@ public class TitleSceneUiManager : MonoBehaviour
 
     public void OnClickExitGame()
     {
+        SaveLoadManager.BaseData.bgmVolume = SoundManager.Instance.BgmVolume;
+        SaveLoadManager.BaseData.sfxVolume = SoundManager.Instance.SfxVolume;
+        SaveLoadManager.SaveBase();
+
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
