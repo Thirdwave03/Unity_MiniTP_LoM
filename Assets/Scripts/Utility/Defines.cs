@@ -135,6 +135,9 @@ public static class GameInfos
     public static readonly int minSaveSlot = 1;
     public static readonly int maxSaveSlot = 3;
 
+    public static readonly int tutorialStringIdBegin = 999991;
+    public static readonly int tutorialStringIdEnd = 999997;
+
     public static int GetBulletinInfoStringId(ItemTypes itemType, PriceTrends trend, bool random = true)
     {
         int stringIdTempSuffix = (((int)itemType) - 1) * 4 + 1;

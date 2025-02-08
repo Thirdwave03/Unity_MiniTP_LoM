@@ -3860,6 +3860,9 @@ MonoBehaviour:
   centerMsgCheckB: {fileID: 1708267152}
   centerMsgCloseB: {fileID: 28078196}
   centerMsgLC: {fileID: 896800329}
+  primaryShop: {fileID: 7793537953549797775}
+  secondaryShop: {fileID: 3841588423457939400}
+  luxuryShop: {fileID: 8542547359635375543}
 --- !u!1 &1248953472
 GameObject:
   m_ObjectHideFlags: 0
@@ -31762,7 +31765,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 56.586285, y: 0}
+  m_AnchoredPosition: {x: 54.854595, y: 0}
   m_SizeDelta: {x: 95.764, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5777877024588993538
@@ -31950,7 +31953,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5988569665239368670}
   m_HandleRect: {fileID: 5529944986211290492}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -39653,7 +39656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 56.586285, y: 0}
+  m_AnchoredPosition: {x: 54.854595, y: 0}
   m_SizeDelta: {x: 95.764, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8413173586772012095
@@ -42379,8 +42382,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 1725881964}
-  - {fileID: 860247378351737365}
   - {fileID: 1239280912}
-  - {fileID: 1620270124}
-  - {fileID: 8046692345597921404}
+  - {fileID: 860247378351737365}
   - {fileID: 6991844774453339385}
+  - {fileID: 8046692345597921404}
+  - {fileID: 1620270124}

@@ -136,7 +136,7 @@ public class TitleSceneUiManager : MonoBehaviour
                 centerMessageCheckBoxArea.SetActive(false);
                 centerMessageLC.tmp.text = string.Format(
               DataTableManager.StringTableList[(int)Variables.currentLanguage]
-              .Get(999005), SaveLoadManager.BaseData.bestScore.ToString());
+              .Get(999005), SaveLoadManager.BaseData.bestScore[0].ToString());
                 break;
             case TitleSceneCenterMsgType.DevInfo:
                 saveloadWindow.gameObject.SetActive(false);

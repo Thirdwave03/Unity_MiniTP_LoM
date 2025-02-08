@@ -41,6 +41,7 @@ public class SaveLoadManager
             BaseData.bestScore = new int[(int)GameModes.Count];
             BaseData.diamonds = 0;
             SaveBase();
+            GameManager.Instance.isFirstTimeEver = true;
         }
     }
 

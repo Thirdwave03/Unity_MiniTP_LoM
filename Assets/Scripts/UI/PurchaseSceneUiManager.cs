@@ -46,12 +46,17 @@ public class PurchaseSceneUiManager : MonoBehaviour
 
     public TextLocalizer centerMsgLC;
 
+    public GameObject primaryShop;
+    public GameObject secondaryShop;
+    public GameObject luxuryShop;
+
     private void Start()
     {
         AddListeners();
         UpdatePurchaseSceneDisplay();
         bulletinBoard.SetInitialPosition();
         messageBox.gameObject.SetActive(false);
+        UpdateNPC();
     }
 
     private void OnEnable()
@@ -244,5 +249,35 @@ public class PurchaseSceneUiManager : MonoBehaviour
     public void OnValueChangeSFX(float val)
     {
         SoundManager.Instance.SfxVolume = val;
+    }
+
+    private void UpdateNPC()
+    {
+        if(GameManager.Instance.isPrimaryShopAvailable)
+        {
+            primaryShop.SetActive(true);
+        }
+        else
+        {
+            primaryShop.SetActive(false);
+        }
+
+        if (GameManager.Instance.isSecondaryShopAvailable)
+        {
+            secondaryShop.SetActive(true);
+        }
+        else
+        {
+            secondaryShop.SetActive(false);
+        }
+
+        if(GameManager.Instance.isLuxuryShopAvailable)
+        {
+            luxuryShop.SetActive(true);
+        }
+        else
+        {
+            luxuryShop.SetActive(false);
+        }
     }
 }

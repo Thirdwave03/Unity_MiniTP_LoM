@@ -27,6 +27,8 @@ public class GameManager
 
     // Temp Vals
 
+    public bool isFirstTimeEver = false;
+    public bool isDisplayTutorial = false;
     public int investProfitRatio = 4;
     public List<int> tempBulletinBoardContents;
 
@@ -254,16 +256,10 @@ public class GameManager
     {
         CurrentGameMode = gameMode;
         currentSavedSlotIndex = SaveSlotIndex;
-       //if(gameMode == GameModes.Default)
-       //{
-       //    SetUpGameMode(gameMode, SaveSlotIndex);
-       //    //SalesItemChangeOnSleepWithProbability();
-       //    ItemsPriceChangeOnSleep();
-       //    SalesItemChangeOnSleepWithSelection();
-       //    WholeSalesUpdateOnSleep();
-       //    RandomBoxUpdateOnSleep();
-       //    BulletinBoardContentsUpdateOnSleep();
-       //}
+       if(gameMode == GameModes.Default)
+       {
+            isDisplayTutorial = true;
+       }
         SetUpGameMode(gameMode, SaveSlotIndex);
         ItemsPriceChangeOnSleep();
         SalesItemChangeOnSleepWithSelection();
@@ -611,6 +607,10 @@ public class GameManager
         switch (CurrentGameMode)
         {
             case GameModes.Default:
+                if(days == 51)
+                {
+                    coins -= 20000;
+                }
                 break;
             case GameModes.ShortGame:
                 break;

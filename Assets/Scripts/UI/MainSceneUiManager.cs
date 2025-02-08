@@ -54,6 +54,12 @@ public class MainSceneUiManager : MonoBehaviour
     public TextLocalizer centerMsgLC;
     public TextLocalizer nextDayLC;
 
+    public Button tutorialWindow;
+    public TextMeshProUGUI tutorialText;
+    public Button tutorialSkipB;
+    private int tutorialStringId = 0;
+    private bool ifDefaultFiftythDay = false;
+
     private void Start()
     {
         //DontDestroyOnLoad(gameObject.transform.parent.gameObject);
@@ -70,6 +76,7 @@ public class MainSceneUiManager : MonoBehaviour
         messageBox.SetActive(false);
         centerMsg.SetActive(false);
         nextDay.SetActive(false);
+        CheckTutorialNeccesity();
         bgmSlider.value = SoundManager.Instance.BgmVolume;
         sfxSlider.value = SoundManager.Instance.SfxVolume;
     }
@@ -103,7 +110,7 @@ public class MainSceneUiManager : MonoBehaviour
         settingCloseButton.onClick.AddListener(OnClickSettingClose);
         restartButton.onClick.AddListener(OnClickSettingRestart);
         mainMenuButton.onClick.AddListener(OnClickSettingMainMenu);
-        quitButton.onClick.AddListener(OnClickSettingQuit);
+        quitButton.onClick.AddListener(OnClickSettingQuit);        
 
         // inventory contents
         inventoryReturnButton.onClick.AddListener(OnClickInventoryReturn);
@@ -113,9 +120,57 @@ public class MainSceneUiManager : MonoBehaviour
         nextDayCloseB.onClick.AddListener(OnClickNextdayClose);
         nextDayCheckB.onClick.AddListener(OnClickNextdayCheck);
 
+        // tutorial contents
+        tutorialWindow.onClick.AddListener(OnClickTutorialWindow);
+        tutorialSkipB.onClick.AddListener(OnClickTutorialSkip);
+
         // sliders
         bgmSlider.onValueChanged.AddListener(OnValueChangeBGM);
         sfxSlider.onValueChanged.AddListener(OnValueChangeSFX);
+    }
+
+    private void CheckTutorialNeccesity()
+    {
+        if (GameManager.Instance.isDisplayTutorial)
+        {
+            tutorialStringId = GameInfos.tutorialStringIdBegin;
+            tutorialWindow.gameObject.SetActive(true);
+            tutorialText.text = DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                .Get(tutorialStringId);
+            if(GameManager.Instance.isFirstTimeEver)
+            {
+                tutorialSkipB.gameObject.SetActive(false);
+            }
+            else
+            {
+                tutorialSkipB.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            tutorialWindow.gameObject.SetActive(false);
+        }
+        GameManager.Instance.isFirstTimeEver = false;
+    }
+
+    private void OnClickTutorialWindow()
+    {
+        if (tutorialStringId < GameInfos.tutorialStringIdEnd)
+        {
+            tutorialText.text = DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                .Get(++tutorialStringId);
+        }
+        else
+        {
+            GameManager.Instance.isDisplayTutorial = false;
+            tutorialWindow.gameObject.SetActive(false);
+        }
+    }
+
+    private void OnClickTutorialSkip()
+    {
+        GameManager.Instance.isDisplayTutorial = false;
+        tutorialWindow.gameObject.SetActive(false);
     }
 
     private void OnClickInventory()
@@ -188,12 +243,20 @@ public class MainSceneUiManager : MonoBehaviour
             OpenMessage(MainMenuCenterMsgType.LastDay);
             return;
         }
-        if (GameManager.Instance.coins >= GameManager.Instance.inventoryFee)
+        if(GameManager.Instance.days == 50 && 
+            GameManager.Instance.CurrentGameMode == GameModes.Default &&
+            GameManager.Instance.coins < GameManager.Instance.inventoryFee + 20000)
+        {
+            ifDefaultFiftythDay = true;
+            OpenMessage(MainMenuCenterMsgType.CannotProceed);
+        }
+        else if (GameManager.Instance.coins >= GameManager.Instance.inventoryFee)
         { 
             OpenMessage(MainMenuCenterMsgType.CanProceed); 
         }
         else
         {
+            ifDefaultFiftythDay = false;
             OpenMessage(MainMenuCenterMsgType.CannotProceed);
         }
     }
@@ -307,7 +370,14 @@ public class MainSceneUiManager : MonoBehaviour
                 centerMsg.SetActive(true);
                 centerMsgCheckBArea.SetActive(true);
                 nextDay.SetActive(false);
-                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999901);
+                if (ifDefaultFiftythDay)
+                {
+                    centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999927);
+                }
+                else
+                {
+                    centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999901);
+                }
                 break;
             case MainMenuCenterMsgType.CanProceed:
                 centerMsg.SetActive(false);

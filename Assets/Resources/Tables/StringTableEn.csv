@@ -219,16 +219,16 @@
 999033,Last Played
 999034,Normal Mode
 999035,Show Me The Money
-999036,Endless Mode
+999036,Endless Journey
 999037,Empty
 999038,Delete Save
-999039,Short Game
-999040,Poverty
-999041,Prodigal Son
-999042,Prodigal Sons
-999043,Large Inventory
-999044,Small Inventory
-999045,Is Anyone There
+999039,30-Day Challenge
+999040,Rags to Riches
+999041,Sole Spendthrift
+999042,Double Trouble
+999043,Grand Warehouse
+999044,Tiny Storage
+999045,Ghost Market
 999046,Best Record
 999047, Blank
 999048, Blank
@@ -266,7 +266,7 @@
 999924,The progress of selected slot will be overwritten. Continue?
 999925,Slot data deleted successfully.
 999926,"This is last day, and will be lead to settlement. Continue?"
-999927,0
+999927,Not enough coins to pay off rental fee and .Do you want to lose all progress in this game and continue ?
 999928,0
 999929,0
 999930,0
@@ -274,17 +274,17 @@
 999932,0
 999933,0
 999934,0
-999935,Show Me The Money
-999936,Endless Mode
+999935,Short on cash? Fear not!
+999936,"No time limit, no boundaries! Expand your empire at your own pace for as long as you wish."
 999937,0
 999938,0
-999939,I haven't got all day. Play 30 days
-999940,Make progress out of nothing.
-999941,Prodigal Son
-999942,Prodigal Sons
-999943,Large Inventory
-999944,Small Inventory
-999945,Is Anyone There
+999939,"""A fast-paced sprint: you've got only 30 days to make the biggest impact. Can you rise to the challenge?"""
+999940,"""Start with practically nothing and climb your way to the top. It's the ultimate underdog story!"""
+999941,"""Your sole heir is a champion spender! Each day, half of your funds vanish. Can you outpace their extravagance?"""
+999942,"""Two reckless heirs, double the trouble! Every day, your balance plummets to zero. Survive if you can!"""
+999943,"""You begin with an immense warehouse that cannot be downgraded. Make the most of the vast storage to ensure success."""
+999944,"""You only have a tiny storage that can't be upgraded. Manage your limited space wisely and maximize efficiency!"""
+999945,"""No merchants in sight—it's like a ghost town. Brace yourself for a self-sufficient survival challenge!"""
 999946,0
 999947,0
 999948,0
@@ -330,12 +330,12 @@
 999988,0
 999989,0
 999990,Designed by : Yongjun Jho_nDeveloped by : James Lee
-999991,0
-999992,0
-999993,0
-999994,0
-999995,0
-999996,0
-999997,0
-999998,0
-999999, Default
+999991,"""안녕, 눈을 떴구나"""
+999992,"""내가 누구냐고?"""
+999993,"""그건 알 거 없고, 너는 장사를 통해 돈을 벌어야 해"""
+999994,"""뭐? 장사 하는법을 모른다고? 그건 해보기 전엔 모르는 일이지"""
+999995,"""내가 초기 자본금 만원을 빌려 줄 테니 어디 한 번 잘 해봐"""
+999996,"""50일 후에 두 배로만 갚으면 돼, 참 쉽지?"""
+999997,"""그럼 건투를 빌어..!"""
+999998,Skip
+999999,Default
