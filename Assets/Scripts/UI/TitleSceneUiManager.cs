@@ -36,7 +36,7 @@ public class TitleSceneUiManager : MonoBehaviour
 
     public TMP_Dropdown languagesDD;
 
-    public GameObject modeSelectWindow;
+    public UiModeSelectWindow modeSelectWindow;
     public Button modeSelectCloseB;
 
     public TextLocalizer continueLC;
@@ -196,6 +196,7 @@ public class TitleSceneUiManager : MonoBehaviour
                 saveloadWindow.gameObject.SetActive(false);
                 centerMessage.SetActive(false);
                 modeSelectWindow.gameObject.SetActive(true);
+                modeSelectWindow.SetContents();
                 break;
             default:
                 break;
@@ -217,6 +218,8 @@ public class TitleSceneUiManager : MonoBehaviour
                 break;
         }
     }
+
+    
 
     public void OnClickDeleteSlot(int slotIndex)
     {
@@ -265,6 +268,12 @@ public class TitleSceneUiManager : MonoBehaviour
                 OpenMessage(TitleSceneCenterMsgType.SelectOverwriteSlot);
             }
         }
+    }
+
+    public void OnClickModeSelect(int index)
+    {
+        gameMode = (GameModes)(index + 1);
+        OpenMessage(TitleSceneCenterMsgType.SelectNewGameSlot);
     }
 
     public void OnClickSaveLoadWindowClose()

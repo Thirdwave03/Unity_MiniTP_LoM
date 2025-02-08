@@ -88,6 +88,7 @@ public static class ItemDataIndex
     public static int minLuxury = 10041;
     public static int maxLuxury = 10050;
 }
+
 public static class SalesItemDataIndex
 {
     public static int minPrimary = 40001;

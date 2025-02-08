@@ -1,6 +1,6 @@
 ﻿Id,String
 0,
-500,emptyString
+500,EmptyString
 910001, Carrot
 910002, Corn
 910003, Egg
@@ -229,7 +229,7 @@
 999043,Large Inventory
 999044,Small Inventory
 999045,Is Anyone There
-999046, Blank
+999046,Best Record
 999047, Blank
 999048, Blank
 999049, Blank
@@ -274,17 +274,17 @@
 999932,0
 999933,0
 999934,0
-999935,0
-999936,0
+999935,Show Me The Money
+999936,Endless Mode
 999937,0
 999938,0
-999939,0
-999940,0
-999941,0
-999942,0
-999943,0
-999944,0
-999945,0
+999939,I haven't got all day. Play 30 days
+999940,Make progress out of nothing.
+999941,Prodigal Son
+999942,Prodigal Sons
+999943,Large Inventory
+999944,Small Inventory
+999945,Is Anyone There
 999946,0
 999947,0
 999948,0
