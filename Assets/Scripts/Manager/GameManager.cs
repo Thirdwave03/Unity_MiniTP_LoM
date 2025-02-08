@@ -22,7 +22,7 @@ public class GameManager
 
     public void Init()
     {
-        SaveLoadManager.Load();
+        //SaveLoadManager.Load();
     }
 
     // Temp Vals
@@ -41,7 +41,7 @@ public class GameManager
     public UnityEvent onSleepEvent;
 
     private bool isItemInitializingNeeded = false;
-    public int currentSavedSlotIndex;
+    public int currentSavedSlotIndex { get; private set; }
 
     public int InventoryOccupancy
     {
@@ -145,11 +145,8 @@ public class GameManager
     {
         onSleepEvent = new UnityEvent();
         entireItemDict = new Dictionary<int, SavedItemData>();
-        entireItemDict.Clear();
         salesItemDict = new Dictionary<int, SavedSalesItemData>();
-        salesItemDict.Clear();
         bulletinBoardContentsId = new List<int>();
-        bulletinBoardContentsId.Clear();
 
         for (int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxLuxury; ++i)
         {
@@ -183,7 +180,7 @@ public class GameManager
         {
             InitializeItemDictData();
         }
-        SynchronizeWithSaveData();
+        // SynchronizeWithSaveData();
     }
 
     private void InitializeItemDictData()
@@ -192,10 +189,10 @@ public class GameManager
 
         for(int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxPrimary; ++i)
         {
-            int key = UnityEngine.Random.Range(PriceDataIndex.minPrimary, PriceDataIndex.maxPrimary);
+            int key = UnityEngine.Random.Range(PriceDataIndex.minPrimary, PriceDataIndex.maxPrimary + 1);
             while (!priceList.Contains(key))
             {
-                key = UnityEngine.Random.Range(PriceDataIndex.minPrimary, PriceDataIndex.maxPrimary);
+                key = UnityEngine.Random.Range(PriceDataIndex.minPrimary, PriceDataIndex.maxPrimary + 1);
             }
             entireItemDict[i].isOnBoardRecently = false;
             entireItemDict[i].bulletinBoardId = 0; // tempData
@@ -211,10 +208,10 @@ public class GameManager
 
         for (int i = ItemDataIndex.minSecondary; i <= ItemDataIndex.maxSecondary; ++i)
         {
-            int key = UnityEngine.Random.Range(PriceDataIndex.minSecondary, PriceDataIndex.maxSecondary);
+            int key = UnityEngine.Random.Range(PriceDataIndex.minSecondary, PriceDataIndex.maxSecondary + 1);
             while (!priceList.Contains(key))
             {
-                key = UnityEngine.Random.Range(PriceDataIndex.minSecondary, PriceDataIndex.maxSecondary);
+                key = UnityEngine.Random.Range(PriceDataIndex.minSecondary, PriceDataIndex.maxSecondary + 1);
             }
             entireItemDict[i].isOnBoardRecently = false;
             entireItemDict[i].bulletinBoardId = 0; // tempData
@@ -230,10 +227,10 @@ public class GameManager
 
         for (int i = ItemDataIndex.minLuxury; i <= ItemDataIndex.maxLuxury; ++i)
         {
-            int key = UnityEngine.Random.Range(PriceDataIndex.minLuxury, PriceDataIndex.maxLuxury);
+            int key = UnityEngine.Random.Range(PriceDataIndex.minLuxury, PriceDataIndex.maxLuxury + 1);
             while (!priceList.Contains(key))
             {
-                key = UnityEngine.Random.Range(PriceDataIndex.minLuxury, PriceDataIndex.maxLuxury);
+                key = UnityEngine.Random.Range(PriceDataIndex.minLuxury, PriceDataIndex.maxLuxury + 1);
             }
             entireItemDict[i].isOnBoardRecently = false;
             entireItemDict[i].bulletinBoardId = 0; // tempData
@@ -253,7 +250,7 @@ public class GameManager
         SetupNewGame(CurrentGameMode, currentSavedSlotIndex);
     }
 
-    public void SetupNewGame(GameModes gameMode = GameModes.Default, int SaveSlotIndex = 1)
+    public void SetupNewGame(GameModes gameMode, int SaveSlotIndex)
     {
         CurrentGameMode = gameMode;
         currentSavedSlotIndex = SaveSlotIndex;
@@ -270,6 +267,8 @@ public class GameManager
         SetUpGameMode(gameMode, SaveSlotIndex);
         ItemsPriceChangeOnSleep();
         SalesItemChangeOnSleepWithSelection();
+        LoanUpdateOnSleep();
+        InnUpdateOnSleep();
         WholeSalesUpdateOnSleep();
         RandomBoxUpdateOnSleep();
         BulletinBoardContentsUpdateOnSleep();
@@ -288,7 +287,7 @@ public class GameManager
         {
             SavedItemData newItemData = new SavedItemData();
             newItemData.ItemData = item;
-            newItemData.avgCost = 0;
+            newItemData.avgCost = 0;            
             newItemData.isSoldOut = false;
             entireItemDict.Add(item.Id, newItemData);
         }
@@ -303,7 +302,7 @@ public class GameManager
         }
     }
 
-    private void SetUpGameMode(GameModes gameMode = GameModes.Default, int slotIndex = 1)
+    private void SetUpGameMode(GameModes gameMode, int slotIndex)
     {
         SetUpItemDatas();
         InitializeItemDictData();
@@ -330,16 +329,15 @@ public class GameManager
         infoItemIndex = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxSecondary + 1);
         isDisplayingMinPriceInfo = UnityEngine.Random.Range(0, 2) == 0 ? false : true;
         isInfoOpened = false;
-
+                
         isPrimaryShopAvailable = true;
         isSecondaryShopAvailable = true;
         isLuxuryShopAvailable = true;
 
-
         // Inventory
-        inventoryLevel = 1;
-        inventoryCapacity = 50;
-        inventoryFee = 100;
+        inventoryLevel = DataTableManager.GameModeTable.Get(CurrentGameMode).InventoryInitialLv;
+        inventoryCapacity = DataTableManager.InventoryTable.Get(inventoryLevel).Capacity;
+        inventoryFee = DataTableManager.InventoryTable.Get(inventoryLevel).DailyCost;
 
         // Loan
         lentAmount = UnityEngine.Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
@@ -381,7 +379,7 @@ public class GameManager
         randomBox2Price = entireItemDict[UnityEngine.Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1)].price;
     }
 
-    public void LoadSavedSlot(int slotIndex = 1)
+    public void LoadSavedSlot(int slotIndex)
     {
         currentSavedSlotIndex = slotIndex;
 
@@ -390,17 +388,20 @@ public class GameManager
         entireItemDict.Clear();
         salesItemDict = new Dictionary<int, SavedSalesItemData>();
         salesItemDict.Clear();
-        if (SaveLoadManager.Load(currentSavedSlotIndex))
+        if (!SaveLoadManager.Load(currentSavedSlotIndex))
         {
-            foreach (var item in SaveLoadManager.GameData.savedItemList)
-            {
-                entireItemDict.Add(item.ItemData.Id, item);
-            }
-            foreach (var item in SaveLoadManager.GameData.savedSalesItemList)
-            {
-                salesItemDict.Add(item.SalesItemData.Id, item);
-            }
+            Debug.LogError("LoadSlot failed");
         }
+
+        foreach (var item in SaveLoadManager.GameData.savedItemList)
+        {
+            entireItemDict.Add(item.ItemData.Id, item);
+        }
+        foreach (var item in SaveLoadManager.GameData.savedSalesItemList)
+        {
+            salesItemDict.Add(item.SalesItemData.Id, item);
+        }
+        
 
         // GameMode and dependant data
         CurrentGameMode = SaveLoadManager.GameData.currentGameMode;
@@ -473,6 +474,9 @@ public class GameManager
 
     private void SynchronizeWithSaveData()
     {
+        // To Avoid Null
+        SaveLoadManager.AvoidNull();
+
         // ItemList and SalesItemList
         SaveLoadManager.GameData.savedItemList.Clear();
         SaveLoadManager.GameData.savedSalesItemList.Clear();
@@ -710,25 +714,42 @@ public class GameManager
 
             if (entireItemDict[i].priceTrend == PriceTrends.Rising)
             {
-                entireItemDict[i].price +=
-                    UnityEngine.Random.Range(DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinChangable,
-                    DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable + 1);
+                if (entireItemDict[i].price > DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable * entireItemDict[i].ItemData.InventoryOccupancy)
+                {
+                    entireItemDict[i].price +=
+                        UnityEngine.Random.Range(DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinChangable,
+                        DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable + 1) * entireItemDict[i].ItemData.InventoryOccupancy
+                        - UnityEngine.Random.Range(0, entireItemDict[i].ItemData.InventoryOccupancy + 1);
+                }
+                else
+                {
+                    entireItemDict[i].price = (int)(entireItemDict[i].price * UnityEngine.Random.Range(1f, 2f));
+                }
             }
             if (entireItemDict[i].priceTrend == PriceTrends.Declining)
             {
-                entireItemDict[i].price -=
+                if (entireItemDict[i].price * 0.5 > DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable * entireItemDict[i].ItemData.InventoryOccupancy)
+                {
+                    entireItemDict[i].price -=
                     UnityEngine.Random.Range(DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinChangable,
-                    DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable + 1);
+                    DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxChangable * entireItemDict[i].ItemData.InventoryOccupancy
+                    + UnityEngine.Random.Range(0, entireItemDict[i].ItemData.InventoryOccupancy + 1));
+                }
+                else
+                {
+                    entireItemDict[i].price = (int)(entireItemDict[i].price * UnityEngine.Random.Range(0.5f, 1f));
+                }
             }
             entireItemDict[i].price = Mathf.Clamp(entireItemDict[i].price,
-                DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinPrice,
-                DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxPrice + 1);
+                DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MinPrice * entireItemDict[i].ItemData.InventoryOccupancy,
+                (DataTableManager.PriceTable.Get(entireItemDict[i].priceID).MaxPrice + 1)
+                * entireItemDict[i].ItemData.InventoryOccupancy);
             if (entireItemDict[i].trendRemainingDate <= 0)
             {                   
                 // remove contents ran out of trend date from bulletin board.
                 if (bulletinBoardContentsId.Contains(entireItemDict[i].ItemData.Id))
-                {                    
-                    bulletinBoardContentsId.Remove(entireItemDict[i].ItemData.Id);               
+                {
+                    bulletinBoardContentsId.Remove(entireItemDict[i].ItemData.Id);      
                 }
 
                 entireItemDict[i].priceTrend = (PriceTrends)UnityEngine.Random.Range(0, (int)PriceTrends.Count);
@@ -768,7 +789,7 @@ public class GameManager
             bulletinBoardContentsId.RemoveAt(0);
         }
 
-        while(numberOfNewInfo > 0)
+        while(numberOfNewInfo > 0 && tempBulletinBoardContents.Count != 0)
         {
             int randomIndex = UnityEngine.Random.Range(0, tempBulletinBoardContents.Count);
             if (!bulletinBoardContentsId.Contains(tempBulletinBoardContents[randomIndex]))
@@ -880,9 +901,9 @@ public class GameManager
 
     public void OnSleepLastDay()
     {
-        if(coins > SaveLoadManager.BaseData.bestScore && CurrentGameMode == GameModes.Default)
+        if(coins > SaveLoadManager.BaseData.bestScore[(int)CurrentGameMode])
         {
-            SaveLoadManager.BaseData.bestScore = coins;
+            SaveLoadManager.BaseData.bestScore[(int)CurrentGameMode] = coins;
         }
         if(coins >= DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondGoal)
         {

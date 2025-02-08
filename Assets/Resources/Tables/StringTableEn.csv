@@ -1,5 +1,6 @@
 ﻿Id,String
 0,
+500,emptyString
 910001, Carrot
 910002, Corn
 910003, Egg
@@ -245,7 +246,7 @@
 999904, Proceed to next day ?
 999905, Would you upgrade your inventory with{0} coins ? Rental fee for next inventory level : {1} coins a day
 999906, Do you want to downgrade Inventory level ? Rental fee for downgraded inventory level : {0} coins a day
-999907, Pre - order with a{0} % discount
+999907, Pre - order with a <color=#FFFF00>{0}</color>% discount
 999908, You can purchase each type of box once daily.Each box contains 1–5 of the same product which disappears if not collected.
 999909," ""You can receive a pre-ordered product the day after purchase. You do not have to pick it up immediately"
 999910, You can only gather information once a day.The information you gather may be duplicated.

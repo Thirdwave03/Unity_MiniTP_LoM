@@ -55,7 +55,7 @@ public class UiInventory : MonoBehaviour, IDragHandler
         foreach(var slot in slots)
         {
             slot.button.onClick.AddListener(action);
-            Debug.Log($"Listener Added to slot: {slot.SlotIndex}");
+            //Debug.Log($"Listener Added to slot: {slot.SlotIndex}");
         }
     }
 

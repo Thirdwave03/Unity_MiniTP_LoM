@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using SaveDataVC = SaveDataV1;
 using BaseSaveDataVC = BaseSaveDataV1;
+using System.Collections.Generic;
 
 
 public class SaveLoadManager
@@ -23,11 +24,11 @@ public class SaveLoadManager
 
     static SaveLoadManager()
     {
-        if(!Load())
-        {
-            GameData = new SaveDataVC();
-            Save();
-        }
+        //if(!Load())
+        //{
+        //    GameData = new SaveDataVC();
+        //    Save();
+        //}
         if(!LoadBase())
         {
             BaseData = new BaseSaveDataVC();
@@ -37,7 +38,7 @@ public class SaveLoadManager
             BaseData.dateTimes = new System.DateTime[3];
             BaseData.bgmVolume = 0.2f;
             BaseData.sfxVolume = 0.2f;
-            BaseData.bestScore = 0;
+            BaseData.bestScore = new int[(int)GameModes.Count];
             BaseData.diamonds = 0;
             SaveBase();
         }
@@ -51,9 +52,9 @@ public class SaveLoadManager
     // readonly 넣어도 되나..?
     private static string SaveDirectory = $"{Application.persistentDataPath}/Save";
     
-    public static bool Save(int slot = 1)
+    public static bool Save(int slot)
     {
-        if (GameData == null || slot < 1 || slot >= SaveFileName.Length)
+        if (GameData == null || slot < 1 || slot > SaveFileName.Length)
         {
             Debug.Log($"File Save to slotIndex ({slot}) failed");
             return false;
@@ -100,9 +101,9 @@ public class SaveLoadManager
         return true;
     }
 
-    public static bool Load(int slot = 1)
+    public static bool Load(int slot)
     {
-        if (slot < 0 || slot >= SaveFileName.Length)
+        if (slot < 1 || slot > SaveFileName.Length)
             return false;
 
         var path = Path.Combine(SaveDirectory, SaveFileName[slot]);
@@ -193,5 +194,33 @@ public class SaveLoadManager
             return 2;
         }
         return -1;
+    }
+
+    public static void AvoidNull()
+    {
+        if(GameData == null)
+        {
+            GameData = new SaveDataVC();
+        }
+        if(GameData.savedItemList == null)
+        {
+            GameData.savedItemList = new List<SavedItemData>();
+        }
+        if(GameData.savedSalesItemList == null)
+        {
+            GameData.savedSalesItemList = new List<SavedSalesItemData>();
+        }
+        if (GameData.notOnSaleItemsIds == null)
+        {
+            GameData.notOnSaleItemsIds = new List<int>();
+        }
+        if (GameData.specialPriceItemIndexes == null)
+        {
+            GameData.specialPriceItemIndexes = new List<int>();
+        }
+        if (GameData.bulletinBoardContentsId == null)
+        {
+            GameData.bulletinBoardContentsId = new List<int>();
+        }
     }
 }

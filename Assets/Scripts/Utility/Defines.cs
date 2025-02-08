@@ -74,6 +74,7 @@ public enum GameModes // GameModes Table ±¸¼º
     BigInventory,
     SmallInventory,
     IsAnyoneThere,
+    Count,
 }
 
 public static class ItemDataIndex
@@ -169,6 +170,7 @@ public enum TitleSceneCenterMsgType
     SelectOverwriteSlot,
     SelectDeleteSlot,
     InformDeleted,
+    SelectGameMode,
 }
 
 public enum MainMenuCenterMsgType

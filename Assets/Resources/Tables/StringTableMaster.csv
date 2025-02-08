@@ -1,5 +1,6 @@
 ﻿Id,String,String,String,String
 0,,,,
+500,EmptyString,EmptyString,EmptyString,EmptyString
 910001, Carrot, 당근, にんじん, 胡萝卜
 910002, Corn, 옥수수, トウモロコシ, 玉米
 910003, Egg, 계란, たまご, 鸡蛋
@@ -163,26 +164,26 @@
 950520,An important exam is about to begin; the price of <color=#FFFF00>{0}</color> has risen.,곧 있으면 중요한 시험이 시작됩니다. <color=#FFFF00>{0}</color>의 가격이 상승합니다.,もうすぐ大事な試験が始まるから、<color=#FFFF00>{0}</color>の価格が上がるよ。,即将开始重要考试，<color=#FFFF00>{0}</color>的价格上涨了。
 950521,Decreased productivity has led to a reduction in the supply of food.,"생산성이 감소하여, 식료품 공급량이 감소합니다.",生産性が低下して、食料の供給量が減ってしまったよ。,由于生产率下降，食品供应量减少了。
 950522,Decreased productivity has led to an increase in the supply of food.,"생산성이 감소하여, 식료품 공급량이 증가합니다.",生産性が低下して、食料の供給量が増えるよ。,由于生产率下降，食品供应量反而增加了。
-998001, Tips:_nHealth is harmful for smoking., 팁:_nㅋㅋ, ヒント:_n(ウケる), 提示:_n哈哈
-998002, Tips : _nTips2, 팁 : _n팁2, ヒント : _nヒント2, 提示 : _n提示2
-998003, Tips : _nTips3, 팁 : _n팁3, ヒント : _nヒント3, 提示 : _n提示3
-998004, Tips : _nTips4, 팁 : _n팁4, ヒント : _nヒント4, 提示 : _n提示4
-998005, Tips : _nTips5, 팁 : _n팁5, ヒント : _nヒント5, 提示 : _n提示5
-998006, Tips : _nTips6, 팁 : _n팁6, ヒント : _nヒント6, 提示 : _n提示6
-998007, Tips : _nTips7, 팁 : _n팁7, ヒント : _nヒント7, 提示 : _n提示7
-998008, Tips : _nTips8, 팁 : _n팁8, ヒント : _nヒント8, 提示 : _n提示8
-998009, Tips : _nTips9, 팁 : _n팁9, ヒント : _nヒント9, 提示 : _n提示9
-998010, Tips : _nTips10, 팁 : _n팁10, ヒント : _nヒント10, 提示 : _n提示10
-998011, Tips : _nTips11, 팁 : _n팁11, ヒント : _nヒント11, 提示 : _n提示11
-998012, Tips : _nTips12, 팁 : _n팁12, ヒント : _nヒント12, 提示 : _n提示12
-998013, Tips : _nTips13, 팁 : _n팁13, ヒント : _nヒント13, 提示 : _n提示13
-998014, Tips : _nTips14, 팁 : _n팁14, ヒント : _nヒント14, 提示 : _n提示14
-998015, Tips : _nTips15, 팁 : _n팁15, ヒント : _nヒント15, 提示 : _n提示15
-998016, Tips : _nTips16, 팁 : _n팁16, ヒント : _nヒント16, 提示 : _n提示16
-998017, Tips : _nTips17, 팁 : _n팁17, ヒント : _nヒント17, 提示 : _n提示17
-998018, Tips : _nTips18, 팁 : _n팁18, ヒント : _nヒント18, 提示 : _n提示18
-998019, Tips : _nTips19, 팁 : _n팁19, ヒント : _nヒント19, 提示 : _n提示19
-998020, Tips : _nTips20, 팁 : _n팁20, ヒント : _nヒント20, 提示 : _n提示20
+998001, Tips:_nHealth is harmful for smoking., 팁:_nㅋㅋ, ヒント:_n(ウケる),温馨提示:_n哈哈
+998002, Tips : _nTips2, 팁 : _n팁2, ヒント : _nヒント2,温馨提示:_n提示2
+998003, Tips : _nTips3, 팁 : _n팁3, ヒント : _nヒント3,温馨提示:_n提示3
+998004, Tips : _nTips4, 팁 : _n팁4, ヒント : _nヒント4,温馨提示:_n提示4
+998005, Tips : _nTips5, 팁 : _n팁5, ヒント : _nヒント5,温馨提示:_n提示5
+998006, Tips : _nTips6, 팁 : _n팁6, ヒント : _nヒント6,温馨提示:_n提示6
+998007, Tips : _nTips7, 팁 : _n팁7, ヒント : _nヒント7,温馨提示:_n提示7
+998008, Tips : _nTips8, 팁 : _n팁8, ヒント : _nヒント8,温馨提示:_n提示8
+998009, Tips : _nTips9, 팁 : _n팁9, ヒント : _nヒント9,温馨提示:_n提示9
+998010, Tips : _nTips10, 팁 : _n팁10, ヒント : _nヒント10,温馨提示:_n提示10
+998011, Tips : _nTips11, 팁 : _n팁11, ヒント : _nヒント11,温馨提示:_n提示11
+998012, Tips : _nTips12, 팁 : _n팁12, ヒント : _nヒント12,温馨提示:_n提示12
+998013, Tips : _nTips13, 팁 : _n팁13, ヒント : _nヒント13,温馨提示:_n提示13
+998014, Tips : _nTips14, 팁 : _n팁14, ヒント : _nヒント14,温馨提示:_n提示14
+998015, Tips : _nTips15, 팁 : _n팁15, ヒント : _nヒント15,温馨提示:_n提示15
+998016, Tips : _nTips16, 팁 : _n팁16, ヒント : _nヒント16,温馨提示:_n提示16
+998017, Tips : _nTips17, 팁 : _n팁17, ヒント : _nヒント17,温馨提示:_n提示17
+998018, Tips : _nTips18, 팁 : _n팁18, ヒント : _nヒント18,温馨提示:_n提示18
+998019, Tips : _nTips19, 팁 : _n팁19, ヒント : _nヒント19,温馨提示:_n提示19
+998020, Tips : _nTips20, 팁 : _n팁20, ヒント : _nヒント20,温馨提示:_n提示20
 999001, New Game, 새로운 게임, 新しいゲーム, 新游戏
 999002, Limited Resources, 자원 한정 모드, 限定資源モード, 资源限定模式
 999003, Exit Game, 게임 종료, ゲーム終了, 游戏结束
@@ -228,7 +229,7 @@
 999043,Large Inventory,큰 창고,大きい倉庫,大库
 999044,Small Inventory,작은 창고,小さい倉庫,小库
 999045,Is Anyone There,텅 빈 거리,誰かいませんか,有人吗
-999046, Blank, 공란, 空欄, 空白
+999046,Best Record,최고 기록,ハイスコア,最佳记录
 999047, Blank, 공란, 空欄, 空白
 999048, Blank, 공란, 空欄, 空白
 999049, Blank, 공란, 空欄, 空白
@@ -245,19 +246,19 @@
 999904, Proceed to next day ?, 다음 날로 이동하시겠습니까 ?, 次の日に進みますか？, 要前往下一天吗？
 999905, Would you upgrade your inventory with{0} coins ? Rental fee for next inventory level : {1} coins a day, {0} 코인을 사용하여 창고를 업그레이드 하시겠습니까 ? 다음 레벨의 창고 비용 : 1일{1}코인., {0}コインを使って倉庫をアップグレードする？次のレベルの倉庫の料金は1日{1}コインだよ。, 花费{0}硬币升级仓库吗？下一等级的仓库租金为每天{1}硬币。
 999906, Do you want to downgrade Inventory level ? Rental fee for downgraded inventory level : {0} coins a day, 창고 레벨을 낮추시겠습니까 ? 다운그레이드 후 창고 비용 : 1일{0}코인., 倉庫のレベルを下げる？ダウングレード後のレンタル料は1日{0}コインだよ。, 要降级仓库吗？降级后仓库租金为每天{0}硬币。
-999907, Pre - order with a{0} % discount, 시장 가격보다{0}% 할인된 가격으로 예약 주문, 市場価格より{0}% 割引で予約注文できるよ。, 以比市场价低{0}% 的折扣进行预定订单
+999907, Pre - order with a <color=#FFFF00>{0}</color>% discount, 시장 가격보다 <color=#FFFF00>{0}</color>% 할인된 가격으로 예약 주문, 市場価格より<color=#FFFF00>{0}</color>% 割引で予約注文できるよ。, 以比市场价低<color=#FFFF00>{0}</color>% 的折扣进行预定订单
 999908, You can purchase each type of box once daily.Each box contains 1–5 of the same product which disappears if not collected., 매일 각 유형의 상자를 한 번씩 구매할 수 있으며 1–5개의 동일한 상품이 들어있습니다.상품은 가져가지 않으면 사라집니다., 毎日各種類のボックスを一度だけ購入でき、1～5個の同じ商品が入ってるよ。取らないと商品は消えちゃう。, 每天每种箱子只能购买一次，内含1到5个相同的商品，如果不拿走，商品就会消失。
 999909," ""You can receive a pre-ordered product the day after purchase. You do not have to pick it up immediately"," ""상품을 구매한 뒤 다음 날에 취득할 수 있습니다. 상품을 취득하지 않더라도 사라지진 않지만", 商品は購入後、翌日に受け取れるよ。受け取らなくても消えはしないけど、新しい注文に切り替わることもないよ。, 购买后，商品可以在第二天获取。即使不取走，也不会消失，但不会被新订单替换。
 999910, You can only gather information once a day.The information you gather may be duplicated., 정보 수집은 하루에 한 번만 할 수 있습니다.수집한 정보가 중복일 수도 있습니다., 情報収集は一日に一度だけ。集めた情報は重複することもあるよ。, 每天只能收集一次情报，收集到的信息可能会重复。
 999911," ""You can retrieve profit once a day"," ""하루에 한 번 수익을 받을 수 있습니다. 수익은 총 투자액의 {0}%이며", 1日に一度だけ利益を受け取れるよ。利益は総投資額の{0} % で、投資金は返ってこないから、慎重に投資してね。, 每天只能领取一次收益。收益为总投资额的{0}% ，且投资款不会返还，请谨慎投资。
-999912," ""Sir", 사장님 제게 <color = #FFFF00>{0}</color> 코인을 빌려주셨으면 합니다. <color = #FFFF00>{1}</color>일 후에 <color = #FFFF00>{2}</color> 코인으로 갚겠습니다., 社長、<color = #FFFF00>{0}</color>コインを貸していただけませんか？<color = #FFFF00>{1}</color>日後に<color = #FFFF00>{2}</color>コインで返します。, 老板，请借给我<color = #FFFF00>{0}</color>硬币，<color = #FFFF00>{1}</color>天后我会还<color = #FFFF00>{2}</color>硬币。
+999912," ""Sir", 사장님 제게 <color=#FFFF00>{0}</color> 코인을 빌려주셨으면 합니다. <color=#FFFF00>{1}</color>일 후에 <color=#FFFF00>{2}</color> 코인으로 갚겠습니다., 社長、<color=#FFFF00>{0}</color>コインを貸していただけませんか？<color=#FFFF00>{1}</color>日後に<color=#FFFF00>{2}</color>コインで返します。, 老板，请借给我<color=#FFFF00>{0}</color>硬币，<color=#FFFF00>{1}</color>天后我会还<color=#FFFF00>{2}</color>硬币。
 999913, Inventory reached max level., 창고가 최대 레벨입니다., 倉庫は最大レベルだよ。, 仓库已达到最高等级。
 999914, Cannot downgrade Inventory anymore., 창고가 최저 레벨입니다., 倉庫は最小レベルだよ。, 仓库已达到最低等级。
 999915, Inventory occupancy must be equal to or less than{0} to downgrade., 보유 상품이{0}칸 이하여야 다운그레이드가 가능합니다., 所持商品の数が{0}スロット以下でなければ、ダウングレードできないよ。, 持有商品必须不超过{0}格才能降级。
-999916," ""Sir", 사장님 약속드렸던 <color = #FFFF00>{0}</color> 코인입니다., 社長、約束した<color = #FFFF00>{0}</color>コインです。, 老板，这是承诺的<color = #FFFF00>{0}</color>硬币。
+999916," ""Sir", 사장님 약속드렸던 <color=#FFFF00>{0}</color> 코인입니다., 社長、約束した<color=#FFFF00>{0}</color>コインです。, 老板，这是承诺的<color=#FFFF00>{0}</color>硬币。
 999917," ""Thank you for your help", 지난번엔 감사했습니다 사장님., 前回はありがとう、社長。, 上次谢谢您，老板。
 999918," ""Thank you very much", 감사합니다 사장님., 本当にありがとう、社長。, 非常感谢，老板。
-999919," ""According to the info", <color = #FFFF00>{0}</color>의{1}는{2}코인이라고 합니다., <color = #FFFF00>{0}</color>の{1}は{2}コインだって。, 据说<color = #FFFF00>{0}</color>的{1}是{2}硬币。
+999919," ""According to the info", <color=#FFFF00>{0}</color>의{1}는{2}코인이라고 합니다., <color=#FFFF00>{0}</color>の{1}は{2}コインだって。, 据说<color=#FFFF00>{0}</color>的{1}是{2}硬币。
 999920, Lowest price, 최저가, 最安値, 最低价
 999921, Highest price, 최고가, 最高値, 最高价
 999922, The following items can be sold at{0}% higher prices!!, 현재 시장 가격보다{0}% 높은 가격으로 판매 가능!!, 現在の市場価格より{0}% 高い価格で販売可能！！, 可按比当前市场价高{0}% 的价格出售！！
@@ -273,17 +274,17 @@
 999932,0,0,0,0
 999933,0,0,0,0
 999934,0,0,0,0
-999935,0,0,0,0
-999936,0,0,0,0
+999935,Show Me The Money,돈이 너무 적다고요? 넉넉히 드릴게요,돈이 너무 적다고요? 넉넉히 드릴게요,돈이 너무 적다고요? 넉넉히 드릴게요
+999936,Endless Mode,상인이 오래오래 삽니다,상인이 오래오래 삽니다,상인이 오래오래 삽니다
 999937,0,0,0,0
 999938,0,0,0,0
-999939,0,0,0,0
-999940,0,0,0,0
-999941,0,0,0,0
-999942,0,0,0,0
-999943,0,0,0,0
-999944,0,0,0,0
-999945,0,0,0,0
+999939,I haven't got all day. Play 30 days,시간아깝다 30일만 하자,시간아깝다 30일만 하자,시간아깝다 30일만 하자
+999940,Make progress out of nothing.,자수성가의 꿈을 이루어보세요,자수성가의 꿈을 이루어보세요,자수성가의 꿈을 이루어보세요
+999941,Prodigal Son,아들이 돈을 물쓰듯 씁니다. 매일 남은 금액이 절반으로 줄어듭니다.,아들이 돈을 물쓰듯 씁니다. 매일 남은 금액이 절반으로 줄어듭니다.,아들이 돈을 물쓰듯 씁니다. 매일 남은 금액이 절반으로 줄어듭니다.
+999942,Prodigal Sons,이런… 아들이 둘입니다. 매일 잔고가 0이 됩니다,이런… 아들이 둘입니다. 매일 잔고가 0이 됩니다,이런… 아들이 둘입니다. 매일 잔고가 0이 됩니다
+999943,Large Inventory,큰 창고를 가지고 시작합니다. 다운그레이드가 불가합니다.,큰 창고를 가지고 시작합니다. 다운그레이드가 불가합니다.,큰 창고를 가지고 시작합니다. 다운그레이드가 불가합니다.
+999944,Small Inventory,창고를 업그레이드 할 수 없습니다,창고를 업그레이드 할 수 없습니다,창고를 업그레이드 할 수 없습니다
+999945,Is Anyone There,시장에 상인이 없습니다.,시장에 상인이 없습니다.,시장에 상인이 없습니다.
 999946,0,0,0,0
 999947,0,0,0,0
 999948,0,0,0,0

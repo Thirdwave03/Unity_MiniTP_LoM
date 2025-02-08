@@ -49,7 +49,7 @@ public class UiSalesItemInventory : MonoBehaviour
     {
         foreach (var slot in slots)
         {
-            Debug.Log($"actionAdded to {slot.SlotIndex}");
+            //Debug.Log($"actionAdded to {slot.SlotIndex}");
             slot.button.onClick.AddListener(action);
         }
     }

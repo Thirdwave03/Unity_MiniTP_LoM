@@ -42,7 +42,8 @@ public class UiBulletinContentController : MonoBehaviour
         else
         {
             textLocalizer.stringId = savedItemData.bulletinBoardId + 500;
-        }
+        }       
+
         textLocalizer.formatContents.Add(
             DataTableManager.StringTableList[(int)Variables.currentLanguage]
             .Get(savedItemData.ItemData.StringId));

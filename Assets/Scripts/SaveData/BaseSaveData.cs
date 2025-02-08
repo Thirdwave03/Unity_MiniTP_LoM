@@ -11,7 +11,7 @@ public abstract class BaseSaveData
 
 public class BaseSaveDataV1 : BaseSaveData
 {
-    public int bestScore;
+    public int[] bestScore;
     public int diamonds;
     public GameModes[] gameModes;
     public int[] coins;
