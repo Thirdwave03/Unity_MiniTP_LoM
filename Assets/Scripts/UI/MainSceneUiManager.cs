@@ -57,8 +57,10 @@ public class MainSceneUiManager : MonoBehaviour
     public Button tutorialWindow;
     public TextMeshProUGUI tutorialText;
     public Button tutorialSkipB;
+    public Button tutorialPrevB;
     private int tutorialStringId = 0;
     private bool ifDefaultFiftythDay = false;
+
 
     private void Start()
     {
@@ -123,6 +125,7 @@ public class MainSceneUiManager : MonoBehaviour
         // tutorial contents
         tutorialWindow.onClick.AddListener(OnClickTutorialWindow);
         tutorialSkipB.onClick.AddListener(OnClickTutorialSkip);
+        tutorialPrevB.onClick.AddListener(OnClickTutorialPrev);
 
         // sliders
         bgmSlider.onValueChanged.AddListener(OnValueChangeBGM);
@@ -137,6 +140,7 @@ public class MainSceneUiManager : MonoBehaviour
             tutorialWindow.gameObject.SetActive(true);
             tutorialText.text = DataTableManager.StringTableList[(int)Variables.currentLanguage]
                 .Get(tutorialStringId);
+            tutorialPrevB.interactable = false;
             if(GameManager.Instance.isFirstTimeEver)
             {
                 tutorialSkipB.gameObject.SetActive(false);
@@ -162,15 +166,47 @@ public class MainSceneUiManager : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.isDisplayTutorial = false;
-            tutorialWindow.gameObject.SetActive(false);
+            GameManager.Instance.isDisplayTutorial = false;           
         }
+        UpdatePrevButtonAvailability();
     }
 
     private void OnClickTutorialSkip()
     {
         GameManager.Instance.isDisplayTutorial = false;
         tutorialWindow.gameObject.SetActive(false);
+    }
+
+    private void OnClickTutorialPrev()
+    {
+        //if (tutorialStringId < GameInfos.tutorialStringIdEnd)
+        //{
+        //    tutorialText.text = DataTableManager.StringTableList[(int)Variables.currentLanguage]
+        //        .Get(++tutorialStringId);
+        //}
+        //else
+        //{
+        //    GameManager.Instance.isDisplayTutorial = false;
+        //    tutorialWindow.gameObject.SetActive(false);
+        //}
+        if (tutorialStringId > GameInfos.tutorialStringIdBegin)
+        {
+            tutorialText.text = DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                .Get(--tutorialStringId);
+        }
+        UpdatePrevButtonAvailability();
+    }
+
+    private void UpdatePrevButtonAvailability()
+    {
+        if(tutorialStringId > GameInfos.tutorialStringIdBegin)
+        {
+            tutorialPrevB.interactable = true;
+        }
+        else
+        {
+            tutorialPrevB.interactable = false;
+        }
     }
 
     private void OnClickInventory()

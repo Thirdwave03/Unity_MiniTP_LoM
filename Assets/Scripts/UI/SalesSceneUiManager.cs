@@ -242,6 +242,7 @@ public class SalesSceneUiManager : MonoBehaviour
     {
         messageBox.SetActive(true);
         messageType = msgType;
+        specialSalesWindow.gameObject.SetActive(false);
         switch (msgType)
         {
             case SalesSceneMsgType.InsufficientCoin:

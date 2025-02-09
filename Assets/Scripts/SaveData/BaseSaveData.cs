@@ -20,6 +20,7 @@ public class BaseSaveDataV1 : BaseSaveData
 
     public float bgmVolume;
     public float sfxVolume;
+    public Languages lastLanguageSetting;
 
     public BaseSaveDataV1()
     {

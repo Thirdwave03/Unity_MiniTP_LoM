@@ -16,11 +16,14 @@ public class UiSpecialSalesWindow : MonoBehaviour
     public Button maxB;
     public Button sellB;
 
+    public TextLocalizer upperTextLC;
+
     private void Start()
     {
         CurrentSlotIndex = -1;
         SetSpecialSalesItem();
         AddListeners();
+        UpdateUpperText();
     }
 
     private void AddListeners()
@@ -81,6 +84,12 @@ public class UiSpecialSalesWindow : MonoBehaviour
             * val).ToString();
         occupancyTMP.text = (GameManager.Instance.entireItemDict[specialSalesItems[index].itemId].ItemData.InventoryOccupancy
             * val).ToString();
+    }
+
+    private void UpdateUpperText()
+    {
+        upperTextLC.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
+            .Get(999922), GameManager.Instance.specialSalesAdvantageRatio.ToString());
     }
 
 

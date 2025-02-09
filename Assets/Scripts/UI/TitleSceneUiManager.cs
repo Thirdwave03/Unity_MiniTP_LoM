@@ -52,14 +52,15 @@ public class TitleSceneUiManager : MonoBehaviour
         AddListeners();
         bgmSlider.value = SoundManager.Instance.BgmVolume;
         sfxSlider.value = SoundManager.Instance.SfxVolume;
+        Variables.currentLanguage = SaveLoadManager.BaseData.lastLanguageSetting;
+        languagesDD.value = (int)Variables.currentLanguage;
+        languagesDD.RefreshShownValue();
     }
 
     private void OnEnable()
     {
         settingsWindow.SetActive(false);
         messageBox.SetActive(false);
-        languagesDD.value = (int)Variables.currentLanguage;
-        languagesDD.RefreshShownValue();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -317,6 +318,8 @@ public class TitleSceneUiManager : MonoBehaviour
         Debug.Log($"Language Change Input value: {value}\nLanguage: {(Languages)value}");
         Variables.currentLanguage = (Languages)value;
         gameObject.BroadcastMessage("OnChangeLanguage", (Languages)value);
+        SaveLoadManager.BaseData.lastLanguageSetting = Variables.currentLanguage;
+        SaveLoadManager.SaveBase();
     }
 
     public void OnClickExitGame()

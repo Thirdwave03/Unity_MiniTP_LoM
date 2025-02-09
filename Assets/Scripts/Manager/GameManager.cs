@@ -30,6 +30,7 @@ public class GameManager
     public bool isFirstTimeEver = false;
     public bool isDisplayTutorial = false;
     public int investProfitRatio = 4;
+    public int specialSalesAdvantageRatio = 20;
     public List<int> tempBulletinBoardContents;
 
     // ~Temp Vals
@@ -60,6 +61,7 @@ public class GameManager
     // BaseData
 
     public int diamonds;
+    public Languages lastLanguageSetting;
 
     // Datas To be Saved
     public GameModes CurrentGameMode { get; private set; }
@@ -305,11 +307,7 @@ public class GameManager
 
         currentSavedSlotIndex = slotIndex;
         CurrentGameMode = gameMode;
-
-        //lastDay = 100;
-        //inventoryMinLevel = GameInfos.minInventoryLevel;
-        //inventoryMaxLevel = GameInfos.maxInventoryLevel;
-
+              
 
         // GameMode and datas dependant to the GameMode
         lastDay = DataTableManager.GameModeTable.Get(CurrentGameMode).LastDay;
@@ -397,7 +395,9 @@ public class GameManager
         {
             salesItemDict.Add(item.SalesItemData.Id, item);
         }
-        
+
+        // Base GameData
+        diamonds = SaveLoadManager.BaseData.diamonds;                
 
         // GameMode and dependant data
         CurrentGameMode = SaveLoadManager.GameData.currentGameMode;
@@ -556,6 +556,7 @@ public class GameManager
 
     private void SynchronizeWithBaseSaveData()
     {
+        SaveLoadManager.BaseData.lastLanguageSetting = Variables.currentLanguage;
         SaveLoadManager.BaseData.gameModes[currentSavedSlotIndex-1] = CurrentGameMode;
         SaveLoadManager.BaseData.days[currentSavedSlotIndex-1] = days;
         SaveLoadManager.BaseData.coins[currentSavedSlotIndex-1] = coins;
@@ -588,7 +589,12 @@ public class GameManager
 
         ++days;
         coins -= inventoryFee;
-        tipIndex = UnityEngine.Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex + 1);
+        var tempTipIndex = UnityEngine.Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex + 1);
+        while(tempTipIndex == tipIndex)
+        {
+            tempTipIndex = UnityEngine.Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex + 1);
+        }
+        tipIndex = tempTipIndex;
         ItemsPriceChangeOnSleep();
         //SalesItemChangeOnSleepWithProbability();
         SalesItemChangeOnSleepWithSelection();
@@ -656,7 +662,7 @@ public class GameManager
 
     private void InnUpdateOnSleep()
     {
-        innProfit += (int)(investedAmount * 0.010001f * investProfitRatio);
+        innProfit += (int)(investedAmount * 0.01000001f * investProfitRatio);
         int newInfoItemIndex = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxSecondary + 1);
         while (infoItemIndex == newInfoItemIndex)
         {

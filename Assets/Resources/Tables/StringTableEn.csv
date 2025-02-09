@@ -230,7 +230,7 @@
 999044,Tiny Storage
 999045,Ghost Market
 999046,Best Record
-999047, Blank
+999047,To Previous
 999048, Blank
 999049, Blank
 999050, Blank
@@ -240,11 +240,11 @@
 999054, Blank
 999055, Blank
 999056, Blank
-999901,Not enough coins to pay off rental fee.Do you want to lose all progress in this game and continue ?
-999902, Insufficient coins.
-999903, You cannot buy items over maximum inventory capacity.
-999904, Proceed to next day ?
-999905, Would you upgrade your inventory with{0} coins ? Rental fee for next inventory level : {1} coins a day
+999901,Not enough coins to pay off rental fee. Do you still want to continue losing all the progress in this game?
+999902,Insufficient coins.
+999903,You cannot buy items over maximum inventory capacity.
+999904,Proceed to next day?
+999905,Would you upgrade your inventory with {0} coins ? Rental fee for next inventory level : {1} coins a day
 999906, Do you want to downgrade Inventory level ? Rental fee for downgraded inventory level : {0} coins a day
 999907, Pre - order with a <color=#FFFF00>{0}</color>% discount
 999908, You can purchase each type of box once daily.Each box contains 1–5 of the same product which disappears if not collected.
@@ -254,7 +254,7 @@
 999912," ""Sir"
 999913, Inventory reached max level.
 999914, Cannot downgrade Inventory anymore.
-999915, Inventory occupancy must be equal to or less than{0} to downgrade.
+999915, Inventory occupancy must be equal to or less than {0} to downgrade.
 999916," ""Sir"
 999917," ""Thank you for your help"
 999918," ""Thank you very much"
@@ -330,12 +330,12 @@
 999988,0
 999989,0
 999990,Designed by : Yongjun Jho_nDeveloped by : James Lee
-999991,"""안녕, 눈을 떴구나"""
-999992,"""내가 누구냐고?"""
-999993,"""그건 알 거 없고, 너는 장사를 통해 돈을 벌어야 해"""
-999994,"""뭐? 장사 하는법을 모른다고? 그건 해보기 전엔 모르는 일이지"""
-999995,"""내가 초기 자본금 만원을 빌려 줄 테니 어디 한 번 잘 해봐"""
-999996,"""50일 후에 두 배로만 갚으면 돼, 참 쉽지?"""
-999997,"""그럼 건투를 빌어..!"""
+999991,"Hello, you've opened your eyes."
+999992,You're asking who I am?
+999993,You don't need to know that. You have to earn money through trade.
+999994,What? You don't know how to do business? You won't know until you try.
+999995,"I'll lend you ten thousand coins as initial capital, so do your best."
+999996,"You just have to pay me back double in 50 days. Easy, right?"
+999997,"Then, good luck..!_n(Press Skip button to continue)"
 999998,Skip
 999999,Default

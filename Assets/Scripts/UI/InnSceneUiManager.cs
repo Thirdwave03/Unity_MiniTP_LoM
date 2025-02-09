@@ -255,16 +255,17 @@ public class InnSceneUiManager : MonoBehaviour
         {
             var infoItem = GameManager.Instance.entireItemDict[GameManager.Instance.infoItemIndex];
             var infoItemPriceData = DataTableManager.PriceTable.Get(infoItem.priceID);
-            var priceType = infoItemPriceData.MaxPrice;
+            var priceType = infoItemPriceData.MaxPrice * infoItem.ItemData.InventoryOccupancy;
             var priceTypeStringId = 999921;
             if (GameManager.Instance.isDisplayingMinPriceInfo)
             {
-                priceType = infoItemPriceData.MinPrice;
+                priceType = infoItemPriceData.MinPrice * infoItem.ItemData.InventoryOccupancy;
                 priceTypeStringId = 999920;
             }
             innWindowInfoDisplay.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
                 .Get(999919), DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(infoItem.ItemData.StringId),
-                DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(priceTypeStringId),
+                DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(priceTypeStringId)
+                ,
                 priceType.ToString());
             GameManager.Instance.CallSave();
         }
