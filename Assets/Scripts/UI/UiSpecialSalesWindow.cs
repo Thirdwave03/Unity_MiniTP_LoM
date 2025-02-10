@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,8 @@ public class UiSpecialSalesWindow : MonoBehaviour
     public SalesSceneUiManager salesSceneUi;
     public int CurrentSlotIndex {  get; private set; }
     public List<UiSpecialShopItemInfo> specialSalesItems;
+
+    private int[] slidervals = new int[3];
 
     public TextMeshProUGUI coinsTMP;
     public TextMeshProUGUI occupancyTMP;
@@ -23,7 +26,12 @@ public class UiSpecialSalesWindow : MonoBehaviour
         CurrentSlotIndex = -1;
         SetSpecialSalesItem();
         AddListeners();
+        AddFormatContents();
         UpdateUpperText();
+    }
+
+    private void OnEnable()
+    {        
     }
 
     private void AddListeners()
@@ -43,20 +51,29 @@ public class UiSpecialSalesWindow : MonoBehaviour
 
     public void OnClickMax()
     {
-        if (CurrentSlotIndex < 0 || CurrentSlotIndex > 2)
+        //if (CurrentSlotIndex < 0 || CurrentSlotIndex > 2)
+        //{
+        //    return;
+        //}
+        foreach (var slot in specialSalesItems)
         {
-            return;
+            slot.OnClickMax();
         }
-        specialSalesItems[CurrentSlotIndex].OnClickMax();
+        UpdateSumValue();
     }
 
     public void OnClickSell()
     {
-        if (CurrentSlotIndex < 0 || CurrentSlotIndex > 2)
+        //if (CurrentSlotIndex < 0 || CurrentSlotIndex > 2)
+        //{
+        //    return;
+        //}
+        foreach (var slot in specialSalesItems)
         {
-            return;
+            slot.OnClickSell();
         }
-        specialSalesItems[CurrentSlotIndex].OnClickSell();
+        UpdateSumValue();
+        //specialSalesItems[CurrentSlotIndex].OnClickSell();
     }
 
     public void OnClickSpecialItem(int index)
@@ -68,7 +85,7 @@ public class UiSpecialSalesWindow : MonoBehaviour
         {
             if(i != index)
             {
-                specialSalesItems[i].OnSelectOtherSlot();
+                specialSalesItems[i].ResetSlot();
             }
         }
     }
@@ -79,11 +96,29 @@ public class UiSpecialSalesWindow : MonoBehaviour
         {
             return;
         }
-        
-        coinsTMP.text = ((int)(GameManager.Instance.entireItemDict[specialSalesItems[index].itemId].price * 1.2f)
-            * val).ToString();
-        occupancyTMP.text = (GameManager.Instance.entireItemDict[specialSalesItems[index].itemId].ItemData.InventoryOccupancy
-            * val).ToString();
+
+        slidervals[index] = val;
+
+        //coinsTMP.text = ((int)(GameManager.Instance.entireItemDict[specialSalesItems[index].itemId].price * 1.2f)
+        //    * val).ToString();
+        //occupancyTMP.text = (GameManager.Instance.entireItemDict[specialSalesItems[index].itemId].ItemData.InventoryOccupancy
+        //    * val).ToString();
+        UpdateSumValue();
+    }
+
+    private void UpdateSumValue()
+    {
+        int sum = 0;
+        int occupancy = 0;
+        for (int i = 0; i < specialSalesItems.Count; ++i)
+        {
+            sum += (int)(GameManager.Instance.entireItemDict[specialSalesItems[i].itemId].price *
+                    slidervals[i] * 1.2f);
+            occupancy += GameManager.Instance.entireItemDict[specialSalesItems[i].itemId].ItemData.InventoryOccupancy
+            * slidervals[i];
+        }
+        coinsTMP.text = sum.ToString();
+        occupancyTMP.text = occupancy.ToString();
     }
 
     private void UpdateUpperText()
@@ -92,7 +127,10 @@ public class UiSpecialSalesWindow : MonoBehaviour
             .Get(999922), GameManager.Instance.specialSalesAdvantageRatio.ToString());
     }
 
-
+    private void AddFormatContents()
+    {
+        upperTextLC.formatContents.Add(GameManager.Instance.specialSalesAdvantageRatio.ToString());
+    }
 
 
 

@@ -31,6 +31,11 @@ public class UiSpecialShopItemInfo : MonoBehaviour, IPointerDownHandler
         slider.onValueChanged.AddListener(OnSliderValueChanged);
     }
 
+    private void OnDisable()
+    {
+        ResetSlot();
+    }
+
     public void SetItem(int id, bool init = true)
     {
         if (init)
@@ -60,7 +65,7 @@ public class UiSpecialShopItemInfo : MonoBehaviour, IPointerDownHandler
         
     }
 
-    public void OnSelectOtherSlot()
+    public void ResetSlot()
     {
         slider.value = 0;
         salesCount = 0;
