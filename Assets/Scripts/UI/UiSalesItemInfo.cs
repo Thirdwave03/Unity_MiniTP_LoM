@@ -111,9 +111,14 @@ public class UiSalesItemInfo : MonoBehaviour
         GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -= sellCount;
         salesSlider.maxValue = ItemData.count;
 
-        
+        // Blocking multiple Luxury items.
+        if (ItemData.ItemData.Id >= ItemDataIndex.minLuxury &&
+            ItemData.ItemData.Id <= ItemDataIndex.maxLuxury)
+        {
+            
+        }
 
-        UpdateDisplayedInfo();
+            UpdateDisplayedInfo();
         GameManager.Instance.CallSave();
         if (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count == 0)
         {

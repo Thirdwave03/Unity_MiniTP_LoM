@@ -58,6 +58,7 @@ public class InnSceneUiManager : MonoBehaviour
     public Button innWindowInvestB_10000;
     public Button innWindowInvestB_50000;
 
+    public TextLocalizer wholesalesUpperText;
     public GameObject wholesalesSlot1Blind;
     public Button wholesalesSlot1B;
     public GameObject wholesalesSlot1BBlind;
@@ -298,6 +299,12 @@ public class InnSceneUiManager : MonoBehaviour
 
     private void UpdateWholesalesContents()
     {
+        wholesalesUpperText.tmp.text = string.Format(
+            DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999907),
+            GameManager.Instance.WholesalesDiscountRatio.ToString()
+            );
+            
+
         //slot 1
         wholesalesSlot1BBlind.SetActive(GameManager.Instance.isItem1Purchased && 
             !GameManager.Instance.isItem1Pickupable);

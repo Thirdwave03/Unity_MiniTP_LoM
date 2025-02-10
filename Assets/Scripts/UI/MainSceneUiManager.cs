@@ -163,9 +163,13 @@ public class MainSceneUiManager : MonoBehaviour
         {
             tutorialText.text = DataTableManager.StringTableList[(int)Variables.currentLanguage]
                 .Get(++tutorialStringId);
+            if(tutorialStringId == GameInfos.tutorialStringIdEnd)
+            {
+                tutorialSkipB.gameObject.SetActive(true);
+            }
         }
         else
-        {
+        {            
             GameManager.Instance.isDisplayTutorial = false;           
         }
         UpdatePrevButtonAvailability();

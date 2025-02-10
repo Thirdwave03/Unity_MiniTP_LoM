@@ -152,9 +152,9 @@ public class UiPurchaseItemInfo : MonoBehaviour
                 entireItemDict[ItemData.SalesItemData.SalesItemId].
                 ItemData.InventoryOccupancy * purchaseCount)
             { 
-                Debug.Log($"Purchase Successful! " +
-                    $"{DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(900000 + (ItemData.SalesItemData.SalesItemId))}" +
-                    $"({purchaseCount})");
+                //Debug.Log($"Purchase Successful! " +
+                //    $"{DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(900000 + (ItemData.SalesItemData.SalesItemId))}" +
+                //    $"({purchaseCount})");
                 GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost =
                     (GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count *
                     GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].avgCost
@@ -166,6 +166,13 @@ public class UiPurchaseItemInfo : MonoBehaviour
                 ItemData.stock -= purchaseCount;
                 purchaseSlider.maxValue = ItemData.stock;
                 GameManager.Instance.salesItemDict[ItemData.SalesItemData.Id].stock = ItemData.stock;
+
+                // Blocking multiple Luxury items.
+                if(ItemData.SalesItemData.SalesItemId >= ItemDataIndex.minLuxury &&
+                   ItemData.SalesItemData.SalesItemId <= ItemDataIndex.maxLuxury)
+                {
+                    GameManager.Instance.salesItemDict[ItemData.SalesItemData.Id].isOnSale = false;
+                }
 
                 UpdateDisplayedInfo();
                 GameManager.Instance.CallSave();

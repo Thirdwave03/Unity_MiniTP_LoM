@@ -128,7 +128,7 @@ public static class GameInfos
     public static readonly float maxLentAmountMultiplier = 1.3f;
 
     public static readonly int minTipsIndex = 998001;
-    public static readonly int maxTipsIndex = 998020;
+    public static readonly int maxTipsIndex = 998011;
 
     public static readonly int priceInfoCost = 1000;
 
