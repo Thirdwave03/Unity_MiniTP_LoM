@@ -13,6 +13,7 @@ public class GameModeData
     public int InventoryInitialLv { get; set; }
     public int InitialCoin {  get; set; }
     public int DiamondGoal { get; set; }
+    public int DiamondReward {  get; set; }
     public float DiamondPaybackRate { get; set; }
 }
 

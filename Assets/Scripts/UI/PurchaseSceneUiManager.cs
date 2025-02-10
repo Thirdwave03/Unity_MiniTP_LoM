@@ -69,7 +69,8 @@ public class PurchaseSceneUiManager : MonoBehaviour
 
 
     private void Update()
-    {
+    {        
+#if UNITY_STANDALONE
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
@@ -85,10 +86,39 @@ public class PurchaseSceneUiManager : MonoBehaviour
             {
                 if (!settingWindow.gameObject.activeSelf && !purchaseWindow.gameObject.activeSelf)
                 {
-                    hit.collider.gameObject.GetComponent<NpcButton>().InvokeOnClick();                    
+                    hit.collider.gameObject.GetComponent<NpcButton>().InvokeOnClick();
                 }
             }
         }
+#elif UNITY_ANDROID || UNITY_IOS
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+                {
+                    Debug.Log("Raycast blocked by UI_Mobile");
+                    return;
+                }
+
+                Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+                RaycastHit2D hit = Physics2D.Raycast(touchPos, Vector2.zero);
+
+                if (hit.collider != null)
+                {
+                    if (!settingWindow.gameObject.activeSelf && !purchaseWindow.gameObject.activeSelf)
+                    {
+                        NpcButton npcButton = hit.collider.gameObject.GetComponent<NpcButton>();
+                        if (npcButton != null)
+                        {
+                            npcButton.InvokeOnClick();
+                        }
+                    }
+                }
+            }
+        }
+#endif
     }
 
     public void UpdatePurchaseSceneDisplay()

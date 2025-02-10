@@ -88,9 +88,6 @@ public class MainSceneUiManager : MonoBehaviour
         currentCoin.text = GameManager.Instance.coins.ToString();
         daysProgress.text = GameManager.Instance.days.ToString();
         tipsLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(GameManager.Instance.tipIndex);
-        //inventoryLevelLC.tmp.text = GameManager.Instance.inventoryLevel.ToString();
-        //inventoryStatusLC.tmp.text = $"Capacity: {GameManager.Instance.inventoryOccupancy}/{GameManager.Instance.inventoryCapacity}\n" +
-        //    $"Rental Fee: {GameManager.Instance.inventoryFee}/Day";
         inventoryLevelLC.OnChangeLanguage(Variables.currentLanguage);
         inventoryStatusLC.OnChangeLanguage(Variables.currentLanguage);
     }        

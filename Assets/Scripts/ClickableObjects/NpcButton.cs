@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public class NpcButton : MonoBehaviour
 {
     public UnityEvent onClick;
-
     public void InvokeOnClick()
     {
         onClick?.Invoke();

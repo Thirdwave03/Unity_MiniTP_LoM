@@ -10,14 +10,37 @@ public abstract class BaseSaveData
 }
 
 public class BaseSaveDataV1 : BaseSaveData
-{
-    public int[] bestScore;
+{    
+    // Saved Data
+        // Resource
     public int diamonds;
+    public int diamondsSpent;
+
+        // AvailableOnce
+    public bool isEnclopediaEnabled;
+    public bool isMarketDominansEnabled;
+    public bool isBulletinBoardAdditionalEnabled;
+    public bool isPriceChangeDetectorEnabled;
+    public bool isRandomBoxCountDetectorEnabled;
+
+    // Upgradables
+    public int wholesalesDiscountAdvantageLv;
+    public int specialSalesPriceAdvantageLv;
+    public int interestRateAdvantageLv;
+    public int lendMoneyAmountMultiplierLv;
+    public int lendMoneyPaybackAdvantageLv;
+    public int inventoryFeeAdvantageLv;
+
+    // Best Score Data
+    public int[] bestScore;
+
+    // Slot Data
     public GameModes[] gameModes;
     public int[] coins;
     public int[] days;
     public DateTime[] dateTimes;
 
+    // Game Settings
     public float bgmVolume;
     public float sfxVolume;
     public Languages lastLanguageSetting;

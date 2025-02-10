@@ -61,22 +61,28 @@ public class GameManager
             }
             return occupancy;
         }
-    }
-    // BaseData
-
-    public int diamonds;
-    public Languages lastLanguageSetting;
-    public int wholesalesDiscountLv;
+    }    
 
     // BaseDate Relative Properties
-
     public float WholesalesDiscountRatio
     {
         get
         {
-            return (float)(20f + 0.2 * wholesalesDiscountLv);
+            return (float)(20f + 0.2 * SaveLoadManager.BaseData.wholesalesDiscountAdvantageLv);
         }
     }
+    
+    public int InventoryFee
+    {
+        get
+        {
+            int fee = DataTableManager.InventoryTable.Get(inventoryLevel).DailyCost;
+            fee = (int)((float)fee * (1f - (0.01f * SaveLoadManager.BaseData.inventoryFeeAdvantageLv)));
+            return fee;
+        }
+    }
+
+    
 
     // Datas To be Saved
     public GameModes CurrentGameMode { get; private set; }
@@ -273,7 +279,7 @@ public class GameManager
         CustomizedSetupNew();          
         CallSave();
         Debug.Log($"New Game Set and Save: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
-    }        
+    }
 
     private void CustomizedSetupNew()
     {
@@ -437,8 +443,6 @@ public class GameManager
             salesItemDict.Add(item.SalesItemData.Id, item);
         }
 
-        // Base GameData
-        diamonds = SaveLoadManager.BaseData.diamonds;                
 
         // GameMode and dependant data
         CurrentGameMode = SaveLoadManager.GameData.currentGameMode;
@@ -958,18 +962,16 @@ public class GameManager
 
     public void OnSleepLastDay()
     {
-        if(coins > SaveLoadManager.BaseData.bestScore[(int)CurrentGameMode])
-        {
-            SaveLoadManager.BaseData.bestScore[(int)CurrentGameMode] = coins;
-        }
+        SaveLoadManager.BaseData.bestScore[(int)CurrentGameMode] =
+            Mathf.Max(SaveLoadManager.BaseData.bestScore[(int)CurrentGameMode], coins);
         if(coins >= DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondGoal)
         {
             int bonusDiamonds = (int)((coins - DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondGoal)
                 * DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondPaybackRate);
+
+            bonusDiamonds += DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondReward;
             SaveLoadManager.BaseData.diamonds += bonusDiamonds;
-            SaveLoadManager.BaseData.diamonds += 100;
-        }
-        
+        }        
     }
 
     private void CallInsufficientCoinEvent()
