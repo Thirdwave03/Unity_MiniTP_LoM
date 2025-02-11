@@ -32,6 +32,7 @@ public class UiSpecialSalesWindow : MonoBehaviour
 
     private void OnEnable()
     {        
+
     }
 
     private void AddListeners()
@@ -124,12 +125,12 @@ public class UiSpecialSalesWindow : MonoBehaviour
     private void UpdateUpperText()
     {
         upperTextLC.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
-            .Get(999922), GameManager.Instance.specialSalesAdvantageRatio.ToString());
+            .Get(999922), GameManager.Instance.SpecialSalesAdvantageRatio.ToString());
     }
 
     private void AddFormatContents()
     {
-        upperTextLC.formatContents.Add(GameManager.Instance.specialSalesAdvantageRatio.ToString());
+        upperTextLC.formatContents.Add(GameManager.Instance.SpecialSalesAdvantageRatio.ToString());
     }
 
 

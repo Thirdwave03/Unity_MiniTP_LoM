@@ -105,12 +105,15 @@ public class InnSceneUiManager : MonoBehaviour
     public TextMeshProUGUI randomBoxSlot2Count;
     public Image randomBoxSlot2ItemImage;
 
+    public GameObject innMaster;
+
     private void Start()
     {
         AddListeners();
         UpdateInnSceneDisplay();
         bulletinBoard.SetInitialPosition();
         messageBox.SetActive(false);
+        UpdateNPC();
     }
 
     private void OnEnable()
@@ -121,8 +124,8 @@ public class InnSceneUiManager : MonoBehaviour
     }
 
     private void Update()
-    {     
-#if UNITY_STANDALONE        
+    {
+#if UNITY_STANDALONE || UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
@@ -176,7 +179,7 @@ public class InnSceneUiManager : MonoBehaviour
     public void UpdateInnSceneDisplay()
     {
         currentCoin.text = GameManager.Instance.coins.ToString();
-        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.inventoryCapacity}";
+        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.InventoryCapacity}";
     }
 
     private void AddListeners()
@@ -312,7 +315,7 @@ public class InnSceneUiManager : MonoBehaviour
         innWindowTotalInvest.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
             .Get(999020), GameManager.Instance.investedAmount.ToString());
         innWindowInvestTips.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
-            .Get(999911), GameManager.Instance.investProfitRatio.ToString());
+            .Get(999911), GameManager.Instance.InnProfitabilityRatio.ToString());
         innWindowProfitText.text = GameManager.Instance.innProfit.ToString();
     }
 
@@ -579,7 +582,7 @@ public class InnSceneUiManager : MonoBehaviour
         else
         {
             // pickup
-            if(GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+            if(GameManager.Instance.InventoryCapacity - GameManager.Instance.InventoryOccupancy
                 >= GameManager.Instance.wholesaleItem1Cnt *
                 DataTableManager.ItemTable.Get(GameManager.Instance.wholesaleItem1).InventoryOccupancy)
             {             
@@ -628,7 +631,7 @@ public class InnSceneUiManager : MonoBehaviour
         else
         {
             // pickup
-            if (GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+            if (GameManager.Instance.InventoryCapacity - GameManager.Instance.InventoryOccupancy
                 >= GameManager.Instance.wholesaleItem2Cnt *
                 DataTableManager.ItemTable.Get(GameManager.Instance.wholesaleItem2).InventoryOccupancy)
             {
@@ -675,7 +678,7 @@ public class InnSceneUiManager : MonoBehaviour
         else
         {
             // Pick up
-            if(GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+            if(GameManager.Instance.InventoryCapacity - GameManager.Instance.InventoryOccupancy
                 >= GameManager.Instance.randomBox1Cnt * DataTableManager.ItemTable.
                 Get(GameManager.Instance.randomBox1Item).InventoryOccupancy)
             {
@@ -721,7 +724,7 @@ public class InnSceneUiManager : MonoBehaviour
         else
         {
             // Pick up
-            if (GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+            if (GameManager.Instance.InventoryCapacity - GameManager.Instance.InventoryOccupancy
                 >= GameManager.Instance.randomBox2Cnt * DataTableManager.ItemTable.
                 Get(GameManager.Instance.randomBox2Item).InventoryOccupancy)
             {
@@ -754,5 +757,17 @@ public class InnSceneUiManager : MonoBehaviour
     public void OnValueChangeSFX(float val)
     {
         SoundManager.Instance.SfxVolume = val;
+    }
+
+    private void UpdateNPC()
+    {
+        if (GameManager.Instance.isInnMasterAvailable)
+        {
+            innMaster.SetActive(true);
+        }
+        else
+        {
+            innMaster.SetActive(false);
+        }       
     }
 }

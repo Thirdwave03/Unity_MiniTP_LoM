@@ -45,7 +45,12 @@ public static class DataTableManager
             table.Load(id);
             tables.Add(id, table);
         }
-
+        foreach (var id in DataTableIds.Upgrade)
+        {
+            var table = new UpgradeTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
 
         //#if UNITY_EDITOR
         //        foreach (var id in DataTableIds.String)
@@ -106,6 +111,14 @@ public static class DataTableManager
         get
         {
             return Get<GameModeTable>(DataTableIds.GameMode[0]);
+        }
+    }
+
+    public static UpgradeTable UpgradeTable
+    {
+        get
+        {
+            return Get<UpgradeTable>(DataTableIds.Upgrade[0]);
         }
     }
 

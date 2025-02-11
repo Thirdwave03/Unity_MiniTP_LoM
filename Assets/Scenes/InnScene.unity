@@ -13083,6 +13083,7 @@ MonoBehaviour:
   randomBoxSlot2Occupancy: {fileID: 578440691}
   randomBoxSlot2Count: {fileID: 1486753424}
   randomBoxSlot2ItemImage: {fileID: 374274459}
+  innMaster: {fileID: 1623016330}
 --- !u!1 &990347619
 GameObject:
   m_ObjectHideFlags: 0

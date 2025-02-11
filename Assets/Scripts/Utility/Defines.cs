@@ -47,6 +47,11 @@ public static class DataTableIds
     {
         "GameModeTable",
     };
+
+    public static readonly string[] Upgrade =
+    {
+        "UpgradeTable",
+    };
 }
 
 public enum Languages
@@ -74,6 +79,18 @@ public enum GameModes // GameModes Table ±¸¼º
     BigInventory,
     SmallInventory,
     IsAnyoneThere,
+    Count,
+}
+
+public enum UpgradeItems
+{
+    WholesalesPriceAdvantage,
+    SpecialPriceAdvantage,
+    EnhancedInnProfitRatio,
+    LargerLoanableAmount,
+    HigherPaybackInterest,
+    ReducedInventoryFee,
+    InitialCoinAdvantage,
     Count,
 }
 
@@ -175,6 +192,7 @@ public enum TitleSceneCenterMsgType
     SelectDeleteSlot,
     InformDeleted,
     SelectGameMode,
+    OpenUpgradeWindow,
 }
 
 public enum MainMenuCenterMsgType

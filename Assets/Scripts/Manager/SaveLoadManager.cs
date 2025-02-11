@@ -38,6 +38,7 @@ public class SaveLoadManager
             BaseData.dateTimes = new System.DateTime[3];
             BaseData.bgmVolume = 0.2f;
             BaseData.sfxVolume = 0.2f;
+            BaseData.upgradeCounts = new int[(int)UpgradeItems.Count];
             BaseData.bestScore = new int[(int)GameModes.Count];
             BaseData.diamonds = 0;
             SaveBase();

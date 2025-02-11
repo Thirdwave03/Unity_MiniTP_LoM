@@ -24,12 +24,7 @@ public class BaseSaveDataV1 : BaseSaveData
     public bool isRandomBoxCountDetectorEnabled;
 
     // Upgradables
-    public int wholesalesDiscountAdvantageLv;
-    public int specialSalesPriceAdvantageLv;
-    public int interestRateAdvantageLv;
-    public int lendMoneyAmountMultiplierLv;
-    public int lendMoneyPaybackAdvantageLv;
-    public int inventoryFeeAdvantageLv;
+    public int[] upgradeCounts;
 
     // Best Score Data
     public int[] bestScore;

@@ -232,15 +232,27 @@
 999045,Ghost Market,유령시장,ゴーストマーケット,幽灵市场
 999046,Best Record,최고 기록,ハイスコア,最佳记录
 999047,To Previous,이전으로,前に,到以前
-999048, Blank, 공란, 空欄, 空白
-999049, Blank, 공란, 空欄, 空白
-999050, Blank, 공란, 空欄, 空白
-999051, Blank, 공란, 空欄, 空白
-999052, Blank, 공란, 空欄, 空白
-999053, Blank, 공란, 空欄, 空白
-999054, Blank, 공란, 空欄, 空白
-999055, Blank, 공란, 空欄, 空白
-999056, Blank, 공란, 空欄, 空白
+999048,Wholesales Price Advantage,도매 가격 우위,卸売価格の優位性,批发价格优势
+999049,Special Price Advantage,특별 가격 우위,特別価格の優位性,特殊价格优势
+999050,Enhanced Inn Profit Ratio,여관 수익률 향상,宿屋利益率の向上,旅馆利润率提升
+999051,Larger Loanable Amount,대출 한도 확대,貸出可能額の拡大,可贷款额度增大
+999052,Higher Payback Interest,높은 상환 이자,返済利息の増加,还款利息更高
+999053,Reduced Inventory Fee,재고 비용 감소,在庫手数料の削減,库存费用降低
+999054,Initial Coin Advantage,초기 코인 혜택,初期コインの優位性,初始金币优势
+999055,Blank, 공란,空欄,空白
+999056,Blank, 공란,空欄,空白
+999057,Blank, 공란,空欄,空白
+999058,Blank, 공란,空欄,空白
+999059,Blank, 공란,空欄,空白
+999060,Blank, 공란,空欄,空白
+999061,Blank, 공란,空欄,空白
+999062,Blank, 공란,空欄,空白
+999063,Blank, 공란,空欄,空白
+999064,Blank, 공란,空欄,空白
+999065,Blank, 공란,空欄,空白
+999066,Blank, 공란,空欄,空白
+999067,Blank, 공란,空欄,空白
+999068,Blank, 공란,空欄,空白
 999901,Not enough coins to pay off rental fee. Do you still want to continue losing all the progress in this game?, 창고 임대료를 지불할 코인이 부족합니다. 현재까지의 진행 상황을 잃고 메인 화면으로 돌아갑니다. 계속합니까?, 倉庫のレンタル料を支払うコインが足りません。これまでの進行状況が失われ、メインメニューに戻ります。続けますか？, 仓库租金的硬币不足，将失去目前的进度并返回主菜单。要继续吗？
 999902,Insufficient coins., 코인이 부족합니다., コインが足りません。, 硬币不足。
 999903,You cannot buy items over maximum inventory capacity., 창고 용량이 부족합니다., 倉庫の容量が足りません。, 仓库容量不足。
@@ -286,13 +298,13 @@
 999943,"""You begin with an immense warehouse that cannot be downgraded. Make the most of the vast storage to ensure success.""","“거대한 창고를 가지고 시작하지만, 다운그레이드는 불가! 넉넉한 공간을 어떻게 활용하느냐가 성공의 열쇠가 됩니다.”","“거대한 창고를 가지고 시작하지만, 다운그레이드는 불가! 넉넉한 공간을 어떻게 활용하느냐가 성공의 열쇠가 됩니다.”","""您从一个巨大的仓库开始，但无法降级。充分利用这片广阔的空间，争取成功。"""
 999944,"""You only have a tiny storage that can't be upgraded. Manage your limited space wisely and maximize efficiency!""",“아담한 창고로 시작해요. 안타깝게도 업그레이드는 막혀 있습니다. 한정된 자원을 효율적으로 운영해야 하죠!”,"""アップグレード不可の小さな倉庫でスタート。限られたスペースを効率的に使いこなせ！""","""只能使用无法升级的小仓库。合理利用有限空间，以获得最大收益！"""
 999945,"""No merchants in sight—it's like a ghost town. Brace yourself for a self-sufficient survival challenge!""","“거리에 상인이 전혀 보이지 않습니다. 유령 마을 같은 이곳에서 살아남아야 합니다.""","""商人が一人もいないゴーストタウン！自給自足で切り抜ける究極のサバイバル。""","""市场上空无一人，宛如鬼城。迎接自给自足的生存挑战吧！"""
-999946,0,0,0,0
-999947,0,0,0,0
-999948,0,0,0,0
-999949,0,0,0,0
-999950,0,0,0,0
-999951,0,0,0,0
-999952,0,0,0,0
+999946,"With each upgrade, the wholesale purchase price is reduced by an additional 0.2%.",업그레이드할 때마다 도매 구매 가격이 추가로 0.2% 감소합니다.,各アップグレードごとに、卸売購入価格が追加で0.2%引き下げられます。,每次升级都会使批发采购价格额外降低0.2%。
+999947,Every upgrade allows you to sell items to special merchants at an extra 0.2% higher price.,각 업그레이드마다 특별 상인에게 아이템을 추가로 0.2% 높은 가격에 판매할 수 있습니다.,各アップグレードごとに、特別な商人に対してアイテムをさらに0.2%高い価格で販売できます。,每次升级都允许您以额外高出0.2%的价格向特殊商家出售物品。
+999948,Each upgrade boosts the daily profit of your Inn by an extra 0.1%.,각 업그레이드마다 여관의 일일 수익이 추가로 0.1% 증가합니다.,各アップグレードにより、宿屋の日次利益が追加で0.1%増加します。,每次升级会使旅馆的每日利润额外提高0.1%。
+999949,"With every upgrade, the maximum amount you can lend is increased.",각 업그레이드마다 대출 가능한 최대 금액이 증가합니다.,各アップグレードごとに、貸出可能な最大額が増加します。,每次升级都会增加您可贷出的最高金额。
+999950,Every upgrade increases the amount you receive from a loan.,각 업그레이드마다 대출 상환율이 증가합니다.,各アップグレードにより、ローンで受け取る金額が増加します。,每次升级都会增加您从贷款中获得的金额。
+999951,Each upgrade reduces the inventory fee by 1%.,각 업그레이드마다 창고 비용이 1% 감소합니다.,各アップグレードごとに、倉庫費用が1%削減されます。,每次升级都会将仓库费用降低1%。
+999952,"With every upgrade, your starting coin amount is increased by 1%.",각 업그레이드마다 초기 코인 수량이 1% 증가합니다.,各アップグレードごとに、初期コインの数が1%増加します。,每次升级都会使您的初始金币数量增加1%。
 999953,0,0,0,0
 999954,0,0,0,0
 999955,0,0,0,0

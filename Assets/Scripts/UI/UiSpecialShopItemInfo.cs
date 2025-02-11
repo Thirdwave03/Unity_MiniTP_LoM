@@ -45,7 +45,8 @@ public class UiSpecialShopItemInfo : MonoBehaviour, IPointerDownHandler
             itemName.stringId = DataTableManager.ItemTable.Get(id).StringId;
             itemName.OnChangeLanguage(Variables.currentLanguage);
         }
-        itemPrice.text = ((int)(GameManager.Instance.entireItemDict[id].price * 1.2)).ToString();
+        itemPrice.text = ((int)(GameManager.Instance.entireItemDict[id].price 
+            * GameManager.Instance.SpecialSalesAdvantagedPriceMultiplier)).ToString();
         itemOccupancy.text = GameManager.Instance.entireItemDict[id].ItemData.InventoryOccupancy.ToString();
         itemCount.text = GameManager.Instance.entireItemDict[id].count.ToString();
         slider.wholeNumbers = true;
@@ -81,7 +82,8 @@ public class UiSpecialShopItemInfo : MonoBehaviour, IPointerDownHandler
 
     public void OnClickSell()
     {
-        GameManager.Instance.coins += (int)(GameManager.Instance.entireItemDict[itemId].price * 1.2f) * salesCount;
+        GameManager.Instance.coins += (int)(GameManager.Instance.entireItemDict[itemId].price 
+            * GameManager.Instance.SpecialSalesAdvantagedPriceMultiplier) * salesCount;
         GameManager.Instance.entireItemDict[itemId].count -= salesCount;
         GameManager.Instance.CallSave();
         UpdateDisplayedInfo();

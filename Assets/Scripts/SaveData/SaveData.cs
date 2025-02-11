@@ -34,6 +34,7 @@ public class SaveDataV1 : SaveData
     public bool isPrimaryShopAvailable;
     public bool isSecondaryShopAvailable;
     public bool isLuxuryShopAvailable;
+    public bool isInnMasterAvailable;
     public List<int> notOnSaleItemsIds;
     public List<int> specialPriceItemIndexes;
 
@@ -42,8 +43,6 @@ public class SaveDataV1 : SaveData
 
     // Inventory
     public int inventoryLevel;
-    public int inventoryCapacity;
-    public int inventoryFee;
 
         // Loan
     public int lentAmount;

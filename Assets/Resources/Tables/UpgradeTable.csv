@@ -1,0 +1,8 @@
+﻿Upgrade,IsOneTimeUpgrade,MaxLv,UpgradeCost,Variance
+WholesalesPriceAdvantage,FALSE,100,150,0.1
+SpecialPriceAdvantage,FALSE,100,50,0.2
+EnhancedInnProfitRatio,FALSE,20,500,0.1
+LargerLoanableAmount,FALSE,50,100,0.1
+HigherPaybackInterest,FALSE,15,500,0.01
+ReducedInventoryFee,FALSE,50,150,0.01
+InitialCoinAdvantage,FALSE,50,200,0.01

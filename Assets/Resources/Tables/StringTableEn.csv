@@ -231,15 +231,27 @@
 999045,Ghost Market
 999046,Best Record
 999047,To Previous
-999048, Blank
-999049, Blank
-999050, Blank
-999051, Blank
-999052, Blank
-999053, Blank
-999054, Blank
-999055, Blank
-999056, Blank
+999048,Wholesales Price Advantage
+999049,Special Price Advantage
+999050,Enhanced Inn Profit Ratio
+999051,Larger Loanable Amount
+999052,Higher Payback Interest
+999053,Reduced Inventory Fee
+999054,Initial Coin Advantage
+999055,Blank
+999056,Blank
+999057,Blank
+999058,Blank
+999059,Blank
+999060,Blank
+999061,Blank
+999062,Blank
+999063,Blank
+999064,Blank
+999065,Blank
+999066,Blank
+999067,Blank
+999068,Blank
 999901,Not enough coins to pay off rental fee. Do you still want to continue losing all the progress in this game?
 999902,Insufficient coins.
 999903,You cannot buy items over maximum inventory capacity.
@@ -285,20 +297,20 @@
 999943,"""You begin with an immense warehouse that cannot be downgraded. Make the most of the vast storage to ensure success."""
 999944,"""You only have a tiny storage that can't be upgraded. Manage your limited space wisely and maximize efficiency!"""
 999945,"""No merchants in sight—it's like a ghost town. Brace yourself for a self-sufficient survival challenge!"""
-999946,0
-999947,0
-999948,0
-999949,0
-999950,0
-999951,0
-999952,0
-999953,0
-999954,0
-999955,0
-999956,0
-999957,0
-999958,0
-999959,0
+999946,"With each upgrade, the wholesale purchase price is reduced by an additional 0.2%."
+999947,Every upgrade allows you to sell items to special merchants at an extra 0.2% higher price.
+999948,Each upgrade boosts the daily profit of your Inn by an extra 0.1%.
+999949,"With every upgrade, the maximum amount you can lend is increased."
+999950,Every upgrade increases the amount you receive from a loan.
+999951,Each upgrade reduces the inventory fee by 1%.
+999952,"With every upgrade, your starting coin amount is increased by 1%."
+999953,Wholesales Price Advantage
+999954,Special Price Advantage
+999955,Enhanced Inn Profit Ratio
+999956,Larger Loanable Amount
+999957,Higher Payback Interest
+999958,Reduced Inventory Fee
+999959,Initial Coin Advantage
 999960,0
 999961,0
 999962,0

@@ -45,6 +45,12 @@ public class TitleSceneUiManager : MonoBehaviour
     public TextLocalizer ExitGameLC;
     public TextLocalizer quitLC;
 
+    public UpgradeWindow upgradeWindow;
+    public Button upgradeWindowOpenB;
+    public Button upgradeCloseB;
+
+    public TextMeshProUGUI diamonds;
+
     private void Start()
     {
         QualitySettings.vSyncCount = 0;
@@ -55,6 +61,7 @@ public class TitleSceneUiManager : MonoBehaviour
         Variables.currentLanguage = SaveLoadManager.BaseData.lastLanguageSetting;
         languagesDD.value = (int)Variables.currentLanguage;
         languagesDD.RefreshShownValue();
+        UpdateTitleSceneDisplay();
     }
 
     private void OnEnable()
@@ -83,6 +90,8 @@ public class TitleSceneUiManager : MonoBehaviour
         centerMessageCheckB.onClick.AddListener(OnClickCenterMsgCheck);
         centerMessageCloseB.onClick.AddListener(OnClickfCenterMessageClose);
         modeSelectCloseB.onClick.AddListener(OnClickfCenterMessageClose);
+        upgradeWindowOpenB.onClick.AddListener(OnClickUpgradeWindow);
+        upgradeCloseB.onClick.AddListener(OnClickfCenterMessageClose);
 
         // dropdown
         languagesDD.onValueChanged.AddListener(OnLanguageChange);
@@ -133,6 +142,7 @@ public class TitleSceneUiManager : MonoBehaviour
             case TitleSceneCenterMsgType.BestRecord:
                 saveloadWindow.gameObject.SetActive(false);
                 modeSelectWindow.gameObject.SetActive(false);
+                upgradeWindow.gameObject.SetActive(false);
                 centerMessage.SetActive(true);
                 centerMessageCheckBoxArea.SetActive(false);
                 centerMessageLC.tmp.text = string.Format(
@@ -142,6 +152,7 @@ public class TitleSceneUiManager : MonoBehaviour
             case TitleSceneCenterMsgType.DevInfo:
                 saveloadWindow.gameObject.SetActive(false);
                 modeSelectWindow.gameObject.SetActive(false);
+                upgradeWindow.gameObject.SetActive(false);
                 centerMessage.SetActive(true);
                 centerMessageCheckBoxArea.SetActive(false);
                 centerMessageLC.tmp.text =
@@ -150,6 +161,7 @@ public class TitleSceneUiManager : MonoBehaviour
             case TitleSceneCenterMsgType.SelectLoadSlot:
                 saveloadWindow.gameObject.SetActive(true);
                 modeSelectWindow.gameObject.SetActive(false);
+                upgradeWindow.gameObject.SetActive(false);
                 centerMessage.SetActive(false);
                 if (SaveLoadManager.LoadBase())
                 {
@@ -160,6 +172,7 @@ public class TitleSceneUiManager : MonoBehaviour
             case TitleSceneCenterMsgType.SelectNewGameSlot:
                 saveloadWindow.gameObject.SetActive(true);
                 modeSelectWindow.gameObject.SetActive(false);
+                upgradeWindow.gameObject.SetActive(false);
                 centerMessage.SetActive(false);
                 if (SaveLoadManager.LoadBase())
                 {
@@ -171,6 +184,7 @@ public class TitleSceneUiManager : MonoBehaviour
                 centerMessage.SetActive(true);
                 centerMessageCheckBoxArea.SetActive(true);
                 modeSelectWindow.gameObject.SetActive(false);
+                upgradeWindow.gameObject.SetActive(false);
                 centerMessageLC.tmp.text =
                     DataTableManager.StringTableList[(int)Variables.currentLanguage]
                     .Get(999924);
@@ -179,6 +193,7 @@ public class TitleSceneUiManager : MonoBehaviour
             case TitleSceneCenterMsgType.SelectDeleteSlot:
                 centerMessage.SetActive(true);
                 centerMessageCheckBoxArea.SetActive(true);
+                upgradeWindow.gameObject.SetActive(false);
                 modeSelectWindow.gameObject.SetActive(false);
                 centerMessageLC.tmp.text =
                     DataTableManager.StringTableList[(int)Variables.currentLanguage]
@@ -188,6 +203,7 @@ public class TitleSceneUiManager : MonoBehaviour
             case TitleSceneCenterMsgType.InformDeleted:
                 centerMessage.SetActive(true);
                 centerMessageCheckBoxArea.SetActive(false);
+                upgradeWindow.gameObject.SetActive(false);
                 modeSelectWindow.gameObject.SetActive(false);
                 centerMessageLC.tmp.text =
                     DataTableManager.StringTableList[(int)Variables.currentLanguage]
@@ -196,8 +212,16 @@ public class TitleSceneUiManager : MonoBehaviour
             case TitleSceneCenterMsgType.SelectGameMode:
                 saveloadWindow.gameObject.SetActive(false);
                 centerMessage.SetActive(false);
+                upgradeWindow.gameObject.SetActive(false);
                 modeSelectWindow.gameObject.SetActive(true);
                 modeSelectWindow.SetContents();
+                break;
+            case TitleSceneCenterMsgType.OpenUpgradeWindow:
+                saveloadWindow.gameObject.SetActive(false);
+                centerMessage.SetActive(false);
+                modeSelectWindow.gameObject.SetActive(false);
+                upgradeWindow.gameObject.SetActive(true);
+                upgradeWindow.SetContents();                
                 break;
             default:
                 break;
@@ -230,7 +254,7 @@ public class TitleSceneUiManager : MonoBehaviour
 
     public void UpdateTitleSceneDisplay()
     {
-
+        diamonds.text = SaveLoadManager.BaseData.diamonds.ToString();
     }
 
     public void OnClickSaveLoadSlot(int slotIndex)
@@ -300,6 +324,11 @@ public class TitleSceneUiManager : MonoBehaviour
     private void OnClickLimitedResource()
     {
         OpenMessage(TitleSceneCenterMsgType.SelectGameMode);
+    }
+
+    private void OnClickUpgradeWindow()
+    {
+        OpenMessage(TitleSceneCenterMsgType.OpenUpgradeWindow);
     }
 
     private void OnClickTemp()

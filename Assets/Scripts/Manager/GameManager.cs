@@ -33,8 +33,6 @@ public class GameManager
 
     public bool isFirstTimeEver = false;
     public bool isDisplayTutorial = false;
-    public int investProfitRatio = 4;
-    public int specialSalesAdvantageRatio = 20;
     public List<int> tempBulletinBoardContents;
 
     // ~Temp Vals
@@ -68,17 +66,111 @@ public class GameManager
     {
         get
         {
-            return (float)(20f + 0.2 * SaveLoadManager.BaseData.wholesalesDiscountAdvantageLv);
+            return (float)(20f + 0.1 * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.WholesalesPriceAdvantage]);
         }
     }
+
+    public float WholesalesDiscountedPriceMultiplier
+    {
+        get
+        {
+            return 0.8f - (float)(0.001f * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.WholesalesPriceAdvantage]);
+        }
+    }
+
+    public float SpecialSalesAdvantageRatio
+    {
+        get
+        {
+            return (float)(20f + 0.2 * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.SpecialPriceAdvantage]);
+        }
+    }
+
+    public float SpecialSalesAdvantagedPriceMultiplier
+    {
+        get
+        {
+            return 1.2f + (float)(0.002f * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.SpecialPriceAdvantage]);
+        }
+    }
+
+    public float InnProfitabilityRatio
+    {
+        get
+        {
+            return 4f + (float)(0.1 * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.EnhancedInnProfitRatio]);
+        }
+    }
+
+    public float InnProfitabilityAppliedValue
+    {
+        get
+        {           
+            return 0.04f + (float)(0.001 * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.EnhancedInnProfitRatio]);
+        }
+    }
+
+    public float LoanableAmountMultiplier
+    {
+        get
+        {
+            return 1f + (float)(0.1f * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.LargerLoanableAmount]);
+        }
+    }
+
+    public int RandomLoanableAmountMultiplierApplied
+    {
+        get
+        {
+            int tempVal = UnityEngine.Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
+            return (int)(tempVal * LoanableAmountMultiplier);
+        }
+    }
+
+    public float RandomLoanPaybackMultiplier
+    {
+        get
+        {
+            float minVal = GameInfos.minLentAmountMultiplier + 
+                0.01f * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.HigherPaybackInterest];
+            float maxVal = GameInfos.maxLentAmountMultiplier +
+                0.02f * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.HigherPaybackInterest];
+            float tempVal = UnityEngine.Random.Range(minVal, maxVal);
+            return tempVal;
+        }
+    }   
     
     public int InventoryFee
     {
         get
         {
             int fee = DataTableManager.InventoryTable.Get(inventoryLevel).DailyCost;
-            fee = (int)((float)fee * (1f - (0.01f * SaveLoadManager.BaseData.inventoryFeeAdvantageLv)));
+            fee = (int)((float)fee * (1f - (0.01f * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.ReducedInventoryFee])));
             return fee;
+        }
+    }
+
+    public float InventoryFeeRatio
+    {
+        get
+        {
+            return (1f - (0.01f * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.ReducedInventoryFee]));
+        }
+    }
+
+    public int InventoryCapacity
+    {
+        get
+        {
+            return DataTableManager.InventoryTable.Get(inventoryLevel).Capacity;
+        }
+    }
+
+    public float InitialCoinAdvantageRatio
+    {
+        get
+        {            
+            return 1f + (0.01f * SaveLoadManager.BaseData.upgradeCounts[(int)UpgradeItems.InitialCoinAdvantage]);
         }
     }
 
@@ -104,6 +196,7 @@ public class GameManager
     public bool isPrimaryShopAvailable;
     public bool isSecondaryShopAvailable;
     public bool isLuxuryShopAvailable;
+    public bool isInnMasterAvailable;
     public List<int> notOnSaleItemsIds;
     public List<int> specialPriceItemIndexes;
 
@@ -112,8 +205,6 @@ public class GameManager
 
     // Inventory
     public int inventoryLevel;
-    public int inventoryCapacity;
-    public int inventoryFee;
 
         // Loan
     public int lentAmount;
@@ -295,6 +386,7 @@ public class GameManager
             case GameModes.ShortGame:
                 break;
             case GameModes.Endless:
+                isInnMasterAvailable = false;
                 break;
             case GameModes.Poverty:
                 break;
@@ -363,7 +455,10 @@ public class GameManager
 
         // Game Core Data
         days = 1;
-        coins = DataTableManager.GameModeTable.Get(CurrentGameMode).InitialCoin;
+        float InitCoinRatioAppliedPrecision = InitialCoinAdvantageRatio + 0.000001f;
+        coins = 
+            (int)(DataTableManager.GameModeTable.Get(CurrentGameMode).InitialCoin
+            * InitCoinRatioAppliedPrecision);
 
         // Availabilities
         tipIndex = UnityEngine.Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex+1);
@@ -374,16 +469,15 @@ public class GameManager
         isPrimaryShopAvailable = true;
         isSecondaryShopAvailable = true;
         isLuxuryShopAvailable = true;
+        isInnMasterAvailable = true;
 
         // Inventory
         inventoryLevel = DataTableManager.GameModeTable.Get(CurrentGameMode).InventoryInitialLv;
-        inventoryCapacity = DataTableManager.InventoryTable.Get(inventoryLevel).Capacity;
-        inventoryFee = DataTableManager.InventoryTable.Get(inventoryLevel).DailyCost;
 
         // Loan
-        lentAmount = UnityEngine.Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
+        lentAmount = RandomLoanableAmountMultiplierApplied;
         paybackDateCnt = UnityEngine.Random.Range(GameInfos.minPaybackDate, GameInfos.maxPaybackDate + 1);
-        lentPaybackAmout = (int)(lentAmount * UnityEngine.Random.Range(GameInfos.minLentAmountMultiplier, GameInfos.maxLentAmountMultiplier));
+        lentPaybackAmout = (int)(lentAmount * RandomLoanPaybackMultiplier);
         ifLent = false;
         isBusinessmanAvailable = UnityEngine.Random.Range(0, 2) == 0 ? false : true;
 
@@ -394,14 +488,14 @@ public class GameManager
         // Wholesale
         wholesaleItem1 = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary+1);
         wholesaleItem1Cnt = UnityEngine.Random.Range(1,3)*50;
-        wholesaleItem1Cost = (int)(entireItemDict[wholesaleItem1].price * 0.8f);
+        wholesaleItem1Cost = (int)(entireItemDict[wholesaleItem1].price * WholesalesDiscountedPriceMultiplier);
         isItem1Purchased = false;
         isItem1PickedUp = false;
         isItem1Pickupable = false;
 
         wholesaleItem2 = UnityEngine.Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
         wholesaleItem2Cnt = UnityEngine.Random.Range(1, 3) * 50;
-        wholesaleItem2Cost = (int)(entireItemDict[wholesaleItem2].price * 0.8f);
+        wholesaleItem2Cost = (int)(entireItemDict[wholesaleItem2].price * WholesalesDiscountedPriceMultiplier);
         isItem2Purchased = false;
         isItem2PickedUp = false;
         isItem2Pickupable = false;
@@ -462,6 +556,7 @@ public class GameManager
         isPrimaryShopAvailable = SaveLoadManager.GameData.isPrimaryShopAvailable;
         isSecondaryShopAvailable = SaveLoadManager.GameData.isSecondaryShopAvailable;
         isLuxuryShopAvailable = SaveLoadManager.GameData.isLuxuryShopAvailable;
+        isInnMasterAvailable = SaveLoadManager.GameData.isInnMasterAvailable;
         notOnSaleItemsIds = SaveLoadManager.GameData.notOnSaleItemsIds;
         specialPriceItemIndexes = SaveLoadManager.GameData.specialPriceItemIndexes;
 
@@ -470,8 +565,6 @@ public class GameManager
 
         // Inventory
         inventoryLevel = SaveLoadManager.GameData.inventoryLevel;
-        inventoryCapacity = SaveLoadManager.GameData.inventoryCapacity;
-        inventoryFee = SaveLoadManager.GameData.inventoryFee;
 
             // Loan
         lentAmount = SaveLoadManager.GameData.lentAmount;
@@ -548,6 +641,7 @@ public class GameManager
         SaveLoadManager.GameData.isPrimaryShopAvailable = isPrimaryShopAvailable;
         SaveLoadManager.GameData.isSecondaryShopAvailable = isSecondaryShopAvailable;
         SaveLoadManager.GameData.isLuxuryShopAvailable = isLuxuryShopAvailable;
+        SaveLoadManager.GameData.isInnMasterAvailable = isInnMasterAvailable;
         SaveLoadManager.GameData.notOnSaleItemsIds = notOnSaleItemsIds;
         SaveLoadManager.GameData.specialPriceItemIndexes = specialPriceItemIndexes;
 
@@ -556,8 +650,6 @@ public class GameManager
 
         // Inventory
         SaveLoadManager.GameData.inventoryLevel = inventoryLevel;
-        SaveLoadManager.GameData.inventoryCapacity = inventoryCapacity;
-        SaveLoadManager.GameData.inventoryFee = inventoryFee;
 
         // Loan
         SaveLoadManager.GameData.lentAmount = lentAmount;
@@ -626,14 +718,14 @@ public class GameManager
             OnSleepLastDay();
             return;
         }
-        if(coins < inventoryFee)
+        if(coins < InventoryFee)
         {
             CallInsufficientCoinEvent();
             return;
         }
 
         ++days;
-        coins -= inventoryFee;
+        coins -= InventoryFee;
         var tempTipIndex = UnityEngine.Random.Range(GameInfos.minTipsIndex, GameInfos.maxTipsIndex + 1);
         while(tempTipIndex == tipIndex)
         {
@@ -660,12 +752,13 @@ public class GameManager
             case GameModes.Default:
                 if(days == 51)
                 {
-                    coins -= 20000;
+                    coins -= (int)(20000 * (InitialCoinAdvantageRatio + 0.000001f));
                 }
                 break;
             case GameModes.ShortGame:
                 break;
             case GameModes.Endless:
+                isInnMasterAvailable = false;
                 break;
             case GameModes.Poverty:
                 break;
@@ -698,16 +791,20 @@ public class GameManager
         }
         else
         {
-            lentAmount = UnityEngine.Random.Range(GameInfos.minLentAmount, GameInfos.maxLentAmount);
+            lentAmount = RandomLoanableAmountMultiplierApplied;
             paybackDateCnt = UnityEngine.Random.Range(GameInfos.minPaybackDate, GameInfos.maxPaybackDate+1);
-            lentPaybackAmout = (int)(lentAmount * UnityEngine.Random.Range(GameInfos.minLentAmountMultiplier, GameInfos.maxLentAmountMultiplier));
+            lentPaybackAmout = (int)(lentAmount * RandomLoanPaybackMultiplier);
         }
         isBusinessmanAvailable = UnityEngine.Random.Range(0, 2) > 0 ? true : false;
     }
 
     private void InnUpdateOnSleep()
     {
-        innProfit += (int)(investedAmount * 0.01000001f * investProfitRatio);
+        isInnMasterAvailable = true;
+
+        float precisionEnhancer = 0.000001f;
+        var InnprofitabilityPrecision = InnProfitabilityAppliedValue + precisionEnhancer;
+        innProfit += (int)(investedAmount * InnprofitabilityPrecision);
         int newInfoItemIndex = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxSecondary + 1);
         while (infoItemIndex == newInfoItemIndex)
         {
@@ -729,7 +826,7 @@ public class GameManager
             // change
             wholesaleItem1 = UnityEngine.Random.Range(ItemDataIndex.minPrimary, ItemDataIndex.maxPrimary + 1);
             wholesaleItem1Cnt = UnityEngine.Random.Range(1, 3) * 50;
-            wholesaleItem1Cost = (int)(entireItemDict[wholesaleItem1].price * 0.8f);
+            wholesaleItem1Cost = (int)(entireItemDict[wholesaleItem1].price * WholesalesDiscountedPriceMultiplier);
             isItem1Purchased = false;
             isItem1Pickupable = false;
             isItem1PickedUp = false;
@@ -745,7 +842,7 @@ public class GameManager
             // change
             wholesaleItem2 = UnityEngine.Random.Range(ItemDataIndex.minSecondary, ItemDataIndex.maxSecondary + 1);
             wholesaleItem2Cnt = UnityEngine.Random.Range(1, 3) * 50;
-            wholesaleItem2Cost = (int)(entireItemDict[wholesaleItem2].price * 0.8f);
+            wholesaleItem2Cost = (int)(entireItemDict[wholesaleItem2].price * WholesalesDiscountedPriceMultiplier);
             isItem2Purchased = false;
             isItem2Pickupable = false;
             isItem2PickedUp = false;
@@ -982,8 +1079,5 @@ public class GameManager
     public void ChangeInventoryLevel(int level)
     {
         inventoryLevel = level;
-        var tempTable = DataTableManager.InventoryTable.Get(inventoryLevel);
-        inventoryFee = tempTable.DailyCost;
-        inventoryCapacity = tempTable.Capacity;
     }
 }

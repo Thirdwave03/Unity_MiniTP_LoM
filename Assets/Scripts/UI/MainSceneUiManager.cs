@@ -282,12 +282,12 @@ public class MainSceneUiManager : MonoBehaviour
         }
         if(GameManager.Instance.days == 50 && 
             GameManager.Instance.CurrentGameMode == GameModes.Default &&
-            GameManager.Instance.coins < GameManager.Instance.inventoryFee + 20000)
+            GameManager.Instance.coins < GameManager.Instance.InventoryFee + 20000)
         {
             ifDefaultFiftythDay = true;
             OpenMessage(MainMenuCenterMsgType.CannotProceed);
         }
-        else if (GameManager.Instance.coins >= GameManager.Instance.inventoryFee)
+        else if (GameManager.Instance.coins >= GameManager.Instance.InventoryFee)
         { 
             OpenMessage(MainMenuCenterMsgType.CanProceed); 
         }
@@ -353,8 +353,8 @@ public class MainSceneUiManager : MonoBehaviour
         //inventoryStatusLC.stringId = -1;
         inventoryStatusLC.formatContents.Clear();
         inventoryStatusLC.formatContents.Add(GameManager.Instance.InventoryOccupancy.ToString());
-        inventoryStatusLC.formatContents.Add(GameManager.Instance.inventoryCapacity.ToString());
-        inventoryStatusLC.formatContents.Add(GameManager.Instance.inventoryFee.ToString());
+        inventoryStatusLC.formatContents.Add(GameManager.Instance.InventoryCapacity.ToString());
+        inventoryStatusLC.formatContents.Add(GameManager.Instance.InventoryFee.ToString());
     }
 
     private void OpenMessage(MainMenuCenterMsgType msgType)
@@ -381,7 +381,8 @@ public class MainSceneUiManager : MonoBehaviour
                 nextDay.SetActive(false);
                 centerMsgLC.tmp.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999905),
                 DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel + 1).UpgradeCost, 
-                DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel + 1).DailyCost);
+                DataTableManager.InventoryTable.Get(GameManager.Instance.inventoryLevel + 1).DailyCost 
+                * GameManager.Instance.InventoryFeeRatio);
                 break;
             case MainMenuCenterMsgType.InventoryDowngrade:
                 centerMsg.SetActive(true);

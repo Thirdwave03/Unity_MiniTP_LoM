@@ -73,7 +73,7 @@ public class SalesSceneUiManager : MonoBehaviour
     public void UpdateSalesSceneDisplay()
     {
         currentCoin.text = GameManager.Instance.coins.ToString();
-        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.inventoryCapacity}";
+        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.InventoryCapacity}";
     }
 
     private void AddListeners()
@@ -99,7 +99,7 @@ public class SalesSceneUiManager : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_STANDALONE
+#if UNITY_STANDALONE || UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())

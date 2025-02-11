@@ -69,8 +69,8 @@ public class PurchaseSceneUiManager : MonoBehaviour
 
 
     private void Update()
-    {        
-#if UNITY_STANDALONE
+    {
+#if UNITY_STANDALONE || UNITY_EDITOR
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject())
@@ -124,7 +124,7 @@ public class PurchaseSceneUiManager : MonoBehaviour
     public void UpdatePurchaseSceneDisplay()
     {
         currentCoin.text = GameManager.Instance.coins.ToString();
-        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.inventoryCapacity}";
+        inventoryStatus.text = $"{GameManager.Instance.InventoryOccupancy} / {GameManager.Instance.InventoryCapacity}";
     }
 
     private void AddListeners()

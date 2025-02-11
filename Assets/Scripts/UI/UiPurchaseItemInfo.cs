@@ -123,14 +123,14 @@ public class UiPurchaseItemInfo : MonoBehaviour
 
         int maxCountOccupancy;
         int totalOccupancy = ItemData.stock * DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy;
-        if(GameManager.Instance.inventoryCapacity - GameManager.Instance.InventoryOccupancy
+        if(GameManager.Instance.InventoryCapacity - GameManager.Instance.InventoryOccupancy
             >= totalOccupancy)
         {
             maxCountOccupancy = ItemData.stock;
         }
         else
         {
-            maxCountOccupancy = (GameManager.Instance.inventoryCapacity- GameManager.Instance.InventoryOccupancy)
+            maxCountOccupancy = (GameManager.Instance.InventoryCapacity - GameManager.Instance.InventoryOccupancy)
                 / DataTableManager.ItemTable.Get(ItemData.SalesItemData.SalesItemId).InventoryOccupancy;
         }
 
@@ -146,7 +146,7 @@ public class UiPurchaseItemInfo : MonoBehaviour
             GameManager.Instance.
             entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount)
         {
-            if (GameManager.Instance.inventoryCapacity -
+            if (GameManager.Instance.InventoryCapacity -
                 GameManager.Instance.InventoryOccupancy >=
                 GameManager.Instance.
                 entireItemDict[ItemData.SalesItemData.SalesItemId].
