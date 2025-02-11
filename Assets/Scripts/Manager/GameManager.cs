@@ -174,7 +174,58 @@ public class GameManager
         }
     }
 
-    
+    public int DiamondRequiredForEachRank
+    {
+        get
+        {
+            int val = 0;
+            switch (SaveLoadManager.BaseData.MerchantRank)
+            {
+                case MerchantRanks.NoviceMerchant:
+                    val = 1000;
+                    break;
+                case MerchantRanks.PromisingMerchant:
+                    val = 4000;
+                    break;
+                case MerchantRanks.SeasonedMerchant:
+                    val = 15000;
+                    break;
+                case MerchantRanks.TradeMaestro:
+                    val = 30000;
+                    break;
+                case MerchantRanks.MerchantGod:
+                    val = 0;
+                    break;
+            }
+            return val;
+        }
+    }
+
+    public int DiamondAccquiredForEachRank
+    {
+        get
+        {
+            int val = SaveLoadManager.BaseData.diamondsSpent;
+            switch (SaveLoadManager.BaseData.MerchantRank)
+            {
+                case MerchantRanks.NoviceMerchant:                    
+                    break;
+                case MerchantRanks.PromisingMerchant:
+                    val -= 1000;
+                    break;
+                case MerchantRanks.SeasonedMerchant:
+                    val -= 5000;
+                    break;
+                case MerchantRanks.TradeMaestro:
+                    val -= 20000;
+                    break;
+                case MerchantRanks.MerchantGod:
+                    val = -1;
+                    break;
+            }
+            return val;
+        }
+    }
 
     // Datas To be Saved
     public GameModes CurrentGameMode { get; private set; }

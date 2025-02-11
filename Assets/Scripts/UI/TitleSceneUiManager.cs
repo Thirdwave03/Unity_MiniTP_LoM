@@ -9,6 +9,7 @@ public class TitleSceneUiManager : MonoBehaviour
 {
     private TitleSceneCenterMsgType messageType;
     private GameModes gameMode = GameModes.Default;
+    private UpgradeItems upgradeItem;
     private int selectedSlotIndex;
 
     public Button settingsButton;
@@ -50,6 +51,9 @@ public class TitleSceneUiManager : MonoBehaviour
     public Button upgradeCloseB;
 
     public TextMeshProUGUI diamonds;
+    public Image rankImage;
+    public TextMeshProUGUI rankText;
+    public Slider expSlider;
 
     private void Start()
     {
@@ -223,6 +227,13 @@ public class TitleSceneUiManager : MonoBehaviour
                 upgradeWindow.gameObject.SetActive(true);
                 upgradeWindow.SetContents();                
                 break;
+            case TitleSceneCenterMsgType.IfReallyUpgrade:
+                centerMessage.SetActive(true);
+                centerMessageCheckBoxArea.SetActive(true);
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
+                    .Get(999928);
+                break;
             default:
                 break;
         }
@@ -241,10 +252,12 @@ public class TitleSceneUiManager : MonoBehaviour
                 SaveLoadManager.DeleteSlot(selectedSlotIndex);
                 OpenMessage(TitleSceneCenterMsgType.InformDeleted);
                 break;
+            case TitleSceneCenterMsgType.IfReallyUpgrade:
+                centerMessage.SetActive(false);
+                UpgradeStat();
+                break;
         }
-    }
-
-    
+    }    
 
     public void OnClickDeleteSlot(int slotIndex)
     {
@@ -255,6 +268,41 @@ public class TitleSceneUiManager : MonoBehaviour
     public void UpdateTitleSceneDisplay()
     {
         diamonds.text = SaveLoadManager.BaseData.diamonds.ToString();
+        UpdateRankData();   
+    }
+
+    private void UpdateRankData()
+    {
+        string filename = "";
+        int stringId = 0;
+        switch (SaveLoadManager.BaseData.MerchantRank)
+        {
+            case MerchantRanks.NoviceMerchant:
+                filename = "shield_007";
+                stringId = 999055;
+                break;
+            case MerchantRanks.PromisingMerchant:
+                filename = "shield_010";
+                stringId = 999056;
+                break;
+            case MerchantRanks.SeasonedMerchant:
+                filename = "shield_019";
+                stringId = 999057;
+                break;
+            case MerchantRanks.TradeMaestro:
+                filename = "shield_026";
+                stringId = 999058;
+                break;
+            case MerchantRanks.MerchantGod:
+                filename = "shield_021";
+                stringId = 999059;
+                break;
+        }
+        rankImage.sprite = Resources.Load<Sprite>($"Sprites/Icon/ShieldIcons/Chosen/{filename}");
+        rankText.text = DataTableManager.StringTableList[(int)Variables.currentLanguage]
+            .Get(stringId);
+        expSlider.maxValue = GameManager.Instance.DiamondRequiredForEachRank;
+        expSlider.value = GameManager.Instance.DiamondAccquiredForEachRank;
     }
 
     public void OnClickSaveLoadSlot(int slotIndex)
@@ -299,6 +347,12 @@ public class TitleSceneUiManager : MonoBehaviour
     {
         gameMode = (GameModes)(index + 1);
         OpenMessage(TitleSceneCenterMsgType.SelectNewGameSlot);
+    }
+
+    public void OnClickUpgradeButton(int index)
+    {
+        upgradeItem = (UpgradeItems)index;
+        OpenMessage(TitleSceneCenterMsgType.IfReallyUpgrade);
     }
 
     public void OnClickSaveLoadWindowClose()
@@ -360,7 +414,7 @@ public class TitleSceneUiManager : MonoBehaviour
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit();        
+        Application.Quit();
 #endif
     }
 
@@ -372,5 +426,57 @@ public class TitleSceneUiManager : MonoBehaviour
     public void OnValueChangeSFX(float val)
     {
         SoundManager.Instance.SfxVolume = val;
+    }
+
+    private void UpgradeStat()
+    {
+        SaveLoadManager.BaseData.diamonds -=
+            DataTableManager.UpgradeTable.Get(upgradeItem).UpgradeCost;
+        SaveLoadManager.BaseData.diamondsSpent +=
+            DataTableManager.UpgradeTable.Get(upgradeItem).UpgradeCost;
+        SaveLoadManager.BaseData.upgradeCounts[(int)upgradeItem] = 
+            Mathf.Min(SaveLoadManager.BaseData.upgradeCounts[(int)upgradeItem] + 1, 
+            DataTableManager.UpgradeTable.Get(upgradeItem).MaxLv);
+        upgradeWindow.SetContents();
+        if (GameManager.Instance.DiamondAccquiredForEachRank >=
+            GameManager.Instance.DiamondRequiredForEachRank)
+        {
+            MerchantRankUp();
+        }
+        SaveLoadManager.SaveBase();
+        UpdateTitleSceneDisplay();
+    }
+
+    private void MerchantRankUp()
+    {
+        SaveLoadManager.BaseData.MerchantRank = 
+            (MerchantRanks)Mathf.Clamp(((int)SaveLoadManager.BaseData.MerchantRank + 1),
+            0, (int)(MerchantRanks.Count));
+
+        int stringId = 0;
+        switch (SaveLoadManager.BaseData.MerchantRank)
+        {
+            case MerchantRanks.NoviceMerchant:
+                break;
+            case MerchantRanks.PromisingMerchant:
+                stringId = 999956;
+                break;
+            case MerchantRanks.SeasonedMerchant:
+                stringId = 999957;
+                break;
+            case MerchantRanks.TradeMaestro:
+                stringId = 999958;
+                break;
+            case MerchantRanks.MerchantGod:
+                stringId = 999959;
+                break;
+        }
+        Debug.Log($"Rank up to: {SaveLoadManager.BaseData.MerchantRank}");
+
+        centerMessageCheckBoxArea.SetActive(false);
+        centerMessage.SetActive(true);
+        centerMessageLC.tmp.text =
+            DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
+            .Get(stringId);
     }
 }

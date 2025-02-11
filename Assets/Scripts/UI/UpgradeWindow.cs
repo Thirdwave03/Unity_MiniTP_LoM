@@ -23,7 +23,7 @@ public class UpgradeWindow : MonoBehaviour
         {
             upgradeCounts[i].text = string.Format(
                 "( {0} / {1} )",
-                SaveLoadManager.BaseData.upgradeCounts[0].ToString(),
+                SaveLoadManager.BaseData.upgradeCounts[i].ToString(),
                 DataTableManager.UpgradeTable.Get((UpgradeItems)i)
                 .MaxLv.ToString()
                 );
@@ -35,7 +35,7 @@ public class UpgradeWindow : MonoBehaviour
         UpdateButtonInteractables();
     }
 
-    private void UpdateButtonInteractables()
+    public void UpdateButtonInteractables()
     {
         for (int i = 0; i < (int)UpgradeItems.Count; ++i)
         {
@@ -43,7 +43,15 @@ public class UpgradeWindow : MonoBehaviour
                 DataTableManager.UpgradeTable.Get((UpgradeItems)i)
                 .UpgradeCost)
             {
-                buttons[i].interactable = true;
+                if (SaveLoadManager.BaseData.upgradeCounts[i] < 
+                    DataTableManager.UpgradeTable.Get((UpgradeItems)i).MaxLv)
+                {
+                    buttons[i].interactable = true;                    
+                }
+                else
+                {
+                    buttons[i].interactable = false;
+                }
             }
             else
             {
@@ -65,36 +73,36 @@ public class UpgradeWindow : MonoBehaviour
 
     private void OnClickButton0()
     {
-        uiManager.OnClickModeSelect(0);
+        uiManager.OnClickUpgradeButton(0);
     }
 
     private void OnClickButton1()
     {
-        uiManager.OnClickModeSelect(1);
+        uiManager.OnClickUpgradeButton(1);
     }
 
     private void OnClickButton2()
     {
-        uiManager.OnClickModeSelect(2);
+        uiManager.OnClickUpgradeButton(2);
     }
 
     private void OnClickButton3()
     {
-        uiManager.OnClickModeSelect(3);
+        uiManager.OnClickUpgradeButton(3);
     }
 
     private void OnClickButton4()
     {
-        uiManager.OnClickModeSelect(4);
+        uiManager.OnClickUpgradeButton(4);
     }
 
     private void OnClickButton5()
     {
-        uiManager.OnClickModeSelect(5);
+        uiManager.OnClickUpgradeButton(5);
     }
 
     private void OnClickButton6()
     {
-        uiManager.OnClickModeSelect(6);
+        uiManager.OnClickUpgradeButton(6);
     }
 }

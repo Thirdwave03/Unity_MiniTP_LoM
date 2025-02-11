@@ -94,6 +94,17 @@ public enum UpgradeItems
     Count,
 }
 
+public enum MerchantRanks
+{
+    NoviceMerchant,
+    PromisingMerchant,
+    SeasonedMerchant,
+    TradeMaestro,
+    MerchantGod,
+    Count,
+}
+
+
 public static class ItemDataIndex
 {
     public static int minPrimary = 10001;
@@ -193,6 +204,7 @@ public enum TitleSceneCenterMsgType
     InformDeleted,
     SelectGameMode,
     OpenUpgradeWindow,
+    IfReallyUpgrade,
 }
 
 public enum MainMenuCenterMsgType

@@ -39,6 +39,7 @@ public class BaseSaveDataV1 : BaseSaveData
     public float bgmVolume;
     public float sfxVolume;
     public Languages lastLanguageSetting;
+    public MerchantRanks MerchantRank;
 
     public BaseSaveDataV1()
     {

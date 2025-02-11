@@ -238,11 +238,11 @@
 999052,Higher Payback Interest
 999053,Reduced Inventory Fee
 999054,Initial Coin Advantage
-999055,Blank
-999056,Blank
-999057,Blank
-999058,Blank
-999059,Blank
+999055,Novice Merchant
+999056,Promising Merchant
+999057,Seasoned Merchant
+999058,Trade Maestro
+999059,Merchant God
 999060,Blank
 999061,Blank
 999062,Blank
@@ -279,7 +279,7 @@
 999925,Slot data deleted successfully.
 999926,"This is last day, and will be lead to settlement. Continue?"
 999927,Not enough coins to pay off rental fee and .Do you want to lose all progress in this game and continue ?
-999928,0
+999928,Selected item will be upgraded. Continue?
 999929,0
 999930,0
 999931,0
@@ -304,13 +304,13 @@
 999950,Every upgrade increases the amount you receive from a loan.
 999951,Each upgrade reduces the inventory fee by 1%.
 999952,"With every upgrade, your starting coin amount is increased by 1%."
-999953,Wholesales Price Advantage
-999954,Special Price Advantage
-999955,Enhanced Inn Profit Ratio
-999956,Larger Loanable Amount
-999957,Higher Payback Interest
-999958,Reduced Inventory Fee
-999959,Initial Coin Advantage
+999953,0
+999954,0
+999955,0
+999956,Promising Merchant
+999957,Seasoned Merchant
+999958,Trade Maestro
+999959,Merchant God
 999960,0
 999961,0
 999962,0
