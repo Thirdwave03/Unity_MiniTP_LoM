@@ -25,12 +25,12 @@ public class EncloInfo : MonoBehaviour
 
     public TextMeshProUGUI registerCountIndicator;
 
-    public void Awake()
+    private void Awake()
     {
         blinder.SetActive(true);
     }
 
-    public void Start()
+    private void Start()
     {
         AddListeners();
     }
@@ -71,10 +71,20 @@ public class EncloInfo : MonoBehaviour
         ItemData = itemData;
         if (SaveLoadManager.BaseData.isItemRevealed[ItemData.ItemData.Id - ItemDataIndex.minPrimary])
         {
-            registerButton.interactable = false;
-            registerBText.tmp.text =
-            DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
-            .Get(999060);
+            if (SaveLoadManager.BaseData.MerchantRank < MerchantRanks.MerchantGod)
+            {
+                registerButton.interactable = false;
+                registerBText.tmp.text =
+                DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
+                .Get(999060);
+            }
+            else
+            {
+                registerButton.interactable = true;
+                registerBText.tmp.text =
+                DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
+                .Get(999063);
+            }
 
             itemIcon.sprite = DataTableManager.ItemTable.Get(itemData.ItemData.Id).IconSprite;            
             registeredIcon.sprite = Resources.Load<Sprite>($"Sprites/Icon/itemimg/Books/technical book_1");
@@ -103,16 +113,16 @@ public class EncloInfo : MonoBehaviour
                     .totalSoldCount;
             }
 
-                otherInfo.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
-                .Get(999929),
-                GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalPurchasedAmount.ToString(),
-                (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalPurchasedAmount /
-                tempPurchasedCount).ToString(),
-                GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalSoldAmount.ToString(),
-                (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalSoldAmount /
-                tempSoldCount).ToString(),
-                GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalPurchasedCount.ToString()
-                );
+            otherInfo.text = string.Format(DataTableManager.StringTableList[(int)Variables.currentLanguage]
+            .Get(999929),
+            GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalPurchasedAmount.ToString(),
+            (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalPurchasedAmount /
+            tempPurchasedCount).ToString(),
+            GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalSoldAmount.ToString(),
+            (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalSoldAmount /
+            tempSoldCount).ToString(),
+            GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalPurchasedCount.ToString()
+            );
         }
         else
         {
@@ -148,15 +158,32 @@ public class EncloInfo : MonoBehaviour
 
     private void OnClickRegisterButton()
     {
-        if (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count >= 
-            GameInfos.RequiredCountToReveal(ItemData.ItemData.ItemType))
+        if (SaveLoadManager.BaseData.isItemRevealed[ItemData.ItemData.Id-ItemDataIndex.minPrimary])
+        {            
+            MarketControl();
+        }
+        else
+        {
+            DoRegister();
+        }
+    }
+
+    private void MarketControl()
+    {
+        encloWindow.bulletinBoardMgr.OpenMarketControl(ItemData);
+    }
+
+    private void DoRegister()
+    {
+        if (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count >=
+           GameInfos.RequiredCountToReveal(ItemData.ItemData.ItemType))
         {
             GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -=
                 GameInfos.RequiredCountToReveal(ItemData.ItemData.ItemType);
 
             SaveLoadManager.BaseData.isItemRevealed[ItemData.ItemData.Id - ItemDataIndex.minPrimary] = true;
             encloWindow.UpdateEnclopediaWindow();
-            SetData(ItemData);            
+            SetData(ItemData);
             SaveLoadManager.SaveBase();
         }
         else

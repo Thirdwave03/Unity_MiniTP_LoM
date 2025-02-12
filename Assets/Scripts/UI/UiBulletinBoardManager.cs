@@ -27,6 +27,9 @@ public class UiBulletinBoardManager : MonoBehaviour
     public Button centerMsgCheckB;
     public Button centerMsgcloseB;
 
+    public MarketControlWindow marketControlWindow;
+
+
     private float openedXPos;
     private float closedXPos;
 
@@ -39,6 +42,7 @@ public class UiBulletinBoardManager : MonoBehaviour
     {
         gameObject.SetActive(true);
         msgBox.SetActive(false);
+        marketControlWindow.gameObject.SetActive(false);
         timer = 0.5f;
         accumTime = 0f;
         isOpened = false;
@@ -47,7 +51,7 @@ public class UiBulletinBoardManager : MonoBehaviour
         closedXPos = openedXPos - Screen.width * 0.7f;
         gameObject.transform.position = new Vector3(closedXPos, 0, 0);
         enclopediaWindow.SetActive(false);
-        if(SaveLoadManager.BaseData.MerchantRank >= MerchantRanks.PromisingMerchant)
+        if (SaveLoadManager.BaseData.MerchantRank >= MerchantRanks.PromisingMerchant)
         {
             encloButtonBlinder.SetActive(false);
         }
@@ -67,9 +71,28 @@ public class UiBulletinBoardManager : MonoBehaviour
     }
 
     private void SetContents()
-    {
+    {        
         prefabList = new List<UiBulletinContentController>();
-        for(int i = 0; i < GameManager.Instance.bulletinBoardContentsId.Count; ++i)
+        for (int i = 0; i < GameManager.Instance.bulletinBoardContentsId.Count; ++i)
+        {
+            var content = Instantiate(bulletinContentsPrefab, viewPort.transform);
+            content.SetContentWithId(GameManager.Instance.bulletinBoardContentsId[i]);
+            prefabList.Add(content);
+        }
+    }
+
+    public void ResetContents()
+    {
+        if (prefabList != null)
+        {
+            foreach (var prefab in prefabList)
+            {
+                Destroy(prefab);
+            }
+        }
+        prefabList?.Clear();
+        //prefabList = new List<UiBulletinContentController>();
+        for (int i = 0; i < GameManager.Instance.bulletinBoardContentsId.Count; ++i)
         {
             var content = Instantiate(bulletinContentsPrefab, viewPort.transform);
             content.SetContentWithId(GameManager.Instance.bulletinBoardContentsId[i]);
@@ -95,14 +118,14 @@ public class UiBulletinBoardManager : MonoBehaviour
             accumTime = 0f;
             isMoving = true;
         }
-        foreach(var content in prefabList)
+        foreach (var content in prefabList)
         {
             content.ResetSize();
         }
     }
 
     public void Update()
-    {       
+    {
         if (isMoving)
         {
             UpdateBulletinBoardPos();
@@ -135,7 +158,7 @@ public class UiBulletinBoardManager : MonoBehaviour
         }
         float calibration = 1 / timer;
         float calibratedAccumTime = calibration * accumTime;
-        
+
         if (isOpened)
         {
             xPosLerp = Mathf.Lerp(closedXPos, openedXPos, calibratedAccumTime);
@@ -143,13 +166,13 @@ public class UiBulletinBoardManager : MonoBehaviour
         else
         {
             xPosLerp = Mathf.Lerp(openedXPos, closedXPos, calibratedAccumTime);
-        }       
+        }
 
         gameObject.transform.position = new Vector3(xPosLerp, 0, 0);
     }
 
     private void OnClickBulletinBoardButton()
-    {   
+    {
         if (!isMoving)
         {
             if (isOpened)
@@ -171,9 +194,9 @@ public class UiBulletinBoardManager : MonoBehaviour
                 isOpened = true;
                 accumTime = 0f;
                 isMoving = true;
-            }           
+            }
         }
-        
+
         foreach (var content in prefabList)
         {
             content.ResetSize();
@@ -189,18 +212,25 @@ public class UiBulletinBoardManager : MonoBehaviour
                 isOpened = false;
                 accumTime = 0f;
                 isMoving = true;
+
+
             }
             else
             {
                 bulletinBoardWindow.SetActive(false);
                 enclopediaWindow.SetActive(true);
-            }            
+            }
         }
         else
         {
             isOpened = true;
             accumTime = 0f;
             isMoving = true;
+        }
+
+        foreach (var content in prefabList)
+        {
+            content.ResetSize();
         }
     }
 
@@ -216,6 +246,12 @@ public class UiBulletinBoardManager : MonoBehaviour
 
         switch (messageType)
         {
+            case BulletinBoardMsgType.InsufficientCoin:
+                centerMsgCheckBArea.SetActive(false);
+                centerMsg.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999902);
+                break;
             case BulletinBoardMsgType.LackOfItems:
                 centerMsgCheckBArea.SetActive(false);
                 centerMsg.text =
@@ -225,5 +261,15 @@ public class UiBulletinBoardManager : MonoBehaviour
         }
     }
 
-    
+    public void OpenMarketControl(SavedItemData itemData)
+    {
+        marketControlWindow.gameObject.SetActive(true);
+        marketControlWindow.SetData(itemData);
+        marketControlWindow.ResetToggles();
+    }
+
+    public void CloseMarketControl()
+    {
+        marketControlWindow.gameObject.SetActive(false);
+    }
 }

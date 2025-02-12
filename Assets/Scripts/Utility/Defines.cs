@@ -207,8 +207,28 @@ public static class GameInfos
         }
         return 9999;
     }
+
+    public static int RequiredCoinToControl(ItemTypes itemType)
+    {
+        switch (itemType)
+        {
+            case ItemTypes.Default:
+                return 0;
+            case ItemTypes.Veges:
+                return 5000;
+            case ItemTypes.Fruits:
+            case ItemTypes.Foods:
+            case ItemTypes.Tools:
+                return 15000;
+            case ItemTypes.Books:
+                return 30000;
+            case ItemTypes.Luxuries:
+                return 10000;
+        }
+        return 0;
+    }
 }
-public static class LocalizerContents
+    public static class LocalizerContents
 {
     public static void AddAction(TextLocalizer localizer, UnityAction action)
     {
@@ -265,5 +285,6 @@ public enum InnSceneMsgType
 
 public enum BulletinBoardMsgType
 {
+    InsufficientCoin,
     LackOfItems,
 }

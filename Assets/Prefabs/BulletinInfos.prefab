@@ -298,7 +298,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewPortRect: {fileID: 0}
+  textLocalizer: {fileID: 4662573319136123839}
   displayOnNew: {fileID: 6024186862337466714}
+  background: {fileID: 4246373706811017639}
   itemId: 0
 --- !u!1 &8459124124726020320
 GameObject:

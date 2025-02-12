@@ -7,8 +7,9 @@ public class UiBulletinContentController : MonoBehaviour
 {
     public RectTransform viewPortRect;
     private LayoutElement layoutElement;
-    private TextLocalizer textLocalizer;
+    public TextLocalizer textLocalizer;
     public Image displayOnNew;
+    public Image background;
 
     public int itemId;
 
@@ -16,7 +17,6 @@ public class UiBulletinContentController : MonoBehaviour
     {
         layoutElement = GetComponent<LayoutElement>();
         viewPortRect = gameObject.transform.parent.gameObject.GetComponent<RectTransform>();
-        textLocalizer = GetComponentInChildren<TextLocalizer>();
     }
 
     private void OnEnable()
@@ -35,6 +35,7 @@ public class UiBulletinContentController : MonoBehaviour
     {
         itemId = itemIdInput;
         var savedItemData = GameManager.Instance.entireItemDict[itemId];
+                
         if (savedItemData.ItemData.IsKoreanWithSuffix == 1)
         {
             textLocalizer.stringId = savedItemData.bulletinBoardId; 
@@ -42,6 +43,10 @@ public class UiBulletinContentController : MonoBehaviour
         else
         {
             textLocalizer.stringId = savedItemData.bulletinBoardId + 500;
+            if(textLocalizer.stringId > 999999)
+            {
+                textLocalizer.stringId -= 500;
+            }
         }       
 
         textLocalizer.formatContents.Add(
@@ -58,6 +63,12 @@ public class UiBulletinContentController : MonoBehaviour
             displayOnNew.sprite = Resources.Load<Sprite>("Sprites/Icon/itemimg/General/blank");
         }
         displayOnNew.preserveAspect = true;
+
+        if (GameManager.Instance.entireItemDict[itemId].bulletinBoardId == 999960 ||
+            GameManager.Instance.entireItemDict[itemId].bulletinBoardId == 999961)
+        {
+            background.color = new Color(0, 37, 100);
+        }
         ResetSize();
     }
 }

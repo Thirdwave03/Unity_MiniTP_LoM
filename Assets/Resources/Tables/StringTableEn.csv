@@ -246,11 +246,11 @@
 999060,Register
 999061,Upgrade
 999062,Register_nRequired: <color=#FFBB00>{1} {0}</color>
-999063,Blank
-999064,Blank
-999065,Blank
-999066,Blank
-999067,Blank
+999063,Market Control!
+999064,Control
+999065,Enclopedia
+999066,Raise
+999067,Lower
 999068,Blank
 999901,Not enough coins to pay off rental fee. Do you still want to continue losing all the progress in this game?
 999902,Insufficient coins.
@@ -281,9 +281,9 @@
 999927,Not enough coins to pay off rental fee and .Do you want to lose all progress in this game and continue ?
 999928,Selected item will be upgraded. Continue?
 999929,Total Purchase Amt: <color=#FFFF00>{0}</color>_nAvg Purchase Amt: <color=#FFFF00>{1}</color>_n_nTotal sold Amt: <color=#FFFF00>{2}</color>_nAvg Sold Amt: <color=#FFFF00>{3}</color>_n_nTotal Accquired: <color=#FFFF00>{4}</color>
-999930,0
-999931,0
-999932,0
+999930,Items insufficient.
+999931,Keep for how long?
+999932,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>?
 999933,0
 999934,0
 999935,Short on cash? Fear not!
@@ -311,8 +311,8 @@
 999957,Seasoned Merchant
 999958,Trade Maestro
 999959,Merchant God
-999960,0
-999961,0
+999960,Someone is raising price of <color=#FFFF00>{0}</color>.
+999961,Someone is lowering price of <color=#FFFF00>{0}</color>.
 999962,0
 999963,0
 999964,0

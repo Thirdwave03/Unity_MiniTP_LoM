@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -949,7 +950,7 @@ public class GameManager
             {                   
                 // remove contents ran out of trend date from bulletin board.
                 if (bulletinBoardContentsId.Contains(entireItemDict[i].ItemData.Id))
-                {
+                {                    
                     bulletinBoardContentsId.Remove(entireItemDict[i].ItemData.Id);      
                 }
 
@@ -1006,6 +1007,23 @@ public class GameManager
         {
             numberOfNewInfo = UnityEngine.Random.Range(1, 4);
         }
+                
+        while(bulletinBoardContentsId.Count + numberOfNewInfo >= 7)
+        {
+            int tempIndex = 0;            
+            while (tempIndex < bulletinBoardContentsId.Count)
+            {
+                if (entireItemDict[bulletinBoardContentsId[tempIndex]].bulletinBoardId == 999960 ||
+                    entireItemDict[bulletinBoardContentsId[tempIndex]].bulletinBoardId == 999961)
+                {
+                    tempIndex++;
+                }
+                else
+                {
+                    bulletinBoardContentsId.RemoveAt(tempIndex);
+                }                
+            }            
+        }
 
         while(bulletinBoardContentsId.Count + numberOfNewInfo >= 7)
         {
@@ -1027,6 +1045,37 @@ public class GameManager
             }
         }
         tempBulletinBoardContents.Clear();
+    }
+
+    public void BulletinBoardUpdateOnMarketControl(int itemIndex, bool isRaise, int controlDays)
+    {
+        if(bulletinBoardContentsId.Contains(itemIndex))
+        {
+            bulletinBoardContentsId.Remove(itemIndex);
+        }
+
+        if(bulletinBoardContentsId.Count >= 7)
+        {
+            bulletinBoardContentsId.RemoveAt(0);
+        }
+        int bulletinBoardStringId;
+        if(isRaise)
+        {
+            bulletinBoardStringId = 999960;
+            entireItemDict[itemIndex].priceTrend = PriceTrends.Rising;
+            entireItemDict[itemIndex].trendRemainingDate = controlDays - 1;
+        }
+        else
+        {
+            bulletinBoardStringId = 999961;
+            entireItemDict[itemIndex].priceTrend = PriceTrends.Declining;
+            entireItemDict[itemIndex].trendRemainingDate = controlDays - 1;
+        }
+
+        entireItemDict[itemIndex].bulletinBoardId = bulletinBoardStringId;
+        entireItemDict[itemIndex].isOnBoardRecently = true;
+        bulletinBoardContentsId.Insert(0, itemIndex);
+        SaveLoadManager.Save(currentSavedSlotIndex);
     }
 
     private void SalesItemChangeOnSleepWithProbability()

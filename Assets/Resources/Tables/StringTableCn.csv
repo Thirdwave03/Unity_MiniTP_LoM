@@ -246,11 +246,11 @@
 999060,Register
 999061,Upgrade
 999062,Register_nRequired: <color=#FFBB00>{1} {0}</color>
-999063,空白
-999064,空白
-999065,空白
-999066,空白
-999067,空白
+999063,Market Control!
+999064,Control
+999065,Enclopedia
+999066,Raise
+999067,Lower
 999068,空白
 999901, 仓库租金的硬币不足，将失去目前的进度并返回主菜单。要继续吗？
 999902, 硬币不足。
@@ -281,9 +281,9 @@
 999927, 仓库租金和还款的硬币不足，将失去目前的进度并返回主菜单。要继续吗？
 999928,Selected item will be upgraded. Continue?
 999929,Total Purchase Amt: <color=#FFFF00>{0}</color>_nAvg Purchase Amt: <color=#FFFF00>{1}</color>_n_nTotal sold Amt: <color=#FFFF00>{2}</color>_nAvg Sold Amt: <color=#FFFF00>{3}</color>_n_nTotal Accquired: <color=#FFFF00>{4}</color>
-999930,0
-999931,0
-999932,0
+999930,Items insufficient.
+999931,Keep for how long?
+999932,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>
 999933,0
 999934,0
 999935,钱不够用吗？别担心！
@@ -311,8 +311,8 @@
 999957,熟练商人
 999958,生意高手
 999959,生意之神
-999960,0
-999961,0
+999960,Someone is raising price of <color=#FFFF00>{0}</color>.
+999961,Someone is lowering price of <color=#FFFF00>{0}</color>.
 999962,0
 999963,0
 999964,0
