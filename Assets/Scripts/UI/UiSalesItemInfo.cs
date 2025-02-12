@@ -110,6 +110,9 @@ public class UiSalesItemInfo : MonoBehaviour
         GameManager.Instance.coins += GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount;
         GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -= sellCount;
         salesSlider.maxValue = ItemData.count;
+        GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalSoldAmount +=
+            GameManager.Instance.entireItemDict[ItemData.ItemData.Id].price * sellCount;
+        GameManager.Instance.entireItemDict[ItemData.ItemData.Id].totalSoldCount += sellCount;
 
         // Blocking multiple Luxury items.
         if (ItemData.ItemData.Id >= ItemDataIndex.minLuxury &&

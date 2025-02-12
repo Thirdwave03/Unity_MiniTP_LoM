@@ -40,7 +40,8 @@ public class SaveLoadManager
             BaseData.sfxVolume = 0.2f;
             BaseData.upgradeCounts = new int[(int)UpgradeItems.Count];
             BaseData.bestScore = new int[(int)GameModes.Count];
-            BaseData.diamonds = 0;
+            BaseData.diamonds = 500000;
+            BaseData.isItemRevealed = new bool[50];
             SaveBase();
             GameManager.Instance.isFirstTimeEver = true;
         }

@@ -418,7 +418,8 @@ public class GameManager
         WholeSalesUpdateOnSleep();
         RandomBoxUpdateOnSleep();
         BulletinBoardContentsUpdateOnSleep();
-        CustomizedSetupNew();          
+        CustomizedSetupNew();
+        PrevPriceResetOnFirstDayOnly();
         CallSave();
         Debug.Log($"New Game Set and Save: { SaveLoadManager.Save(currentSavedSlotIndex)}");        
     }
@@ -458,7 +459,7 @@ public class GameManager
                 break;
             case GameModes.Count:
                 break;
-        }
+        }        
     }
 
     private void SetUpItemDatas()
@@ -906,6 +907,7 @@ public class GameManager
         {
             entireItemDict[i].trendRemainingDate--;
             entireItemDict[i].isOnBoardRecently = false;
+            entireItemDict[i].pricePrevDay = entireItemDict[i].price;
             if (tempBulletinBoardContents == null)
             {
                 tempBulletinBoardContents = new List<int>();
@@ -964,8 +966,31 @@ public class GameManager
                             entireItemDict[i].priceTrend);
                         tempBulletinBoardContents.Add(entireItemDict[i].ItemData.Id);
                     }
+
                 }
+
             }
+            if (entireItemDict[i].lowestPrice == 0)
+            {
+                entireItemDict[i].lowestPrice =
+                    entireItemDict[i].price;
+            }
+            
+            // Reset Highest, Lowest Price
+            entireItemDict[i].highestPrice = Mathf.Max(
+                entireItemDict[i].highestPrice, entireItemDict[i].price
+                );
+            entireItemDict[i].lowestPrice = Mathf.Min(
+                entireItemDict[i].lowestPrice, entireItemDict[i].price
+                );
+        }
+    }
+
+    private void PrevPriceResetOnFirstDayOnly()
+    {
+        for (int i = ItemDataIndex.minPrimary; i <= ItemDataIndex.maxLuxury; ++i)
+        {
+            entireItemDict[i].pricePrevDay = entireItemDict[i].price;
         }
     }
 

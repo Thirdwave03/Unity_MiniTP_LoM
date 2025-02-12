@@ -163,10 +163,14 @@ public class UiPurchaseItemInfo : MonoBehaviour
                 GameManager.Instance.coins -= GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price * purchaseCount;
                 GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].count += purchaseCount;
 
+                GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].totalPurchasedCount += purchaseCount;
+                GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].totalPurchasedAmount +=
+                    purchaseCount * GameManager.Instance.entireItemDict[ItemData.SalesItemData.SalesItemId].price;
+
                 ItemData.stock -= purchaseCount;
                 purchaseSlider.maxValue = ItemData.stock;
                 GameManager.Instance.salesItemDict[ItemData.SalesItemData.Id].stock = ItemData.stock;
-
+                
                 // Blocking multiple Luxury items.
                 if(ItemData.SalesItemData.SalesItemId >= ItemDataIndex.minLuxury &&
                    ItemData.SalesItemData.SalesItemId <= ItemDataIndex.maxLuxury)

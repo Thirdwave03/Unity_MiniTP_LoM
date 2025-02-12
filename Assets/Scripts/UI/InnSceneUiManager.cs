@@ -597,6 +597,12 @@ public class InnSceneUiManager : MonoBehaviour
                     GameManager.Instance.wholesaleItem1Cnt;
 
                 GameManager.Instance.isItem1PickedUp = true;
+
+                GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem1].totalPurchasedCount +=
+                GameManager.Instance.wholesaleItem1Cnt;
+                GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem1].totalPurchasedAmount +=
+                    GameManager.Instance.wholesaleItem1Cnt * GameManager.Instance.wholesaleItem1Cost;
+
                 UpdateWholesalesContents();
                 UpdateInnSceneDisplay();
                 GameManager.Instance.CallSave();
@@ -619,6 +625,7 @@ public class InnSceneUiManager : MonoBehaviour
                 GameManager.Instance.coins -=
                     GameManager.Instance.wholesaleItem2Cost * GameManager.Instance.wholesaleItem2Cnt;
                 GameManager.Instance.isItem2Purchased = true;
+                               
                 UpdateWholesalesContents();
                 UpdateInnSceneDisplay();
                 GameManager.Instance.CallSave();
@@ -646,6 +653,12 @@ public class InnSceneUiManager : MonoBehaviour
                     GameManager.Instance.wholesaleItem2Cnt;
 
                 GameManager.Instance.isItem2PickedUp = true;
+
+                GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem2].totalPurchasedCount +=
+                    GameManager.Instance.wholesaleItem2Cnt;
+                GameManager.Instance.entireItemDict[GameManager.Instance.wholesaleItem2].totalPurchasedAmount +=
+                    GameManager.Instance.wholesaleItem2Cnt * GameManager.Instance.wholesaleItem2Cost;
+
                 UpdateWholesalesContents();
                 UpdateInnSceneDisplay();
                 GameManager.Instance.CallSave();
@@ -692,6 +705,12 @@ public class InnSceneUiManager : MonoBehaviour
                 GameManager.Instance.entireItemDict[GameManager.Instance.randomBox1Item].count +=
                     GameManager.Instance.randomBox1Cnt;
                 GameManager.Instance.isRandomBox1PickedUp = true;
+
+                GameManager.Instance.entireItemDict[GameManager.Instance.randomBox1Item].totalPurchasedCount +=
+                    GameManager.Instance.randomBox1Cnt;
+                GameManager.Instance.entireItemDict[GameManager.Instance.randomBox1Item].totalPurchasedAmount +=
+                    GameManager.Instance.randomBox1Price;
+
                 UpdateRandomBoxContents();
                 UpdateInnSceneDisplay();
                 GameManager.Instance.CallSave();
@@ -738,6 +757,13 @@ public class InnSceneUiManager : MonoBehaviour
                 GameManager.Instance.entireItemDict[GameManager.Instance.randomBox2Item].count +=
                     GameManager.Instance.randomBox2Cnt;
                 GameManager.Instance.isRandomBox2PickedUp = true;
+
+
+                GameManager.Instance.entireItemDict[GameManager.Instance.randomBox2Item].totalPurchasedCount +=
+                    GameManager.Instance.randomBox2Cnt;
+                GameManager.Instance.entireItemDict[GameManager.Instance.randomBox2Item].totalPurchasedAmount +=
+                    GameManager.Instance.randomBox2Price;
+
                 UpdateRandomBoxContents();
                 UpdateInnSceneDisplay();
                 GameManager.Instance.CallSave();

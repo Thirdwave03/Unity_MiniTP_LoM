@@ -244,8 +244,8 @@
 999057,Seasoned Merchant,숙련 상인,熟練の商人,熟练商人
 999058,Trade Maestro,장사의 달인,商売の達人,生意高手
 999059,Merchant God,장사의 신,商売の神,生意之神
-999060,Blank, 공란,空欄,空白
-999061,Blank, 공란,空欄,空白
+999060,Register,등록,Register,Register
+999061,Upgrade,업그레이드,Upgrade,Upgrade
 999062,Blank, 공란,空欄,空白
 999063,Blank, 공란,空欄,空白
 999064,Blank, 공란,空欄,空白
@@ -281,7 +281,7 @@
 999926,"This is last day, and will be lead to settlement. Continue?",마지막 날입니다. 게임을 끝내고 결산 화면으로 갑니다. 계속 하시겠습니까?,今日は最後の日で決算に進まれます。続きますか？,今天将会进入现金结算。是否继续？
 999927,Not enough coins to pay off rental fee and .Do you want to lose all progress in this game and continue ?,창고 임대료와 상환금을 지불할 코인이 부족합니다. 현재까지의 진행 상황을 잃고 메인 화면으로 돌아갑니다. 계속합니까?, 倉庫のレンタル料と返済額を支払うコインが足りません。これまでの進行状況が失われ、メインメニューに戻ります。続けますか？, 仓库租金和还款的硬币不足，将失去目前的进度并返回主菜单。要继续吗？
 999928,Selected item will be upgraded. Continue?,선택한 항목을 업그레이드 합니다. 계속합니까?,Selected item will be upgraded. Continue?,Selected item will be upgraded. Continue?
-999929,0,0,0,0
+999929,Total Purchase Amt: <color=#FFFF00>{0}</color>_nAvg Purchase Amt: <color=#FFFF00>{1}</color>_n_nTotal sold Amt: <color=#FFFF00>{2}</color>_nAvg Sold Amt: <color=#FFFF00>{3}</color>_n_nTotal Accquired: <color=#FFFF00>{4}</color>,누적 구매 금액: <color=#FFFF00>{0}</color>_n구매 평균: <color=#FFFF00>{1}</color>_n_n누적 판매 금액: <color=#FFFF00>{2}</color>_n판매 평균: <color=#FFFF00>{3}</color>_n_n획득 수: <color=#FFFF00>{4}</color>,Total Purchase Amt: <color=#FFFF00>{0}</color>_nAvg Purchase Amt: <color=#FFFF00>{1}</color>_n_nTotal sold Amt: <color=#FFFF00>{2}</color>_nAvg Sold Amt: <color=#FFFF00>{3}</color>_n_nTotal Accquired: <color=#FFFF00>{4}</color>,Total Purchase Amt: <color=#FFFF00>{0}</color>_nAvg Purchase Amt: <color=#FFFF00>{1}</color>_n_nTotal sold Amt: <color=#FFFF00>{2}</color>_nAvg Sold Amt: <color=#FFFF00>{3}</color>_n_nTotal Accquired: <color=#FFFF00>{4}</color>
 999930,0,0,0,0
 999931,0,0,0,0
 999932,0,0,0,0
@@ -305,9 +305,9 @@
 999950,Every upgrade increases the amount you receive from a loan.,각 업그레이드마다 대출 상환율이 증가합니다.,各アップグレードにより、ローンで受け取る金額が増加します。,每次升级都会增加您从贷款中获得的金额。
 999951,Each upgrade reduces the inventory fee by 1%.,각 업그레이드마다 창고 비용이 1% 감소합니다.,各アップグレードごとに、倉庫費用が1%削減されます。,每次升级都会将仓库费用降低1%。
 999952,"With every upgrade, your starting coin amount is increased by 1%.",각 업그레이드마다 초기 코인 수량이 1% 증가합니다.,各アップグレードごとに、初期コインの数が1%増加します。,每次升级都会使您的初始金币数量增加1%。
-999953,0,0,0,0
-999954,0,0,0,0
-999955,0,0,0,0
+999953,<color=#00FF00>Highest Price Observed</color> : {0},<color=#00FF00>관측 최고가</color> : {0},<color=#00FF00>Highest Price Observed</color> : {0},<color=#00FF00>Highest Price Observed</color> : {0}
+999954,<color=#FF0000>Lowest Price Observed</color> : {0},<color=#FF0000>관측 최저가</color> : {0},<color=#FF0000>Lowest Price Observed</color> : {0},<color=#FF0000>Lowest Price Observed</color> : {0}
+999955,Information will be revealed upon registeration.,도감을 등록하면 가려진 정보가 표기 됩니다.,Information will be revealed upon registeration.,Information will be revealed upon registeration.
 999956,Promising Merchant,유망 상인이 되었습니다.,有望な商人,有潜力的商人
 999957,Seasoned Merchant,숙련 상인이 되었습니다.,熟練の商人,熟练商人
 999958,Trade Maestro,장사의 달인이 되었습니다.,商売の達人,生意高手

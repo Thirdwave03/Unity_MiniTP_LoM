@@ -243,8 +243,8 @@
 999057,Seasoned Merchant
 999058,Trade Maestro
 999059,Merchant God
-999060,Blank
-999061,Blank
+999060,Register
+999061,Upgrade
 999062,Blank
 999063,Blank
 999064,Blank
@@ -280,7 +280,7 @@
 999926,"This is last day, and will be lead to settlement. Continue?"
 999927,Not enough coins to pay off rental fee and .Do you want to lose all progress in this game and continue ?
 999928,Selected item will be upgraded. Continue?
-999929,0
+999929,Total Purchase Amt: <color=#FFFF00>{0}</color>_nAvg Purchase Amt: <color=#FFFF00>{1}</color>_n_nTotal sold Amt: <color=#FFFF00>{2}</color>_nAvg Sold Amt: <color=#FFFF00>{3}</color>_n_nTotal Accquired: <color=#FFFF00>{4}</color>
 999930,0
 999931,0
 999932,0
@@ -304,9 +304,9 @@
 999950,Every upgrade increases the amount you receive from a loan.
 999951,Each upgrade reduces the inventory fee by 1%.
 999952,"With every upgrade, your starting coin amount is increased by 1%."
-999953,0
-999954,0
-999955,0
+999953,<color=#00FF00>Highest Price Observed</color> : {0}
+999954,<color=#FF0000>Lowest Price Observed</color> : {0}
+999955,Information will be revealed upon registeration.
 999956,Promising Merchant
 999957,Seasoned Merchant
 999958,Trade Maestro

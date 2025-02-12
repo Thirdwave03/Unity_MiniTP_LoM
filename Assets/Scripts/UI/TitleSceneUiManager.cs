@@ -403,6 +403,7 @@ public class TitleSceneUiManager : MonoBehaviour
         gameObject.BroadcastMessage("OnChangeLanguage", (Languages)value);
         SaveLoadManager.BaseData.lastLanguageSetting = Variables.currentLanguage;
         SaveLoadManager.SaveBase();
+        UpdateRankData();
     }
 
     public void OnClickExitGame()

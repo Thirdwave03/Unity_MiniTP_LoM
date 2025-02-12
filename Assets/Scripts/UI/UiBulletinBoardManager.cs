@@ -10,11 +10,19 @@ public class UiBulletinBoardManager : MonoBehaviour
     public GameObject viewPort;
     private List<UiBulletinContentController> prefabList;
 
+    public GameObject bulletinBoardWindow;
+    public GameObject enclopediaWindow;
+
+    public Button bulletinBoardButton;
+    public Button enclopediaButton;
+
+    public GameObject encloButtonBlinder;
+
     private float openedXPos;
     private float closedXPos;
 
-    private bool isOpened = false;
-    private bool isMoving = false;
+    public bool isOpened = false;
+    public bool isMoving = false;
     private float timer = 0.5f;
     private float accumTime = 0f;
 
@@ -28,7 +36,23 @@ public class UiBulletinBoardManager : MonoBehaviour
         openedXPos = gameObject.transform.position.x;
         closedXPos = openedXPos - Screen.width * 0.7f;
         gameObject.transform.position = new Vector3(closedXPos, 0, 0);
-        SetContents();        
+        enclopediaWindow.SetActive(false);
+        if(SaveLoadManager.BaseData.MerchantRank >= MerchantRanks.PromisingMerchant)
+        {
+            encloButtonBlinder.SetActive(false);
+        }
+        else
+        {
+            encloButtonBlinder.SetActive(true);
+        }
+        SetContents();
+        AddListeners();
+    }
+
+    private void AddListeners()
+    {
+        bulletinBoardButton.onClick.AddListener(OnClickBulletinBoardButton);
+        enclopediaButton.onClick.AddListener(OnClickEnclopediaButton);
     }
 
     private void SetContents()
@@ -42,10 +66,20 @@ public class UiBulletinBoardManager : MonoBehaviour
         }
     }
 
-    public void OnClick()
+    public void OnClickBoardHandle()
     {
         if (!isMoving)
         {
+            //if(!isOpened)
+            //{
+            //    isOpened = true;
+            //    accumTime = 0f;
+            //    isMoving = true;
+            //}
+            //else
+            //{
+            //
+            //}
             isOpened = !isOpened;
             accumTime = 0f;
             isMoving = true;
@@ -101,5 +135,61 @@ public class UiBulletinBoardManager : MonoBehaviour
         }       
 
         gameObject.transform.position = new Vector3(xPosLerp, 0, 0);
+    }
+
+    private void OnClickBulletinBoardButton()
+    {   
+        if (!isMoving)
+        {
+            if (isOpened)
+            {
+                if (bulletinBoardWindow.activeSelf)
+                {
+                    isOpened = false;
+                    accumTime = 0f;
+                    isMoving = true;
+                }
+                else
+                {
+                    bulletinBoardWindow.SetActive(true);
+                    enclopediaWindow.SetActive(false);
+                }
+            }
+            else
+            {
+                isOpened = true;
+                accumTime = 0f;
+                isMoving = true;
+            }           
+        }
+        
+        foreach (var content in prefabList)
+        {
+            content.ResetSize();
+        }
+    }
+
+    private void OnClickEnclopediaButton()
+    {
+        if (isOpened)
+        {
+            if (enclopediaWindow.activeSelf)
+            {
+                isOpened = false;
+                accumTime = 0f;
+                isMoving = true;
+            }
+            else
+            {
+                bulletinBoardWindow.SetActive(false);
+                enclopediaWindow.SetActive(true);
+            }            
+        }
+        else
+        {
+            isOpened = true;
+            accumTime = 0f;
+            isMoving = true;
+        }
     }
 }

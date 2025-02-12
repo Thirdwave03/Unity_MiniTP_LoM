@@ -23,6 +23,9 @@ public class BaseSaveDataV1 : BaseSaveData
     public bool isPriceChangeDetectorEnabled;
     public bool isRandomBoxCountDetectorEnabled;
 
+    // Enclopedia
+    public bool[] isItemRevealed;
+
     // Upgradables
     public int[] upgradeCounts;
 

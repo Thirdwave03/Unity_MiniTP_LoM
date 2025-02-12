@@ -85,6 +85,12 @@ public class UiSpecialShopItemInfo : MonoBehaviour, IPointerDownHandler
         GameManager.Instance.coins += (int)(GameManager.Instance.entireItemDict[itemId].price 
             * GameManager.Instance.SpecialSalesAdvantagedPriceMultiplier) * salesCount;
         GameManager.Instance.entireItemDict[itemId].count -= salesCount;
+
+        GameManager.Instance.entireItemDict[itemId].totalSoldCount += salesCount;
+        GameManager.Instance.entireItemDict[itemId].totalSoldAmount +=
+            salesCount * (int)(GameManager.Instance.entireItemDict[itemId].price *
+            GameManager.Instance.SpecialSalesAdvantagedPriceMultiplier);
+
         GameManager.Instance.CallSave();
         UpdateDisplayedInfo();
         uiSpecialSalesWindow.salesSceneUi.UpdateSalesSceneDisplay();

@@ -77,11 +77,18 @@ public class SavedItemData
     public int bulletinBoardId;
     public int count;
     public int price;
+    public int highestPrice;
+    public int lowestPrice;
+    public int pricePrevDay;
     public bool isSoldOut;
     public int avgCost;
     public PriceTrends priceTrend;
     public bool isOnBoardRecently;
     public int trendRemainingDate;
+    public int totalPurchasedCount;
+    public int totalPurchasedAmount;
+    public int totalSoldCount;
+    public int totalSoldAmount;
 }
 
 public class ItemTable : DataTable

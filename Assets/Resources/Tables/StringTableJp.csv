@@ -243,8 +243,8 @@
 999057,熟練の商人
 999058,商売の達人
 999059,商売の神
-999060,空欄
-999061,空欄
+999060,Register
+999061,Upgrade
 999062,空欄
 999063,空欄
 999064,空欄
@@ -280,7 +280,7 @@
 999926,今日は最後の日で決算に進まれます。続きますか？
 999927, 倉庫のレンタル料と返済額を支払うコインが足りません。これまでの進行状況が失われ、メインメニューに戻ります。続けますか？
 999928,Selected item will be upgraded. Continue?
-999929,0
+999929,Total Purchase Amt: <color=#FFFF00>{0}</color>_nAvg Purchase Amt: <color=#FFFF00>{1}</color>_n_nTotal sold Amt: <color=#FFFF00>{2}</color>_nAvg Sold Amt: <color=#FFFF00>{3}</color>_n_nTotal Accquired: <color=#FFFF00>{4}</color>
 999930,0
 999931,0
 999932,0
@@ -304,9 +304,9 @@
 999950,各アップグレードにより、ローンで受け取る金額が増加します。
 999951,各アップグレードごとに、倉庫費用が1%削減されます。
 999952,各アップグレードごとに、初期コインの数が1%増加します。
-999953,0
-999954,0
-999955,0
+999953,<color=#00FF00>Highest Price Observed</color> : {0}
+999954,<color=#FF0000>Lowest Price Observed</color> : {0}
+999955,Information will be revealed upon registeration.
 999956,有望な商人
 999957,熟練の商人
 999958,商売の達人
