@@ -245,7 +245,7 @@
 999059,商売の神
 999060,Register
 999061,Upgrade
-999062,空欄
+999062,Register_nRequired: <color=#FFBB00>{1} {0}</color>
 999063,空欄
 999064,空欄
 999065,空欄

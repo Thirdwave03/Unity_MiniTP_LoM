@@ -19,6 +19,7 @@ public class EncloInfo : MonoBehaviour
     public TextMeshProUGUI otherInfo;
 
     public Button registerButton;
+    public TextLocalizer registerBText;
 
     public GameObject blinder;
 
@@ -27,6 +28,11 @@ public class EncloInfo : MonoBehaviour
     public void Awake()
     {
         blinder.SetActive(true);
+    }
+
+    public void Start()
+    {
+        AddListeners();
     }
 
     public void SetEmpty()
@@ -46,6 +52,9 @@ public class EncloInfo : MonoBehaviour
             );
 
         registerButton.interactable = false;
+        registerBText.tmp.text =
+            DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
+            .Get(999060);
 
         blinder.SetActive(true);
     }
@@ -63,6 +72,9 @@ public class EncloInfo : MonoBehaviour
         if (SaveLoadManager.BaseData.isItemRevealed[ItemData.ItemData.Id - ItemDataIndex.minPrimary])
         {
             registerButton.interactable = false;
+            registerBText.tmp.text =
+            DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
+            .Get(999060);
 
             itemIcon.sprite = DataTableManager.ItemTable.Get(itemData.ItemData.Id).IconSprite;            
             registeredIcon.sprite = Resources.Load<Sprite>($"Sprites/Icon/itemimg/Books/technical book_1");
@@ -105,6 +117,12 @@ public class EncloInfo : MonoBehaviour
         else
         {
             registerButton.interactable = true;
+            registerBText.tmp.text = string.Format(
+            DataTableManager.StringTableList[(int)(Variables.currentLanguage)].Get(999062),
+            DataTableManager.StringTableList[(int)(Variables.currentLanguage)].Get(
+                ItemData.ItemData.StringId),
+            GameInfos.RequiredCountToReveal(ItemData.ItemData.ItemType).ToString()
+            );
 
             itemIcon.sprite = DataTableManager.ItemTable.Get(itemData.ItemData.Id).IconSprite;
             string enrolledIconPath = "blank";
@@ -123,9 +141,29 @@ public class EncloInfo : MonoBehaviour
         }
     }
 
-    private void OnClickEnrollButton()
+    private void AddListeners()
     {
+        registerButton.onClick.AddListener(OnClickRegisterButton);
+    }
 
+    private void OnClickRegisterButton()
+    {
+        if (GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count >= 
+            GameInfos.RequiredCountToReveal(ItemData.ItemData.ItemType))
+        {
+            GameManager.Instance.entireItemDict[ItemData.ItemData.Id].count -=
+                GameInfos.RequiredCountToReveal(ItemData.ItemData.ItemType);
+
+            SaveLoadManager.BaseData.isItemRevealed[ItemData.ItemData.Id - ItemDataIndex.minPrimary] = true;
+            encloWindow.UpdateEnclopediaWindow();
+            SetData(ItemData);            
+            SaveLoadManager.SaveBase();
+        }
+        else
+        {
+            encloWindow.bulletinBoardMgr.OpenMessage(BulletinBoardMsgType.LackOfItems);
+            return;
+        }
     }
 
     private void UpdateDisPlayedInfo()

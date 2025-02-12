@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UiBulletinBoardManager : MonoBehaviour
 {
+    private BulletinBoardMsgType messageType;
+
     public UiBulletinContentController bulletinContentsPrefab;
     public GameObject viewPort;
     private List<UiBulletinContentController> prefabList;
@@ -18,6 +21,12 @@ public class UiBulletinBoardManager : MonoBehaviour
 
     public GameObject encloButtonBlinder;
 
+    public GameObject msgBox;
+    public TextMeshProUGUI centerMsg;
+    public GameObject centerMsgCheckBArea;
+    public Button centerMsgCheckB;
+    public Button centerMsgcloseB;
+
     private float openedXPos;
     private float closedXPos;
 
@@ -29,6 +38,7 @@ public class UiBulletinBoardManager : MonoBehaviour
     public void SetInitialPosition()
     {
         gameObject.SetActive(true);
+        msgBox.SetActive(false);
         timer = 0.5f;
         accumTime = 0f;
         isOpened = false;
@@ -53,6 +63,7 @@ public class UiBulletinBoardManager : MonoBehaviour
     {
         bulletinBoardButton.onClick.AddListener(OnClickBulletinBoardButton);
         enclopediaButton.onClick.AddListener(OnClickEnclopediaButton);
+        centerMsgcloseB.onClick.AddListener(OnClickCloseButton);
     }
 
     private void SetContents()
@@ -123,7 +134,7 @@ public class UiBulletinBoardManager : MonoBehaviour
             isMoving = false;
         }
         float calibration = 1 / timer;
-        float calibratedAccumTime = calibration * accumTime;        
+        float calibratedAccumTime = calibration * accumTime;
         
         if (isOpened)
         {
@@ -192,4 +203,27 @@ public class UiBulletinBoardManager : MonoBehaviour
             isMoving = true;
         }
     }
+
+    private void OnClickCloseButton()
+    {
+        msgBox.SetActive(false);
+    }
+
+    public void OpenMessage(BulletinBoardMsgType msgType)
+    {
+        messageType = msgType;
+        msgBox.SetActive(true);
+
+        switch (messageType)
+        {
+            case BulletinBoardMsgType.LackOfItems:
+                centerMsgCheckBArea.SetActive(false);
+                centerMsg.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999930);
+                break;
+        }
+    }
+
+    
 }

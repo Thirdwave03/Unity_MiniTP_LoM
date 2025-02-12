@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static GameInfos;
 
 public class InnSceneUiManager : MonoBehaviour
 {
@@ -393,18 +394,31 @@ public class InnSceneUiManager : MonoBehaviour
 
         if (!GameManager.Instance.isRandomBox1Purchased)
         {
-            var sprite = Resources.Load<Sprite>(randomBox1Path);
-            if (sprite == null)
+            // price of random box.
+            randomBoxSlot1Occupancy.text = "???";
+            if (SaveLoadManager.BaseData.MerchantRank < MerchantRanks.TradeMaestro)
             {
-                Debug.LogError($"Sprite at path {randomBox1Path} could not be loaded.");
+                randomBoxSlot1ItemImage.sprite = Resources.Load<Sprite>(randomBox1Path);
             }
             else
             {
+                var pathCalibrator = randomBox1Path;
+                if (GameManager.Instance.randomBox1Cnt <= 1)
+                {
+                    pathCalibrator += "_1";
+                }
+                else if (GameManager.Instance.randomBox1Cnt <= 3)
+                {
+                    pathCalibrator += "_3";
+                }
+                else
+                {
+                    pathCalibrator += "_5";
+                }
+
+                var sprite = Resources.Load<Sprite>(pathCalibrator);
                 randomBoxSlot1ItemImage.sprite = sprite;
             }
-            // price of random box.
-            randomBoxSlot1Occupancy.text = "???";
-            randomBoxSlot1ItemImage.sprite = Resources.Load<Sprite>(randomBox1Path);
             randomBoxCount1.SetActive(false);
         }
         else
@@ -438,7 +452,29 @@ public class InnSceneUiManager : MonoBehaviour
         {
             // price of random box.
             randomBoxSlot2Occupancy.text = "???";
-            randomBoxSlot2ItemImage.sprite = Resources.Load<Sprite>(randomBox2Path);
+            if (SaveLoadManager.BaseData.MerchantRank < MerchantRanks.TradeMaestro)
+            {
+                randomBoxSlot2ItemImage.sprite = Resources.Load<Sprite>(randomBox2Path);
+            }
+            else
+            {
+                var pathCalibrator = randomBox2Path;
+                if (GameManager.Instance.randomBox2Cnt <= 1)
+                {
+                    pathCalibrator += "_1";
+                }
+                else if (GameManager.Instance.randomBox2Cnt <= 3)
+                {
+                    pathCalibrator += "_3";
+                }
+                else
+                {
+                    pathCalibrator += "_5";
+                }
+
+                var sprite = Resources.Load<Sprite>(pathCalibrator);
+                randomBoxSlot2ItemImage.sprite = sprite;
+            }
             randomBoxCount2.SetActive(false);
         }
         else

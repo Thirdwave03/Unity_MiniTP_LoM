@@ -142,7 +142,7 @@ public static class PriceDataIndex
 }
 
 public static class GameInfos
-{   
+{
     public static readonly int minInventoryLevel = 1;
     public static readonly int maxInventoryLevel = 11;
 
@@ -171,7 +171,7 @@ public static class GameInfos
         int stringIdTempSuffix = (((int)itemType) - 1) * 4 + 1;
         stringIdTempSuffix += 2 - (((int)trend) * 2);
         int bulletinBoardIdDefault = 950000;
-        if(random)
+        if (random)
         {
             stringIdTempSuffix += UnityEngine.Random.Range(0, 2);
             stringIdTempSuffix += bulletinBoardIdDefault;
@@ -183,8 +183,31 @@ public static class GameInfos
             return stringIdTempSuffix;
         }
     }
-}
 
+    public static int RequiredCountToReveal(ItemTypes itemType)
+    {
+        switch (itemType)
+        {
+            case ItemTypes.Default:
+                return 9999;
+
+            case ItemTypes.Veges:
+                return 50;
+
+            case ItemTypes.Fruits:
+            case ItemTypes.Foods:
+            case ItemTypes.Tools:
+                return 30;
+
+            case ItemTypes.Books:
+                return 15;
+
+            case ItemTypes.Luxuries:
+                return 1;
+        }
+        return 9999;
+    }
+}
 public static class LocalizerContents
 {
     public static void AddAction(TextLocalizer localizer, UnityAction action)
@@ -223,7 +246,7 @@ public enum MainMenuCenterMsgType
 public enum PurchaseSceneCenterMsgType
 {
     InsufficientCoin,
-    LackOfCapacity,    
+    LackOfCapacity,
 }
 
 public enum SalesSceneMsgType
@@ -238,4 +261,9 @@ public enum InnSceneMsgType
 {
     InsufficientCoin,
     LackOfCapacity,
+}
+
+public enum BulletinBoardMsgType
+{
+    LackOfItems,
 }
