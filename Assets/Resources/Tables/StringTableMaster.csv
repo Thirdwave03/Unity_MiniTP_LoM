@@ -167,17 +167,17 @@
 998001, Tips:_nHealth is harmful for smoking.,팁 :_n상품의 가격은 매일 바뀝니다. 안 바뀌기도 하지만요., ヒント:_n(ウケる),温馨提示:_n哈哈
 998002, Tips : _nTips2,팁 :_n게시판을 보면 트렌드를 알 수 있어요. 어떤 상품을 사고 파는 게 좋을까요?, ヒント : _nヒント2,温馨提示:_n提示2
 998003, Tips : _nTips3,팁 :_n인벤토리 평균 가격을 참고해서 사고 팔 때를 잘 구분해봐요., ヒント : _nヒント3,温馨提示:_n提示3
-998004, Tips : _nTips4,팁 :_n여관에서 투자를 하면 매일 코인을 받을 수 있어요. 안정적으로 벌 수 있다는 뜻이죠!, ヒント : _nヒント4,温馨提示:_n提示4
-998005, Tips : _nTips5,팁 :_n랜덤 박스를 구매할 땐 가격을 잘 보고 사야해요., ヒント : _nヒント5,温馨提示:_n提示5
+998004, Tips : _nTips4,팁 :_n여관에 투자를 하면 매일 일정량의 수익을 받을 수 있어요!, ヒント : _nヒント4,温馨提示:_n提示4
+998005, Tips : _nTips5,팁 :_n랜덤 박스에는 1~5개의 상품이 들어 있습니다. 오른쪽 상자에는 조금 더 좋은 물건이 들어 있어요., ヒント : _nヒント5,温馨提示:_n提示5
 998006, Tips : _nTips6,"팁 :_n상품을 파는 상인은 세 명 있어요. 식료품 상인, 가공품 상인, 사치품 상인
 비싼 아이템일수록 가격 변동폭이 커요.", ヒント : _nヒント6,温馨提示:_n提示6
 998007, Tips : _nTips7,팁 :_n사치품은 게임에 하나 뿐이에요. 내가 갖고 있다면 다른 상인은 그 상품이 없다는 소리죠!, ヒント : _nヒント7,温馨提示:_n提示7
 998008, Tips : _nTips8,팁 :_n코인을 빌려달라는 사람을 찾아보세요. 웃돈으로 제 때 잘 갚는다고 소문이 났답니다., ヒント : _nヒント8,温馨提示:_n提示8
-998009, Tips : _nTips9,팁 :_n여관에서 도매를 이용해보세요. 싼 값에 많이 살 수 있어요., ヒント : _nヒント9,温馨提示:_n提示9
+998009, Tips : _nTips9,팁 :_n여관에서 도매를 이용해보세요. 싼 값에 많이 살 수 있어요. 하지만 구매 당일 수령은 불가능합니다., ヒント : _nヒント9,温馨提示:_n提示9
 998010, Tips : _nTips10,팁 :_n타이틀 화면에서 다른 모드도 즐겨보세요! 도전 욕구를 자극하는 모드들이 준비되어 있어요!, ヒント : _nヒント10,温馨提示:_n提示10
-998011, Tips : _nTips11,팁 :_n100일이 끝나면 게임이 끝나요. 그 때 가진 코인이 기록이 돼요., ヒント : _nヒント11,温馨提示:_n提示11
+998011, Tips : _nTips11,"팁 :_n100일이 지나면 보유 코인이 기록되며 게임이 끝나고, 코인 보유량에 따라 다이아몬드가 지급되요.", ヒント : _nヒント11,温馨提示:_n提示11
 998012, Tips : _nTips12,팁 :_n상인들은 항상 모든 상품을 파는 게 아니에요. 오늘은 원하는 상품이 없을 수도 있어요., ヒント : _nヒント12,温馨提示:_n提示12
-998013, Tips : _nTips13,팁 :_n, ヒント : _nヒント13,温馨提示:_n提示13
+998013, Tips : _nTips13,팁 :_n다이아몬드를 소비하여 상인 랭크를 올릴 수 있어요. 랭크가 오를 수록 다양한 능력을 활용할 수 있게 되요., ヒント : _nヒント13,温馨提示:_n提示13
 998014, Tips : _nTips14,팁 :_n, ヒント : _nヒント14,温馨提示:_n提示14
 998015, Tips : _nTips15,팁 :_n, ヒント : _nヒント15,温馨提示:_n提示15
 998016, Tips : _nTips16,팁 :_n, ヒント : _nヒント16,温馨提示:_n提示16
@@ -185,35 +185,35 @@
 998018, Tips : _nTips18,팁 :_n, ヒント : _nヒント18,温馨提示:_n提示18
 998019, Tips : _nTips19,팁 :_n, ヒント : _nヒント19,温馨提示:_n提示19
 998020, Tips : _nTips20,팁 :_n, ヒント : _nヒント20,温馨提示:_n提示20
-999001, New Game, 새로운 게임, 新しいゲーム, 新游戏
-999002, Limited Resources, 자원 한정 모드, 限定資源モード, 资源限定模式
-999003, Exit Game, 게임 종료, ゲーム終了, 游戏结束
-999004, Continue, 이어하기, 続きから, 继续游戏
-999005, Best Earning Record_n{0} coins, 최고 수익 기록_n{0} 코인, 最高収益記録_n{0} コイン, 最高收益记录_n{0} 硬币
-999006, Restart, 재시작, 再スタート, 重新开始
-999007, Main Menu, 메인 메뉴로, メインメニューへ, 回主菜单
-999008, Quit, 나가기, 終了, 退出
-999009, Average Inventory Cost, 평균 매입가, 平均購入価格, 平均进价
-999010, Max, 최대, 最大, 最大
-999011, Purchase, 구매, 購入, 购买
-999012, Sell, 판매, 販売, 出售
-999013, Random Box, 랜덤 박스, ランダムボックス, 随机箱子
-999014, Gather for intel, 정보 수집, 情報収集, 收集情报
-999015, Cost, 총액, 合計, 总额
-999016, Revenue, 총 판매액, 総売上, 总销售额
-999017, Gather intel about product pricing, 상품 가격에 관한 정보 수집, 商品の価格情報を収集する, 收集商品价格信息
-999018, Invest in the inn, 여관에 투자, 宿に投資する, 投资客栈
-999019, Profit:, 수익:, 利益:, 收益:
-999020, Total investment : {0}, 총 투자액 : {0}, 総投資額 : {0}, 总投资额 : {0}
-999021, Capacity : {0} / {1}_nRental Fee : {2} / day, 용량 : {0} / {1}_n임대료: {2} / 1일, 容量 : {0} / {1}_nレンタル料: {2} / 日, 容量 : {0} / {1}_n租金: {2} / 天
-999022, Level : {0}, 레벨 : {0}, レベル : {0}, 等级 : {0}
-999023, Bulletin Board, 게시판, 掲示板, 公告板
-999024, Cost :, 비용 :, 費用 :, 费用 :
-999025, Lend money, 돈 빌려주기, お金を貸す, 借钱
-999026, Retrieve, 회수, 回収, 回收
-999027, Price, 판가, 販売価格, 售价
-999028, Total Price, 총액, 合計金額, 总价
-999029, Take, 획득, 獲得, 获取
+999001,New Game,새로운 게임, 新しいゲーム, 新游戏
+999002,Limited Resources,자원 한정 모드, 限定資源モード, 资源限定模式
+999003,Exit Game,게임 종료, ゲーム終了, 游戏结束
+999004,Continue,이어하기, 続きから, 继续游戏
+999005,Best Earning Record_n{0} coins,최고 수익 기록_n{0} 코인, 最高収益記録_n{0} コイン, 最高收益记录_n{0} 硬币
+999006,Restart,재시작, 再スタート, 重新开始
+999007,Main Menu,메인 메뉴로, メインメニューへ, 回主菜单
+999008,Quit,나가기, 終了, 退出
+999009,Average Inventory Cost,평균 매입가, 平均購入価格, 平均进价
+999010,Max,최대, 最大, 最大
+999011,Purchase,구매, 購入, 购买
+999012,Sell,판매, 販売, 出售
+999013,Random Box,랜덤 박스, ランダムボックス, 随机箱子
+999014,Gather for intel,정보 수집, 情報収集, 收集情报
+999015,Cost,총액, 合計, 总额
+999016,Revenue,총 판매액, 総売上, 总销售额
+999017,Gather intel about product pricing,상품 가격에 관한 정보 수집, 商品の価格情報を収集する, 收集商品价格信息
+999018,Invest in the inn,여관에 투자, 宿に投資する, 投资客栈
+999019,Profit:,수익:, 利益:, 收益:
+999020,Total investment : {0},총 투자액 : {0}, 総投資額 : {0}, 总投资额 : {0}
+999021,Capacity : {0} / {1}_nRental Fee : {2} / day,용량 : {0} / {1}_n임대료: {2} / 1일, 容量 : {0} / {1}_nレンタル料: {2} / 日, 容量 : {0} / {1}_n租金: {2} / 天
+999022,Level : {0},레벨 : {0}, レベル : {0}, 等级 : {0}
+999023,Bulletin Board,게시판,掲示板,公告板
+999024,Cost :,비용 :,費用 :,费用 :
+999025,Lend money,돈 빌려주기,お金を貸す,借钱
+999026,Retrieve,회수,回収,回收
+999027,Price,판가,販売価格,售价
+999028,Total Price,총액,合計金額,总价
+999029,Take,획득,獲得,获取
 999030,GameMode,게임모드,ゲームモード,游戏模式
 999031,Days,날짜,進んだ日,经过日
 999032,Coins,코인,コイン,硬币
@@ -285,19 +285,19 @@
 999930,Items insufficient.,아이템이 부족합니다.,Items insufficient.,Items insufficient.
 999931,Keep for how long?,며칠동안 유지 시킬까?,Keep for how long?,Keep for how long?
 999932,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>?,<color=#FFFF00>{0}</color>의 <color=#FFFF00>가격</color>을 어떻게 할까?,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>
-999933,0,0,0,0
+999933,Market is now under control.,시장을 장악합니다.,Market is now under control.,Market is now under control.
 999934,0,0,0,0
 999935,Short on cash? Fear not!,돈이 너무 적어서 불만이시라고요? 걱정 마세요!,お金が足りない？心配ご無用！,钱不够用吗？别担心！
 999936,"No time limit, no boundaries! Expand your empire at your own pace for as long as you wish.",시간 제한 없이 무제한으로 즐기는 모드! 원하는 만큼 천천히 제국을 확장해 보세요.,"""時間制限なし、果てしない自由！好きなだけ自分の帝国を拡大し続けられます。""","""没有时间限制、没有边界！随心所欲地扩张您的帝国，想玩多久就玩多久。"""
 999937,0,0,0,0
 999938,0,0,0,0
-999939,"""A fast-paced sprint: you've got only 30 days to make the biggest impact. Can you rise to the challenge?""",“시간이 금인 분들을 위한 압축 코스! 단 30일 안에 최대 성과를 내야 합니다. 짧아서 더 짜릿한 승부를 펼쳐보세요.”,"""短期決戦！30日という限られた期間で最大限の成果を得られるでしょうか？""","""一场快节奏的冲刺：只有30天的时间来创造最大价值。你能接受挑战吗？"""
-999940,"""Start with practically nothing and climb your way to the top. It's the ultimate underdog story!""",“통장이 바닥을 보이기 시작했습니다. 하루가 멀다 하고 은행의 독촉장이 날아오네요. 더 이상 뒤로 물러설 곳이 없습니다!”,"""ほぼ無一文から頂点へ！自力でのし上がる大逆転ストーリーを体験せよ。""","""几乎从零开始，一步步攀登至顶峰！体验真正的白手起家逆转故事。"""
-999941,"""Your sole heir is a champion spender! Each day, half of your funds vanish. Can you outpace their extravagance?""",“자식이 돈을 물쓰듯 씁니다! 매일 밤마다 남은 금액이 절반으로 줄어드는 스릴. 그가 완전히 탕진하기 전에 부를 늘릴 수 있을까요?”,"""唯一の子供が浪費家！毎日資金が半減します。彼の豪遊を上回るペースで増やせるか？""","""您唯一的孩子是个大手大脚的败家子！每天资产都会减半，你能赶在他之前赚到钱吗？"""
-999942,"""Two reckless heirs, double the trouble! Every day, your balance plummets to zero. Survive if you can!""","""못 말리는 아이가 둘! 매일 잔고가 0원이 되는 극악 난이도. 과연 생존 가능할까요?""","""手に負えない子供が二人！毎日残高がゼロになる超高難度。果たして生き残れるか？""","""有两个无法管教的孩子！每天资产都会被清空到零，极度困难。你能挺过来吗？"""
-999943,"""You begin with an immense warehouse that cannot be downgraded. Make the most of the vast storage to ensure success.""","“거대한 창고를 가지고 시작하지만, 다운그레이드는 불가! 넉넉한 공간을 어떻게 활용하느냐가 성공의 열쇠가 됩니다.”","“거대한 창고를 가지고 시작하지만, 다운그레이드는 불가! 넉넉한 공간을 어떻게 활용하느냐가 성공의 열쇠가 됩니다.”","""您从一个巨大的仓库开始，但无法降级。充分利用这片广阔的空间，争取成功。"""
-999944,"""You only have a tiny storage that can't be upgraded. Manage your limited space wisely and maximize efficiency!""",“아담한 창고로 시작해요. 안타깝게도 업그레이드는 막혀 있습니다. 한정된 자원을 효율적으로 운영해야 하죠!”,"""アップグレード不可の小さな倉庫でスタート。限られたスペースを効率的に使いこなせ！""","""只能使用无法升级的小仓库。合理利用有限空间，以获得最大收益！"""
-999945,"""No merchants in sight—it's like a ghost town. Brace yourself for a self-sufficient survival challenge!""","“거리에 상인이 전혀 보이지 않습니다. 유령 마을 같은 이곳에서 살아남아야 합니다.""","""商人が一人もいないゴーストタウン！自給自足で切り抜ける究極のサバイバル。""","""市场上空无一人，宛如鬼城。迎接自给自足的生存挑战吧！"""
+999939,"""A fast-paced sprint: you've got only 30 days to make the biggest impact. Can you rise to the challenge?""",시간이 금인 분들을 위한 압축 코스! 단 30일 안에 최대 성과를 내야 합니다. 짧아서 더 짜릿한 승부를 펼쳐보세요.,"""短期決戦！30日という限られた期間で最大限の成果を得られるでしょうか？""","""一场快节奏的冲刺：只有30天的时间来创造最大价值。你能接受挑战吗？"""
+999940,"""Start with practically nothing and climb your way to the top. It's the ultimate underdog story!""",통장이 바닥을 보이기 시작했습니다. 하루가 멀다 하고 은행의 독촉장이 날아오네요. 더 이상 뒤로 물러설 곳이 없습니다!,"""ほぼ無一文から頂点へ！自力でのし上がる大逆転ストーリーを体験せよ。""","""几乎从零开始，一步步攀登至顶峰！体验真正的白手起家逆转故事。"""
+999941,"""Your sole heir is a champion spender! Each day, half of your funds vanish. Can you outpace their extravagance?""",자식이 돈을 물쓰듯 씁니다! 매일 밤마다 남은 금액이 절반으로 줄어드는 스릴. 그가 완전히 탕진하기 전에 부를 늘릴 수 있을까요?,"""唯一の子供が浪費家！毎日資金が半減します。彼の豪遊を上回るペースで増やせるか？""","""您唯一的孩子是个大手大脚的败家子！每天资产都会减半，你能赶在他之前赚到钱吗？"""
+999942,"""Two reckless heirs, double the trouble! Every day, your balance plummets to zero. Survive if you can!""",못 말리는 아이가 둘! 매일 잔고가 0원이 되는 극악 난이도. 과연 생존 가능할까요?,"""手に負えない子供が二人！毎日残高がゼロになる超高難度。果たして生き残れるか？""","""有两个无法管教的孩子！每天资产都会被清空到零，极度困难。你能挺过来吗？"""
+999943,"""You begin with an immense warehouse that cannot be downgraded. Make the most of the vast storage to ensure success.""","거대한 창고를 가지고 시작하지만, 다운그레이드는 불가! 넉넉한 공간을 어떻게 활용하느냐가 성공의 열쇠가 됩니다.","“거대한 창고를 가지고 시작하지만, 다운그레이드는 불가! 넉넉한 공간을 어떻게 활용하느냐가 성공의 열쇠가 됩니다.”","""您从一个巨大的仓库开始，但无法降级。充分利用这片广阔的空间，争取成功。"""
+999944,"""You only have a tiny storage that can't be upgraded. Manage your limited space wisely and maximize efficiency!""",아담한 창고로 시작해요. 안타깝게도 업그레이드는 막혀 있습니다. 한정된 자원을 효율적으로 운영해야 하죠!,"""アップグレード不可の小さな倉庫でスタート。限られたスペースを効率的に使いこなせ！""","""只能使用无法升级的小仓库。合理利用有限空间，以获得最大收益！"""
+999945,"""No merchants in sight—it's like a ghost town. Brace yourself for a self-sufficient survival challenge!""",거리에 상인이 전혀 보이지 않습니다. 유령 마을 같은 이곳에서 살아남아야 합니다.,"""商人が一人もいないゴーストタウン！自給自足で切り抜ける究極のサバイバル。""","""市场上空无一人，宛如鬼城。迎接自给自足的生存挑战吧！"""
 999946,"With each upgrade, the wholesale purchase price is reduced by an additional 0.2%.",업그레이드할 때마다 도매 구매 가격이 추가로 0.2% 감소합니다.,各アップグレードごとに、卸売購入価格が追加で0.2%引き下げられます。,每次升级都会使批发采购价格额外降低0.2%。
 999947,Every upgrade allows you to sell items to special merchants at an extra 0.2% higher price.,각 업그레이드마다 특별 상인에게 아이템을 추가로 0.2% 높은 가격에 판매할 수 있습니다.,各アップグレードごとに、特別な商人に対してアイテムをさらに0.2%高い価格で販売できます。,每次升级都允许您以额外高出0.2%的价格向特殊商家出售物品。
 999948,Each upgrade boosts the daily profit of your Inn by an extra 0.1%.,각 업그레이드마다 여관의 일일 수익이 추가로 0.1% 증가합니다.,各アップグレードにより、宿屋の日次利益が追加で0.1%増加します。,每次升级会使旅馆的每日利润额外提高0.1%。
@@ -308,10 +308,10 @@
 999953,<color=#00FF00>Highest Price Observed</color> : {0},<color=#00FF00>관측 최고가</color> : {0},<color=#00FF00>Highest Price Observed</color> : {0},<color=#00FF00>Highest Price Observed</color> : {0}
 999954,<color=#FF0000>Lowest Price Observed</color> : {0},<color=#FF0000>관측 최저가</color> : {0},<color=#FF0000>Lowest Price Observed</color> : {0},<color=#FF0000>Lowest Price Observed</color> : {0}
 999955,Information will be revealed upon registeration.,도감을 등록하면 가려진 정보가 표기 됩니다.,Information will be revealed upon registeration.,Information will be revealed upon registeration.
-999956,Promising Merchant,유망 상인이 되었습니다.,有望な商人,有潜力的商人
-999957,Seasoned Merchant,숙련 상인이 되었습니다.,熟練の商人,熟练商人
-999958,Trade Maestro,장사의 달인이 되었습니다.,商売の達人,生意高手
-999959,Merchant God,장사의 신이 되었습니다.,商売の神,生意之神
+999956,Promising Merchant,유망 상인이 되었습니다._n아이템 도감 기능을 이용 가능합니다._n(게시판 아래 버튼),有望な商人,有潜力的商人
+999957,Seasoned Merchant,"숙련 상인이 되었습니다._n물건 구매 시, 전일가 대비 변동여부를 확인할 수 있습니다.",熟練の商人,熟练商人
+999958,Trade Maestro,장사의 달인이 되었습니다._n 이제 랜덤 박스의 물건 개수가 유추 됩니다.,商売の達人,生意高手
+999959,Merchant God,장사의 신이 되었습니다._n시장 장악 능력을 사용할 수 있습니다._n(도감에서 선택 가능),商売の神,生意之神
 999960,Someone is raising price of <color=#FFFF00>{0}</color>.,누군가에 의해 <color=#FFFF00>{0}</color>의 가격이 상승하고 있습니다.,Someone is raising price of <color=#FFFF00>{0}</color>.,Someone is raising price of <color=#FFFF00>{0}</color>.
 999961,Someone is lowering price of <color=#FFFF00>{0}</color>.,누군가에 의해 <color=#FFFF00>{0}</color>의 가격이 하락하고 있습니다.,Someone is lowering price of <color=#FFFF00>{0}</color>.,Someone is lowering price of <color=#FFFF00>{0}</color>.
 999962,0,0,0,0

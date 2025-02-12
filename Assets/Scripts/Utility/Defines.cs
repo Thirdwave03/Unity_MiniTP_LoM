@@ -287,4 +287,5 @@ public enum BulletinBoardMsgType
 {
     InsufficientCoin,
     LackOfItems,
+    ControlSuccessful,
 }

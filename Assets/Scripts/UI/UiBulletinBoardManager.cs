@@ -258,6 +258,12 @@ public class UiBulletinBoardManager : MonoBehaviour
                     DataTableManager.StringTableList[(int)Variables.currentLanguage]
                     .Get(999930);
                 break;
+            case BulletinBoardMsgType.ControlSuccessful:
+                centerMsgCheckBArea.SetActive(false);
+                centerMsg.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999933);
+                break;
         }
     }
 

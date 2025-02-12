@@ -243,6 +243,7 @@ public class MarketControlWindow : MonoBehaviour
     private void ControlPrice()
     {
         GameManager.Instance.BulletinBoardUpdateOnMarketControl(ItemData.ItemData.Id, isRaise, controlDays);
-        //bulletinBoardMgr.ResetContents();
+        bulletinBoardMgr.OpenMessage(BulletinBoardMsgType.ControlSuccessful);
+        ResetToggles();        
     }
 }

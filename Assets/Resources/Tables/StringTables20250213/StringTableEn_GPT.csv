@@ -1,0 +1,353 @@
+﻿Id,String
+0,
+500,EmptyString
+910001,Carrot
+910002,Corn
+910003,Egg
+910004,Fish
+910005,Garlic
+910006,Scallion
+910007,Herb
+910008,Mushroom
+910009,Potato
+910010,Cabbage
+910011,Seaweed
+910012,Tomato
+910013,Radish
+910014,Walnut
+910015,Rice
+910016,Apple
+910017,Honey
+910018,Lemon
+910019,Milk
+910020,Orange
+910021,Beer
+910022,Bread
+910023,Cheese
+910024,Fried Egg
+910025,Wine
+910026,Bag
+910027,Potion
+910028,Cloak
+910029,Rope
+910030,Fishing Rod
+910031,Compass
+910032,Dice
+910033,Giant Hammer
+910034,Mirror
+910035,Shield
+910036,Book_1
+910037,Book_2
+910038,Book_3
+910039,Specialized Book_1
+910040,Specialized Book_2
+910041,Scallop
+910042,Crystal
+910043,Amulet
+910044,Gold Key
+910045,Silver Ingot
+910046,Gold Ring
+910047,Ancient Helmet
+910048,Ancient Dagger
+910049,Gold Ingot
+910050,Diamond
+911001,"The rabbit's favorite snack, packed with Vitamin A!"
+911002,In its ordinary state before becoming popcorn.
+911003,"When cooked well, it's a fried egg; when undercooked, it serves as an emergency throwing weapon."
+911004,The dream dinner menu for cats.
+911005,Its strong aroma might even repel enemies.
+911006,"Chopped and added, it brings a magical finish to the dish."
+911007,A mysterious leaf that lifts your mood just with its fragrance.
+911008,Be careful—eating it as is might be dangerous, so it must be properly identified.
+911009,French fries are the food of the gods.
+911010,A regular on any diet menu.
+911011,A cluster of greens imbued with the scent of the sea.
+911012,"Is it a fruit or a vegetable? Neither, it's a ""delicious ingredient""."
+911013,Perfect with a refreshing broth after an adventure!
+911014,"Crack open a ""walnut"" and you'll find wisdom and energy."
+911015,"The top contributor responsible for the ""rice table""."
+911016,They say one a day keeps the doctor away.
+911017,Nature's sweetness that fills your mouth.
+911018,"Tart but zesty! How about one for fatigue recovery?"
+911019,"The secret to strong bones, and the eternal partner of cookies."
+911020,A golden fruit resembling the sun.
+911021,"A party essential with friends, but remember, no overdrinking!"
+911022,A companion that fills an adventurer up.
+911023,A mysterious flavor that deepens with age.
+911024,"The breakfast staple—cook it to your liking!"
+911025,The finishing touch to an elegant ambiance.
+911026,"Every adventurer's must-have, packed with items."
+911027,Drink it and watch your health and mana skyrocket!
+911028,It can't fly, but it sure looks cool.
+911029,A sturdy rope with endless possibilities.
+911030,The art of waiting.
+911031,A kind friend that shows you the way.
+911032,The dice have been cast.
+911033,A powerful weapon that can finish things in one blow.
+911034,"Mirror, mirror, who is the greatest merchant of all?"
+911035,This shield can block any spear!
+911036,Light reading for beginner bookworms.
+911037,A collection of practical tips for adventurers.
+911038,"Shall we use this hefty book as a pillow, so heavy it might put you to sleep?"
+911039,A rare tome said to be read only by wizards.
+911040,An enigmatic book filled with advanced techniques.
+911041,"A treasure of the sea, its radiant shell is rumored to be beautiful."
+911042,A glowing stone imbued with mysterious energy.
+911043,A necklace said to bring luck.
+911044,"A key of unknown purpose, but made of gold, so it's valuable."
+911045,Its silvery shine is as beautiful as moonlight.
+911046,Be careful! It might be cursed.
+911047,A helmet once worn by ancient warriors.
+911048,A ritual tool said to have been used by ancient priests.
+911049,Gold never betrays.
+911050,"A gem that holds light, a symbol of immense wealth."
+950001,"Thanks to timely rain, the harvest of <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950002,"A new farming method has been developed. The yield of <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950003,"Beggars have swept through <color=#FFFF00>{0}</color>. Prices are rising."
+950004,"Due to natural disasters, there is a poor harvest of <color=#FFFF00>{0}</color>. Prices are rising."
+950005,"Farming <color=#FFFF00>{0}</color> is popular among the farmers. Prices are falling."
+950006,"Due to trade with other countries, the supply of <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950007,"Due to natural disasters, there is a poor harvest of <color=#FFFF00>{0}</color>. Prices are rising."
+950008,"<color=#FFFF00>{0}</color> is trending among people. Prices are rising."
+950009,"Due to the festival, the number of merchants selling <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950010,"Due to smooth material supply, a lot of <color=#FFFF00>{0}</color> is being produced. Prices are falling."
+950011,"Among the nobility, <color=#FFFF00>{0}</color> is popular. Prices are rising."
+950012,"Rumors say that <color=#FFFF00>{0}</color> is a health food. Prices are rising."
+950013,"The production method has been leaked. The number of craftsmen making <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950014,"Rumor has it that <color=#FFFF00>{0}</color> summons evil spirits. Prices are falling."
+950015,"People consider <color=#FFFF00>{0}</color> a necessity. Prices are rising."
+950016,"The economy is in a downturn. The number of merchants selling <color=#FFFF00>{0}</color> has decreased."
+950017,"A war has broken out in a neighboring country. Fewer people are seeking <color=#FFFF00>{0}</color>. Prices are falling."
+950018,"Rumors say that the content of <color=#FFFF00>{0}</color> is shoddy. Prices are falling."
+950019,"More people are taking an interest in books. <color=#FFFF00>{0}</color> is popular."
+950020,"A crucial exam is about to begin. The price of <color=#FFFF00>{0}</color> is rising."
+950021,"Due to decreased productivity, the supply of food is declining."
+950022,"Due to decreased productivity, the supply of food is increasing."
+950023,0
+950024,0
+950025,0
+950026,0
+950027,0
+950028,0
+950029,0
+950030,0
+950031,0
+950032,0
+950033,0
+950034,0
+950035,0
+950036,0
+950037,0
+950038,0
+950039,0
+950040,0
+950041,0
+950501,"Thanks to timely rain, the harvest of <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950502,"A new farming method has been developed. The yield of <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950503,"Beggars have swept through <color=#FFFF00>{0}</color>. Prices are rising."
+950504,"Due to natural disasters, there is a poor harvest of <color=#FFFF00>{0}</color>. Prices are rising."
+950505,"Farming <color=#FFFF00>{0}</color> is popular among the farmers. Prices are falling."
+950506,"Due to trade with other countries, the supply of <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950507,"Due to natural disasters, there is a poor harvest of <color=#FFFF00>{0}</color>. Prices are rising."
+950508,"<color=#FFFF00>{0}</color> is trending among people. Prices are rising."
+950509,"Due to the festival, the number of merchants selling <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950510,"Due to smooth material supply, a lot of <color=#FFFF00>{0}</color> is being produced. Prices are falling."
+950511,"Among the nobility, <color=#FFFF00>{0}</color> is popular. Prices are rising."
+950512,"Rumors say that <color=#FFFF00>{0}</color> is a health food. Prices are rising."
+950513,"The production method has been leaked. The number of craftsmen making <color=#FFFF00>{0}</color> has increased. Prices are falling."
+950514,"Rumor has it that <color=#FFFF00>{0}</color> summons evil spirits. Prices are falling."
+950515,"People consider <color=#FFFF00>{0}</color> a necessity. Prices are rising."
+950516,"The economy is in a downturn. The number of merchants selling <color=#FFFF00>{0}</color> has decreased."
+950517,"A war has broken out in a neighboring country. Fewer people are seeking <color=#FFFF00>{0}</color>. Prices are falling."
+950518,"Rumors say that the content of <color=#FFFF00>{0}</color> is shoddy. Prices are falling."
+950519,"More people are taking an interest in books. <color=#FFFF00>{0}</color> is popular."
+950520,"A crucial exam is about to begin. The price of <color=#FFFF00>{0}</color> is rising."
+950521,"Due to decreased productivity, the supply of food is declining."
+950522,"Due to decreased productivity, the supply of food is increasing."
+998001,"Tip: The prices of products change daily. Sometimes they don't."
+998002,"Tip: Check the bulletin board to spot trends. Which products should you buy and sell?"
+998003,"Tip: Use the average inventory price as a reference to decide when to buy or sell."
+998004,"Tip: Invest in the inn to receive a steady daily income!"
+998005,"Tip: A random box contains 1 to 5 items. The box on the right holds slightly better items."
+998006,"Tip: There are three types of merchants selling products: grocery merchants, processed goods merchants, and luxury goods merchants. The more expensive the item, the greater the price fluctuation."
+998007,"Tip: There is only one luxury item in the game. If you have it, no other merchant will have that product!"
+998008,"Tip: Look for someone who asks to borrow coins. They are rumored to repay on time, albeit with interest."
+998009,"Tip: Try wholesale purchasing at the inn. You can buy in bulk at a lower price, but you won't receive the goods on the same day."
+998010,"Tip: Also try out the other modes available on the title screen! There are modes designed to ignite your competitive spirit!"
+998011,"Tip: After 100 days, your remaining coins are recorded, the game ends, and you are awarded diamonds based on the coin balance."
+998012,"Tip: Merchants don't always sell every product. There might be days when they don't have what you're looking for."
+998013,"Tip: Spend diamonds to upgrade your merchant rank. The higher your rank, the more abilities you can unlock."
+998014,Tip:
+998015,Tip:
+998016,Tip:
+998017,Tip:
+998018,Tip:
+998019,Tip:
+998020,Tip:
+999001,New Game
+999002,Limited Resources Mode
+999003,Quit Game
+999004,Continue
+999005,"Highest Profit Record\n{0} Coins"
+999006,Restart
+999007,Return to Main Menu
+999008,Exit
+999009,Average Purchase Price
+999010,Maximum
+999011,Buy
+999012,Sell
+999013,Random Box
+999014,Information Gathering
+999015,Total Amount
+999016,Total Sales
+999017,Collecting Information on Product Prices
+999018,Invest in the Inn
+999019,Profit:
+999020,Total Investment: {0}
+999021,"Capacity: {0} / {1}\nRent: {2} per day"
+999022,Level: {0}
+999023,Bulletin Board
+999024,Cost:
+999025,Lend Money
+999026,Collect
+999027,Selling Price
+999028,Total Amount
+999029,Acquired
+999030,Game Mode
+999031,Date
+999032,Coins
+999033,Last Play
+999034,Default Mode
+999035,Show Me the Money
+999036,Endless Journey
+999037,Empty Slot
+999038,Delete
+999039,30-Day Challenge
+999040,On the Brink of Bankruptcy
+999041,Children Turned Foes
+999042,The Twins of Madness
+999043,Era of the Grand Warehouse
+999044,Small Warehouse
+999045,Ghost Market
+999046,High Score
+999047,Back
+999048,Wholesale Price Advantage
+999049,Special Price Advantage
+999050,Inn Profitability Improvement
+999051,Increase Loan Limit
+999052,High Repayment Interest
+999053,Reduced Inventory Costs
+999054,Initial Coin Bonus
+999055,Novice Merchant
+999056,Promising Merchant
+999057,Skilled Merchant
+999058,Master of Trade
+999059,God of Commerce
+999060,Register
+999061,Upgrade
+999062,"Register\nCost: <color=#FFBB00>{0} {1} units</color>"
+999063,Market Domination!
+999064,Dominate
+999065,Encyclopedia
+999066,Raise
+999067,Lower
+999068,Blank
+999901,"You do not have enough coins to pay the warehouse rent. You will lose all progress and return to the main screen. Continue?"
+999902,Insufficient coins.
+999903,Insufficient warehouse capacity.
+999904,Do you want to move to the next day?
+999905,"Do you want to upgrade the warehouse using {0} coins? Next level warehouse cost: {1} coins per day."
+999906,"Do you want to downgrade the warehouse level? After downgrading, the warehouse cost will be {0} coins per day."
+999907,"Place a pre-order at a price discounted by <color=#FFFF00>{0}</color>% compared to the market price."
+999908,"You can purchase one of each type of box daily, each containing 1 to 5 identical items. If you don't collect the items, they will vanish."
+999909,"After purchasing an item, you will receive it the next day. Even if you don't collect it, it won't disappear, but it won't be replaced by a new order either."
+999910,"Information gathering can only be done once per day. The collected information may be duplicated."
+999911,"You can receive profit once per day. The profit is {0}% of your total investment, and the invested funds are not returned, so invest carefully."
+999912,"Boss, I would like to borrow <color=#FFFF00>{0}</color> coins. I will repay with <color=#FFFF00>{2}</color> coins after <color=#FFFF00>{1}</color> days."
+999913,The warehouse is at maximum level.
+999914,The warehouse is at minimum level.
+999915,"Downgrading is only possible if your inventory occupies {0} slots or fewer."
+999916,"Boss, here are the <color=#FFFF00>{0}</color> coins I promised."
+999917,Thank you for last time, boss.
+999918,Thank you, boss.
+999919,"It is said that the {1} of <color=#FFFF00>{0}</color> costs {2} coins."
+999920,Lowest Price
+999921,Highest Price
+999922,"You can sell at a price <color=#FFFF00>{0}</color>% higher than the current market price!!"
+999923,"The progress in this slot will be deleted. Do you wish to continue?"
+999924,"This will overwrite the progress in the slot. Do you wish to continue?"
+999925,The data in this slot has been deleted.
+999926,"This is the final day. The game will end and proceed to the settlement screen. Do you wish to continue?"
+999927,"You do not have enough coins to pay for the warehouse rent and repayment. You will lose all progress and return to the main screen. Continue?"
+999928,"The selected item will be upgraded. Continue?"
+999929,"Total Purchase Amount: <color=#FFFF00>{0}</color>\nPurchase Average: <color=#FFFF00>{1}</color>\n\nTotal Sales Amount: <color=#FFFF00>{2}</color>\nSales Average: <color=#FFFF00>{3}</color>\n\nQuantity Acquired: <color=#FFFF00>{4}</color>"
+999930,Insufficient items.
+999931,For how many days would you like to maintain it?
+999932,"What should we do with the <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>?"
+999933,Dominate the market.
+999934,0
+999935,"Complaining about having too little money? Don't worry!"
+999936,"A mode where you can enjoy unlimited play without time limits! Expand your empire at your leisure."
+999937,0
+999938,0
+999939,"A condensed course for those for whom time is money! Achieve maximum results in just 30 days. Its brevity makes the challenge even more thrilling."
+999940,"Your bank account is running dry. Constant reminders from the bank are coming in every day. There's no turning back now!"
+999941,"Your child spends money like water! The thrill of watching your remaining balance halve every night. Can you increase your wealth before they squander it all?"
+999942,"Two uncontrollable kids! A brutal difficulty where your balance drops to zero every day. Can you possibly survive?"
+999943,"You start with a gigantic warehouse, but downgrading is not allowed! How you utilize that ample space is the key to success."
+999944,"You start with a modest warehouse. Unfortunately, upgrading is locked. You must manage your limited resources efficiently!"
+999945,"Not a single merchant can be seen on the streets. Survive in this ghost‐town‐like area."
+999946,"With each upgrade, the wholesale purchase price decreases by an additional 0.2%."
+999947,"With each upgrade, you can sell items to special merchants at an additional 0.2% higher price."
+999948,"Each upgrade increases the inn's daily revenue by an additional 0.1%."
+999949,"With each upgrade, the maximum loan amount increases."
+999950,"With each upgrade, the loan repayment rate increases."
+999951,"With each upgrade, the warehouse cost decreases by 1%."
+999952,"Each upgrade increases the initial coin amount by 1%."
+999953,"<color=#00FF00>Observed Highest Price</color> : {0}"
+999954,"<color=#FF0000>Observed Lowest Price</color> : {0}"
+999955,Registering in the codex will reveal hidden information.
+999956,"You've become a promising merchant.\nYou can now use the item codex feature.\n(Available via the button below the bulletin board)"
+999957,"You've become a skilled merchant.\nWhen purchasing items, you can check the changes relative to the previous day's price."
+999958,"You've become a master of trade.\nNow, you can predict the number of items in a random box."
+999959,"You've become the god of commerce.\nYou can now use the market domination ability.\n(Selectable in the codex)"
+999960,"Someone is driving up the price of <color=#FFFF00>{0}</color>."
+999961,"Someone is causing the price of <color=#FFFF00>{0}</color> to drop."
+999962,0
+999963,0
+999964,0
+999965,0
+999966,0
+999967,0
+999968,0
+999969,0
+999970,0
+999971,0
+999972,0
+999973,0
+999974,0
+999975,0
+999976,0
+999977,0
+999978,0
+999979,0
+999980,0
+999981,0
+999982,0
+999983,0
+999984,0
+999985,0
+999986,0
+999987,0
+999988,0
+999989,0
+999990,"Designed by: 조용준\nDeveloped by: 이재혁"
+999991,"Hello, you've awakened."
+999992,"Who am I?"
+999993,"Never mind that; you need to make money through trade."
+999994,"What? You don't know how to do business? You won't know until you try."
+999995,"I'll lend you coins equal to your initial capital, so give it your best shot."
+999996,"Just repay double after 50 days. Easy, right?"
+999997,"Then, good luck..!\n(Press the skip button to proceed)"
+999998,Skip
+999999,Default
