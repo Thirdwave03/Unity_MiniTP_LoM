@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class MainSceneUiManager : MonoBehaviour
+public class MainSceneUiManager : UiSceneManagerBase
 {
     public Button inventoryButton;
     public Button inventoryUpgrade;
@@ -306,8 +306,7 @@ public class MainSceneUiManager : MonoBehaviour
 
     private void OnClickSettingRestart()
     {
-        GameManager.Instance.Restart();
-        SceneManager.LoadScene((int)SceneIds.MainScene);
+        OpenMessage(MainMenuCenterMsgType.DoubleCheckRestart);
     }
 
     private void OnClickSettingMainMenu()
@@ -428,6 +427,14 @@ public class MainSceneUiManager : MonoBehaviour
                 nextDay.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999926);
                 break;
+            case MainMenuCenterMsgType.DoubleCheckRestart:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(true);
+                settingWindow.SetActive(false);
+                nextDay.SetActive(false);
+                centerMsgLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999924);
+                break;
             default:
                 break;
         }
@@ -465,7 +472,11 @@ public class MainSceneUiManager : MonoBehaviour
             case MainMenuCenterMsgType.LastDay:
                 GameManager.Instance.OnSleepLastDay();
                 SaveLoadManager.DeleteSlot(GameManager.Instance.currentSavedSlotIndex);
-                SceneManager.LoadScene((int)SceneIds.TitleScene);
+                SceneManager.LoadScene((int)SceneIds.SettlementScene);
+                break;
+            case MainMenuCenterMsgType.DoubleCheckRestart:
+                GameManager.Instance.Restart();
+                SceneManager.LoadScene((int)SceneIds.MainScene);
                 break;
             default:
                 break;  
@@ -496,5 +507,10 @@ public class MainSceneUiManager : MonoBehaviour
     public void OnValueChangeSFX(float val)
     {
         SoundManager.Instance.SfxVolume = val;
+    }
+
+    public override void UpdateSceneDisplay()
+    {
+        // Unused in MainScene
     }
 }

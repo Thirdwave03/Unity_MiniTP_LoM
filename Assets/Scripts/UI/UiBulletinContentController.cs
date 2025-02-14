@@ -15,24 +15,26 @@ public class UiBulletinContentController : MonoBehaviour
 
     private void Awake()
     {
-        layoutElement = GetComponent<LayoutElement>();
-        viewPortRect = gameObject.transform.parent.gameObject.GetComponent<RectTransform>();
+        ResetSize();
     }
 
     private void OnEnable()
     {
-        layoutElement = GetComponent<LayoutElement>();
-        layoutElement.minHeight = viewPortRect.rect.height * 0.125f;
+
+        ResetSize();
     }
 
     public void ResetSize()
     {
+        layoutElement = GetComponent<LayoutElement>();
         viewPortRect = gameObject.transform.parent.gameObject.GetComponent<RectTransform>();
         layoutElement.minHeight = viewPortRect.rect.height * 0.125f;
     }
 
     public void SetContentWithId(int itemIdInput)
     {
+        ResetSize();
+
         itemId = itemIdInput;
         var savedItemData = GameManager.Instance.entireItemDict[itemId];
                 
@@ -53,6 +55,7 @@ public class UiBulletinContentController : MonoBehaviour
             DataTableManager.StringTableList[(int)Variables.currentLanguage]
             .Get(savedItemData.ItemData.StringId));
         textLocalizer.OnChangeLanguage(Variables.currentLanguage);
+               
 
         if(savedItemData.isOnBoardRecently)
         {
@@ -67,7 +70,7 @@ public class UiBulletinContentController : MonoBehaviour
         if (GameManager.Instance.entireItemDict[itemId].bulletinBoardId == 999960 ||
             GameManager.Instance.entireItemDict[itemId].bulletinBoardId == 999961)
         {
-            background.color = new Color(0, 37, 100);
+            background.color = new Color(0f, 0.2f, 0.4f);
         }
         ResetSize();
     }

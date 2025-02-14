@@ -16,7 +16,7 @@ public class UiItemInfo : MonoBehaviour
     public TextMeshProUGUI itemOccupancy;
     public TextLocalizer itemNameLC;
     public TextMeshProUGUI itemAvgCost;
-    public TextLocalizer itemDescriptionLC;
+    public TextMeshProUGUI itemDescription;
     public TextLocalizer itemAvgCostLC;
 
     public GameObject blinder;
@@ -34,9 +34,8 @@ public class UiItemInfo : MonoBehaviour
         itemPrice.text = string.Empty;
         itemOccupancy.text = string.Empty;
         itemNameLC.tmp.text = string.Empty;
-        itemAvgCost.text = string.Empty;
-        itemDescriptionLC.stringId = 0;
-        itemDescriptionLC.OnChangeLanguage(Variables.currentLanguage);
+        itemAvgCost.text = string.Empty;        
+        itemDescription.text = string.Empty;
         itemAvgCostLC.OnChangeLanguage(Variables.currentLanguage);
 
         blinder.SetActive(true);
@@ -61,8 +60,9 @@ public class UiItemInfo : MonoBehaviour
         itemNameLC.stringId = ItemData.ItemData.StringId;
         itemNameLC.OnChangeLanguage(Variables.currentLanguage);
         itemAvgCost.text = ItemData.avgCost.ToString();
-        itemDescriptionLC.stringId = ItemData.ItemData.ItemDescription;
-        itemDescriptionLC.OnChangeLanguage(Variables.currentLanguage);
+        itemDescription.text = DataTableManager
+            .StringTableList[(int)Variables.currentLanguage].Get(
+            ItemData.ItemData.ItemDescription);        
         itemAvgCostLC.OnChangeLanguage(Variables.currentLanguage);
 
         blinder.SetActive(false);

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static GameInfos;
 
-public class InnSceneUiManager : MonoBehaviour
+public class InnSceneUiManager : UiSceneManagerBase
 {
     public Button inventoryButton;
     public Button settingButton;
@@ -248,8 +248,7 @@ public class InnSceneUiManager : MonoBehaviour
 
     private void OnClickRestartButton()
     {
-        GameManager.Instance.Restart();
-        SceneManager.LoadScene((int)SceneIds.MainScene);
+        OpenMessage(InnSceneMsgType.DoubleCheckRestart);
     }
 
     private void OnClickMainMenu()
@@ -500,15 +499,24 @@ public class InnSceneUiManager : MonoBehaviour
     {
         messageBox.SetActive(true);
         centerMsg.SetActive(true);
-        centerMsgCheckBArea.SetActive(false);
         messageType = msgType;
         switch (msgType)
         {
             case InnSceneMsgType.InsufficientCoin:
+                centerMsgCheckBArea.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999902);
                 break;
             case InnSceneMsgType.LackOfCapacity:
+                centerMsgCheckBArea.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999903);
+                break;
+            case InnSceneMsgType.DoubleCheckRestart:
+                centerMsgCheckBArea.SetActive(true);
+                innWindow.SetActive(false);
+                wholesaleWindow.SetActive(false);
+                randomBoxWindow.SetActive(false);
+                settingWindow.SetActive(false);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999924);
                 break;
             default:
                 break;
@@ -519,6 +527,10 @@ public class InnSceneUiManager : MonoBehaviour
     {
         switch (messageType)
         {
+            case InnSceneMsgType.DoubleCheckRestart:
+                GameManager.Instance.Restart();
+                SceneManager.LoadScene((int)SceneIds.MainScene);
+                break;
             default:
                 break;
         }
@@ -831,5 +843,10 @@ public class InnSceneUiManager : MonoBehaviour
         {
             innMaster.SetActive(false);
         }       
+    }
+
+    public override void UpdateSceneDisplay()
+    {
+        UpdateInnSceneDisplay();
     }
 }

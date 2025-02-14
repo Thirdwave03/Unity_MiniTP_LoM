@@ -25,14 +25,25 @@ public class EncloInfo : MonoBehaviour
 
     public TextMeshProUGUI registerCountIndicator;
 
+    private readonly Color colorGrey = new Color(0.5f,0.5f,0.5f);
+    private readonly Color colorRed = new Color(1f, 0, 0);
+    private readonly Color colorGreen = new Color(0.05f, 0.35f, 0.03f);
+
     private void Awake()
     {
         blinder.SetActive(true);
+        registerButton.interactable = false;
     }
 
     private void Start()
     {
         AddListeners();
+    }
+
+    private void OnEnable()
+    {
+        blinder.SetActive(true);
+        registerButton.interactable = false;
     }
 
     public void SetEmpty()
@@ -77,6 +88,7 @@ public class EncloInfo : MonoBehaviour
                 registerBText.tmp.text =
                 DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
                 .Get(999060);
+                registerButton.GetComponent<Image>().color = colorGrey;
             }
             else
             {
@@ -84,6 +96,7 @@ public class EncloInfo : MonoBehaviour
                 registerBText.tmp.text =
                 DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
                 .Get(999063);
+                registerButton.GetComponent<Image>().color = colorRed;
             }
 
             itemIcon.sprite = DataTableManager.ItemTable.Get(itemData.ItemData.Id).IconSprite;            
@@ -133,6 +146,7 @@ public class EncloInfo : MonoBehaviour
                 ItemData.ItemData.StringId),
             GameInfos.RequiredCountToReveal(ItemData.ItemData.ItemType).ToString()
             );
+            registerButton.GetComponent<Image>().color = colorGreen;
 
             itemIcon.sprite = DataTableManager.ItemTable.Get(itemData.ItemData.Id).IconSprite;
             string enrolledIconPath = "blank";

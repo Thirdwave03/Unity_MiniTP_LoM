@@ -9,6 +9,7 @@ public class UiBulletinBoardManager : MonoBehaviour
 {
     private BulletinBoardMsgType messageType;
 
+    public UiSceneManagerBase uiSceneMgr;
     public UiBulletinContentController bulletinContentsPrefab;
     public GameObject viewPort;
     private List<UiBulletinContentController> prefabList;

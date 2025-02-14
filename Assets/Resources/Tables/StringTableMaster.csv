@@ -1,31 +1,31 @@
 ﻿Id,String,String,String,String
 0,,,,
 500,EmptyString,EmptyString,EmptyString,EmptyString
-910001, Carrot, 당근, にんじん, 胡萝卜
-910002, Corn, 옥수수, トウモロコシ, 玉米
-910003, Egg, 계란, たまご, 鸡蛋
-910004, Fish, 생선, さかな, 鱼
-910005, Garlic, 마늘, にんにく, 大蒜
-910006, Green Onion, 대파, ねぎ, 大葱
-910007, Herbs, 허브, ハーブ, 香草
-910008, Mushroom, 버섯, きのこ, 蘑菇
-910009, Potato, 감자, じゃがいも, 土豆
-910010, Cabbage, 양배추, キャベツ, 卷心菜
-910011, Seaweed, 해초, 海藻, 海藻
-910012, Tomato, 토마토, トマト, 番茄
-910013, Radish, 무, 大根, 萝卜
-910014, Walnut, 호두, くるみ, 核桃
-910015, Wheat, 벼, いね, 稻
-910016, Apple, 사과, りんご, 苹果
-910017, Honey, 벌꿀, はちみつ, 蜂蜜
-910018, Lemon, 레몬, レモン, 柠檬
-910019, Milk, 우유, ミルク, 牛奶
-910020, Orange, 오렌지, オレンジ, 橙子
-910021, Beer, 맥주, ビール, 啤酒
-910022, Bread, 빵, パン, 面包
-910023, Cheese, 치즈, チーズ, 奶酪
-910024, Fried Egg, 계란 후라이, 目玉焼き, 煎蛋
-910025, Wine, 와인, ワイン, 葡萄酒
+910001,Carrot, 당근, にんじん, 胡萝卜
+910002,Corn, 옥수수, トウモロコシ, 玉米
+910003,Egg, 계란, たまご, 鸡蛋
+910004,Fish, 생선, さかな, 鱼
+910005,Garlic, 마늘, にんにく, 大蒜
+910006,Green Onion, 대파, ねぎ, 大葱
+910007,Herbs, 허브, ハーブ, 香草
+910008,Mushroom, 버섯, きのこ, 蘑菇
+910009,Potato, 감자, じゃがいも, 土豆
+910010,Cabbage, 양배추, キャベツ, 卷心菜
+910011,Seaweed, 해초, 海藻, 海藻
+910012,Tomato, 토마토, トマト, 番茄
+910013,Radish, 무, 大根, 萝卜
+910014,Walnut, 호두, くるみ, 核桃
+910015,Wheat, 벼, いね, 稻
+910016,Apple, 사과, りんご, 苹果
+910017,Honey, 벌꿀, はちみつ, 蜂蜜
+910018,Lemon, 레몬, レモン, 柠檬
+910019,Milk, 우유, ミルク, 牛奶
+910020,Orange, 오렌지, オレンジ, 橙子
+910021,Beer, 맥주, ビール, 啤酒
+910022,Bread, 빵, パン, 面包
+910023,Cheese, 치즈, チーズ, 奶酪
+910024,Fried Egg, 계란 후라이, 目玉焼き, 煎蛋
+910025,Wine, 와인, ワイン, 葡萄酒
 910026, Backpack, 가방, リュック, 背包
 910027, Potion, 포션, ポーション, 药水
 910028, Cape, 망토, マント, 披风
@@ -242,8 +242,8 @@
 999055,Novice Merchant,초보 상인,初心者商人,初级商人
 999056,Promising Merchant,유망 상인,有望な商人,有潜力的商人
 999057,Seasoned Merchant,숙련 상인,熟練の商人,熟练商人
-999058,Trade Maestro,장사의 달인,商売の達人,生意高手
-999059,Merchant God,장사의 신,商売の神,生意之神
+999058,Trade Maestro,장사의 달인,商売の達人,商战大师
+999059,Merchant God,장사의 신,商売の神,商神
 999060,Register,등록,Register,Register
 999061,Upgrade,업그레이드,Upgrade,Upgrade
 999062,Register_nRequired: <color=#FFBB00>{1} {0}</color>,등록_n소모: <color=#FFBB00>{0} {1}개</color>,Register_nRequired: <color=#FFBB00>{1} {0}</color>,Register_nRequired: <color=#FFBB00>{1} {0}</color>
@@ -252,7 +252,7 @@
 999065,Enclopedia,도감,Enclopedia,Enclopedia
 999066,Raise,올린다,Raise,Raise
 999067,Lower,내린다,Lower,Lower
-999068,Blank, 공란,空欄,空白
+999068,Settlement,결산,決算,结算
 999901,Not enough coins to pay off rental fee. Do you still want to continue losing all the progress in this game?, 창고 임대료를 지불할 코인이 부족합니다. 현재까지의 진행 상황을 잃고 메인 화면으로 돌아갑니다. 계속합니까?, 倉庫のレンタル料を支払うコインが足りません。これまでの進行状況が失われ、メインメニューに戻ります。続けますか？, 仓库租金的硬币不足，将失去目前的进度并返回主菜单。要继续吗？
 999902,Insufficient coins., 코인이 부족합니다., コインが足りません。, 硬币不足。
 999903,You cannot buy items over maximum inventory capacity., 창고 용량이 부족합니다., 倉庫の容量が足りません。, 仓库容量不足。
@@ -286,7 +286,7 @@
 999931,Keep for how long?,며칠동안 유지 시킬까?,Keep for how long?,Keep for how long?
 999932,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>?,<color=#FFFF00>{0}</color>의 <color=#FFFF00>가격</color>을 어떻게 할까?,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>
 999933,Market is now under control.,시장을 장악합니다.,Market is now under control.,Market is now under control.
-999934,0,0,0,0
+999934,Exit,나가기,出る,出去
 999935,Short on cash? Fear not!,돈이 너무 적어서 불만이시라고요? 걱정 마세요!,お金が足りない？心配ご無用！,钱不够用吗？别担心！
 999936,"No time limit, no boundaries! Expand your empire at your own pace for as long as you wish.",시간 제한 없이 무제한으로 즐기는 모드! 원하는 만큼 천천히 제국을 확장해 보세요.,"""時間制限なし、果てしない自由！好きなだけ自分の帝国を拡大し続けられます。""","""没有时间限制、没有边界！随心所欲地扩张您的帝国，想玩多久就玩多久。"""
 999937,0,0,0,0
@@ -310,22 +310,22 @@
 999955,Information will be revealed upon registeration.,도감을 등록하면 가려진 정보가 표기 됩니다.,Information will be revealed upon registeration.,Information will be revealed upon registeration.
 999956,Promising Merchant,유망 상인이 되었습니다._n아이템 도감 기능을 이용 가능합니다._n(게시판 아래 버튼),有望な商人,有潜力的商人
 999957,Seasoned Merchant,"숙련 상인이 되었습니다._n물건 구매 시, 전일가 대비 변동여부를 확인할 수 있습니다.",熟練の商人,熟练商人
-999958,Trade Maestro,장사의 달인이 되었습니다._n 이제 랜덤 박스의 물건 개수가 유추 됩니다.,商売の達人,生意高手
-999959,Merchant God,장사의 신이 되었습니다._n시장 장악 능력을 사용할 수 있습니다._n(도감에서 선택 가능),商売の神,生意之神
+999958,Trade Maestro,장사의 달인이 되었습니다._n 이제 랜덤 박스의 물건 개수가 유추 됩니다.,商売の達人,商战大师
+999959,Merchant God,장사의 신이 되었습니다._n시장 장악 능력을 사용할 수 있습니다._n(도감에서 선택 가능),商売の神,商神
 999960,Someone is raising price of <color=#FFFF00>{0}</color>.,누군가에 의해 <color=#FFFF00>{0}</color>의 가격이 상승하고 있습니다.,Someone is raising price of <color=#FFFF00>{0}</color>.,Someone is raising price of <color=#FFFF00>{0}</color>.
 999961,Someone is lowering price of <color=#FFFF00>{0}</color>.,누군가에 의해 <color=#FFFF00>{0}</color>의 가격이 하락하고 있습니다.,Someone is lowering price of <color=#FFFF00>{0}</color>.,Someone is lowering price of <color=#FFFF00>{0}</color>.
-999962,0,0,0,0
-999963,0,0,0,0
-999964,0,0,0,0
-999965,0,0,0,0
-999966,0,0,0,0
-999967,0,0,0,0
-999968,0,0,0,0
-999969,0,0,0,0
-999970,0,0,0,0
-999971,0,0,0,0
-999972,0,0,0,0
-999973,0,0,0,0
+999962,<size=60><color=#FFFF00>Novice Merchant</color></size>_n_nNewly stepped into the world of merchandizing.,<size=60><color=#FFFF00>초보 상인</color></size>_n_n이제 장사의 세계에 첫 발을 딛은 새내기입니다.,<size=60><color=#FFFF00>初心者の商人</color></size>_n_n商売の世界に初めの一歩を踏み出した新人です。,<size=60><color=#FFFF00>初级商人</color></size>_n_n这是一个踏出商界第一步的新手。
+999963,<size=60><color=#FFAA00>Promising Merchant</color></size>_n_nA super rookie of merchandizing._n_nAbility : Enclopedia,<size=60><color=#FFAA00>유망 상인</color></size>_n_n장사계의 떠오르는 샛별입니다._n_n기능 : 상품 도감 시스템,<size=60><color=#FFAA00>有望な商人</color></size>_n_n有望な商人です。_n_nアビリティ：図鑑,<size=60><color=#FFAA00>有潜力的商人</color></size>_n_n是一个商业界的超新星。_n_n技能：全书
+999964,"<size=60><color=#00FF00>Seasoned Merchant</color></size>_n_nNow can be called as veteran in this field._n_nAbilities : Enclopedia, Daily price tracking","<size=60><color=#00FF00>숙련 상인</color></size>_n_n이제는 장사에 있어서는 믿음직한 전문가입니다._n_n기능 : 상품 도감 시스템, 일일 가격변동 감지",<size=60><color=#00FF00>熟練の商人</color></size>_n_n商売のことについては専門家と呼んでいいでしょう。_n_nアビリティ：図鑑、値段追跡,<size=60><color=#00FF00>熟练商人</color></size>_n_n对于商业方面成为了专家。_n_n技能：全书，价格追迹
+999965,"<size=60><color=#00AAAA>Trade Maestro</color></size>_n_nAn extraordinary expert in trading._n_nAbilities : Enclopedia, Daily price tracking, Random box, Clairvoyance","<size=60><color=#00AAAA>장사의 달인</color></size>_n_n타의 추종을 불허하는 장사의 귀재입니다._n_n기능 : 상품 도감 시스템, 일일 가격변동 감지, 랜덤박스 갯수 투시",<size=60><color=#00AAAA>商売の達人</color></size>_n_nありえない商売の達人です_n_nアビリティ：図鑑、値段追跡、ボックス透視,<size=60><color=#00AAAA>商战大师</color></size>_n_n不可追踪的商业的鬼才。_n_n技能：全书，价格追迹，箱子透视
+999966,"<size=60><color=#AF00FF>Merchant God</color></size>_n_nLiving Legend of all merchant._n_nAbilities : Enclopedia, Daily price tracking, Random box, Clairvoyance, Market Control","<size=60><color=#AF00FF>장사의 신</color></size>_n_n인간의 범주를 넘어선 신적인 장사꾼입니다._n_n기능 : 상품 도감 시스템, 일일 가격변동 감지, 랜덤박스 갯수 투시, 시장 장악",<size=60><color=#AF00FF>商売の神</color></size>_n_n人間の限界を超えて商売の神となりました。_n_nアビリティ：図鑑、値段追跡、ボックス透視、市場掌握,<size=60><color=#AF00FF>商神</color></size>_n_n远远超越了人的能力。已称为【商神】。_n_n技能：全书，价格追迹，箱子透视，市场掌握
+999967,Game Mode : {0},게임 모드 : {0},0,0
+999968,Coins : {0},코인 : <color=#FFFF00>{0}</color>,0,0
+999969,Item Buyed Most : {0},최다 구매 아이템 : {0},0,0
+999970,Total Purchased Amound : {0},총 구매액 : {0},0,0
+999971,Total Sold Amound : {0},총 판매액 : {0},0,0
+999972,Diamond Acquired : {0},다이아 획득 : <color=#00FFFF>{0}</color>,0,0
+999973,_nMinimum coin requirement to get diamond in this mode : {0},_n해당 모드 다이아 획득을 위한 최소 코인 조건 : {0},0,0
 999974,0,0,0,0
 999975,0,0,0,0
 999976,0,0,0,0

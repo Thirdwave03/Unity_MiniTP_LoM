@@ -10,7 +10,7 @@ public enum SceneIds
     PurchaseScene,
     SalesScene,
     InnScene,
-    TutorialScene,
+    SettlementScene,
 }
 
 public static class DataTableIds
@@ -166,6 +166,8 @@ public static class GameInfos
     public static readonly int tutorialStringIdBegin = 999991;
     public static readonly int tutorialStringIdEnd = 999997;
 
+    public static readonly string blankImagePath = $"Sprites/Icon/itemimg/General/blank";
+
     public static int GetBulletinInfoStringId(ItemTypes itemType, PriceTrends trend, bool random = true)
     {
         int stringIdTempSuffix = (((int)itemType) - 1) * 4 + 1;
@@ -248,6 +250,7 @@ public enum TitleSceneCenterMsgType
     SelectGameMode,
     OpenUpgradeWindow,
     IfReallyUpgrade,
+    CheckMerchantRank,
 }
 
 public enum MainMenuCenterMsgType
@@ -261,12 +264,14 @@ public enum MainMenuCenterMsgType
     CannotProceed,
     CanProceed,
     LastDay,
+    DoubleCheckRestart,
 }
 
 public enum PurchaseSceneCenterMsgType
 {
     InsufficientCoin,
     LackOfCapacity,
+    DoubleCheckRestart,
 }
 
 public enum SalesSceneMsgType
@@ -275,12 +280,14 @@ public enum SalesSceneMsgType
     LoanPickUp,
     LoanPickedUp,
     AlreadyLent,
+    DoubleCheckRestart,
 }
 
 public enum InnSceneMsgType
 {
     InsufficientCoin,
     LackOfCapacity,
+    DoubleCheckRestart,
 }
 
 public enum BulletinBoardMsgType

@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SalesSceneUiManager : MonoBehaviour
+public class SalesSceneUiManager : UiSceneManagerBase
 {
     public Button settingButton;
 
@@ -185,8 +185,7 @@ public class SalesSceneUiManager : MonoBehaviour
 
     private void OnClickRestartButton()
     {
-        GameManager.Instance.Restart();
-        SceneManager.LoadScene((int)SceneIds.MainScene);
+        OpenMessage(SalesSceneMsgType.DoubleCheckRestart);
     }
 
     private void OnClickMainMenu()
@@ -306,6 +305,15 @@ public class SalesSceneUiManager : MonoBehaviour
                 centerMsg.SetActive(true);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999918);
                 break;
+            case SalesSceneMsgType.DoubleCheckRestart:
+                messageBox.SetActive(true);
+                loanWindow.SetActive(false);
+                centerMsgCheckBArea.SetActive(true);
+                salesInventoryWindow.SetActive(false);
+                settingWindow.SetActive(false);
+                centerMsg.SetActive(true);
+                centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999924);
+                break;
             default:
                 break;
         }
@@ -321,6 +329,10 @@ public class SalesSceneUiManager : MonoBehaviour
                 GameManager.Instance.ifLent = false;
                 messageBox.SetActive(false);
                 GameManager.Instance.CallSave();
+                break;
+            case SalesSceneMsgType.DoubleCheckRestart:
+                GameManager.Instance.Restart();
+                SceneManager.LoadScene((int)SceneIds.MainScene);
                 break;
             default:
                 break;
@@ -387,5 +399,10 @@ public class SalesSceneUiManager : MonoBehaviour
     public void OnValueChangeSFX(float val)
     {
         SoundManager.Instance.SfxVolume = val;
+    }
+
+    public override void UpdateSceneDisplay()
+    {
+        UpdateSalesSceneDisplay();
     }
 }

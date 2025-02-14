@@ -1,31 +1,31 @@
 ﻿Id,String
 0,
 500,EmptyString
-910001, Carrot
-910002, Corn
-910003, Egg
-910004, Fish
-910005, Garlic
-910006, Green Onion
-910007, Herbs
-910008, Mushroom
-910009, Potato
-910010, Cabbage
-910011, Seaweed
-910012, Tomato
-910013, Radish
-910014, Walnut
-910015, Wheat
-910016, Apple
-910017, Honey
-910018, Lemon
-910019, Milk
-910020, Orange
-910021, Beer
-910022, Bread
-910023, Cheese
-910024, Fried Egg
-910025, Wine
+910001,Carrot
+910002,Corn
+910003,Egg
+910004,Fish
+910005,Garlic
+910006,Green Onion
+910007,Herbs
+910008,Mushroom
+910009,Potato
+910010,Cabbage
+910011,Seaweed
+910012,Tomato
+910013,Radish
+910014,Walnut
+910015,Wheat
+910016,Apple
+910017,Honey
+910018,Lemon
+910019,Milk
+910020,Orange
+910021,Beer
+910022,Bread
+910023,Cheese
+910024,Fried Egg
+910025,Wine
 910026, Backpack
 910027, Potion
 910028, Cape
@@ -184,35 +184,35 @@
 998018, Tips : _nTips18
 998019, Tips : _nTips19
 998020, Tips : _nTips20
-999001, New Game
-999002, Limited Resources
-999003, Exit Game
-999004, Continue
-999005, Best Earning Record_n{0} coins
-999006, Restart
-999007, Main Menu
-999008, Quit
-999009, Average Inventory Cost
-999010, Max
-999011, Purchase
-999012, Sell
-999013, Random Box
-999014, Gather for intel
-999015, Cost
-999016, Revenue
-999017, Gather intel about product pricing
-999018, Invest in the inn
-999019, Profit:
-999020, Total investment : {0}
-999021, Capacity : {0} / {1}_nRental Fee : {2} / day
-999022, Level : {0}
-999023, Bulletin Board
-999024, Cost :
-999025, Lend money
-999026, Retrieve
-999027, Price
-999028, Total Price
-999029, Take
+999001,New Game
+999002,Limited Resources
+999003,Exit Game
+999004,Continue
+999005,Best Earning Record_n{0} coins
+999006,Restart
+999007,Main Menu
+999008,Quit
+999009,Average Inventory Cost
+999010,Max
+999011,Purchase
+999012,Sell
+999013,Random Box
+999014,Gather for intel
+999015,Cost
+999016,Revenue
+999017,Gather intel about product pricing
+999018,Invest in the inn
+999019,Profit:
+999020,Total investment : {0}
+999021,Capacity : {0} / {1}_nRental Fee : {2} / day
+999022,Level : {0}
+999023,Bulletin Board
+999024,Cost :
+999025,Lend money
+999026,Retrieve
+999027,Price
+999028,Total Price
+999029,Take
 999030,GameMode
 999031,Days
 999032,Coins
@@ -251,7 +251,7 @@
 999065,Enclopedia
 999066,Raise
 999067,Lower
-999068,Blank
+999068,Settlement
 999901,Not enough coins to pay off rental fee. Do you still want to continue losing all the progress in this game?
 999902,Insufficient coins.
 999903,You cannot buy items over maximum inventory capacity.
@@ -284,8 +284,8 @@
 999930,Items insufficient.
 999931,Keep for how long?
 999932,What do you want to do with <color=#FFFF00>price</color> of <color=#FFFF00>{0}</color>?
-999933,0
-999934,0
+999933,Market is now under control.
+999934,Exit
 999935,Short on cash? Fear not!
 999936,"No time limit, no boundaries! Expand your empire at your own pace for as long as you wish."
 999937,0
@@ -313,18 +313,18 @@
 999959,Merchant God
 999960,Someone is raising price of <color=#FFFF00>{0}</color>.
 999961,Someone is lowering price of <color=#FFFF00>{0}</color>.
-999962,0
-999963,0
-999964,0
-999965,0
-999966,0
-999967,0
-999968,0
-999969,0
-999970,0
-999971,0
-999972,0
-999973,0
+999962,<size=60><color=#FFFF00>Novice Merchant</color></size>_n_nNewly stepped into the world of merchandizing.
+999963,<size=60><color=#FFAA00>Promising Merchant</color></size>_n_nA super rookie of merchandizing._n_nAbility : Enclopedia
+999964,"<size=60><color=#00FF00>Seasoned Merchant</color></size>_n_nNow can be called as veteran in this field._n_nAbilities : Enclopedia, Daily price tracking"
+999965,"<size=60><color=#00AAAA>Trade Maestro</color></size>_n_nAn extraordinary expert in trading._n_nAbilities : Enclopedia, Daily price tracking, Random box, Clairvoyance"
+999966,"<size=60><color=#AF00FF>Merchant God</color></size>_n_nLiving Legend of all merchant._n_nAbilities : Enclopedia, Daily price tracking, Random box, Clairvoyance, Market Control"
+999967,Game Mode : {0}
+999968,Coins : {0}
+999969,Item Buyed Most : {0}
+999970,Total Purchased Amound : {0}
+999971,Total Sold Amound : {0}
+999972,Diamond Acquired : {0}
+999973,_nMinimum coin requirement to get diamond in this mode : {0}
 999974,0
 999975,0
 999976,0

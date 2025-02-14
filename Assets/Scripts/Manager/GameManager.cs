@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -32,6 +31,7 @@ public class GameManager
 
     // Temp Vals
 
+    public int bonusDiamonds;
     public bool isFirstTimeEver = false;
     public bool isDisplayTutorial = false;
     public List<int> tempBulletinBoardContents;
@@ -225,6 +225,23 @@ public class GameManager
                     break;
             }
             return val;
+        }
+    }
+
+    public int MostBuyedItemId
+    {
+        get
+        {
+            int mostBuyedItemId = ItemDataIndex.minPrimary;
+            foreach(var item in entireItemDict.Values)
+            {
+                if(item.totalPurchasedCount >
+                    entireItemDict[mostBuyedItemId].totalPurchasedCount)
+                {
+                    mostBuyedItemId = item.ItemData.Id;
+                }
+            }
+            return mostBuyedItemId;
         }
     }
 
@@ -818,7 +835,7 @@ public class GameManager
             case GameModes.ShowMeTheMoney:
                 break;
             case GameModes.ProdigalSon:
-                coins /= 2;
+                coins = (int)(coins * 0.5);
                 break;
             case GameModes.ProdigalSons:
                 coins = 0;
@@ -1166,7 +1183,7 @@ public class GameManager
             randomBox1Price += entireItemDict[i].price;
         }
         randomBox1Price /= 20;
-        randomBox1Price = (int)(randomBox1Price * UnityEngine.Random.Range(1f, 5f));
+        randomBox1Price = (int)(randomBox1Price * UnityEngine.Random.Range(2f, 4f));
 
         randomBox2Price = 0;
         for (int i = ItemDataIndex.minSecondary; i <= ItemDataIndex.maxSecondary; ++i)
@@ -1174,7 +1191,7 @@ public class GameManager
             randomBox2Price += entireItemDict[i].price;
         }
         randomBox2Price /= 20;
-        randomBox2Price = (int)(randomBox2Price * UnityEngine.Random.Range(1f, 5f));
+        randomBox2Price = (int)(randomBox2Price * UnityEngine.Random.Range(2f, 4f));
 
         isRandomBox1PickedUp = false;
         isRandomBox2PickedUp = false;
@@ -1188,7 +1205,7 @@ public class GameManager
             Mathf.Max(SaveLoadManager.BaseData.bestScore[(int)CurrentGameMode], coins);
         if(coins >= DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondGoal)
         {
-            int bonusDiamonds = (int)((coins - DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondGoal)
+            bonusDiamonds = (int)((coins - DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondGoal)
                 * DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondPaybackRate);
 
             bonusDiamonds += DataTableManager.GameModeTable.Get(CurrentGameMode).DiamondReward;

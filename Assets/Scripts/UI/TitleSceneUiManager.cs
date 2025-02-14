@@ -54,6 +54,10 @@ public class TitleSceneUiManager : MonoBehaviour
     public Image rankImage;
     public TextMeshProUGUI rankText;
     public Slider expSlider;
+    public Button rankButton;
+
+    public AudioClip diamondSpentSfx;
+    public AudioClip rankUpSfx;
 
     private void Start()
     {
@@ -96,6 +100,7 @@ public class TitleSceneUiManager : MonoBehaviour
         modeSelectCloseB.onClick.AddListener(OnClickfCenterMessageClose);
         upgradeWindowOpenB.onClick.AddListener(OnClickUpgradeWindow);
         upgradeCloseB.onClick.AddListener(OnClickfCenterMessageClose);
+        rankButton.onClick.AddListener(OnClickRankButton);
 
         // dropdown
         languagesDD.onValueChanged.AddListener(OnLanguageChange);
@@ -233,6 +238,11 @@ public class TitleSceneUiManager : MonoBehaviour
                 centerMessageLC.tmp.text =
                     DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
                     .Get(999928);
+                break;
+            case TitleSceneCenterMsgType.CheckMerchantRank:
+                centerMessage.SetActive(true);
+                centerMessageCheckBoxArea.SetActive(false);
+                AllignMessageWithCurrentRank();
                 break;
             default:
                 break;
@@ -444,6 +454,7 @@ public class TitleSceneUiManager : MonoBehaviour
         {
             MerchantRankUp();
         }
+        SoundManager.Instance.PlaySfx(diamondSpentSfx);
         SaveLoadManager.SaveBase();
         UpdateTitleSceneDisplay();
     }
@@ -473,11 +484,49 @@ public class TitleSceneUiManager : MonoBehaviour
                 break;
         }
         Debug.Log($"Rank up to: {SaveLoadManager.BaseData.MerchantRank}");
-
+        SoundManager.Instance.PlaySfx(rankUpSfx);
         centerMessageCheckBoxArea.SetActive(false);
         centerMessage.SetActive(true);
         centerMessageLC.tmp.text =
             DataTableManager.StringTableList[(int)(Variables.currentLanguage)]
             .Get(stringId);
+    }
+
+    private void OnClickRankButton()
+    {
+        OpenMessage(TitleSceneCenterMsgType.CheckMerchantRank);
+    }
+
+    private void AllignMessageWithCurrentRank()
+    {
+        switch (SaveLoadManager.BaseData.MerchantRank)
+        {
+            case MerchantRanks.NoviceMerchant:
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999962);
+                break;
+            case MerchantRanks.PromisingMerchant:
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999963);
+                break;
+            case MerchantRanks.SeasonedMerchant:
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999964);
+                break;
+            case MerchantRanks.TradeMaestro:
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999965);
+                break;
+            case MerchantRanks.MerchantGod:
+                centerMessageLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage]
+                    .Get(999966);
+                break;         
+        }
+
     }
 }

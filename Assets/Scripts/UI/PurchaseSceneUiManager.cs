@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Reflection;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PurchaseSceneUiManager : MonoBehaviour
+public class PurchaseSceneUiManager : UiSceneManagerBase
 {
     public Button settingButton;
 
@@ -182,8 +181,7 @@ public class PurchaseSceneUiManager : MonoBehaviour
 
     private void OnClickRestartButton()
     {
-        GameManager.Instance.Restart();
-        SceneManager.LoadScene((int)SceneIds.MainScene);
+       OpenMessage(PurchaseSceneCenterMsgType.DoubleCheckRestart);
     }
 
     private void OnClickMainMenu()
@@ -253,6 +251,13 @@ public class PurchaseSceneUiManager : MonoBehaviour
                 centerMsgCheckBArea.SetActive(false);
                 centerMsgLC.tmp.text = DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999903);
                 break;
+            case PurchaseSceneCenterMsgType.DoubleCheckRestart:
+                centerMsg.SetActive(true);
+                centerMsgCheckBArea.SetActive(true);
+                settingWindow.SetActive(false);
+                centerMsgLC.tmp.text =
+                    DataTableManager.StringTableList[(int)Variables.currentLanguage].Get(999924);
+                break;
             default:
                 break;
         }
@@ -262,6 +267,10 @@ public class PurchaseSceneUiManager : MonoBehaviour
     {
         switch (messageType)
         {
+            case PurchaseSceneCenterMsgType.DoubleCheckRestart:
+                GameManager.Instance.Restart();
+                SceneManager.LoadScene((int)SceneIds.MainScene);
+                break;
             default:
                 break;
         }
@@ -309,5 +318,10 @@ public class PurchaseSceneUiManager : MonoBehaviour
         {
             luxuryShop.SetActive(false);
         }
+    }
+
+    public override void UpdateSceneDisplay()
+    {
+        UpdatePurchaseSceneDisplay();
     }
 }

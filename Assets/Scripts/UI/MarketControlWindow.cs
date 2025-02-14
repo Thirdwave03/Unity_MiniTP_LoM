@@ -134,11 +134,12 @@ public class MarketControlWindow : MonoBehaviour
         if (val)
         {
             controlDays = 1;
-            OnLowerToggleSelected();
+            controlButton.interactable = true;
         }
         if (!IfAnyLowerToggleOn())
         {
             controlDays = 0;
+            controlButton.interactable = false;
         }
         OnLowerToggleSelected();
     }
@@ -147,11 +148,13 @@ public class MarketControlWindow : MonoBehaviour
     {
         if (val)
         {
-            controlDays = 2;            
+            controlDays = 2;
+            controlButton.interactable = true;
         }
         if(!IfAnyLowerToggleOn())
         {
             controlDays = 0;
+            controlButton.interactable = false;
         }
         OnLowerToggleSelected();
     }
@@ -161,10 +164,12 @@ public class MarketControlWindow : MonoBehaviour
         if (val)
         {
             controlDays = 3;
+            controlButton.interactable = true;
         }
         if (!IfAnyLowerToggleOn())
         {
             controlDays = 0;
+            controlButton.interactable = false;
         }
         OnLowerToggleSelected();
     }
@@ -173,11 +178,13 @@ public class MarketControlWindow : MonoBehaviour
     {
         if (val)
         {
-            controlDays = 4;            
+            controlDays = 4;
+            controlButton.interactable = true;
         }
         if (!IfAnyLowerToggleOn())
         {
             controlDays = 0;
+            controlButton.interactable = false;
         }
         OnLowerToggleSelected();
     }
@@ -186,11 +193,13 @@ public class MarketControlWindow : MonoBehaviour
     {
         if (val)
         {
-            controlDays = 5;            
+            controlDays = 5;
+            controlButton.interactable = true;
         }
         if (!IfAnyLowerToggleOn())
         {
             controlDays = 0;
+            controlButton.interactable = false;
         }
         OnLowerToggleSelected();
     }
@@ -221,7 +230,8 @@ public class MarketControlWindow : MonoBehaviour
     }
 
     private void OnClickControlButton()
-    {
+    {    
+
         if(GameManager.Instance.coins >= controlPrice)
         {
             if (controlPrice == 0)
@@ -244,6 +254,9 @@ public class MarketControlWindow : MonoBehaviour
     {
         GameManager.Instance.BulletinBoardUpdateOnMarketControl(ItemData.ItemData.Id, isRaise, controlDays);
         bulletinBoardMgr.OpenMessage(BulletinBoardMsgType.ControlSuccessful);
-        ResetToggles();        
+        ResetToggles();
+        bulletinBoardMgr.uiSceneMgr.UpdateSceneDisplay();
+        //bulletinBoardMgr.ResetContents();
+        GameManager.Instance.CallSave();
     }
 }

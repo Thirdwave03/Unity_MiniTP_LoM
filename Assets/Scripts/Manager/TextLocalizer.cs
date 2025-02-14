@@ -18,7 +18,10 @@ public class TextLocalizer : MonoBehaviour
 
     private void Awake()
     {
-        tmp = GetComponent<TextMeshProUGUI>();
+        if (tmp == null)
+        {
+            tmp = GetComponent<TextMeshProUGUI>();
+        }
     }
 
     private void OnEnable()
